@@ -30,6 +30,8 @@
             var uri = ConstructExtensions.GetRandomContentUri(_cloud_uris);
             _content_image = new(uri: uri, width: this.Width, height: this.Height);
 
+            _content_image.ImageBlur = 6;
+
             SetChild(_content_image);
 
             IsometricDisplacement = Constants.DEFAULT_ISOMETRIC_DISPLACEMENT;
