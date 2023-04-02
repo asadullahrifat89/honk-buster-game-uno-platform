@@ -2,7 +2,7 @@
 An isometric shooter bomber game built in C# and XAML with Uno Platform WebAssembly.
 Play here: https://asadullahrifat89.github.io/honk-buster-game-uno-platform/
 
-# Honk-Trooper
+# 2D Game engine
 A simple game engine built with C#. XAML, HTML, CSS, and JavaScript that runs on Uno Platform & WebAssembly.
 This repository contains an arcade honk busting game.
 
@@ -32,7 +32,7 @@ Play here: https://asadullahrifat89.github.io/honk-buster-game-uno-platform/
 - Groud and air enemies.
 - Road side walks, trees, and billboards.
 
-## Game Engine
+## Game Engine Parts
 
 The game engine has four main classes.
 
