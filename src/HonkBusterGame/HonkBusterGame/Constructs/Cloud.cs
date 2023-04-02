@@ -33,8 +33,7 @@
             SetChild(_content_image);
 
             IsometricDisplacement = Constants.DEFAULT_ISOMETRIC_DISPLACEMENT;
-            DropShadowDistance = Constants.DEFAULT_DROP_SHADOW_DISTANCE + 200;
-            Opacity = 0.6;
+            DropShadowDistance = Constants.DEFAULT_DROP_SHADOW_DISTANCE + 200;            
         }
 
         #endregion

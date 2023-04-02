@@ -37,7 +37,7 @@ namespace HonkBusterGame
 
             _content_image = new ImageElement(uri: Constants.CONSTRUCT_TEMPLATES.FirstOrDefault(x => x.ConstructType == ConstructType.HEALTH_PICKUP).Uri, width: 30, height: 30)
             {
-                Stretch = Stretch.Uniform,
+                //Stretch = Stretch.Uniform,
                 Margin = new Thickness(5)
             };
 

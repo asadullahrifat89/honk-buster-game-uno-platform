@@ -1,127 +1,7 @@
-﻿#if !__ANDROID__ && !__IOS__
-using Uno.UI.Runtime.WebAssembly;
-#endif
+﻿using Uno.UI.Runtime.WebAssembly;
 
 namespace HonkBusterGame
 {
-
-#if __ANDROID__ || __IOS__
-
-    public partial class Audio : AudioElement
-    {
-        //private readonly MediaPlayerElement _player;
-
-        public Audio(
-            Uri uri,
-            double volume = 1.0,
-            bool loop = false,
-            Action playback = null)
-        {
-            //_player = new MediaPlayerElement() { AreTransportControlsEnabled = false, };
-
-            //Windows.Media.Playback.MediaPlayer mediaPlayer = new();
-
-            //_player.SetMediaPlayer(mediaPlayer);
-
-            Initialize(
-                uri: uri,
-                volume: volume,
-                loop: loop,
-                trackEnded: playback);
-        }
-
-        #region Methods
-
-        public void Initialize(
-            Uri uri,
-            double volume = 1.0,
-            bool loop = false,
-            Action trackEnded = null)
-        {
-            try
-            {
-                SetSource(uri);
-                SetVolume(volume);
-                SetLoop(loop);
-
-                if (trackEnded is not null)
-                {
-                    TrackEnded = trackEnded;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.Write(ex.Message.ToString());
-            }
-        }
-
-        public void SetSource(Uri uri)
-        {
-            //if (_player.MediaPlayer is not null)
-            //{
-            //    Uri newUri = new(uri.OriginalString.Replace("ms-appx:///HonkBusterGame/Assets/Sounds/", "ms-appx:///Assets/Sounds/"));
-            //    _player.MediaPlayer.Source = MediaSource.CreateFromUri(newUri);
-            //}
-        }
-
-        public void SetLoop(bool loop)
-        {
-            //if (_player.MediaPlayer is not null)
-            //{
-            //    _player.MediaPlayer.IsLoopingEnabled = loop;
-            //}
-        }
-
-        public new void Play()
-        {
-            //if (_player.MediaPlayer is not null)
-            //{
-            //    _player.MediaPlayer.Play();
-            //    base.Play();
-            //}
-        }
-
-        public new void Stop()
-        {
-            //if (_player.MediaPlayer is not null)
-            //{
-            //    _player.MediaPlayer.Stop();
-            //    base.Stop();
-            //}
-        }
-
-        public new void Pause()
-        {
-            //if (_player.MediaPlayer is not null)
-            //{
-            //    _player.MediaPlayer.Pause();
-            //    base.Pause();
-            //}
-        }
-
-        public new void Resume()
-        {
-            //if (_player.MediaPlayer is not null)
-            //{
-            //    _player.MediaPlayer.Play();
-            //    base.Resume();
-            //}
-        }
-
-        public new void SetVolume(double volume)
-        {
-            //if (_player.MediaPlayer is not null)
-            //{
-            //    _player.MediaPlayer.Volume = volume * 100;
-            //    base.SetVolume(volume);
-            //}
-        }
-
-        #endregion
-    }
-
-#else
-
     [HtmlElement("audio")]
     public partial class Audio : AudioElement
     {
@@ -175,7 +55,7 @@ namespace HonkBusterGame
             {
                 TrackEnded = trackEnded;
                 this.RegisterHtmlEventHandler("ended", EndedEvent);
-            }            
+            }
         }
 
         public void SetSource(Uri uri)
@@ -224,6 +104,4 @@ namespace HonkBusterGame
 
         #endregion
     }
-
-#endif
 }

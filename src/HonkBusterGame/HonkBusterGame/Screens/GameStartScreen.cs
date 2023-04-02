@@ -73,7 +73,7 @@ namespace HonkBusterGame
             _content_image = new(uri: uri, width: 110, height: 110)
             {
                 HorizontalAlignment = HorizontalAlignment.Center,
-                Stretch = Stretch.Uniform,
+                //Stretch = Stretch.Uniform,
                 Margin = new Thickness(0, 10, 0, 5)
             };
 
@@ -158,7 +158,8 @@ namespace HonkBusterGame
 
         public void SetContent(Uri uri)
         {
-            _content_image.Source = new BitmapImage(uri);
+            //_content_image.Source = new BitmapImage(uri);
+            _content_image.SetSource(uri);
         }
 
         public void SetTitle(string title)
