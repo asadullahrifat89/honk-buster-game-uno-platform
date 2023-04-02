@@ -31,7 +31,7 @@
                     Storyboard.TargetName="GameScene"
                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
                     From="#1f2326"
-                    To="#5e6b73"
+                    To="#464646"
                     Duration="0:0:4" />
             </Storyboard>
             <Storyboard x:Name="DayToNightStoryboard">
@@ -50,7 +50,7 @@
                 <ColorAnimation
                     Storyboard.TargetName="GameScene"
                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                    From="#5e6b73"
+                    From="#464646"
                     To="#1f2326"
                     Duration="0:0:4" />
             </Storyboard>

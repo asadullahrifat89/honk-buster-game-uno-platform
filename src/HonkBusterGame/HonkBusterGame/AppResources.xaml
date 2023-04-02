@@ -12,7 +12,8 @@
 
     </ResourceDictionary.MergedDictionaries>
     <!--  Add resources here  -->
-    <SolidColorBrush x:Key="DayBackgroundColor" Color="#5e6b73" />
+    <!--<SolidColorBrush x:Key="DayBackgroundColor" Color="#5e6b73" />-->
+    <SolidColorBrush x:Key="DayBackgroundColor" Color="#464646" />
     <SolidColorBrush x:Key="NightBackgroundColor" Color="#1f2326" />
 
     <SolidColorBrush x:Key="RoadSideWalkColor" Color="#958077" />
