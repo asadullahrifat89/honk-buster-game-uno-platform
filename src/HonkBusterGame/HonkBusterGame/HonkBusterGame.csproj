@@ -1,0 +1,61 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>net7.0;</TargetFrameworks>
+
+		<!-- Ensures the .xr.xml files are generated in a proper layout folder -->
+		<GenerateLibraryLayout>true</GenerateLibraryLayout>
+    <Nullable>enable</Nullable>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0|AnyCPU'">
+	  <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0|AnyCPU'">
+	  <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Uno.Dsp.Tasks" Version="1.0.1" />
+		<PackageReference Include="Uno.WinUI" Version="4.8.15" />
+		<PackageReference Include="Uno.Resizetizer" Version="1.0.2" />
+		<PackageReference Include="Uno.Extensions.Configuration" Version="2.3.2" />
+		<PackageReference Include="Uno.Extensions.Http" Version="2.3.2" />
+		<PackageReference Include="Uno.Extensions.Http.Refit" Version="2.3.2" />
+		<PackageReference Include="Uno.Extensions.Logging.WinUI" Version="2.3.2" />
+		<PackageReference Include="Uno.Extensions.Serialization.Http" Version="2.3.2" />
+		<PackageReference Include="Uno.Extensions.Serialization.Refit" Version="2.3.2" />
+		<PackageReference Include="Uno.Material.WinUI" Version="2.5.3" />
+		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="2.5.5" />
+		<PackageReference Include="Uno.Toolkit.WinUI" Version="2.5.5" />
+		<PackageReference Include="Uno.Extensions.Authentication.WinUI" Version="2.3.2" />
+		<PackageReference Include="Uno.Extensions.Hosting.WinUI" Version="2.3.2" />
+		<PackageReference Include="Uno.Extensions.Localization.WinUI" Version="2.3.2" />
+		<PackageReference Include="Uno.Extensions.Reactive.WinUI" Version="2.3.2" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="7.0.0" />
+    <PackageReference Include="Uno.WinUI.Runtime.WebAssembly" Version="4.8.15" />
+    <PackageReference Include="Uno.Extensions.Logging.WebAssembly.Console" Version="1.4.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="Assets\**" />
+		<Page Include="**\*.xaml" Exclude="bin\**\*.xaml;obj\**\*.xaml" />
+		<Compile Update="**\*.xaml.cs">
+			<DependentUpon>%(Filename)</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\HonkBusterGame.DataContracts\HonkBusterGame.DataContracts.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<UnoDspImportColors Include="Styles\*.zip" Generator="Xaml" />
+		<UnoImage Include="Assets\**\*.svg" />
+		<EmbeddedResource Include="appsettings.json" />
+		<EmbeddedResource Include="appsettings.*.json" DependentUpon="appsettings.json" />
+		<UpToDateCheckInput Include="**\*.xaml" Exclude="bin\**\*.xaml;obj\**\*.xaml" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Include="**\*.xaml" Exclude="bin\**\*.xaml;obj\**\*.xaml" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,35 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <!--  Load WinUI resources  -->
+        <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+        <!--<MaterialToolkitTheme
+            xmlns="using:Uno.Toolkit.UI.Material"
+            ColorOverrideSource="ms-appx:///HonkBusterGame/Styles/ColorPaletteOverride.xaml"
+            FontOverrideSource="ms-appx:///HonkBusterGame/Styles/MaterialFontsOverride.xaml" />-->
+        <!--  Load Uno.UI.Toolkit resources  -->
+        <ToolkitResources xmlns="using:Uno.Toolkit.UI" />
+
+    </ResourceDictionary.MergedDictionaries>
+    <!--  Add resources here  -->
+    <SolidColorBrush x:Key="DayBackgroundColor" Color="#5e6b73" />
+    <SolidColorBrush x:Key="NightBackgroundColor" Color="#1f2326" />
+
+    <SolidColorBrush x:Key="RoadSideWalkColor" Color="#958077" />
+    <SolidColorBrush x:Key="RoadSideWalkColor2" Color="#483e39" />
+
+    <SolidColorBrush x:Key="RoadSideWalkBorderColor" Color="#f6f1eb" />
+    <SolidColorBrush x:Key="RoadSideWalkBorderColor2" Color="#a9a6a1" />
+
+    <SolidColorBrush x:Key="BorderColor" Color="#2f3a5a" />
+
+    <SolidColorBrush x:Key="PlayerBlueAccentColor" Color="#5fc4f8" />
+    <SolidColorBrush x:Key="PlayerRedAccentColor" Color="#d75e72" />
+
+    <FontFamily x:Key="DefaultFontFamily">ms-appx:///HonkBusterGame/Assets/Fonts/Gameplay.ttf#Gameplay</FontFamily>
+
+    <Style BasedOn="{StaticResource DefaultTextBlockStyle}" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
+    </Style>
+
+</ResourceDictionary>
