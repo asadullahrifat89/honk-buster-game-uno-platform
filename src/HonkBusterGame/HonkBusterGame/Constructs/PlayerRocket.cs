@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-namespace HonkBusterGame
+﻿namespace HonkBusterGame
 {
     public partial class PlayerRocket : AnimableConstruct
     {

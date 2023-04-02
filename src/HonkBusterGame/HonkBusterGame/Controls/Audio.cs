@@ -1,7 +1,4 @@
-﻿using Microsoft.UI.Xaml;
-using System;
-
-#if !__ANDROID__ && !__IOS__
+﻿#if !__ANDROID__ && !__IOS__
 using Uno.UI.Runtime.WebAssembly;
 #endif
 

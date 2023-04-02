@@ -1,8 +1,4 @@
-﻿using Microsoft.UI.Xaml;
-using System;
-using System.Linq;
-
-namespace HonkBusterGame
+﻿namespace HonkBusterGame
 {
     public partial class Construct : CanvasElement
     {

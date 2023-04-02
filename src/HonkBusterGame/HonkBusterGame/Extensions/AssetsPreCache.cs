@@ -1,8 +1,4 @@
-﻿using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-
-namespace HonkBusterGame
+﻿namespace HonkBusterGame
 {
     public static class AssetsPreCache
     {

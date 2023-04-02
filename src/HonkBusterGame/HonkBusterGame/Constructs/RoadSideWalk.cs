@@ -1,9 +1,4 @@
-﻿using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Media;
-using System;
-using System.Linq;
-
-namespace HonkBusterGame
+﻿namespace HonkBusterGame
 {
     public partial class RoadSideWalk : MovableConstruct
     {

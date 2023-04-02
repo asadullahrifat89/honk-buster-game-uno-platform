@@ -1,7 +1,4 @@
-﻿using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media;
-using System;
-using Windows.Foundation;
+﻿using Windows.Foundation;
 
 namespace HonkBusterGame
 {

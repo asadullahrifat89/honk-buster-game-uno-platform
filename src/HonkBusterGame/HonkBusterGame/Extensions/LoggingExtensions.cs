@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace HonkBusterGame
+﻿namespace HonkBusterGame
 {
     public static class LoggingExtensions
     {

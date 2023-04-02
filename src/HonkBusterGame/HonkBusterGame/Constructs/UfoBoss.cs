@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using Windows.Foundation;
+﻿using Windows.Foundation;
 
 namespace HonkBusterGame
 {
