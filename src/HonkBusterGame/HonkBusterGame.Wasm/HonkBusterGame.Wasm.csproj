@@ -38,13 +38,9 @@
     <WasmShellEnableAotProfile Include="aot.profile" />
   </ItemGroup>
   <ItemGroup>    
-    <Content Include="Assets\splash_screen.png" />    
     <Content Include="manifest.webmanifest" />
     <Content Include="Assets\AppIcon-*.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="Assets\splash_screen.png" />
-  </ItemGroup>
+  </ItemGroup>  
   <ItemGroup>
     <EmbeddedResource Include="WasmCSS\Fonts.css" />
     <EmbeddedResource Include="WasmScripts\AppManifest.js" />
