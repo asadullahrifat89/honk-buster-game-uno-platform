@@ -283,6 +283,7 @@ namespace HonkBusterGame
                 ImgElement.DropShadowX = offsetX;
                 ImgElement.DropShadowY = offsetY;
                 ImgElement.DropShadowBlurRadius = blurRadius;
+                ImgElement.DropShadowColor = color;
             }
         }
 

@@ -32,11 +32,9 @@
 
             var uri = ConstructExtensions.GetRandomContentUri(_bomb_uris);
             _content_image = new(uri: uri, width: this.Width, height: this.Height);
+            _content_image.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 6, color: "goldenrod");
 
             SetChild(_content_image);
-
-            //BorderThickness = new Microsoft.UI.Xaml.Thickness(Constants.DEFAULT_BLAST_RING_BORDER_THICKNESS);
-            //CornerRadius = new Microsoft.UI.Xaml.CornerRadius(Constants.DEFAULT_BLAST_RING_CORNER_RADIUS);
 
             IsometricDisplacement = Constants.DEFAULT_ISOMETRIC_DISPLACEMENT;
             Speed = Constants.DEFAULT_CONSTRUCT_SPEED + 1;
