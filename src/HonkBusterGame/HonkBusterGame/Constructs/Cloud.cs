@@ -30,12 +30,12 @@
             var uri = ConstructExtensions.GetRandomContentUri(_cloud_uris);
             _content_image = new(uri: uri, width: this.Width, height: this.Height);
 
-            _content_image.ImageBlur = 6;
+            _content_image.SetBlur(6);
 
             SetChild(_content_image);
 
             IsometricDisplacement = Constants.DEFAULT_ISOMETRIC_DISPLACEMENT;
-            DropShadowDistance = Constants.DEFAULT_DROP_SHADOW_DISTANCE + 200;            
+            DropShadowDistance = Constants.DEFAULT_DROP_SHADOW_DISTANCE + 200;
         }
 
         #endregion

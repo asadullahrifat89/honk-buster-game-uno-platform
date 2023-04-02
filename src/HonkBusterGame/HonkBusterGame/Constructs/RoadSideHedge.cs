@@ -27,6 +27,7 @@
             var uri = ConstructExtensions.GetRandomContentUri(_tree_uris);
             _content_image = new(uri: uri, width: this.Width, height: this.Height);
 
+
             SetChild(_content_image);
 
             Speed = Constants.DEFAULT_CONSTRUCT_SPEED;

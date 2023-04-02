@@ -3899,7 +3899,7 @@ namespace HonkBusterGame
 
             _scene_game.AddToScene(
             new Generator(
-                delay: 400,
+                delay: 300,
                 elaspedAction: GenerateCloud,
                 scramble: true));
 

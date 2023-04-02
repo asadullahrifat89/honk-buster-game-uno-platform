@@ -33,9 +33,15 @@ namespace HonkBusterGame
 
     public partial class ImageElement : Border
     {
-        private ImgElement ImgElement;
-        private string _baseUrl = string.Empty;
+        #region Fields
+
+        private readonly ImgElement ImgElement;
+        private readonly string _baseUrl = string.Empty;
         private Uri _uri;
+
+        #endregion
+
+        #region Ctor
 
         public ImageElement(Uri uri, double width, double height)
         {
@@ -55,6 +61,8 @@ namespace HonkBusterGame
 
             SetSource(uri);
         }
+
+        #endregion
 
         #region Properties
 
@@ -170,19 +178,19 @@ namespace HonkBusterGame
             }
         }
 
-        private double blur = 0;
+        //private double blur = 0;
 
-        public double ImageBlur
-        {
-            get { return blur; }
-            set
-            {
-                blur = value;
+        //public double ImageBlur
+        //{
+        //    get { return blur; }
+        //    set
+        //    {
+        //        blur = value;
 
-                if (ImgElement is not null)
-                    ImgElement.Blur = blur;
-            }
-        }
+        //        if (ImgElement is not null)
+        //            ImgElement.Blur = blur;
+        //    }
+        //}
 
         private double opacity = 1;
 
@@ -266,6 +274,14 @@ namespace HonkBusterGame
 
         #endregion
 
+        #region Methods
+
+        public void SetBlur(double blur)
+        {
+            if (ImgElement is not null)
+                ImgElement.Blur = blur;
+        }
+
         public void SetSource(Uri uri)
         {
             var source = $"{_baseUrl}/{uri.AbsoluteUri.Replace("ms-appx:///", "")}";
@@ -278,5 +294,7 @@ namespace HonkBusterGame
         {
             return _uri;
         }
+
+        #endregion
     }
 }
