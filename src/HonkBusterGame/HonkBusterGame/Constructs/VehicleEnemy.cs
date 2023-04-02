@@ -73,6 +73,7 @@
 
         public void Reset()
         {
+            _content_image.SetGrayscale(0);
             SetScaleTransform(1);
 
             Speed = _random.Next(Constants.DEFAULT_CONSTRUCT_SPEED - 4, Constants.DEFAULT_CONSTRUCT_SPEED - 2);
@@ -96,10 +97,8 @@
             WillHonk = false;
 
             Speed = Constants.DEFAULT_CONSTRUCT_SPEED - 1;
-
-            //var willReact = _random.Next(2);
-
-            //if (willReact > 0)
+            _content_image.SetGrayscale(100);
+            
             _audioStub.Play(SoundType.HONK_BUST_REACTION);
         }
 
