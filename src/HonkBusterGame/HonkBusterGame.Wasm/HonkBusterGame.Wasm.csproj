@@ -37,23 +37,13 @@
   <ItemGroup>
     <WasmShellEnableAotProfile Include="aot.profile" />
   </ItemGroup>
-  <ItemGroup>
-    <None Remove="Assets\AppIcon-128.png" />
-    <None Remove="Assets\AppIcon-16.png" />
-    <None Remove="Assets\AppIcon-256.png" />
-    <None Remove="Assets\AppIcon-32.png" />
-    <None Remove="Assets\AppIcon-512.png" />
-    <None Remove="Assets\SplashScreen.png" />
-    <None Remove="manifest.webmanifest" />
+  <ItemGroup>    
+    <Content Include="Assets\splash_screen.png" />    
+    <Content Include="manifest.webmanifest" />
+    <Content Include="Assets\AppIcon-*.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\AppIcon-128.png" />
-    <Content Include="Assets\AppIcon-16.png" />
-    <Content Include="Assets\AppIcon-256.png" />
-    <Content Include="Assets\AppIcon-32.png" />
-    <Content Include="Assets\AppIcon-512.png" />
-    <Content Include="Assets\SplashScreen.png" />
-    <Content Include="manifest.webmanifest" />
+    <None Remove="Assets\splash_screen.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="WasmCSS\Fonts.css" />

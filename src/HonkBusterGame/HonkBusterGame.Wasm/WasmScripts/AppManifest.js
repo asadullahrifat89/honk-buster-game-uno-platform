@@ -1,5 +1,6 @@
 var UnoAppManifest = {
     displayName: "Honk Buster",
-    splashScreenImage: "Assets/SplashScreen.png",
-    splashScreenColor: "transparent"
+    splashScreenColor: "#202020",
+    splashScreenImage: "Assets/splash_screen.png",
+    
 }
