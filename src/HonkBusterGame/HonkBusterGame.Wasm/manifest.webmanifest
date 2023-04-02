@@ -32,7 +32,7 @@
   "name": "Honk Buster",
   "short_name": "Honk Buster",
   "theme_color": "#ffffff",
-  "id": "/",
-  "start_url": "/",
-  "scope": "/"
+  "id": "/honk-buster-game-uno-platform/",
+  "start_url": "/honk-buster-game-uno-platform/",
+  "scope": "/honk-buster-game-uno-platform/"
 }
