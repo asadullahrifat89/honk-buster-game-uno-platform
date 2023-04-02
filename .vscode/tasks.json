@@ -7,7 +7,7 @@
       "type": "process",
       "args": [
         "build",
-        "${workspaceFolder}/HonkBusterGame.Wasm/HonkBusterGame.Wasm.csproj",
+        "${workspaceFolder}/src/HonkBusterGame/HonkBusterGame.Wasm/HonkBusterGame.Wasm.csproj",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary"
       ],
@@ -19,35 +19,23 @@
       "type": "process",
       "args": [
         "publish",
-        "${workspaceFolder}/HonkBusterGame.Wasm/HonkBusterGame.Wasm.csproj",
+        "${workspaceFolder}/src/HonkBusterGame/HonkBusterGame.Wasm/HonkBusterGame.Wasm.csproj",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary"
       ],
       "problemMatcher": "$msCompile"
     },
     {
-      "label": "build-skia-gtk",
+      "label": "watch",
       "command": "dotnet",
       "type": "process",
       "args": [
-        "build",
-        "${workspaceFolder}/HonkBusterGame.Skia.Gtk/HonkBusterGame.Skia.Gtk.csproj",
-        "/property:GenerateFullPaths=true",
-        "/consoleloggerparameters:NoSummary"
+          "watch",
+          "run",
+          "--project",
+          "${workspaceFolder}/src/HonkBusterGame/HonkBusterGame.Wasm/HonkBusterGame.Wasm.csproj"
       ],
       "problemMatcher": "$msCompile"
-    },
-    {
-      "label": "publish-skia-gtk",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "publish",
-        "${workspaceFolder}/HonkBusterGame.Skia.Gtk/HonkBusterGame.Skia.Gtk.csproj",
-        "/property:GenerateFullPaths=true",
-        "/consoleloggerparameters:NoSummary"
-      ],
-      "problemMatcher": "$msCompile"
-    }
+  }
   ]
 }

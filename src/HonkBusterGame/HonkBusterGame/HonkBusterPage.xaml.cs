@@ -359,7 +359,7 @@ namespace HonkBusterGame
 
             await Task.Delay(500);
 
-            GenerateGameStartScreen(title: "Honk Trooper", subTitle: "-Stop Honkers, Save The City-");
+            GenerateGameStartScreen(title: "Honk Buster", subTitle: "-Stop Honkers, Save The City-");
 
             _audioStub.Play(SoundType.GAME_BACKGROUND_MUSIC);
         }
@@ -557,7 +557,7 @@ namespace HonkBusterGame
                 backAction: () =>
                 {
                     RecyclePlayerCharacterSelectionScreen(playerCharacterSelectionScreen);
-                    GenerateGameStartScreen(title: "Honk Trooper", subTitle: "-Stop Honkers, Save The City-");
+                    GenerateGameStartScreen(title: "Honk Buster", subTitle: "-Stop Honkers, Save The City-");
                 });
 
             playerCharacterSelectionScreen.SetZ(z: 10);

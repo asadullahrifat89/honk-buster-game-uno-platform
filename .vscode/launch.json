@@ -11,8 +11,9 @@
       "name": "Debug (Chrome, WebAssembly)",
       "type": "chrome",
       "request": "launch",
+      "preLaunchTask": "watch",
       "url": "http://localhost:5000",
-      "webRoot": "${workspaceFolder}/HonkBusterGame.Wasm",
+      "webRoot": "${workspaceFolder}/src/HonkBusterGame/HonkBusterGame.Wasm",
       "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
       "timeout": 30000,
       "server": {
@@ -20,27 +21,28 @@
         "program": "run",
         "outputCapture": "std",
         "timeout": 30000,
-        "cwd": "${workspaceFolder}/HonkBusterGame.Wasm"
+        "cwd": "${workspaceFolder}/src/HonkBusterGame/HonkBusterGame.Wasm"
       }
     },
-    {
+     {
       // Use IntelliSense to find out which attributes exist for C# debugging
       // Use hover for the description of the existing attributes
       // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
-      "name": "Skia.GTK (Debug)",
-      "type": "coreclr",
+      "name": "Debug (Edge, WebAssembly)",
+      "type": "msedge",
       "request": "launch",
-      "preLaunchTask": "build-skia-gtk",
-      // If you have changed target frameworks, make sure to update the program path.
-      "program": "${workspaceFolder}/HonkBusterGame.Skia.Gtk/bin/Debug/net7.0/HonkBusterGame.Skia.Gtk.dll",
-      "args": [],
-      "env": {
-        "DOTNET_MODIFIABLE_ASSEMBLIES": "debug"
-      },
-      "cwd": "${workspaceFolder}/HonkBusterGame.Skia.Gtk",
-      // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
-      "console": "internalConsole",
-      "stopAtEntry": false
+      "preLaunchTask": "watch",
+      "url": "http://localhost:5000",
+      "webRoot": "${workspaceFolder}/src/HonkBusterGame/HonkBusterGame.Wasm",
+      "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
+      "timeout": 30000,
+      "server": {
+        "runtimeExecutable": "dotnet",
+        "program": "run",
+        "outputCapture": "std",
+        "timeout": 30000,
+        "cwd": "${workspaceFolder}/src/HonkBusterGame/HonkBusterGame.Wasm"
+      }
     }
   ]
 }
