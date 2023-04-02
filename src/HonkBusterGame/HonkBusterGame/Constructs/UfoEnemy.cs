@@ -32,6 +32,7 @@
 
             var uri = ConstructExtensions.GetRandomContentUri(_enemy_uris);
             _content_image = new(uri: uri, width: this.Width, height: this.Height);
+            _content_image.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 6, color: "#956ec4");
 
             SetChild(_content_image);
 

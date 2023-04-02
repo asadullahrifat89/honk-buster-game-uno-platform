@@ -103,6 +103,7 @@
                         _player_win_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_WIN && x.Uri.OriginalString.Contains("1")).Select(x => x.Uri).ToArray();
                         _player_hit_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_HIT && x.Uri.OriginalString.Contains("1")).Select(x => x.Uri).ToArray();
                         _player_attack_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_ATTACK && x.Uri.OriginalString.Contains("1")).Select(x => x.Uri).ToArray();
+                        _content_image.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 5, color: "#5fc4f8");
                     }
                     break;
                 case PlayerBalloonTemplate.Red:
@@ -111,6 +112,7 @@
                         _player_win_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_WIN && x.Uri.OriginalString.Contains("2")).Select(x => x.Uri).ToArray();
                         _player_hit_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_HIT && x.Uri.OriginalString.Contains("2")).Select(x => x.Uri).ToArray();
                         _player_attack_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_ATTACK && x.Uri.OriginalString.Contains("2")).Select(x => x.Uri).ToArray();
+                        _content_image.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 5, color: "#d75e72");
                     }
                     break;
                 default:

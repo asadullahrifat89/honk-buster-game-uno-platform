@@ -27,22 +27,26 @@
             PowerUpType = (PowerUpType)_random.Next(Enum.GetNames(typeof(PowerUpType)).Length);
 
             Uri uri = null;
+            string glowColor = string.Empty;
 
             switch (PowerUpType)
             {
                 case PowerUpType.SEEKING_SNITCH:
                     {
                         uri = Constants.CONSTRUCT_TEMPLATES.FirstOrDefault(x => x.ConstructType == ConstructType.POWERUP_PICKUP_SEEKING_SNITCH).Uri;
+                        glowColor = "#ffae3e";
                     }
                     break;
                 case PowerUpType.ARMOR:
                     {
                         uri = Constants.CONSTRUCT_TEMPLATES.FirstOrDefault(x => x.ConstructType == ConstructType.POWERUP_PICKUP_ARMOR).Uri;
+                        glowColor = "#f4a026";
                     }
                     break;
                 case PowerUpType.BULLS_EYE:
                     {
                         uri = Constants.CONSTRUCT_TEMPLATES.FirstOrDefault(x => x.ConstructType == ConstructType.POWERUP_PICKUP_BULLS_EYE).Uri;
+                        glowColor = "#4acfd9";
                     }
                     break;
                 default:
@@ -50,6 +54,7 @@
             }
 
             _content_image = new(uri: uri, width: this.Width, height: this.Height);
+            _content_image.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 6, color: glowColor);
 
             SetChild(_content_image);
 
