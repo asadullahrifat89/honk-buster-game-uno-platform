@@ -8,8 +8,6 @@ Play here: https://asadullahrifat89.github.io/honk-buster-game-uno-platform/
 A simple game engine built with C#. XAML, HTML, CSS, and JavaScript that runs on Uno Platform & WebAssembly.
 This repository contains an arcade honk busting game.
 
-Play here: https://asadullahrifat89.github.io/honk-buster-game-uno-platform/
-
 ## Game Features
 
 - Isometric movement control with keyboard and Joystick.
