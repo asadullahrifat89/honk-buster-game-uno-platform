@@ -56,7 +56,7 @@
             }
 
             _content_image = new(uri: uri, width: this.Width, height: this.Height);
-
+            _content_image.SetDropShadow(offsetX: 0, offsetY: 10, blurRadius: 2);
             SetChild(_content_image);
 
             IsometricDisplacement = Constants.DEFAULT_ISOMETRIC_DISPLACEMENT;

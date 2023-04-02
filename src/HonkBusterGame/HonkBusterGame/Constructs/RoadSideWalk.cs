@@ -26,6 +26,7 @@
 
             var uri = ConstructExtensions.GetRandomContentUri(_side_walk_uris);
             _content_image = new(uri: uri, width: this.Width, height: this.Height);
+            _content_image.SetDropShadow(offsetX: -20, offsetY: -20, blurRadius: 5);
 
             SetChild(_content_image);
 
