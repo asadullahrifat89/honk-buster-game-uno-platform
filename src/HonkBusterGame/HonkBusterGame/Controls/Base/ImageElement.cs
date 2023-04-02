@@ -80,19 +80,19 @@ namespace HonkBusterGame
         }
 
 
-        private double grayscale = 0;
+        //private double grayscale = 0;
 
-        public double ImageGrayscale
-        {
-            get { return grayscale; }
-            set
-            {
-                grayscale = value;
+        //public double ImageGrayscale
+        //{
+        //    get { return grayscale; }
+        //    set
+        //    {
+        //        grayscale = value;
 
-                if (ImgElement is not null)
-                    ImgElement.Grayscale = grayscale;
-            }
-        }
+        //        if (ImgElement is not null)
+        //            ImgElement.Grayscale = grayscale;
+        //    }
+        //}
 
         private double contrast = 100;
 
@@ -252,29 +252,35 @@ namespace HonkBusterGame
 
         #region Dependency Properties
 
-        public static readonly DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(string), typeof(ImageElement), new PropertyMetadata(default(string), OnSourceChanged));
+        //public static readonly DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(string), typeof(ImageElement), new PropertyMetadata(default(string), OnSourceChanged));
 
-        public string Source
-        {
-            get => (string)GetValue(SourceProperty);
-            set => SetValue(SourceProperty, value);
-        }
+        //public string Source
+        //{
+        //    get => (string)GetValue(SourceProperty);
+        //    set => SetValue(SourceProperty, value);
+        //}
 
-        private static void OnSourceChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
-        {
-            if (dependencyObject is ImageElement image)
-            {
-                if (image.ImgElement is not null)
-                {
-                    image.ImgElement.Id = image.Id;
-                    image.ImgElement.Source = image.Source;
-                }
-            }
-        }
+        //private static void OnSourceChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
+        //{
+        //    if (dependencyObject is ImageElement image)
+        //    {
+        //        if (image.ImgElement is not null)
+        //        {
+        //            image.ImgElement.Id = image.Id;
+        //            image.ImgElement.Source = image.Source;
+        //        }
+        //    }
+        //}
 
         #endregion
 
         #region Methods
+
+        public void SetGrayscale(double grayscale)
+        {
+            if (ImgElement is not null)
+                ImgElement.Grayscale = grayscale;
+        }
 
         public void SetDropShadow(int offsetX, int offsetY, int blurRadius, string color = "#202020")
         {
@@ -295,10 +301,13 @@ namespace HonkBusterGame
 
         public void SetSource(Uri uri)
         {
-            var source = $"{_baseUrl}/{uri.AbsoluteUri.Replace("ms-appx:///", "")}";
-            this.Source = source;
+            if (ImgElement is not null)
+            {
+                var source = $"{_baseUrl}/{uri.AbsoluteUri.Replace("ms-appx:///", "")}";
+                ImgElement.Source = source;
 
-            _uri = uri;
+                _uri = uri;
+            }
         }
 
         public Uri GetSourceUri()
