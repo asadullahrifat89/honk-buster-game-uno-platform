@@ -743,8 +743,6 @@ namespace HonkBusterGame
         {
             _player_health_bar.SetMaxiumHealth(_player.Health);
             _player_health_bar.SetValue(_player.Health);
-
-            _player_health_bar.SetIcon(Constants.CONSTRUCT_TEMPLATES.FirstOrDefault(x => x.ConstructType == ConstructType.HEALTH_PICKUP).Uri);
             _player_health_bar.SetBarColor(color: Colors.Crimson);
         }
 

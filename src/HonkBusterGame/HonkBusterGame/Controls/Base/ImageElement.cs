@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Xaml.Media.Imaging;
+using System;
 
 namespace HonkBusterGame
 {
@@ -6,9 +7,12 @@ namespace HonkBusterGame
     {
         private readonly BitmapImage _bitmapImage;
 
+        private Uri _uri;
+
         public ImageElement(Uri uri, double width, double height)
         {
-            _bitmapImage = new BitmapImage(uriSource: uri);
+            _uri = uri;
+            _bitmapImage = new BitmapImage(uriSource: _uri);
             Source = _bitmapImage;
             Width = width;
             Height = height;
@@ -17,12 +21,13 @@ namespace HonkBusterGame
 
         public void SetSource(Uri uri)
         {
-            _bitmapImage.UriSource = uri;
+            _uri = uri;
+            _bitmapImage.UriSource = _uri;
         }
 
         public Uri GetSourceUri()
         {
-            return _bitmapImage.UriSource;
+            return _uri;
         }
     }
 }
