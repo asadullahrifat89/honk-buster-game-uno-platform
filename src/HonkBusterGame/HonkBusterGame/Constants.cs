@@ -211,8 +211,6 @@
             new (ConstructType.MAFIA_BOSS_ROCKET, new Uri("ms-appx:///HonkBusterGame/Assets/Images/mafia_boss_rocket_1.png")),
             new (ConstructType.MAFIA_BOSS_ROCKET, new Uri("ms-appx:///HonkBusterGame/Assets/Images/mafia_boss_rocket_2.png")),
             new (ConstructType.MAFIA_BOSS_ROCKET, new Uri("ms-appx:///HonkBusterGame/Assets/Images/mafia_boss_rocket_3.png")),
-
-            new (ConstructType.MENU_PANEL, new Uri("ms-appx:///HonkBusterGame/Assets/Images/blue_panel.png")),
         };
 
         public static (SoundType SoundType, Uri Uri)[] SOUND_TEMPLATES = new (SoundType, Uri)[]
@@ -394,7 +392,6 @@
 
         TITLE_SCREEN,
         INTERIM_SCREEN,
-        MENU_PANEL,
     }
 
     public enum SoundType
