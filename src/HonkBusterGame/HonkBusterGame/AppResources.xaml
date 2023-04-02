@@ -25,6 +25,7 @@
 
     <SolidColorBrush x:Key="PlayerBlueAccentColor" Color="#5fc4f8" />
     <SolidColorBrush x:Key="PlayerRedAccentColor" Color="#d75e72" />
+    <SolidColorBrush x:Key="DropShadowColor" Color="#202020" />
 
     <FontFamily x:Key="DefaultFontFamily">ms-appx:///HonkBusterGame/Assets/Fonts/Gameplay.ttf#Gameplay</FontFamily>
 

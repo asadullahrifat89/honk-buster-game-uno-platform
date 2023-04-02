@@ -188,6 +188,7 @@ namespace HonkBusterGame
             set
             {
                 dropShadowX = value;
+                SetProperties();
             }
         }
 
@@ -195,21 +196,23 @@ namespace HonkBusterGame
 
         public int DropShadowY
         {
-            get { return dropShadowX; }
+            get { return dropShadowY; }
             set
             {
-                dropShadowX = value;
+                dropShadowY = value;
+                SetProperties();
             }
         }
 
         private int dropShadowBlur = 0;
 
-        public int DropShadowBlur
+        public int DropShadowBlurRadius
         {
             get { return dropShadowBlur; }
             set
             {
                 dropShadowBlur = value;
+                SetProperties();
             }
         }
 
@@ -221,6 +224,7 @@ namespace HonkBusterGame
             set
             {
                 dropShadowColor = value;
+                SetProperties();
             }
         }
 

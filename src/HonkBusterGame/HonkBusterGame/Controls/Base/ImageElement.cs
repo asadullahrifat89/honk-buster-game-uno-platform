@@ -276,6 +276,16 @@ namespace HonkBusterGame
 
         #region Methods
 
+        public void SetDropShadow(int offsetX, int offsetY, int blurRadius, string color = "#202020")
+        {
+            if (ImgElement is not null)
+            {
+                ImgElement.DropShadowX = offsetX;
+                ImgElement.DropShadowY = offsetY;
+                ImgElement.DropShadowBlurRadius = blurRadius;
+            }
+        }
+
         public void SetBlur(double blur)
         {
             if (ImgElement is not null)
