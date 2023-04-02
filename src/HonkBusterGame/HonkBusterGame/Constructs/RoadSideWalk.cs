@@ -25,12 +25,12 @@
             RecycleAction = recycleAction;
 
             var uri = ConstructExtensions.GetRandomContentUri(_side_walk_uris);
-            _content_image = new(uri: uri, width: this.Width, height: this.Height);            
-
+            _content_image = new(uri: uri, width: this.Width, height: this.Height);
+            _content_image.SetDropShadow(offsetX: 10, offsetY: 0, blurRadius: 2);
             SetChild(_content_image);
 
-            BorderBrush = Application.Current.Resources["BorderColor"] as SolidColorBrush;
-            BorderThickness = new Thickness(Constants.DEFAULT_CONTROLLER_KEY_BORDER_THICKNESS, 0);
+            //BorderBrush = Application.Current.Resources["BorderColor"] as SolidColorBrush;
+            //BorderThickness = new Thickness(Constants.DEFAULT_CONTROLLER_KEY_BORDER_THICKNESS, 0);
 
             SetSkewY(36);
             SetRotation(-63.5);
