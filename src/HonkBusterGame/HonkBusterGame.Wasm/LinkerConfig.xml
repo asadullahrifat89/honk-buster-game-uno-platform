@@ -1,7 +1,7 @@
 <linker>
 	<assembly fullname="HonkBusterGame" />
 	<assembly fullname="HonkBusterGame.Wasm" />
-
+  <assembly fullname="WebAssembly.Bindings" />
 	<!--
   Uncomment this section when using JSON.NET
   <assembly fullname="System.Core">
