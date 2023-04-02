@@ -6,12 +6,6 @@ namespace HonkBusterGame
     [HtmlElement("img")]
     public sealed class ImgElement : FrameworkElement
     {
-        #region Fields
-
-        private Uri _uri;
-
-        #endregion
-
         #region Ctor
 
         public ImgElement()
@@ -186,6 +180,50 @@ namespace HonkBusterGame
             }
         }
 
+        private int dropShadowX = 0;
+
+        public int DropShadowX
+        {
+            get { return dropShadowX; }
+            set
+            {
+                dropShadowX = value;
+            }
+        }
+
+        private int dropShadowY = 0;
+
+        public int DropShadowY
+        {
+            get { return dropShadowX; }
+            set
+            {
+                dropShadowX = value;
+            }
+        }
+
+        private int dropShadowBlur = 0;
+
+        public int DropShadowBlur
+        {
+            get { return dropShadowBlur; }
+            set
+            {
+                dropShadowBlur = value;
+            }
+        }
+
+        private string dropShadowColor = "#202020";
+
+        public string DropShadowColor
+        {
+            get { return dropShadowColor; }
+            set
+            {
+                dropShadowColor = value;
+            }
+        }
+
         #endregion
 
         #region Dependency Properties
@@ -219,7 +257,7 @@ namespace HonkBusterGame
 
         public void SetProperties()
         {
-            this.SetCssStyle(("filter", GetCssFilter() + $" drop-shadow(0 0 0.75rem crimson)"), ("opacity", $"{opacity}"), ("transform", $"rotate({rotation}deg) scaleX({scaleX}) scaleY({scaleY})"));
+            this.SetCssStyle(("filter", GetCssFilter() + $" drop-shadow(-{dropShadowX}px {dropShadowY}px {dropShadowBlur}px {dropShadowColor})"), ("opacity", $"{opacity}"), ("transform", $"rotate({rotation}deg) scaleX({scaleX}) scaleY({scaleY})"));
         }
 
         #endregion
