@@ -392,6 +392,8 @@ namespace HonkBusterGame
                 _transform.Rotation = Rotation;
                 _transform.SkewX = SkewX;
                 _transform.SkewY = SkewY;
+
+                //TODO: draw function to render element in HTML Canvas
             }
         }
 
