@@ -12,8 +12,8 @@
         #region Ctor
 
         public RoadMark(
-            Action<Construct> animateAction,
-            Action<Construct> recycleAction)
+            Action<GameObject> animateAction,
+            Action<GameObject> recycleAction)
         {
             ConstructType = ConstructType.ROAD_MARK;
 

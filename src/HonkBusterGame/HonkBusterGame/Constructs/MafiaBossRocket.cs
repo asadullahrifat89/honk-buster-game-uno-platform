@@ -19,8 +19,8 @@
         #region Ctor
 
         public MafiaBossRocket(
-           Action<Construct> animateAction,
-           Action<Construct> recycleAction)
+           Action<GameObject> animateAction,
+           Action<GameObject> recycleAction)
         {
             ConstructType = ConstructType.MAFIA_BOSS_ROCKET;
 

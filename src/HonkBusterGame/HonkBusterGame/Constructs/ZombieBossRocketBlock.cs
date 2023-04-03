@@ -21,8 +21,8 @@
         #region Ctor
 
         public ZombieBossRocketBlock(
-          Action<Construct> animateAction,
-          Action<Construct> recycleAction)
+          Action<GameObject> animateAction,
+          Action<GameObject> recycleAction)
         {
             ConstructType = ConstructType.ZOMBIE_BOSS_ROCKET_BLOCK;
 

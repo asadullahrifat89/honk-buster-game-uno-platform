@@ -5,7 +5,7 @@ using Windows.Foundation;
 
 namespace HonkBusterGame
 {
-    public partial class Controller : ControllerElement
+    public partial class GameController : ControllerElement
     {
         #region Fields
 
@@ -31,23 +31,23 @@ namespace HonkBusterGame
 
         private Canvas ThumbstickCanvas { get; set; }
 
-        private Construct ThumbstickThumb { get; set; }
+        private GameObject ThumbstickThumb { get; set; }
 
-        private Construct ThumbstickUpLeft { get; set; }
+        private GameObject ThumbstickUpLeft { get; set; }
 
-        private Construct ThumbstickUp { get; set; }
+        private GameObject ThumbstickUp { get; set; }
 
-        private Construct ThumbstickUpRight { get; set; }
+        private GameObject ThumbstickUpRight { get; set; }
 
-        private Construct ThumbstickLeft { get; set; }
+        private GameObject ThumbstickLeft { get; set; }
 
-        private Construct ThumbstickRight { get; set; }
+        private GameObject ThumbstickRight { get; set; }
 
-        private Construct ThumbstickDownLeft { get; set; }
+        private GameObject ThumbstickDownLeft { get; set; }
 
-        private Construct ThumbstickDown { get; set; }
+        private GameObject ThumbstickDown { get; set; }
 
-        private Construct ThumbstickDownRight { get; set; }
+        private GameObject ThumbstickDownRight { get; set; }
 
         private Gyrometer Gyrometer { get; set; }
 
@@ -67,7 +67,7 @@ namespace HonkBusterGame
 
         #region Ctor
 
-        public Controller()
+        public GameController()
         {
             CanDrag = false;
 
@@ -131,7 +131,7 @@ namespace HonkBusterGame
                 VerticalAlignment = VerticalAlignment.Bottom,
             };
 
-            var neutralZone = new Construct()
+            var neutralZone = new GameObject()
             {
                 Height = Constants.DEFAULT_CONTROLLER_KEY_SIZE * 1.55,
                 Width = Constants.DEFAULT_CONTROLLER_KEY_SIZE * 1.55,

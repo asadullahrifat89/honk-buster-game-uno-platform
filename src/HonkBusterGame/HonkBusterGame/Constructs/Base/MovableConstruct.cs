@@ -1,6 +1,6 @@
 ﻿namespace HonkBusterGame
 {
-    public partial class MovableConstruct : Construct
+    public partial class MovableConstruct : GameObject
     {
         #region Methods
 

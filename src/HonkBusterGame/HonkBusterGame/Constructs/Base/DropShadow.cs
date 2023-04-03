@@ -10,7 +10,7 @@
 
         #region Properties
 
-        private Construct ParentConstruct { get; set; }
+        private GameObject ParentConstruct { get; set; }
 
         private double ParentConstructSpeed { get; set; } = 0;
 
@@ -19,8 +19,8 @@
         #region Ctor
 
         public DropShadow(
-            Action<Construct> animateAction,
-            Action<Construct> recycleAction)
+            Action<GameObject> animateAction,
+            Action<GameObject> recycleAction)
         {
             ConstructType = ConstructType.DROP_SHADOW;
 
@@ -51,7 +51,7 @@
             return ParentConstruct.IsAnimating;
         }
 
-        public void SetParent(Construct construct)
+        public void SetParent(GameObject construct)
         {
             Id = construct.Id;
             ParentConstruct = construct;

@@ -8,7 +8,7 @@ namespace HonkBusterGame
 
         #region Methods
 
-        public static Uri GetContentUri(this Construct construct)
+        public static Uri GetContentUri(this GameObject construct)
         {
             if (construct.Content is not null && construct.Content is ImageElement image)
             {
@@ -54,7 +54,7 @@ namespace HonkBusterGame
             return false;
         }
 
-        public static Rect GetHitBox(this Construct Construct)
+        public static Rect GetHitBox(this GameObject Construct)
         {
             var rect = new Rect(
               x: Construct.GetLeft(),
@@ -67,7 +67,7 @@ namespace HonkBusterGame
             return rect;
         }
 
-        public static Rect GetCloseHitBox(this Construct Construct)
+        public static Rect GetCloseHitBox(this GameObject Construct)
         {
             var diviWidth = Construct.Width / 4;
             var diviHeight = Construct.Height / 4;
@@ -109,7 +109,7 @@ namespace HonkBusterGame
         //    return rect;
         //}      
 
-        public static Rect GetDistantHitBox(this Construct Construct)
+        public static Rect GetDistantHitBox(this GameObject Construct)
         {
             var multiWidth = (Construct.Width * 3);
             var multiHeight = (Construct.Height * 3);

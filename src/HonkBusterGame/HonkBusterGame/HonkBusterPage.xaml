@@ -56,7 +56,7 @@
             </Storyboard>
         </Grid.Resources>
 
-        <Scene
+        <GameView
             x:Name="GameScene"
             Background="{ThemeResource NightBackgroundColor}"
             BorderBrush="{ThemeResource BorderColor}"
@@ -84,9 +84,9 @@
             </Border.Background>
         </Border>
 
-        <Scene x:Name="MainMenuScene" Background="Transparent" />
+        <GameView x:Name="MainMenuScene" Background="Transparent" />
 
-        <Controller
+        <GameController
             x:Name="GameController"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"

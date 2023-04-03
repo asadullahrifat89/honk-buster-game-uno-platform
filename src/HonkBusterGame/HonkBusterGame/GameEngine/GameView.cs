@@ -4,7 +4,7 @@ using Windows.Foundation;
 
 namespace HonkBusterGame
 {
-    public partial class Scene : Border
+    public partial class GameView : Border
     {
         #region Fields
 
@@ -25,7 +25,7 @@ namespace HonkBusterGame
         private PeriodicTimer _gameViewTimer;
         private readonly TimeSpan _frameTime = TimeSpan.FromMilliseconds(Constants.DEFAULT_FRAME_TIME);
 
-        private readonly List<Construct> _destroyables = new();
+        private readonly List<GameObject> _destroyables = new();
         private readonly List<Generator> _generators = new();
 
         private double _slowMotionDelay;
@@ -40,7 +40,7 @@ namespace HonkBusterGame
 
         #region Ctor
 
-        public Scene()
+        public GameView()
         {
             #region Opacity Animation
 
@@ -65,7 +65,7 @@ namespace HonkBusterGame
             #endregion
 
             CanDrag = false;
-            Children = new List<Construct>();
+            Children = new List<GameObject>();
 
             _canvas = new()
             {
@@ -94,7 +94,7 @@ namespace HonkBusterGame
 
         public SceneState SceneState { get; set; }
 
-        public List<Construct> Children { get; set; }
+        public List<GameObject> Children { get; set; }
 
         public bool IsSlowMotionActivated => _slowMotionDelay > 0;
 
@@ -178,7 +178,7 @@ namespace HonkBusterGame
             _transform.ScaleY = scaleXY;
         }
 
-        public void AddToScene(params Construct[] constructs)
+        public void AddToScene(params GameObject[] constructs)
         {
             if (constructs is not null)
             {
@@ -202,7 +202,7 @@ namespace HonkBusterGame
             }
         }
 
-        public void DisposeFromScene(Construct construct)
+        public void DisposeFromScene(GameObject construct)
         {
             _destroyables.Add(construct);
         }
@@ -242,7 +242,7 @@ namespace HonkBusterGame
                 generator.Generate();
             }
 
-            foreach (Construct construct in Children.Where(x => x.IsAnimating)) // only add animating constructs in canvas and then cache them
+            foreach (GameObject construct in Children.Where(x => x.IsAnimating)) // only add animating constructs in canvas and then cache them
             {
                 if (!_canvas.Children.Contains(construct.Content))
                 {
@@ -255,7 +255,7 @@ namespace HonkBusterGame
             }
 
             // remove the destroyables from the scene
-            foreach (Construct destroyable in _destroyables)
+            foreach (GameObject destroyable in _destroyables)
             {
                 _canvas.Children.Remove(destroyable.Content);
             }

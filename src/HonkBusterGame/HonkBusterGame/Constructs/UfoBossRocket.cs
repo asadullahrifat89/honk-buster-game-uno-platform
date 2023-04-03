@@ -19,8 +19,8 @@
         #region Ctor
 
         public UfoBossRocket(
-           Action<Construct> animateAction,
-           Action<Construct> recycleAction)
+           Action<GameObject> animateAction,
+           Action<GameObject> recycleAction)
         {
             ConstructType = ConstructType.UFO_BOSS_ROCKET;
 
@@ -76,7 +76,7 @@
             _autoBlastDelay = _autoBlastDelayDefault;
         }
 
-        public void Reposition(Construct ufoBoss)
+        public void Reposition(GameObject ufoBoss)
         {
             SetPosition(
                 left: (ufoBoss.GetLeft() + ufoBoss.Width / 2) - Width / 2,

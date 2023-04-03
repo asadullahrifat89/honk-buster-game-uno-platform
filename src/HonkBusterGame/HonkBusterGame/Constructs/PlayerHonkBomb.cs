@@ -16,8 +16,8 @@
         #region Ctor
 
         public PlayerHonkBomb(
-            Action<Construct> animateAction,
-            Action<Construct> recycleAction)
+            Action<GameObject> animateAction,
+            Action<GameObject> recycleAction)
         {
             ConstructType = ConstructType.PLAYER_HONK_BOMB;
 

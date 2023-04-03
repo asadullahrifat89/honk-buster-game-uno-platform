@@ -17,8 +17,8 @@
         #region Ctor
 
         public VehicleEnemy(
-            Action<Construct> animateAction,
-            Action<Construct> recycleAction)
+            Action<GameObject> animateAction,
+            Action<GameObject> recycleAction)
         {
             AnimateAction = animateAction;
             RecycleAction = recycleAction;

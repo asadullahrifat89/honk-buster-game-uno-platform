@@ -17,8 +17,8 @@ namespace HonkBusterGame
         #region Ctor
 
         public GameStartScreen
-            (Action<Construct> animateAction,
-            Action<Construct> recycleAction,
+            (Action<GameObject> animateAction,
+            Action<GameObject> recycleAction,
             Action playAction)
         {
             ConstructType = ConstructType.TITLE_SCREEN;

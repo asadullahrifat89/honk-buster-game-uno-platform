@@ -1,6 +1,6 @@
 ﻿namespace HonkBusterGame
 {
-    public partial class Honk : Construct
+    public partial class Honk : GameObject
     {
         #region Fields
 
@@ -13,8 +13,8 @@
         #region Ctor
 
         public Honk(
-            Action<Construct> animateAction,
-            Action<Construct> recycleAction)
+            Action<GameObject> animateAction,
+            Action<GameObject> recycleAction)
         {
             ConstructType = ConstructType.HONK;
 
@@ -43,7 +43,7 @@
             SetOpacity(1);
         }
 
-        public void Reposition(Construct source)
+        public void Reposition(GameObject source)
         {
             var hitBox = source.GetCloseHitBox();
 

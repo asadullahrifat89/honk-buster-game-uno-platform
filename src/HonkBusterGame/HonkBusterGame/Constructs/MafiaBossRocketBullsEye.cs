@@ -23,8 +23,8 @@ namespace HonkBusterGame
         #region Ctor
 
         public MafiaBossRocketBullsEye(
-            Action<Construct> animateAction,
-            Action<Construct> recycleAction)
+            Action<GameObject> animateAction,
+            Action<GameObject> recycleAction)
         {
             ConstructType = ConstructType.MAFIA_BOSS_ROCKET_BULLS_EYE;
 

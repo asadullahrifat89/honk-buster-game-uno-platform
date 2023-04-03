@@ -19,8 +19,8 @@
         #region Ctor
 
         public VehicleBossRocket(
-           Action<Construct> animateAction,
-           Action<Construct> recycleAction)
+           Action<GameObject> animateAction,
+           Action<GameObject> recycleAction)
         {
             ConstructType = ConstructType.VEHICLE_BOSS_ROCKET;
 

@@ -20,8 +20,8 @@ namespace HonkBusterGame
         #region Ctor
 
         public FloatingNumber(
-            Action<Construct> animateAction,
-            Action<Construct> recycleAction)
+            Action<GameObject> animateAction,
+            Action<GameObject> recycleAction)
         {
             ConstructType = ConstructType.FLOATING_NUMBER;
 
@@ -55,7 +55,7 @@ namespace HonkBusterGame
             RandomizeMovementDirection();
         }
 
-        public void Reposition(Construct source)
+        public void Reposition(GameObject source)
         {
             SetPosition(
                 left: (source.GetLeft() + source.Width / 2) - Width / 2,

@@ -7,7 +7,7 @@ namespace HonkBusterGame
     {
         #region Fields
 
-        private Scene Scene;
+        private GameView Scene;
 
         #endregion
 
@@ -130,7 +130,7 @@ namespace HonkBusterGame
             DeactivateMoveDown();
         }
 
-        public void SetScene(Scene scene)
+        public void SetScene(GameView scene)
         {
             Scene = scene;
         }

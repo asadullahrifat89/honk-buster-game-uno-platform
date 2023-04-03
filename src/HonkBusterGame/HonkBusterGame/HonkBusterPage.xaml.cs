@@ -9,9 +9,9 @@ namespace HonkBusterGame
 
         private readonly Random _random;
 
-        private readonly Scene _scene_game;
-        private readonly Scene _scene_main_menu;
-        private readonly Controller _game_controller;
+        private readonly GameView _scene_game;
+        private readonly GameView _scene_main_menu;
+        private readonly GameController _game_controller;
 
         private readonly HealthBar _player_health_bar;
 
@@ -269,7 +269,7 @@ namespace HonkBusterGame
 
         private void RepositionConstructs()
         {
-            foreach (var construct in _scene_game.Children.OfType<Construct>()
+            foreach (var construct in _scene_game.Children.OfType<GameObject>()
                 .Where(x => x.ConstructType is
                 ConstructType.VEHICLE_ENEMY_LARGE or
                 ConstructType.VEHICLE_ENEMY_SMALL or
@@ -392,7 +392,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimatePromptOrientationChangeScreen(Construct promptOrientationChangeScreen)
+        private void AnimatePromptOrientationChangeScreen(GameObject promptOrientationChangeScreen)
         {
             PromptOrientationChangeScreen screen1 = promptOrientationChangeScreen as PromptOrientationChangeScreen;
             screen1.Hover();
@@ -453,7 +453,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimateAssetsLoadingScreen(Construct assetsLoadingScreen)
+        private void AnimateAssetsLoadingScreen(GameObject assetsLoadingScreen)
         {
             AssetsLoadingScreen screen1 = assetsLoadingScreen as AssetsLoadingScreen;
             screen1.Hover();
@@ -525,7 +525,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimateGameStartScreen(Construct gameStartScreen)
+        private void AnimateGameStartScreen(GameObject gameStartScreen)
         {
             GameStartScreen screen1 = gameStartScreen as GameStartScreen;
             screen1.Hover();
@@ -575,7 +575,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimatePlayerCharacterSelectionScreen(Construct playerCharacterSelectionScreen)
+        private void AnimatePlayerCharacterSelectionScreen(GameObject playerCharacterSelectionScreen)
         {
             PlayerCharacterSelectionScreen screen1 = playerCharacterSelectionScreen as PlayerCharacterSelectionScreen;
             screen1.Hover();
@@ -628,7 +628,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimatePlayerHonkBombSelectionScreen(Construct playerHonkBombSelectionScreen)
+        private void AnimatePlayerHonkBombSelectionScreen(GameObject playerHonkBombSelectionScreen)
         {
             PlayerHonkBombSelectionScreen screen1 = playerHonkBombSelectionScreen as PlayerHonkBombSelectionScreen;
             screen1.Hover();
@@ -669,14 +669,14 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimateInterimScreen(Construct interimScreen)
+        private void AnimateInterimScreen(GameObject interimScreen)
         {
             InterimScreen screen1 = interimScreen as InterimScreen;
             screen1.Hover();
             screen1.DepleteOnScreenDelay();
         }
 
-        private void RecycleInterimScreen(Construct interimScreen)
+        private void RecycleInterimScreen(GameObject interimScreen)
         {
             if (interimScreen is InterimScreen interimScreen1 && interimScreen1.IsDepleted)
             {
@@ -745,7 +745,7 @@ namespace HonkBusterGame
             _player_health_bar.SetBarColor(color: Colors.Crimson);
         }
 
-        private void AnimatePlayerBalloon(Construct player)
+        private void AnimatePlayerBalloon(GameObject player)
         {
             _player.Pop();
             _player.Hover();
@@ -841,8 +841,8 @@ namespace HonkBusterGame
 
                 _player_health_bar.SetValue(_player.Health);
 
-                if (_scene_game.Children.OfType<Construct>().FirstOrDefault(x => x.IsAnimating &&
-                    (x.ConstructType == ConstructType.UFO_BOSS || x.ConstructType == ConstructType.ZOMBIE_BOSS || x.ConstructType == ConstructType.MAFIA_BOSS)) is Construct boss)
+                if (_scene_game.Children.OfType<GameObject>().FirstOrDefault(x => x.IsAnimating &&
+                    (x.ConstructType == ConstructType.UFO_BOSS || x.ConstructType == ConstructType.ZOMBIE_BOSS || x.ConstructType == ConstructType.MAFIA_BOSS)) is GameObject boss)
                 {
                     if (boss is UfoBoss ufo)
                     {
@@ -905,7 +905,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimatePlayerHonkBomb(Construct playerHonkBomb)
+        private void AnimatePlayerHonkBomb(GameObject playerHonkBomb)
         {
             PlayerHonkBomb playerHonkBomb1 = playerHonkBomb as PlayerHonkBomb;
 
@@ -954,7 +954,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void RecyclePlayerHonkBomb(Construct playerHonkBomb)
+        private void RecyclePlayerHonkBomb(GameObject playerHonkBomb)
         {
             if (playerHonkBomb.IsFadingComplete)
             {
@@ -1040,7 +1040,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimatePlayerRocket(Construct playerRocket)
+        private void AnimatePlayerRocket(GameObject playerRocket)
         {
             PlayerRocket playerRocket1 = playerRocket as PlayerRocket;
 
@@ -1114,7 +1114,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void RecyclePlayerRocket(Construct playerRocket)
+        private void RecyclePlayerRocket(GameObject playerRocket)
         {
             var hitbox = playerRocket.GetHitBox();
 
@@ -1166,7 +1166,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimatePlayerRocketSeeking(Construct playerRocketSeeking)
+        private void AnimatePlayerRocketSeeking(GameObject playerRocketSeeking)
         {
             PlayerRocketSeeking playerRocketSeeking1 = playerRocketSeeking as PlayerRocketSeeking;
 
@@ -1251,7 +1251,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void RecyclePlayerRocketSeeking(Construct playerRocketSeeking)
+        private void RecyclePlayerRocketSeeking(GameObject playerRocketSeeking)
         {
             var hitbox = playerRocketSeeking.GetHitBox();
 
@@ -1344,7 +1344,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimatePlayerRocketBullsEye(Construct playerRocketBullsEye)
+        private void AnimatePlayerRocketBullsEye(GameObject playerRocketBullsEye)
         {
             PlayerRocketBullsEye playerRocketBullsEye1 = playerRocketBullsEye as PlayerRocketBullsEye;
 
@@ -1405,7 +1405,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void RecyclePlayerRocketBullsEye(Construct playerRocketBullsEye)
+        private void RecyclePlayerRocketBullsEye(GameObject playerRocketBullsEye)
         {
             var hitbox = playerRocketBullsEye.GetHitBox();
 
@@ -1457,14 +1457,14 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimateRoadSideWalk(Construct roadSideWalk)
+        private void AnimateRoadSideWalk(GameObject roadSideWalk)
         {
             RoadSideWalk roadSideWalk1 = roadSideWalk as RoadSideWalk;
             var speed = roadSideWalk1.Speed;
             roadSideWalk1.MoveDownRight(speed: speed);
         }
 
-        private void RecycleRoadSideWalk(Construct roadSideWalk)
+        private void RecycleRoadSideWalk(GameObject roadSideWalk)
         {
             var hitBox = roadSideWalk.GetHitBox();
 
@@ -1520,14 +1520,14 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimateRoadSideTree(Construct roadSideTree)
+        private void AnimateRoadSideTree(GameObject roadSideTree)
         {
             RoadSideTree roadSideTree1 = roadSideTree as RoadSideTree;
             var speed = roadSideTree1.Speed;
             roadSideTree1.MoveDownRight(speed);
         }
 
-        private void RecycleRoadSideTree(Construct roadSideTree)
+        private void RecycleRoadSideTree(GameObject roadSideTree)
         {
             var hitBox = roadSideTree.GetHitBox();
 
@@ -1576,14 +1576,14 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimateRoadSideHedge(Construct roadSideHedge)
+        private void AnimateRoadSideHedge(GameObject roadSideHedge)
         {
             RoadSideHedge roadSideHedge1 = roadSideHedge as RoadSideHedge;
             var speed = roadSideHedge1.Speed;
             roadSideHedge1.MoveDownRight(speed);
         }
 
-        private void RecycleRoadSideHedge(Construct roadSideHedge)
+        private void RecycleRoadSideHedge(GameObject roadSideHedge)
         {
             var hitBox = roadSideHedge.GetHitBox();
 
@@ -1632,14 +1632,14 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimateRoadSideLamp(Construct roadSideLamp)
+        private void AnimateRoadSideLamp(GameObject roadSideLamp)
         {
             RoadSideLamp roadSideLamp1 = roadSideLamp as RoadSideLamp;
             var speed = roadSideLamp1.Speed;
             roadSideLamp1.MoveDownRight(speed);
         }
 
-        private void RecycleRoadSideLamp(Construct roadSideLamp)
+        private void RecycleRoadSideLamp(GameObject roadSideLamp)
         {
             var hitBox = roadSideLamp.GetHitBox();
 
@@ -1681,14 +1681,14 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimateRoadSideBillboard(Construct roadSideBillboard)
+        private void AnimateRoadSideBillboard(GameObject roadSideBillboard)
         {
             RoadSideBillboard roadSideBillboard1 = roadSideBillboard as RoadSideBillboard;
             var speed = roadSideBillboard1.Speed;
             roadSideBillboard1.MoveDownRight(speed);
         }
 
-        private void RecycleRoadSideBillboard(Construct roadSideBillboard)
+        private void RecycleRoadSideBillboard(GameObject roadSideBillboard)
         {
             var hitBox = roadSideBillboard.GetHitBox();
 
@@ -1729,14 +1729,14 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimateRoadSideLightBillboard(Construct roadSideLight)
+        private void AnimateRoadSideLightBillboard(GameObject roadSideLight)
         {
             RoadSideLightBillboard roadSideLight1 = roadSideLight as RoadSideLightBillboard;
             var speed = roadSideLight1.Speed;
             roadSideLight1.MoveDownRight(speed);
         }
 
-        private void RecycleRoadSideLightBillboard(Construct roadSideLight)
+        private void RecycleRoadSideLightBillboard(GameObject roadSideLight)
         {
             var hitBox = roadSideLight.GetHitBox();
 
@@ -1776,14 +1776,14 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimateRoadMark(Construct roadMark)
+        private void AnimateRoadMark(GameObject roadMark)
         {
             RoadMark roadMark1 = roadMark as RoadMark;
             var speed = roadMark1.Speed;
             roadMark1.MoveDownRight(speed);
         }
 
-        private void RecycleRoadMark(Construct roadMark)
+        private void RecycleRoadMark(GameObject roadMark)
         {
             var hitBox = roadMark.GetHitBox();
 
@@ -1852,7 +1852,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimateUfoBoss(Construct ufoBoss)
+        private void AnimateUfoBoss(GameObject ufoBoss)
         {
             UfoBoss ufoBoss1 = ufoBoss as UfoBoss;
 
@@ -1900,7 +1900,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void RecycleUfoBoss(Construct ufoBoss)
+        private void RecycleUfoBoss(GameObject ufoBoss)
         {
             if (ufoBoss.IsShrinkingComplete)
             {
@@ -1975,7 +1975,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimateUfoBossRocket(Construct ufoBossRocket)
+        private void AnimateUfoBossRocket(GameObject ufoBossRocket)
         {
             UfoBossRocket ufoBossRocket1 = ufoBossRocket as UfoBossRocket;
 
@@ -2022,7 +2022,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void RecycleUfoBossRocket(Construct ufoBossRocket)
+        private void RecycleUfoBossRocket(GameObject ufoBossRocket)
         {
             var hitbox = ufoBossRocket.GetHitBox();
 
@@ -2070,7 +2070,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimateUfoBossRocketSeeking(Construct ufoBossRocketSeeking)
+        private void AnimateUfoBossRocketSeeking(GameObject ufoBossRocketSeeking)
         {
             UfoBossRocketSeeking ufoBossRocketSeeking1 = ufoBossRocketSeeking as UfoBossRocketSeeking;
 
@@ -2111,7 +2111,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void RecycleUfoBossRocketSeeking(Construct ufoBossRocketSeeking)
+        private void RecycleUfoBossRocketSeeking(GameObject ufoBossRocketSeeking)
         {
             var hitbox = ufoBossRocketSeeking.GetHitBox();
 
@@ -2169,7 +2169,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimateUfoEnemy(Construct ufoEnemy)
+        private void AnimateUfoEnemy(GameObject ufoEnemy)
         {
             UfoEnemy ufoEnemy1 = ufoEnemy as UfoEnemy;
 
@@ -2197,7 +2197,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void RecycleUfoEnemy(Construct ufoEnemy)
+        private void RecycleUfoEnemy(GameObject ufoEnemy)
         {
             var hitbox = ufoEnemy.GetHitBox();
 
@@ -2272,7 +2272,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimateUfoEnemyRocket(Construct ufoEnemyRocket)
+        private void AnimateUfoEnemyRocket(GameObject ufoEnemyRocket)
         {
             UfoEnemyRocket ufoEnemyRocket1 = ufoEnemyRocket as UfoEnemyRocket;
 
@@ -2303,7 +2303,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void RecycleUfoEnemyRocket(Construct ufoEnemyRocket)
+        private void RecycleUfoEnemyRocket(GameObject ufoEnemyRocket)
         {
             var hitbox = ufoEnemyRocket.GetHitBox();
 
@@ -2344,7 +2344,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimateVehicleEnemy(Construct vehicleEnemy)
+        private void AnimateVehicleEnemy(GameObject vehicleEnemy)
         {
             VehicleEnemy vehicleEnemy1 = vehicleEnemy as VehicleEnemy;
 
@@ -2363,7 +2363,7 @@ namespace HonkBusterGame
             PreventVehicleEnemyOverlapping(vehicleEnemy);
         }
 
-        private void RecycleVehicleEnemy(Construct vehicleEnemy)
+        private void RecycleVehicleEnemy(GameObject vehicleEnemy)
         {
             var hitBox = vehicleEnemy.GetHitBox();
 
@@ -2373,9 +2373,9 @@ namespace HonkBusterGame
             }
         }
 
-        private void PreventVehicleEnemyOverlapping(Construct vehicleEnemy)
+        private void PreventVehicleEnemyOverlapping(GameObject vehicleEnemy)
         {
-            if (_scene_game.Children.OfType<VehicleEnemy>().FirstOrDefault(x => x.IsAnimating && x.GetHitBox().IntersectsWith(vehicleEnemy.GetHitBox())) is Construct collidingVehicleEnemy)
+            if (_scene_game.Children.OfType<VehicleEnemy>().FirstOrDefault(x => x.IsAnimating && x.GetHitBox().IntersectsWith(vehicleEnemy.GetHitBox())) is GameObject collidingVehicleEnemy)
             {
                 var hitBox = vehicleEnemy.GetHitBox();
 
@@ -2458,7 +2458,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimateVehicleBoss(Construct vehicleBoss)
+        private void AnimateVehicleBoss(GameObject vehicleBoss)
         {
             VehicleBoss vehicleBoss1 = vehicleBoss as VehicleBoss;
 
@@ -2503,7 +2503,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void RecycleVehicleBoss(Construct vehicleBoss)
+        private void RecycleVehicleBoss(GameObject vehicleBoss)
         {
             var hitBox = vehicleBoss.GetHitBox();
 
@@ -2583,7 +2583,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimateVehicleBossRocket(Construct vehicleBossRocket)
+        private void AnimateVehicleBossRocket(GameObject vehicleBossRocket)
         {
             VehicleBossRocket vehicleBossRocket1 = vehicleBossRocket as VehicleBossRocket;
 
@@ -2618,7 +2618,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void RecycleVehicleBossRocket(Construct vehicleBossRocket)
+        private void RecycleVehicleBossRocket(GameObject vehicleBossRocket)
         {
             var hitbox = vehicleBossRocket.GetHitBox();
 
@@ -2688,7 +2688,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimateZombieBoss(Construct zombieBoss)
+        private void AnimateZombieBoss(GameObject zombieBoss)
         {
             ZombieBoss zombieBoss1 = zombieBoss as ZombieBoss;
 
@@ -2734,7 +2734,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void RecycleZombieBoss(Construct zombieBoss)
+        private void RecycleZombieBoss(GameObject zombieBoss)
         {
             if (zombieBoss.IsShrinkingComplete)
             {
@@ -2808,7 +2808,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimateZombieBossRocketBlock(Construct zombieBossRocket)
+        private void AnimateZombieBossRocketBlock(GameObject zombieBossRocket)
         {
             ZombieBossRocketBlock zombieBossRocket1 = zombieBossRocket as ZombieBossRocketBlock;
 
@@ -2840,7 +2840,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void RecycleZombieBossRocketBlock(Construct zombieBossRocket)
+        private void RecycleZombieBossRocketBlock(GameObject zombieBossRocket)
         {
             var hitbox = zombieBossRocket.GetHitBox();
 
@@ -2918,7 +2918,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimateMafiaBoss(Construct mafiaBoss)
+        private void AnimateMafiaBoss(GameObject mafiaBoss)
         {
             MafiaBoss mafiaBoss1 = mafiaBoss as MafiaBoss;
 
@@ -2966,7 +2966,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void RecycleMafiaBoss(Construct mafiaBoss)
+        private void RecycleMafiaBoss(GameObject mafiaBoss)
         {
             if (mafiaBoss.IsShrinkingComplete)
             {
@@ -3041,7 +3041,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimateMafiaBossRocket(Construct mafiaBossRocket)
+        private void AnimateMafiaBossRocket(GameObject mafiaBossRocket)
         {
             MafiaBossRocket mafiaBossRocket1 = mafiaBossRocket as MafiaBossRocket;
 
@@ -3088,7 +3088,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void RecycleMafiaBossRocket(Construct mafiaBossRocket)
+        private void RecycleMafiaBossRocket(GameObject mafiaBossRocket)
         {
             var hitbox = mafiaBossRocket.GetHitBox();
 
@@ -3136,7 +3136,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimateMafiaBossRocketBullsEye(Construct mafiaBossRocketBullsEye)
+        private void AnimateMafiaBossRocketBullsEye(GameObject mafiaBossRocketBullsEye)
         {
             MafiaBossRocketBullsEye mafiaBossRocketBullsEye1 = mafiaBossRocketBullsEye as MafiaBossRocketBullsEye;
 
@@ -3178,7 +3178,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void RecycleMafiaBossRocketBullsEye(Construct mafiaBossRocketBullsEye)
+        private void RecycleMafiaBossRocketBullsEye(GameObject mafiaBossRocketBullsEye)
         {
             var hitbox = mafiaBossRocketBullsEye.GetHitBox();
 
@@ -3209,7 +3209,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void GenerateHonk(Construct source)
+        private void GenerateHonk(GameObject source)
         {
             if (_scene_game.Children.OfType<Honk>().FirstOrDefault(x => x.IsAnimating == false) is Honk honk)
             {
@@ -3228,13 +3228,13 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimateHonk(Construct honk)
+        private void AnimateHonk(GameObject honk)
         {
             honk.Pop();
             honk.Fade(0.06);
         }
 
-        private void RecycleHonk(Construct honk)
+        private void RecycleHonk(GameObject honk)
         {
             if (honk.IsFadingComplete)
             {
@@ -3325,7 +3325,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimateCloud(Construct cloud)
+        private void AnimateCloud(GameObject cloud)
         {
             Cloud cloud1 = cloud as Cloud;
             cloud1.Hover();
@@ -3334,7 +3334,7 @@ namespace HonkBusterGame
             cloud1.MoveDownRight(speed);
         }
 
-        private void RecycleCloud(Construct cloud)
+        private void RecycleCloud(GameObject cloud)
         {
             var hitBox = cloud.GetHitBox();
 
@@ -3348,7 +3348,7 @@ namespace HonkBusterGame
 
         #region DropShadow
 
-        private void SpawnDropShadow(Construct source)
+        private void SpawnDropShadow(GameObject source)
         {
             DropShadow dropShadow = new(
                 animateAction: AnimateDropShadow,
@@ -3361,13 +3361,13 @@ namespace HonkBusterGame
             dropShadow.SetZ(source.GetZ() - 1);
         }
 
-        private void AnimateDropShadow(Construct construct)
+        private void AnimateDropShadow(GameObject construct)
         {
             DropShadow dropShadow = construct as DropShadow;
             dropShadow.Move();
         }
 
-        private void RecycleDropShadow(Construct dropShadow)
+        private void RecycleDropShadow(GameObject dropShadow)
         {
             DropShadow dropShadow1 = dropShadow as DropShadow;
 
@@ -3377,7 +3377,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void GenerateDropShadow(Construct source)
+        private void GenerateDropShadow(GameObject source)
         {
             if (_scene_game.Children.OfType<DropShadow>().FirstOrDefault(x => x.Id == source.Id) is DropShadow dropShadow)
             {
@@ -3443,7 +3443,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimateHealthPickup(Construct healthPickup)
+        private void AnimateHealthPickup(GameObject healthPickup)
         {
             HealthPickup healthPickup1 = healthPickup as HealthPickup;
 
@@ -3472,7 +3472,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void RecycleHealthPickup(Construct healthPickup)
+        private void RecycleHealthPickup(GameObject healthPickup)
         {
             var hitBox = healthPickup.GetHitBox();
 
@@ -3544,7 +3544,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimatePowerUpPickup(Construct powerUpPickup)
+        private void AnimatePowerUpPickup(GameObject powerUpPickup)
         {
             PowerUpPickup powerUpPickup1 = powerUpPickup as PowerUpPickup;
 
@@ -3605,7 +3605,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void RecyclePowerUpPickup(Construct powerUpPickup)
+        private void RecyclePowerUpPickup(GameObject powerUpPickup)
         {
             var hitBox = powerUpPickup.GetHitBox();
 
@@ -3652,14 +3652,14 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimateFloatingNumber(Construct floatingNumber)
+        private void AnimateFloatingNumber(GameObject floatingNumber)
         {
             FloatingNumber floatingNumber1 = floatingNumber as FloatingNumber;
             floatingNumber1.Move();
             floatingNumber1.DepleteOnScreenDelay();
         }
 
-        private void RecycleFloatingNumber(Construct floatingNumber)
+        private void RecycleFloatingNumber(GameObject floatingNumber)
         {
             FloatingNumber floatingNumber1 = floatingNumber as FloatingNumber;
 
@@ -3673,7 +3673,7 @@ namespace HonkBusterGame
 
         #region Rocket
 
-        private void SetPlayerRocketDirection(Construct source, AnimableConstruct rocket, Construct rocketTarget)
+        private void SetPlayerRocketDirection(GameObject source, AnimableConstruct rocket, GameObject rocketTarget)
         {
             // rocket target is on the bottom right side of the UfoBoss
             if (rocketTarget.GetTop() > source.GetTop() && rocketTarget.GetLeft() > source.GetLeft())
@@ -3706,7 +3706,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void SetBossRocketDirection(Construct source, AnimableConstruct rocket, Construct rocketTarget)
+        private void SetBossRocketDirection(GameObject source, AnimableConstruct rocket, GameObject rocketTarget)
         {
             // rocket target is on the bottom right side of the UfoBoss
             if (rocketTarget.GetTop() > source.GetTop() && rocketTarget.GetLeft() > source.GetLeft())
@@ -4104,7 +4104,7 @@ namespace HonkBusterGame
                         hoveringTitleScreen.IsAnimating = false;
                     }
 
-                    foreach (var construct in _scene_game.Children.OfType<Construct>())
+                    foreach (var construct in _scene_game.Children.OfType<GameObject>())
                     {
                         construct.IsAnimating = false;
                     }

@@ -12,8 +12,8 @@
         #region Ctor
 
         public RoadSideHedge(
-            Action<Construct> animateAction,
-            Action<Construct> recycleAction)
+            Action<GameObject> animateAction,
+            Action<GameObject> recycleAction)
         {
             ConstructType = ConstructType.ROAD_SIDE_HEDGE;
 

@@ -19,7 +19,7 @@
             var appPackageId = Environment.GetEnvironmentVariable("UNO_BOOTSTRAP_APP_BASE");
 
             _baseUrl = $"{indexUrl}{appPackageId}";
-            ImgContent = new ImgElement();
+            ImgContent = new HtmlImageTag();
 
             Width = width;
             Height = height;
@@ -39,7 +39,7 @@
 
         #region Properties
 
-        public ImgElement ImgContent { get; }
+        public HtmlImageTag ImgContent { get; }
 
 
         private double width = 0;

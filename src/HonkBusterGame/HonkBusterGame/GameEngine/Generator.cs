@@ -16,7 +16,7 @@
 
         private Action GenerationAction { get; set; }
 
-        public Scene Scene { get; set; }
+        public GameView Scene { get; set; }
 
         #endregion
 

@@ -13,8 +13,8 @@
         #region Ctor
 
         public HealthPickup(
-            Action<Construct> animateAction,
-            Action<Construct> recycleAction)
+            Action<GameObject> animateAction,
+            Action<GameObject> recycleAction)
         {
             ConstructType = ConstructType.HEALTH_PICKUP;
 

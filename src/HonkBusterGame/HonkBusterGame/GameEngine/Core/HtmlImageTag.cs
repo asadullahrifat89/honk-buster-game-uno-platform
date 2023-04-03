@@ -4,11 +4,11 @@ using Uno.UI.Runtime.WebAssembly;
 namespace HonkBusterGame
 {
     [HtmlElement("img")]
-    public sealed class ImgElement : FrameworkElement
+    public sealed class HtmlImageTag : FrameworkElement
     {
         #region Ctor
 
-        public ImgElement()
+        public HtmlImageTag()
         {
             this.SetHtmlAttribute("draggable", "false");
             this.SetHtmlAttribute("loading", "lazy");
@@ -260,9 +260,9 @@ namespace HonkBusterGame
             set => SetValue(SourceProperty, value);
         }
 
-        public static readonly DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(string), typeof(ImgElement), new PropertyMetadata(default(string), (s, e) =>
+        public static readonly DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(string), typeof(HtmlImageTag), new PropertyMetadata(default(string), (s, e) =>
         {
-            if (s is ImgElement image)
+            if (s is HtmlImageTag image)
             {
                 var encodedSource = WebAssemblyRuntime.EscapeJs("" + e.NewValue);
                 image.SetHtmlAttribute("src", encodedSource);
@@ -277,9 +277,9 @@ namespace HonkBusterGame
             set => SetValue(WidthProperty, value);
         }
 
-        public new static readonly DependencyProperty WidthProperty = DependencyProperty.Register("Width", typeof(double), typeof(ImgElement), new PropertyMetadata(default(double), (s, e) =>
+        public new static readonly DependencyProperty WidthProperty = DependencyProperty.Register("Width", typeof(double), typeof(HtmlImageTag), new PropertyMetadata(default(double), (s, e) =>
         {
-            if (s is ImgElement image)
+            if (s is HtmlImageTag image)
             {
                 var encodedWidth = e.NewValue.ToString();
                 image.SetHtmlAttribute("width", encodedWidth);
@@ -292,9 +292,9 @@ namespace HonkBusterGame
             set => SetValue(HeightProperty, value);
         }
 
-        public new static readonly DependencyProperty HeightProperty = DependencyProperty.Register("Height", typeof(double), typeof(ImgElement), new PropertyMetadata(default(double), (s, e) =>
+        public new static readonly DependencyProperty HeightProperty = DependencyProperty.Register("Height", typeof(double), typeof(HtmlImageTag), new PropertyMetadata(default(double), (s, e) =>
         {
-            if (s is ImgElement image)
+            if (s is HtmlImageTag image)
             {
                 var encodedHeight = e.NewValue.ToString();
                 image.SetHtmlAttribute("height", encodedHeight);

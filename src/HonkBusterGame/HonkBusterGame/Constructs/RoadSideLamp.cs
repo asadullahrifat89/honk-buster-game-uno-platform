@@ -12,8 +12,8 @@
         #region Ctor
 
         public RoadSideLamp(
-            Action<Construct> animateAction,
-            Action<Construct> recycleAction)
+            Action<GameObject> animateAction,
+            Action<GameObject> recycleAction)
         {
             ConstructType = ConstructType.ROAD_SIDE_LAMP;
 

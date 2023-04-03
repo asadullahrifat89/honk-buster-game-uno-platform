@@ -3,7 +3,7 @@
 namespace HonkBusterGame
 {
     [HtmlElement("audio")]
-    public partial class AudioElement : AudioPlayerElement
+    public partial class HtmlAudioTag : AudioPlayerElement
     {
         #region Fields
 
@@ -13,7 +13,7 @@ namespace HonkBusterGame
 
         #region Ctor
 
-        public AudioElement(
+        public HtmlAudioTag(
            Uri uri,
            double volume = 1.0,
            bool loop = false,

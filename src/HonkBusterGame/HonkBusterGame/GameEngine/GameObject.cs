@@ -1,8 +1,8 @@
 ﻿namespace HonkBusterGame
 {
-    public partial class Construct : RenderElement
+    public partial class GameObject : RenderElement
     {
-        public Construct()
+        public GameObject()
         {
             Speed = Constants.DEFAULT_CONSTRUCT_SPEED;
         }
@@ -17,12 +17,12 @@
         /// <summary>
         /// Animation function.
         /// </summary>
-        public Action<Construct> AnimateAction { get; set; }
+        public Action<GameObject> AnimateAction { get; set; }
 
         /// <summary>
         /// Recycling function.
         /// </summary>
-        public Action<Construct> RecycleAction { get; set; }
+        public Action<GameObject> RecycleAction { get; set; }
 
         /// <summary>
         /// Sets the movement speed.
@@ -37,7 +37,7 @@
         /// <summary>
         /// The scene in which this construct exists.
         /// </summary>
-        public Scene Scene { get; set; }
+        public GameView Scene { get; set; }
 
         #endregion
 

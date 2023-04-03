@@ -17,8 +17,8 @@ namespace HonkBusterGame
         #region Ctor
 
         public PlayerHonkBombSelectionScreen
-           (Action<Construct> animateAction,
-           Action<Construct> recycleAction,
+           (Action<GameObject> animateAction,
+           Action<GameObject> recycleAction,
            Action<int> playAction,
            Action backAction)
         {

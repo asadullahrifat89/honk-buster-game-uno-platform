@@ -26,8 +26,8 @@
         #region Ctor
 
         public ZombieBoss(
-           Action<Construct> animateAction,
-           Action<Construct> recycleAction)
+           Action<GameObject> animateAction,
+           Action<GameObject> recycleAction)
         {
             ConstructType = ConstructType.ZOMBIE_BOSS;
 

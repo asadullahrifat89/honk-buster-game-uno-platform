@@ -13,8 +13,8 @@ namespace HonkBusterGame
         #region Ctor
 
         public PromptOrientationChangeScreen(
-            Action<Construct> animateAction,
-            Action<Construct> recycleAction)
+            Action<GameObject> animateAction,
+            Action<GameObject> recycleAction)
         {
             ConstructType = ConstructType.TITLE_SCREEN;
 
