@@ -10,7 +10,7 @@ This repository contains an arcade honk busting game.
 
 ## Game Features
 
-- Isometric movement control with keyboard and Joystick.
+- Omnidirectional movement control with keyboard and Joystick.
 - Game loop with scene, constructs, generators, and game on screen game controller.
 - Fully reposive view port.
 - Cross platform compatibilty supporting desktop and mobile OS: Windows, Mac, iOS, Android.
