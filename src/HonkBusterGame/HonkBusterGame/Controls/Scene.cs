@@ -250,7 +250,7 @@ namespace HonkBusterGame
                 }
 
                 construct.Animate();
-                construct.Update();
+                construct.Render();
                 construct.Recycle();
             }
 

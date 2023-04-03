@@ -398,7 +398,7 @@ namespace HonkBusterGame
             //}
         }
 
-        public void Update()
+        public void Render()
         {
             if (Content is not null)
             {
