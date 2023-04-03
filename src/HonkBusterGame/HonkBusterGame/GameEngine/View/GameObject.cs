@@ -3,7 +3,7 @@
     /// <summary>
     /// A game object that can be added in a game view and be rendered.
     /// </summary>
-    public partial class GameObject : RenderableObject
+    public partial class GameObject : RenderableBase
     {
         public GameObject()
         {
@@ -11,6 +11,7 @@
             AnimateAction = (s) => { };
             RecycleAction = (s) => { };
             GameView = new();
+            IsAnimating = false;
         }
 
         #region Properties

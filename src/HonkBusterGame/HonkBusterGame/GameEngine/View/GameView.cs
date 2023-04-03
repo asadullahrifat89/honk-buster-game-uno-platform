@@ -250,7 +250,7 @@ namespace HonkBusterGame
 
                 construct.Animate();
                 construct.Render();
-                construct.Recycle();
+                construct.Recycle();              
             }
 
             // remove the destroyables from the scene

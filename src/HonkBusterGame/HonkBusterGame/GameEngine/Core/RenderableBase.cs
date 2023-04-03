@@ -2,7 +2,7 @@
 
 namespace HonkBusterGame
 {
-    public partial class RenderableObject
+    public partial class RenderableBase
     {
         #region Fields
 
@@ -19,10 +19,9 @@ namespace HonkBusterGame
 
         #region Ctor
 
-        public RenderableObject()
+        public RenderableBase()
         {
-            Content = new FrameworkElement();
-            IsAnimating = false;
+            Content = new FrameworkElement();            
 
             ScaleX = 1;
             ScaleY = 1;
@@ -399,7 +398,6 @@ namespace HonkBusterGame
             Content.RenderTransform = _transform;
             Content.Width = Width;
             Content.Height = Height;
-
             //}
         }
 
@@ -461,10 +459,10 @@ namespace HonkBusterGame
             }
         }
 
-        private void MoveOutOfSight()
+        public void MoveOutOfSight()
         {
             Canvas.SetLeft(Content, -3000);
-            Canvas.SetTop(Content, -3000);
+            Canvas.SetTop(Content, -3000);            
         }
 
         #endregion
