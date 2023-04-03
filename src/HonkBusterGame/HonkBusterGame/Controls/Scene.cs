@@ -76,7 +76,7 @@ namespace HonkBusterGame
 
             SceneState = SceneState.GAME_STOPPED;
 
-            Loaded += Scene_Loaded;
+            //Loaded += Scene_Loaded;
             Unloaded += Scene_Unloaded;
 
             this.Child = _canvas;
@@ -102,10 +102,10 @@ namespace HonkBusterGame
 
         #region Events
 
-        private void Scene_Loaded(object sender, RoutedEventArgs e)
-        {
-            //_opacity_storyboard.Begin();
-        }
+        //private void Scene_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    //_opacity_storyboard.Begin();
+        //}
 
         private void Scene_Unloaded(object sender, RoutedEventArgs e)
         {
@@ -267,7 +267,7 @@ namespace HonkBusterGame
 
                 var fps = _famesCount / 2;
 
-                LoggingExtensions.Log($"Scene: {Name} ~ Generators: {_generators.Count} ~ Animating Objects: {Children.Count(x => x.IsAnimating)} \n Total Objects: {Children.Count} ~ FPS: {fps}");
+                LoggingExtensions.Log($"Scene: {Name} ~ Generators: {_generators.Count} ~ Animating Objects: {Children.Count(x => x.IsAnimating)} \n Rendered Objects: {_canvas.Children.Count} \n Total Objects: {Children.Count} \n FPS: {fps}");
 
                 _famesCount = 0;
             }

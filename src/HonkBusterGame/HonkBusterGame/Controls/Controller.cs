@@ -786,7 +786,7 @@ namespace HonkBusterGame
                 CornerRadius = new CornerRadius(Constants.DEFAULT_CONTROLLER_KEY_CORNER_RADIUS * 2),
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(-100, -100),
+                Margin = new Thickness(-500, -500),
                 Opacity = 0.0
             };
             AttackFocusButton.Click += (s, e) =>
