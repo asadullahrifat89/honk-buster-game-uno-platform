@@ -2,7 +2,7 @@
 
 namespace HonkBusterGame
 {
-    public partial class RenderElement
+    public partial class RenderableObject
     {
         #region Fields
 
@@ -19,7 +19,7 @@ namespace HonkBusterGame
 
         #region Ctor
 
-        public RenderElement()
+        public RenderableObject()
         {
             Content = new FrameworkElement();
             IsAnimating = false;

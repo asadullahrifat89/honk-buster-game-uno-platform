@@ -7,7 +7,7 @@
         private readonly Random _random;
         private readonly Uri[] _enemy_uris;
 
-        private readonly ImageElement _content_image;
+        private readonly ImageContainer _content_image;
 
         private double _attackDelay;
 

@@ -4,6 +4,9 @@ using Windows.Foundation;
 
 namespace HonkBusterGame
 {
+    /// <summary>
+    /// A game view that can host game objects and can render them on screen.
+    /// </summary>
     public partial class GameView : Border
     {
         #region Fields
@@ -26,7 +29,7 @@ namespace HonkBusterGame
         private readonly TimeSpan _frameTime = TimeSpan.FromMilliseconds(Constants.DEFAULT_FRAME_TIME);
 
         private readonly List<GameObject> _destroyables = new();
-        private readonly List<Generator> _generators = new();
+        private readonly List<GameObjectGenerator> _generators = new();
 
         private double _slowMotionDelay;
         private readonly double _slowMotionDelayDefault = 160;
@@ -190,7 +193,7 @@ namespace HonkBusterGame
             }
         }
 
-        public void AddToScene(params Generator[] generators)
+        public void AddToScene(params GameObjectGenerator[] generators)
         {
             if (generators is not null)
             {
@@ -237,7 +240,7 @@ namespace HonkBusterGame
 
         private void Run()
         {           
-            foreach (Generator generator in _generators)  // generate new constructs in scene from generators
+            foreach (GameObjectGenerator generator in _generators)  // generate new constructs in scene from generators
             {
                 generator.Generate();
             }

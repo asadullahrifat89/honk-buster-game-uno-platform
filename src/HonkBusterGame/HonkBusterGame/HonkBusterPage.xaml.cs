@@ -3801,7 +3801,7 @@ namespace HonkBusterGame
             SpawnUfoEnemyRockets();
 
             _scene_game.AddToScene(
-            new Generator(
+            new GameObjectGenerator(
                 delay: 180,
                 elaspedAction: GenerateUfoEnemy,
                 scramble: true));
@@ -3816,16 +3816,16 @@ namespace HonkBusterGame
 
             _scene_game.AddToScene(
 
-            new Generator(
+            new GameObjectGenerator(
                 delay: 10,
                 elaspedAction: GenerateUfoBoss),
 
-            new Generator(
+            new GameObjectGenerator(
                 delay: 40,
                 elaspedAction: GenerateUfoBossRocket,
                 scramble: true),
 
-            new Generator(
+            new GameObjectGenerator(
                 delay: 200,
                 elaspedAction: GenerateUfoBossRocketSeeking,
                 scramble: true)
@@ -3846,11 +3846,11 @@ namespace HonkBusterGame
 
             _scene_game.AddToScene(
 
-            new Generator(
+            new GameObjectGenerator(
                 delay: 800,
                 elaspedAction: GenerateHealthPickups),
 
-            new Generator(
+            new GameObjectGenerator(
                 delay: 800,
                 elaspedAction: GeneratePowerUpPickup));
 
@@ -3868,31 +3868,31 @@ namespace HonkBusterGame
 
             _scene_game.AddToScene(
 
-            new Generator(
+            new GameObjectGenerator(
                 delay: 38,
                 elaspedAction: GenerateRoadMark),
 
-            new Generator(
+            new GameObjectGenerator(
                 delay: 72,
                 elaspedAction: GenerateRoadSideBillboard),
 
-            new Generator(
+            new GameObjectGenerator(
                 delay: 36,
                 elaspedAction: GenerateRoadSideLamp),
 
-            new Generator(
+            new GameObjectGenerator(
                 delay: 36,
                 elaspedAction: GenerateRoadSideLightBillboard),
 
-            new Generator(
+            new GameObjectGenerator(
                 delay: 18,
                 elaspedAction: GenerateRoadSideWalk),
 
-            new Generator(
+            new GameObjectGenerator(
                 delay: 30,
                 elaspedAction: GenerateRoadSideTree),
 
-            new Generator(
+            new GameObjectGenerator(
                 delay: 38,
                 elaspedAction: GenerateRoadSideHedge));
 
@@ -3903,7 +3903,7 @@ namespace HonkBusterGame
             SpawnClouds();
 
             _scene_game.AddToScene(
-            new Generator(
+            new GameObjectGenerator(
                 delay: 300,
                 elaspedAction: GenerateCloud,
                 scramble: true));
@@ -3915,7 +3915,7 @@ namespace HonkBusterGame
             SpawnVehicleEnemys();
             SpawnHonks();
 
-            _scene_game.AddToScene(new Generator(
+            _scene_game.AddToScene(new GameObjectGenerator(
                 delay: 95,
                 elaspedAction: GenerateVehicleEnemy));
 
@@ -3927,11 +3927,11 @@ namespace HonkBusterGame
             SpawnVehicleBossRockets();
 
             _scene_game.AddToScene(
-            new Generator(
+            new GameObjectGenerator(
                 delay: 10,
                 elaspedAction: GenerateVehicleBoss),
 
-            new Generator(
+            new GameObjectGenerator(
                 delay: 50,
                 elaspedAction: GenerateVehicleBossRocket,
                 scramble: true));
@@ -3944,11 +3944,11 @@ namespace HonkBusterGame
             SpawnZombieBossRocketBlocks();
 
             _scene_game.AddToScene(
-            new Generator(
+            new GameObjectGenerator(
                 delay: 10,
                 elaspedAction: GenerateZombieBoss),
 
-            new Generator(
+            new GameObjectGenerator(
                 delay: 30,
                 elaspedAction: GenerateZombieBossRocketBlock)
             );
@@ -3962,15 +3962,15 @@ namespace HonkBusterGame
             SpawnMafiaBossRocketBullsEyes();
 
             _scene_game.AddToScene(
-            new Generator(
+            new GameObjectGenerator(
                 delay: 10,
                 elaspedAction: GenerateMafiaBoss),
 
-            new Generator(
+            new GameObjectGenerator(
                 delay: 75,
                 elaspedAction: GenerateMafiaBossRocket),
 
-            new Generator(
+            new GameObjectGenerator(
                 delay: 45,
                 elaspedAction: GenerateMafiaBossRocketBullsEye));
 

@@ -9,7 +9,7 @@
         private readonly Uri[] _vehicle_small_uris;
         private readonly Uri[] _vehicle_large_uris;
 
-        private readonly ImageElement _content_image;
+        private readonly ImageContainer _content_image;
         private readonly AudioStub _audioStub;
 
         #endregion

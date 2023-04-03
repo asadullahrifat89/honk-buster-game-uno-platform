@@ -1,6 +1,6 @@
 ﻿namespace HonkBusterGame
 {
-    public partial class ImageElement : Border
+    public partial class ImageContainer : Border
     {
         #region Fields
 
@@ -11,7 +11,7 @@
 
         #region Ctor
 
-        public ImageElement(Uri uri, double width, double height)
+        public ImageContainer(Uri uri, double width, double height)
         {
             _uri = uri;
 

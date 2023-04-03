@@ -7,7 +7,7 @@
         private readonly Uri[] _bomb_uris;
         private readonly Uri[] _bomb_blast_uris;
 
-        private readonly ImageElement _content_image;
+        private readonly ImageContainer _content_image;
 
         private double _autoBlastDelay;
         private readonly double _autoBlastDelayDefault = 9;

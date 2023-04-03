@@ -10,7 +10,7 @@ namespace HonkBusterGame
 
         public static Uri GetContentUri(this GameObject construct)
         {
-            if (construct.Content is not null && construct.Content is ImageElement image)
+            if (construct.Content is not null && construct.Content is ImageContainer image)
             {
                 return image.GetSourceUri();
             }

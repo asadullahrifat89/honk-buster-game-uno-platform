@@ -1,6 +1,9 @@
 ﻿namespace HonkBusterGame
 {
-    public partial class GameObject : RenderElement
+    /// <summary>
+    /// A game object that can be added in a game view and be rendered.
+    /// </summary>
+    public partial class GameObject : RenderableObject
     {
         public GameObject()
         {

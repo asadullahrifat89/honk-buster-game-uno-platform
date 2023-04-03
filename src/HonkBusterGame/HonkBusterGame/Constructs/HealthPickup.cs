@@ -5,7 +5,7 @@
         #region Fields
 
         private readonly Uri[] _health_uris;
-        private readonly ImageElement _content_image;
+        private readonly ImageContainer _content_image;
         private readonly AudioStub _audioStub;
 
         #endregion

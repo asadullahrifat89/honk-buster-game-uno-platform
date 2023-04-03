@@ -5,7 +5,7 @@
         #region Fields
 
         private readonly Random _random;
-        private readonly ImageElement _content_image;
+        private readonly ImageContainer _content_image;
         private readonly AudioStub _audioStub;
         #endregion
 

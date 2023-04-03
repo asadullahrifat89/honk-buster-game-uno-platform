@@ -4,7 +4,7 @@
     {
         #region Fields
 
-        private readonly ImageElement _content_image;
+        private readonly ImageContainer _content_image;
         private readonly Uri[] _cloud_uris;
         private readonly Random _random;
 

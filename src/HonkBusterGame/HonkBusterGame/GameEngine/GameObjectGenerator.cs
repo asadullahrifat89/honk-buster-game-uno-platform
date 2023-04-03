@@ -1,6 +1,6 @@
 ﻿namespace HonkBusterGame
 {
-    public partial class Generator
+    public partial class GameObjectGenerator
     {
         #region Fields
 
@@ -20,7 +20,7 @@
 
         #endregion
 
-        public Generator(
+        public GameObjectGenerator(
             int delay,
             Action elaspedAction,
             bool scramble = false)

@@ -26,7 +26,7 @@
         private double _hitStanceDelay;
         private readonly double _hitStanceDelayDefault = 1.5;
 
-        private readonly ImageElement _content_image;
+        private readonly ImageContainer _content_image;
         private readonly AudioStub _audioStub;
 
         private MovementDirection _movementDirection;

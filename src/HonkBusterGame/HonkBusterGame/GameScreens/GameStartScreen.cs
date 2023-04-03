@@ -8,7 +8,7 @@ namespace HonkBusterGame
 
         private readonly TextBlock _title_text;
         private readonly TextBlock _sub_title_text;
-        private readonly ImageElement _content_image;
+        private readonly ImageContainer _content_image;
 
         private readonly AudioStub _audioStub;
 
