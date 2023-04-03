@@ -11,7 +11,7 @@
 
             foreach (var soundInput in soundInputs)
             {
-                var audioSources = Constants.SOUND_TEMPLATES.Where(x => x.SoundType == soundInput.SoundType).Select(x => x.Uri).Select(uri => new Audio(
+                var audioSources = Constants.SOUND_TEMPLATES.Where(x => x.SoundType == soundInput.SoundType).Select(x => x.Uri).Select(uri => new AudioElement(
                     uri: uri,
                     volume: soundInput.Volume,
                     loop: soundInput.Loop)).ToArray();
