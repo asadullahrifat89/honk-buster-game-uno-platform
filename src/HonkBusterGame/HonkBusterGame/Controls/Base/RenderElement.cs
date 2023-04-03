@@ -29,6 +29,7 @@ namespace HonkBusterGame
             Z = 0;
             Rotation = 0;
             Opacity = 1;
+            Tag = new();
         }
 
         #endregion
