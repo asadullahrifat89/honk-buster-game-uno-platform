@@ -11,8 +11,6 @@ namespace HonkBusterGame
     {
         #region Fields
 
-        private readonly Canvas _canvas;
-
         //private readonly Storyboard _opacity_storyboard;
         //private readonly DoubleAnimation _doubleAnimation;
 
@@ -23,6 +21,14 @@ namespace HonkBusterGame
             Rotation = 0,
             ScaleX = 1,
             ScaleY = 1,
+        };
+
+        private readonly Canvas _canvas = new()
+        {
+            RenderTransformOrigin = new Point(0, 0),
+            Background = new SolidColorBrush(Colors.Transparent),
+            Width = Constants.DEFAULT_SCENE_WIDTH,
+            Height = Constants.DEFAULT_SCENE_HEIGHT,
         };
 
         private PeriodicTimer _gameViewTimer;
@@ -68,18 +74,8 @@ namespace HonkBusterGame
             #endregion
 
             CanDrag = false;
-            Children = new List<GameObject>();
-
-            _canvas = new()
-            {
-                RenderTransformOrigin = new Point(0, 0),
-                RenderTransform = _transform,
-                Background = new SolidColorBrush(Colors.Transparent),
-                Width = Constants.DEFAULT_SCENE_WIDTH,
-                Height = Constants.DEFAULT_SCENE_HEIGHT,
-            };
-
-            SceneState = GameViewState.GAME_STOPPED;
+            GameViewState = GameViewState.GAME_STOPPED;
+            _canvas.RenderTransform = _transform;
 
             //Loaded += Scene_Loaded;
             Unloaded += Scene_Unloaded;
@@ -93,15 +89,15 @@ namespace HonkBusterGame
 
         public bool IsAnimating { get; set; }
 
-        public bool IsInNightMode { get; set; }
+        public bool IsNightModeActivated { get; set; }
 
-        public GameViewState SceneState { get; set; }
+        public GameViewState GameViewState { get; set; }
 
-        public List<GameObject> Children { get; set; }
+        public List<GameObject> GameObjects { get; set; } = new();
 
         public bool IsSlowMotionActivated => _slowMotionDelay > 0;
 
-        public bool GeneratorsExist => _generators.Any();
+        public bool GameObjectGeneratorsAdded => _generators.Any();
 
         #endregion
 
@@ -133,7 +129,7 @@ namespace HonkBusterGame
 #endif
                 _gameViewTimer = new PeriodicTimer(_frameTime);
 
-                Children = Children.OrderBy(x => x.Z).ToList();
+                GameObjects = GameObjects.OrderBy(x => x.Z).ToList();
 
                 while (await _gameViewTimer.WaitForNextTickAsync())
                 {
@@ -167,7 +163,7 @@ namespace HonkBusterGame
 
         public void ToggleNightMode(bool isNightMode)
         {
-            IsInNightMode = isNightMode;
+            IsNightModeActivated = isNightMode;
         }
 
         public void SetRenderTransformOrigin(double xy)
@@ -188,7 +184,7 @@ namespace HonkBusterGame
                 foreach (var construct in constructs)
                 {
                     construct.GameView = this;
-                    Children.Add(construct);
+                    GameObjects.Add(construct);
                 }
             }
         }
@@ -212,7 +208,7 @@ namespace HonkBusterGame
 
         public void SetState(GameViewState sceneState)
         {
-            SceneState = sceneState;
+            GameViewState = sceneState;
         }
 
         public void ActivateSlowMotion()
@@ -225,7 +221,7 @@ namespace HonkBusterGame
 
         public void Clear()
         {
-            Children.Clear();
+            GameObjects.Clear();
 
             _canvas.Children.Clear();
 
@@ -245,7 +241,7 @@ namespace HonkBusterGame
                 generator.Generate();
             }
 
-            foreach (GameObject construct in Children.Where(x => x.IsAnimating)) // only add animating constructs in canvas and then cache them
+            foreach (GameObject construct in GameObjects.Where(x => x.IsAnimating)) // only add animating constructs in canvas and then cache them
             {
                 if (!_canvas.Children.Contains(construct.Content))
                 {
@@ -275,7 +271,7 @@ namespace HonkBusterGame
 
                 var fps = _famesCount / 2;
 
-                LoggingExtensions.Log($"Scene: {Name} ~ Generators: {_generators.Count} ~ Animating Objects: {Children.Count(x => x.IsAnimating)} \n Rendered Objects: {_canvas.Children.Count} \n Total Objects: {Children.Count} \n FPS: {fps}");
+                LoggingExtensions.Log($"Scene: {Name} ~ Generators: {_generators.Count} ~ Animating Objects: {GameObjects.Count(x => x.IsAnimating)} \n Rendered Objects: {_canvas.Children.Count} \n Total Objects: {GameObjects.Count} \n FPS: {fps}");
 
                 _famesCount = 0;
             }

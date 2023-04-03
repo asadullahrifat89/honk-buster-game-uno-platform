@@ -153,8 +153,10 @@ namespace HonkBusterGame
             {
                 isAnimating = value;
 
-                if (!isAnimating && Content is not null)
+                if (!isAnimating)
+                {
                     MoveOutOfSight();
+                }
             }
         }
 

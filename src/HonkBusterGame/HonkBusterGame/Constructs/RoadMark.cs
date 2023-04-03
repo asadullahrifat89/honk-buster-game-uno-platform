@@ -40,7 +40,7 @@
 
         public void Reset()
         {
-            _imageContainer.SetBrighness(GameView.IsInNightMode ? 50 : 100);
+            _imageContainer.SetBrighness(GameView.IsNightModeActivated ? 50 : 100);
         }
     }
 }

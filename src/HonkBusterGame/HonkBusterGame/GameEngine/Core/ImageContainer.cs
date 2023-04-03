@@ -12,11 +12,13 @@ namespace HonkBusterGame
 
         public ImageContainer(Uri uri, double width, double height)
         {
+            Width = width;
+            Height = height;
+
             _uri = uri;
             _bitmapImage = new BitmapImage(uriSource: _uri);
             Source = _bitmapImage;
-            Width = width;
-            Height = height;
+          
             CanDrag = false;
         }
 
