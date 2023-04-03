@@ -16,13 +16,12 @@
         {
             _uri = uri;
 
-            var indexUrl = "./"; //Uno.Foundation.WebAssemblyRuntime.InvokeJS("window.location.href;");
+            var indexUrl = "./";
             var appPackageId = Environment.GetEnvironmentVariable("UNO_BOOTSTRAP_APP_BASE");
 
             _baseUrl = $"{indexUrl}{appPackageId}";
             _imgElement = new ImgElement();
-
-            RenderTransformOrigin = new Windows.Foundation.Point(0.5, 0.5);
+            
             Width = width;
             Height = height;
 
@@ -68,7 +67,6 @@
         }
 
         private double blur = 0;
-
         public double ImageBlur
         {
             get { return blur; }
@@ -81,8 +79,8 @@
             }
         }
 
-        private double contrast = 100;
 
+        private double contrast = 100;
         public double ImageContrast
         {
             get { return contrast; }
@@ -95,8 +93,8 @@
             }
         }
 
-        private double brightness = 100;
 
+        private double brightness = 100;
         public double ImageBrightness
         {
             get { return brightness; }
@@ -109,8 +107,8 @@
             }
         }
 
-        private double saturation = 100;
 
+        private double saturation = 100;
         public double ImageSaturation
         {
             get { return saturation; }
@@ -123,8 +121,8 @@
             }
         }
 
-        private double sepia = 0;
 
+        private double sepia = 0;
         public double ImageSepia
         {
             get { return sepia; }
@@ -137,8 +135,8 @@
             }
         }
 
-        private double invert = 0;
 
+        private double invert = 0;
         public double ImageInvert
         {
             get { return invert; }
@@ -151,8 +149,8 @@
             }
         }
 
-        private double hue = 0;
 
+        private double hue = 0;
         public double ImageHue
         {
             get { return hue; }
@@ -165,8 +163,8 @@
             }
         }
 
-        private double opacity = 1;
 
+        private double opacity = 1;
         public double ImageOpacity
         {
             get { return opacity; }
@@ -179,8 +177,8 @@
             }
         }
 
-        private double rotation = 0;
 
+        private double rotation = 0;
         public double ImageRotation
         {
             get { return rotation; }
@@ -193,8 +191,8 @@
             }
         }
 
-        private double scaleX = 1;
 
+        private double scaleX = 1;
         public double ImageScaleX
         {
             get { return scaleX; }
@@ -207,8 +205,8 @@
             }
         }
 
-        private double scaleY = 1;
 
+        private double scaleY = 1;
         public double ImageScaleY
         {
             get { return scaleY; }
@@ -223,7 +221,6 @@
 
 
         private double skewX = 0;
-
         public double ImageSkewX
         {
             get { return skewX; }
@@ -236,8 +233,8 @@
             }
         }
 
-        private double skewY = 0;
 
+        private double skewY = 0;
         public double ImageSkewY
         {
             get { return skewY; }
@@ -250,8 +247,8 @@
             }
         }
 
-        private double width = 0;
 
+        private double width = 0;
         public double ImageWidth
         {
             get { return width; }
@@ -264,8 +261,8 @@
             }
         }
 
-        private double height = 0;
 
+        private double height = 0;
         public double ImageHeight
         {
             get { return height; }

@@ -20,7 +20,6 @@ namespace HonkBusterGame
         #region Properties
 
         private string id = string.Empty;
-
         public string Id
         {
             get { return id; }
@@ -37,7 +36,6 @@ namespace HonkBusterGame
 
 
         private double grayscale = 0;
-
         public double Grayscale
         {
             get { return grayscale; }
@@ -48,8 +46,8 @@ namespace HonkBusterGame
             }
         }
 
-        private double contrast = 100;
 
+        private double contrast = 100;
         public double Contrast
         {
             get { return contrast; }
@@ -60,8 +58,8 @@ namespace HonkBusterGame
             }
         }
 
-        private double brightness = 100;
 
+        private double brightness = 100;
         public double Brightness
         {
             get { return brightness; }
@@ -72,8 +70,8 @@ namespace HonkBusterGame
             }
         }
 
-        private double saturation = 100;
 
+        private double saturation = 100;
         public double Saturation
         {
             get { return saturation; }
@@ -84,8 +82,8 @@ namespace HonkBusterGame
             }
         }
 
-        private double sepia = 0;
 
+        private double sepia = 0;
         public double Sepia
         {
             get { return sepia; }
@@ -96,8 +94,8 @@ namespace HonkBusterGame
             }
         }
 
-        private double invert = 0;
 
+        private double invert = 0;
         public double Invert
         {
             get { return invert; }
@@ -108,8 +106,8 @@ namespace HonkBusterGame
             }
         }
 
-        private double hue = 0;
 
+        private double hue = 0;
         public double Hue
         {
             get { return hue; }
@@ -120,8 +118,8 @@ namespace HonkBusterGame
             }
         }
 
-        private double blur = 0;
 
+        private double blur = 0;
         public double Blur
         {
             get { return blur; }
@@ -132,8 +130,8 @@ namespace HonkBusterGame
             }
         }
 
-        private double opacity = 1;
 
+        private double opacity = 1;
         public new double Opacity
         {
             get { return opacity; }
@@ -144,8 +142,8 @@ namespace HonkBusterGame
             }
         }
 
-        private double rotation = 0;
 
+        private double rotation = 0;
         public new double Rotation
         {
             get { return rotation; }
@@ -156,8 +154,8 @@ namespace HonkBusterGame
             }
         }
 
-        private double scaleX = 1;
 
+        private double scaleX = 1;
         public double ScaleX
         {
             get { return scaleX; }
@@ -168,8 +166,8 @@ namespace HonkBusterGame
             }
         }
 
-        private double scaleY = 1;
 
+        private double scaleY = 1;
         public double ScaleY
         {
             get { return scaleY; }
@@ -180,8 +178,8 @@ namespace HonkBusterGame
             }
         }
 
-        private double skewX = 0;
 
+        private double skewX = 0;
         public double SkewX
         {
             get { return skewX; }
@@ -192,8 +190,8 @@ namespace HonkBusterGame
             }
         }
 
-        private double skewY = 0;
 
+        private double skewY = 0;
         public double SkewY
         {
             get { return skewY; }
@@ -204,8 +202,8 @@ namespace HonkBusterGame
             }
         }
 
-        private int dropShadowX = 0;
 
+        private int dropShadowX = 0;
         public int DropShadowX
         {
             get { return dropShadowX; }
@@ -216,8 +214,8 @@ namespace HonkBusterGame
             }
         }
 
-        private int dropShadowY = 0;
 
+        private int dropShadowY = 0;
         public int DropShadowY
         {
             get { return dropShadowY; }
@@ -228,8 +226,8 @@ namespace HonkBusterGame
             }
         }
 
-        private int dropShadowBlur = 0;
 
+        private int dropShadowBlur = 0;
         public int DropShadowBlurRadius
         {
             get { return dropShadowBlur; }
@@ -240,8 +238,8 @@ namespace HonkBusterGame
             }
         }
 
-        private string dropShadowColor = "#202020";
 
+        private string dropShadowColor = "#202020";
         public string DropShadowColor
         {
             get { return dropShadowColor; }
@@ -254,7 +252,13 @@ namespace HonkBusterGame
 
         #endregion
 
-        #region Dependency Properties
+        #region Dependency Properties      
+
+        public string Source
+        {
+            get => (string)GetValue(SourceProperty);
+            set => SetValue(SourceProperty, value);
+        }
 
         public static readonly DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(string), typeof(ImgElement), new PropertyMetadata(default(string), (s, e) =>
         {
@@ -267,13 +271,11 @@ namespace HonkBusterGame
 
         }));
 
-        public string Source
+        public new double Width
         {
-            get => (string)GetValue(SourceProperty);
-            set => SetValue(SourceProperty, value);
+            get => (double)GetValue(WidthProperty);
+            set => SetValue(WidthProperty, value);
         }
-
-
 
         public new static readonly DependencyProperty WidthProperty = DependencyProperty.Register("Width", typeof(double), typeof(ImgElement), new PropertyMetadata(default(double), (s, e) =>
         {
@@ -284,10 +286,10 @@ namespace HonkBusterGame
             }
         }));
 
-        public new double Width
+        public new double Height
         {
-            get => (double)GetValue(WidthProperty);
-            set => SetValue(WidthProperty, value);
+            get => (double)GetValue(HeightProperty);
+            set => SetValue(HeightProperty, value);
         }
 
         public new static readonly DependencyProperty HeightProperty = DependencyProperty.Register("Height", typeof(double), typeof(ImgElement), new PropertyMetadata(default(double), (s, e) =>
@@ -298,12 +300,6 @@ namespace HonkBusterGame
                 image.SetHtmlAttribute("height", encodedHeight);
             }
         }));
-
-        public new double Height
-        {
-            get => (double)GetValue(HeightProperty);
-            set => SetValue(HeightProperty, value);
-        }
 
         #endregion
 

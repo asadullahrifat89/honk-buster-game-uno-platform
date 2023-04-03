@@ -101,6 +101,9 @@ namespace HonkBusterGame
         /// </summary>
         public UIElement Content { get; set; }
 
+        /// <summary>
+        /// An object tag for element.
+        /// </summary>
         public object Tag { get; set; }
 
         /// <summary>
@@ -157,7 +160,6 @@ namespace HonkBusterGame
                 }
             }
         }
-
 
         #endregion
 
@@ -392,8 +394,11 @@ namespace HonkBusterGame
         {
             Content = content;
 
-            Content.RenderTransformOrigin = new Point(0.5, 0.5);
-            Content.RenderTransform = _transform;
+            if (content is not ImageElement)
+            {
+                Content.RenderTransformOrigin = new Point(0.5, 0.5);
+                Content.RenderTransform = _transform;
+            }
         }
 
         public void Update()
@@ -432,7 +437,6 @@ namespace HonkBusterGame
                 }
                 else
                 {
-
                     if (Content.Opacity != Opacity)
                         Content.Opacity = Opacity;
 
