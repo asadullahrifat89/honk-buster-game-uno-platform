@@ -35,7 +35,7 @@ namespace HonkBusterGame
     {
         #region Fields
 
-        private readonly ImgElement ImgElement;
+        private readonly ImgElement _imgElement;
         private readonly string _baseUrl = string.Empty;
         private Uri _uri;
 
@@ -50,14 +50,14 @@ namespace HonkBusterGame
             var indexUrl = "./"; //Uno.Foundation.WebAssemblyRuntime.InvokeJS("window.location.href;");
             var appPackageId = Environment.GetEnvironmentVariable("UNO_BOOTSTRAP_APP_BASE");
 
-            _baseUrl = $"{indexUrl}{appPackageId}";
+            _baseUrl = $"{indexUrl}{appPackageId}";            
+            _imgElement = new ImgElement();
 
-            RenderTransformOrigin = new Windows.Foundation.Point(0.5, 0.5);
-            ImgElement = new ImgElement();
-            Child = ImgElement;
+            RenderTransformOrigin = new Windows.Foundation.Point(0.5, 0.5);            
             Width = width;
             Height = height;
             CanDrag = false;
+            Child = _imgElement;
 
             SetSource(uri);
         }
@@ -74,25 +74,10 @@ namespace HonkBusterGame
             set
             {
                 id = value;
-                if (ImgElement is not null)
-                    ImgElement.Id = id;
+                if (_imgElement is not null)
+                    _imgElement.Id = id;
             }
         }
-
-
-        //private double grayscale = 0;
-
-        //public double ImageGrayscale
-        //{
-        //    get { return grayscale; }
-        //    set
-        //    {
-        //        grayscale = value;
-
-        //        if (ImgElement is not null)
-        //            ImgElement.Grayscale = grayscale;
-        //    }
-        //}
 
         private double contrast = 100;
 
@@ -103,8 +88,8 @@ namespace HonkBusterGame
             {
                 contrast = value;
 
-                if (ImgElement is not null)
-                    ImgElement.Contrast = contrast;
+                if (_imgElement is not null)
+                    _imgElement.Contrast = contrast;
             }
         }
 
@@ -117,8 +102,8 @@ namespace HonkBusterGame
             {
                 brightness = value;
 
-                if (ImgElement is not null)
-                    ImgElement.Brightness = brightness;
+                if (_imgElement is not null)
+                    _imgElement.Brightness = brightness;
             }
         }
 
@@ -131,8 +116,8 @@ namespace HonkBusterGame
             {
                 saturation = value;
 
-                if (ImgElement is not null)
-                    ImgElement.Saturation = saturation;
+                if (_imgElement is not null)
+                    _imgElement.Saturation = saturation;
             }
         }
 
@@ -145,8 +130,8 @@ namespace HonkBusterGame
             {
                 sepia = value;
 
-                if (ImgElement is not null)
-                    ImgElement.Sepia = sepia;
+                if (_imgElement is not null)
+                    _imgElement.Sepia = sepia;
             }
         }
 
@@ -159,8 +144,8 @@ namespace HonkBusterGame
             {
                 invert = value;
 
-                if (ImgElement is not null)
-                    ImgElement.Invert = invert;
+                if (_imgElement is not null)
+                    _imgElement.Invert = invert;
             }
         }
 
@@ -173,24 +158,10 @@ namespace HonkBusterGame
             {
                 hue = value;
 
-                if (ImgElement is not null)
-                    ImgElement.Hue = hue;
+                if (_imgElement is not null)
+                    _imgElement.Hue = hue;
             }
-        }
-
-        //private double blur = 0;
-
-        //public double ImageBlur
-        //{
-        //    get { return blur; }
-        //    set
-        //    {
-        //        blur = value;
-
-        //        if (ImgElement is not null)
-        //            ImgElement.Blur = blur;
-        //    }
-        //}
+        }       
 
         private double opacity = 1;
 
@@ -201,8 +172,8 @@ namespace HonkBusterGame
             {
                 opacity = value;
 
-                if (ImgElement is not null)
-                    ImgElement.Opacity = opacity;
+                if (_imgElement is not null)
+                    _imgElement.Opacity = opacity;
             }
         }
 
@@ -215,8 +186,8 @@ namespace HonkBusterGame
             {
                 rotation = value;
 
-                if (ImgElement is not null)
-                    ImgElement.Rotation = rotation;
+                if (_imgElement is not null)
+                    _imgElement.Rotation = rotation;
             }
         }
 
@@ -229,8 +200,8 @@ namespace HonkBusterGame
             {
                 scaleX = value;
 
-                if (ImgElement is not null)
-                    ImgElement.ScaleX = scaleX;
+                if (_imgElement is not null)
+                    _imgElement.ScaleX = scaleX;
             }
         }
 
@@ -243,8 +214,8 @@ namespace HonkBusterGame
             {
                 scaleY = value;
 
-                if (ImgElement is not null)
-                    ImgElement.ScaleY = scaleY;
+                if (_imgElement is not null)
+                    _imgElement.ScaleY = scaleY;
             }
         }
 
@@ -278,33 +249,33 @@ namespace HonkBusterGame
 
         public void SetGrayscale(double grayscale)
         {
-            if (ImgElement is not null)
-                ImgElement.Grayscale = grayscale;
+            if (_imgElement is not null)
+                _imgElement.Grayscale = grayscale;
         }
 
         public void SetDropShadow(int offsetX, int offsetY, int blurRadius, string color = "#202020")
         {
-            if (ImgElement is not null)
+            if (_imgElement is not null)
             {
-                ImgElement.DropShadowX = offsetX;
-                ImgElement.DropShadowY = offsetY;
-                ImgElement.DropShadowBlurRadius = blurRadius;
-                ImgElement.DropShadowColor = color;
+                _imgElement.DropShadowX = offsetX;
+                _imgElement.DropShadowY = offsetY;
+                _imgElement.DropShadowBlurRadius = blurRadius;
+                _imgElement.DropShadowColor = color;
             }
         }
 
         public void SetBlur(double blur)
         {
-            if (ImgElement is not null)
-                ImgElement.Blur = blur;
+            if (_imgElement is not null)
+                _imgElement.Blur = blur;
         }
 
         public void SetSource(Uri uri)
         {
-            if (ImgElement is not null)
+            if (_imgElement is not null)
             {
                 var source = $"{_baseUrl}/{uri.AbsoluteUri.Replace("ms-appx:///", "")}";
-                ImgElement.Source = source;
+                _imgElement.Source = source;
 
                 _uri = uri;
             }

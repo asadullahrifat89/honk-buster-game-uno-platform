@@ -3,6 +3,25 @@ using Uno.UI.Runtime.WebAssembly;
 
 namespace HonkBusterGame
 {
+    [HtmlElement("canvas")]
+    public sealed class CanvasElement : FrameworkElement
+    {
+        #region Ctor
+        
+        public CanvasElement()
+        {
+
+        }
+
+        #endregion
+
+        #region Properties
+
+
+
+        #endregion
+    }
+
     [HtmlElement("img")]
     public sealed class ImgElement : FrameworkElement
     {
@@ -19,18 +38,18 @@ namespace HonkBusterGame
 
         #region Properties
 
-        private string _Id = string.Empty;
+        private string id = string.Empty;
 
         public string Id
         {
-            get { return _Id; }
+            get { return id; }
             set
             {
-                _Id = value;
+                id = value;
 
-                if (!_Id.IsNullOrBlank())
+                if (!id.IsNullOrBlank())
                 {
-                    this.SetHtmlAttribute("id", _Id);
+                    this.SetHtmlAttribute("id", id);
                 }
             }
         }
