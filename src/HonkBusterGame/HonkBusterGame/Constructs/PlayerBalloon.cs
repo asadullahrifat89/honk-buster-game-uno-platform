@@ -54,7 +54,7 @@
             var uri = ConstructExtensions.GetRandomContentUri(_player_uris);
             _content_image = new(uri: uri, width: this.Width, height: this.Height);
 
-            SetChild(_content_image);
+            SetContent(_content_image);
 
             IsometricDisplacement = Constants.DEFAULT_ISOMETRIC_DISPLACEMENT;
             Speed = Constants.DEFAULT_CONSTRUCT_SPEED;

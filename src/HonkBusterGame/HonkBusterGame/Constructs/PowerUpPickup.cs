@@ -56,7 +56,7 @@
             _content_image = new(uri: uri, width: this.Width, height: this.Height);
             _content_image.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 6, color: glowColor);
 
-            SetChild(_content_image);
+            SetContent(_content_image);
 
             Speed = Constants.DEFAULT_CONSTRUCT_SPEED - 2;
             DropShadowDistance = Constants.DEFAULT_DROP_SHADOW_DISTANCE;

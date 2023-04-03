@@ -51,7 +51,7 @@ namespace HonkBusterGame
             _content_image = new(uri: uri, width: this.Width, height: this.Height);
             _content_image.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 7, color: "#f73e3e");
 
-            SetChild(_content_image);
+            SetContent(_content_image);
 
             IsometricDisplacement = Constants.DEFAULT_ISOMETRIC_DISPLACEMENT;
             DropShadowDistance = Constants.DEFAULT_DROP_SHADOW_DISTANCE;

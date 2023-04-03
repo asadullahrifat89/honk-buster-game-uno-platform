@@ -139,7 +139,7 @@ namespace HonkBusterGame
                 Opacity = 0.4,
             };
 
-            neutralZone.SetChild(neutralZoneChild);
+            neutralZone.SetContent(neutralZoneChild);
 
             ThumbstickUpLeft = new()
             {
@@ -230,46 +230,46 @@ namespace HonkBusterGame
                 Width = Constants.DEFAULT_CONTROLLER_KEY_SIZE * 0.90,
             };
 
-            ThumbstickThumb.SetChild(_thumbstickThumbChild);
+            ThumbstickThumb.SetContent(_thumbstickThumbChild);
 
             neutralZone.SetPosition(left: ThumbstickCanvas.Width / 2 - neutralZone.Width / 2, top: ThumbstickCanvas.Height / 2 - neutralZone.Height / 2);
-            ThumbstickCanvas.Children.Add(neutralZone.Child);
+            ThumbstickCanvas.Children.Add(neutralZone.Content);
             neutralZone.Update();
 
             ThumbstickUpLeft.SetPosition(left: 0, top: 0);
-            ThumbstickCanvas.Children.Add(ThumbstickUpLeft.Child);
+            ThumbstickCanvas.Children.Add(ThumbstickUpLeft.Content);
             ThumbstickUpLeft.Update();
 
             ThumbstickUp.SetPosition(left: 0 * 1.25, top: 0);
-            ThumbstickCanvas.Children.Add(ThumbstickUp.Child);
+            ThumbstickCanvas.Children.Add(ThumbstickUp.Content);
             ThumbstickUp.Update();
 
             ThumbstickUpRight.SetPosition(left: Constants.DEFAULT_CONTROLLER_KEY_SIZE * 2 * 1.25, top: 0);
-            ThumbstickCanvas.Children.Add(ThumbstickUpRight.Child);
+            ThumbstickCanvas.Children.Add(ThumbstickUpRight.Content);
             ThumbstickUpRight.Update();
 
             ThumbstickLeft.SetPosition(left: 0, top: 0);
-            ThumbstickCanvas.Children.Add(ThumbstickLeft.Child);
+            ThumbstickCanvas.Children.Add(ThumbstickLeft.Content);
             ThumbstickLeft.Update();
 
             ThumbstickRight.SetPosition(left: Constants.DEFAULT_CONTROLLER_KEY_SIZE * 2 * 1.25, top: 0);
-            ThumbstickCanvas.Children.Add(ThumbstickRight.Child);
+            ThumbstickCanvas.Children.Add(ThumbstickRight.Content);
             ThumbstickRight.Update();
 
             ThumbstickDownLeft.SetPosition(left: 0, top: Constants.DEFAULT_CONTROLLER_KEY_SIZE * 2 * 1.25);
-            ThumbstickCanvas.Children.Add(ThumbstickDownLeft.Child);
+            ThumbstickCanvas.Children.Add(ThumbstickDownLeft.Content);
             ThumbstickDownLeft.Update();
 
             ThumbstickDown.SetPosition(left: 0 * 1.25, top: Constants.DEFAULT_CONTROLLER_KEY_SIZE * 2 * 1.25);
-            ThumbstickCanvas.Children.Add(ThumbstickDown.Child);
+            ThumbstickCanvas.Children.Add(ThumbstickDown.Content);
             ThumbstickDown.Update();
 
             ThumbstickDownRight.SetPosition(left: Constants.DEFAULT_CONTROLLER_KEY_SIZE * 2 * 1.25, top: Constants.DEFAULT_CONTROLLER_KEY_SIZE * 2 * 1.25);
-            ThumbstickCanvas.Children.Add(ThumbstickDownRight.Child);
+            ThumbstickCanvas.Children.Add(ThumbstickDownRight.Content);
             ThumbstickDownRight.Update();
 
             SetDefaultThumbstickPosition();
-            ThumbstickCanvas.Children.Add(ThumbstickThumb.Child);
+            ThumbstickCanvas.Children.Add(ThumbstickThumb.Content);
 
             ThumbstickCanvas.PointerPressed += (s, e) =>
             {

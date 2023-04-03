@@ -28,7 +28,7 @@
             var uri = ConstructExtensions.GetRandomContentUri(_honk_uris);
             _content_image = new(uri: uri, width: this.Width, height: this.Height);
 
-            SetChild(_content_image);
+            SetContent(_content_image);
 
             _audioStub = new AudioStub((SoundType.HONK, 0.5, false));
         }

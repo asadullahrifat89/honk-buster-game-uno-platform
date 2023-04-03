@@ -140,7 +140,7 @@ namespace HonkBusterGame
                 foreach (var construct in constructs)
                 {
                     construct.Scene = this;
-                    _canvas.Children.Add(construct.Child);
+                    //_canvas.Children.Add(construct.Child);
                     Children.Add(construct);
                 }
             }
@@ -234,15 +234,25 @@ namespace HonkBusterGame
 
             foreach (Construct construct in Children.Where(x => x.IsAnimating))
             {
+                if (!_canvas.Children.Contains(construct.Content))
+                {
+                    _canvas.Children.Add(construct.Content);
+                }
+
                 construct.Animate();
                 construct.Update();
                 construct.Recycle();
+
+                //if (!construct.IsAnimating)
+                //{
+                //    DisposeFromScene(construct);
+                //}
             }
 
             // remove the destroyables from the scene
             foreach (Construct destroyable in _destroyables)
             {
-                _canvas.Children.Remove(destroyable.Child);
+                _canvas.Children.Remove(destroyable.Content);
             }
 
             _destroyables.Clear();

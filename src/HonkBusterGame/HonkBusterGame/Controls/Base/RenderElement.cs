@@ -23,7 +23,7 @@ namespace HonkBusterGame
         {
             //CanDrag = false;
 
-            Child = new UIElement();
+            Content = new UIElement();
             IsAnimating = false;
 
             ScaleX = 1;
@@ -73,7 +73,7 @@ namespace HonkBusterGame
 
         public new double Height { get; set; }
 
-        public new UIElement Child { get; set; }
+        public new UIElement Content { get; set; }
 
         public object Tag { get; set; }
 
@@ -124,10 +124,10 @@ namespace HonkBusterGame
             {
                 _IsAnimating = value;
 
-                if (!_IsAnimating && Child is not null)
+                if (!_IsAnimating && Content is not null)
                 {
-                    Canvas.SetLeft(Child, -3000);
-                    Canvas.SetTop(Child, -3000);
+                    Canvas.SetLeft(Content, -3000);
+                    Canvas.SetTop(Content, -3000);
                 }
             }
         }
@@ -362,9 +362,9 @@ namespace HonkBusterGame
             Height = height;
         }
 
-        public void SetChild(UIElement content)
+        public void SetContent(UIElement content)
         {
-            Child = content;
+            Content = content;
 
             content.RenderTransformOrigin = new Point(0.5, 0.5);
             content.RenderTransform = _transform;
@@ -372,19 +372,19 @@ namespace HonkBusterGame
 
         public void Update()
         {
-            if (Child is not null)
+            if (Content is not null)
             {
-                Canvas.SetLeft(Child, X);
-                Canvas.SetTop(Child, Y);
-                Canvas.SetZIndex(Child, Z);
+                Canvas.SetLeft(Content, X);
+                Canvas.SetTop(Content, Y);
+                Canvas.SetZIndex(Content, Z);
 
-                if (Child is FrameworkElement element)
+                if (Content is FrameworkElement element)
                 {
                     element.Width = Width;
                     element.Height = Height;
                 }
 
-                Child.Opacity = Opacity;
+                Content.Opacity = Opacity;
 
                 _transform.ScaleX = ScaleX;
                 _transform.ScaleY = ScaleY;

@@ -214,7 +214,7 @@ namespace HonkBusterGame
             #endregion
 
             rootGrid.Children.Add(container);
-            SetChild(rootGrid);
+            SetContent(rootGrid);
         }
 
         #endregion

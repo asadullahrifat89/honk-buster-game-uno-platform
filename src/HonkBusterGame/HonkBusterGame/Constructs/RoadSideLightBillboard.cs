@@ -28,7 +28,7 @@
             _content_image = new(uri: uri, width: this.Width, height: this.Height);
             _content_image.SetDropShadow(offsetX: 0, offsetY: 15, blurRadius: 5);
 
-            SetChild(_content_image);
+            SetContent(_content_image);
 
             Speed = Constants.DEFAULT_CONSTRUCT_SPEED;
             IsometricDisplacement = Constants.DEFAULT_ISOMETRIC_DISPLACEMENT;

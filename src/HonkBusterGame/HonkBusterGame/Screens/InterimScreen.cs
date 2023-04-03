@@ -47,7 +47,7 @@ namespace HonkBusterGame
                 Foreground = new SolidColorBrush(Colors.White),
             };
 
-            SetChild(_titleScreenText);
+            SetContent(_titleScreenText);
         }
 
         #endregion

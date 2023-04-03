@@ -32,7 +32,7 @@
 
             _content_image.SetBlur(6);
 
-            SetChild(_content_image);
+            SetContent(_content_image);
 
             IsometricDisplacement = Constants.DEFAULT_ISOMETRIC_DISPLACEMENT;
             DropShadowDistance = Constants.DEFAULT_DROP_SHADOW_DISTANCE + 200;
