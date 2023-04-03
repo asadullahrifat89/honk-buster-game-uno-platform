@@ -1,6 +1,6 @@
 ﻿namespace HonkBusterGame
 {
-    public partial class UfoBossBase : HealthyConstruct
+    public partial class UfoBossBase : HealthyObject
     {
         #region Fields
 

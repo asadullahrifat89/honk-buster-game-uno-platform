@@ -1,6 +1,6 @@
 ﻿namespace HonkBusterGame
 {
-    public partial class PlayerBalloon : HealthyConstruct
+    public partial class PlayerBalloon : HealthyObject
     {
         #region Fields
 

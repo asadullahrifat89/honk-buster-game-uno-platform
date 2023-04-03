@@ -1,6 +1,6 @@
 ﻿namespace HonkBusterGame
 {
-    public partial class UfoBossRocketSeeking : RocketSeeking
+    public partial class UfoBossRocketSeeking : SeekingRocketObject
     {
         #region Fields
 

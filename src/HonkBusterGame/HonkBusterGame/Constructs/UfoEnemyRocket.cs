@@ -1,6 +1,6 @@
 ﻿namespace HonkBusterGame
 {
-    public partial class UfoEnemyRocket : AnimableConstruct
+    public partial class UfoEnemyRocket : AnimableObject
     {
         #region Fields
 

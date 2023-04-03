@@ -1,6 +1,6 @@
 ﻿namespace HonkBusterGame
 {
-    public partial class DropShadow : MovableConstruct
+    public partial class DropShadowObject : MovableObject
     {
         #region Fields
 
@@ -18,7 +18,7 @@
 
         #region Ctor
 
-        public DropShadow(
+        public DropShadowObject(
             Action<GameObject> animateAction,
             Action<GameObject> recycleAction)
         {

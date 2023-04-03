@@ -1,6 +1,6 @@
 ﻿namespace HonkBusterGame
 {
-    public partial class RoadSideHedge : MovableConstruct
+    public partial class RoadSideHedge : MovableObject
     {
         #region Fields
 

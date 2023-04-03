@@ -2,7 +2,7 @@
 
 namespace HonkBusterGame
 {
-    public partial class PlayerRocketBullsEye : RocketSeeking
+    public partial class PlayerRocketBullsEye : SeekingRocketObject
     {
         #region Fields
 

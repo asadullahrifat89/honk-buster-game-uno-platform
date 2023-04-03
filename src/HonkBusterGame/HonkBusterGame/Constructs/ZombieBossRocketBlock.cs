@@ -1,6 +1,6 @@
 ﻿namespace HonkBusterGame
 {
-    public partial class ZombieBossRocketBlock : HealthyConstruct
+    public partial class ZombieBossRocketBlock : HealthyObject
     {
         #region Fields
 

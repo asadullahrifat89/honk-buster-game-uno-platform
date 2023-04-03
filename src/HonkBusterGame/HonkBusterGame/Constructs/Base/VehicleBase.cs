@@ -1,6 +1,6 @@
 ﻿namespace HonkBusterGame
 {
-    public partial class VehicleBase : HealthyConstruct
+    public partial class VehicleBase : HealthyObject
     {
         #region Fields
 

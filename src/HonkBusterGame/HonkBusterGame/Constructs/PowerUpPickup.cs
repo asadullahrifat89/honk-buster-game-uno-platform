@@ -1,6 +1,6 @@
 ﻿namespace HonkBusterGame
 {
-    public partial class PowerUpPickup : MovableConstruct
+    public partial class PowerUpPickup : MovableObject
     {
         #region Fields
 

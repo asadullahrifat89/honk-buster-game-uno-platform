@@ -1,6 +1,6 @@
 ﻿namespace HonkBusterGame
 {
-    public partial class HealthyConstruct : AnimableConstruct
+    public partial class HealthyObject : AnimableObject
     {
         public double Health { get; set; }
 

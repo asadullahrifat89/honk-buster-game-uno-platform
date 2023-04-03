@@ -1,6 +1,6 @@
 ﻿namespace HonkBusterGame
 {
-    public partial class RoadMark : MovableConstruct
+    public partial class RoadMark : MovableObject
     {
         #region Fields
 
