@@ -152,8 +152,7 @@ namespace HonkBusterGame
         #region Methods
 
         public void SetContent(Uri uri)
-        {
-            //_content_image.Source = new BitmapImage(uri);
+        {            
             _content_image.SetSource(uri);
         }
 
