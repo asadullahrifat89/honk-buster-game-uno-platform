@@ -1,10 +1,10 @@
 ﻿namespace HonkBusterGame
 {
-    public partial class Threashold
+    public partial class GameCheckpoint
     {
         #region Ctor
 
-        public Threashold(double threasholdLimit)
+        public GameCheckpoint(double threasholdLimit)
         {
             ThreasholdLimit = threasholdLimit;
         }

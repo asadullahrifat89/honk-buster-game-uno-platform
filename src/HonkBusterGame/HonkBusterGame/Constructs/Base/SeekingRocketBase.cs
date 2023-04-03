@@ -2,7 +2,7 @@
 
 namespace HonkBusterGame
 {
-    public partial class SeekingRocketObject : MovableObject
+    public partial class SeekingRocketBase : MovableBase
     {
         #region Fields
 

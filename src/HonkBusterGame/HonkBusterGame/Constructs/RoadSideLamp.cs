@@ -1,6 +1,6 @@
 ﻿namespace HonkBusterGame
 {
-    public partial class RoadSideLamp : MovableObject
+    public partial class RoadSideLamp : MovableBase
     {
         #region Fields
 

@@ -1,6 +1,6 @@
 ﻿namespace HonkBusterGame
 {
-    public partial class Cloud : AnimableObject
+    public partial class Cloud : AnimableBase
     {
         #region Fields
 

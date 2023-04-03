@@ -1,6 +1,6 @@
 ﻿namespace HonkBusterGame
 {
-    public partial class MafiaBossRocket : AnimableObject
+    public partial class MafiaBossRocket : AnimableBase
     {
         #region Fields
 

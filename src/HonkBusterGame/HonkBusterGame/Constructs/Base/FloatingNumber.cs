@@ -3,7 +3,7 @@ using Microsoft.UI.Text;
 
 namespace HonkBusterGame
 {
-    public partial class FloatingNumberObject : MovableObject
+    public partial class FloatingNumber : MovableBase
     {
         #region Fields
 
@@ -19,7 +19,7 @@ namespace HonkBusterGame
 
         #region Ctor
 
-        public FloatingNumberObject(
+        public FloatingNumber(
             Action<GameObject> animateAction,
             Action<GameObject> recycleAction)
         {

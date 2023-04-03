@@ -1,6 +1,6 @@
 ﻿namespace HonkBusterGame
 {
-    public partial class HealthPickup : MovableObject
+    public partial class HealthPickup : MovableBase
     {
         #region Fields
 

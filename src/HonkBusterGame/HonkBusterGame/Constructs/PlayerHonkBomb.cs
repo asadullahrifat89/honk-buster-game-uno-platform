@@ -1,6 +1,6 @@
 ﻿namespace HonkBusterGame
 {
-    public partial class PlayerHonkBomb : MovableObject
+    public partial class PlayerHonkBomb : MovableBase
     {
         #region Fields
 

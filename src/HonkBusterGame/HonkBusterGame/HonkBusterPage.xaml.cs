@@ -26,12 +26,12 @@ namespace HonkBusterGame
         private readonly ScoreBar _game_score_bar;
         private readonly StackPanel _health_bars;
 
-        private readonly Threashold _ufo_boss_threashold;
-        private readonly Threashold _vehicle_boss_threashold;
-        private readonly Threashold _zombie_boss_threashold;
-        private readonly Threashold _mafia_boss_threashold;
+        private readonly GameCheckpoint _ufo_boss_threashold;
+        private readonly GameCheckpoint _vehicle_boss_threashold;
+        private readonly GameCheckpoint _zombie_boss_threashold;
+        private readonly GameCheckpoint _mafia_boss_threashold;
 
-        private readonly Threashold _ufo_enemy_threashold;
+        private readonly GameCheckpoint _ufo_enemy_threashold;
 
         private readonly double _sound_pollution_max_limit = 6; // max 3 vehicles or ufos honking to trigger sound pollution limit
 
@@ -93,12 +93,12 @@ namespace HonkBusterGame
             _game_score_bar = this.GameScoreBar;
             _health_bars = this.HealthBars;
 
-            _ufo_boss_threashold = new Threashold(_ufo_boss_threashold_limit);
-            _zombie_boss_threashold = new Threashold(_zombie_boss_threashold_limit);
-            _vehicle_boss_threashold = new Threashold(_vehicle_boss_threashold_limit);
-            _mafia_boss_threashold = new Threashold(_mafia_boss_threashold_limit);
+            _ufo_boss_threashold = new GameCheckpoint(_ufo_boss_threashold_limit);
+            _zombie_boss_threashold = new GameCheckpoint(_zombie_boss_threashold_limit);
+            _vehicle_boss_threashold = new GameCheckpoint(_vehicle_boss_threashold_limit);
+            _mafia_boss_threashold = new GameCheckpoint(_mafia_boss_threashold_limit);
 
-            _ufo_enemy_threashold = new Threashold(_ufo_enemy_threashold_limit);
+            _ufo_enemy_threashold = new GameCheckpoint(_ufo_enemy_threashold_limit);
 
             ToggleHudVisibility(Visibility.Collapsed);
 
@@ -925,7 +925,7 @@ namespace HonkBusterGame
 
                 if (_scene_game.SceneState == SceneState.GAME_RUNNING)
                 {
-                    DropShadowObject dropShadow = _scene_game.Children.OfType<DropShadowObject>().First(x => x.Id == playerHonkBomb.Id);
+                    DropShadow dropShadow = _scene_game.Children.OfType<DropShadow>().First(x => x.Id == playerHonkBomb.Id);
 
                     var drpShdwHitBox = dropShadow.GetCloseHitBox();
                     var fireCrackerHitBox = playerHonkBomb.GetCloseHitBox();
@@ -3350,7 +3350,7 @@ namespace HonkBusterGame
 
         private void SpawnDropShadow(GameObject source)
         {
-            DropShadowObject dropShadow = new(
+            DropShadow dropShadow = new(
                 animateAction: AnimateDropShadow,
                 recycleAction: RecycleDropShadow);
 
@@ -3363,13 +3363,13 @@ namespace HonkBusterGame
 
         private void AnimateDropShadow(GameObject construct)
         {
-            DropShadowObject dropShadow = construct as DropShadowObject;
+            DropShadow dropShadow = construct as DropShadow;
             dropShadow.Move();
         }
 
         private void RecycleDropShadow(GameObject dropShadow)
         {
-            DropShadowObject dropShadow1 = dropShadow as DropShadowObject;
+            DropShadow dropShadow1 = dropShadow as DropShadow;
 
             if (!dropShadow1.IsParentConstructAnimating())
             {
@@ -3379,7 +3379,7 @@ namespace HonkBusterGame
 
         private void GenerateDropShadow(GameObject source)
         {
-            if (_scene_game.Children.OfType<DropShadowObject>().FirstOrDefault(x => x.Id == source.Id) is DropShadowObject dropShadow)
+            if (_scene_game.Children.OfType<DropShadow>().FirstOrDefault(x => x.Id == source.Id) is DropShadow dropShadow)
             {
                 dropShadow.SetZ(source.GetZ() - 2);
                 dropShadow.Reset();
@@ -3632,7 +3632,7 @@ namespace HonkBusterGame
         {
             for (int i = 0; i < 5; i++)
             {
-                FloatingNumberObject floatingNumber = new(
+                FloatingNumber floatingNumber = new(
                     animateAction: AnimateFloatingNumber,
                     recycleAction: RecycleFloatingNumber);
 
@@ -3642,9 +3642,9 @@ namespace HonkBusterGame
             }
         }
 
-        private void GenerateFloatingNumber(HealthyObject source)
+        private void GenerateFloatingNumber(AnimableHealthyBase source)
         {
-            if (!_scene_game.IsSlowMotionActivated && _scene_game.Children.OfType<FloatingNumberObject>().FirstOrDefault(x => x.IsAnimating == false) is FloatingNumberObject floatingNumberTop)
+            if (!_scene_game.IsSlowMotionActivated && _scene_game.Children.OfType<FloatingNumber>().FirstOrDefault(x => x.IsAnimating == false) is FloatingNumber floatingNumberTop)
             {
                 floatingNumberTop.Reset(source.HitPoint);
                 floatingNumberTop.Reposition(source);
@@ -3654,14 +3654,14 @@ namespace HonkBusterGame
 
         private void AnimateFloatingNumber(GameObject floatingNumber)
         {
-            FloatingNumberObject floatingNumber1 = floatingNumber as FloatingNumberObject;
+            FloatingNumber floatingNumber1 = floatingNumber as FloatingNumber;
             floatingNumber1.Move();
             floatingNumber1.DepleteOnScreenDelay();
         }
 
         private void RecycleFloatingNumber(GameObject floatingNumber)
         {
-            FloatingNumberObject floatingNumber1 = floatingNumber as FloatingNumberObject;
+            FloatingNumber floatingNumber1 = floatingNumber as FloatingNumber;
 
             if (floatingNumber1.IsDepleted)
             {
@@ -3673,7 +3673,7 @@ namespace HonkBusterGame
 
         #region Rocket
 
-        private void SetPlayerRocketDirection(GameObject source, AnimableObject rocket, GameObject rocketTarget)
+        private void SetPlayerRocketDirection(GameObject source, AnimableBase rocket, GameObject rocketTarget)
         {
             // rocket target is on the bottom right side of the UfoBoss
             if (rocketTarget.GetTop() > source.GetTop() && rocketTarget.GetLeft() > source.GetLeft())
@@ -3706,7 +3706,7 @@ namespace HonkBusterGame
             }
         }
 
-        private void SetBossRocketDirection(GameObject source, AnimableObject rocket, GameObject rocketTarget)
+        private void SetBossRocketDirection(GameObject source, AnimableBase rocket, GameObject rocketTarget)
         {
             // rocket target is on the bottom right side of the UfoBoss
             if (rocketTarget.GetTop() > source.GetTop() && rocketTarget.GetLeft() > source.GetLeft())

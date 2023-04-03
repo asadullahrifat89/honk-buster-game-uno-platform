@@ -1,6 +1,6 @@
 ﻿namespace HonkBusterGame
 {
-    public partial class AudioPlayer : FrameworkElement
+    public partial class AudioBase : FrameworkElement
     {
         #region Properties
 

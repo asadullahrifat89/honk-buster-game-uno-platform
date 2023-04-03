@@ -1,6 +1,6 @@
 ﻿namespace HonkBusterGame
 {
-    public partial class HoveringTitleScreen : AnimableObject
+    public partial class HoveringTitleScreen : AnimableBase
     {
         #region Fields
 
