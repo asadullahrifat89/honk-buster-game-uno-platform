@@ -1,4 +1,4 @@
-# Uno WASM 2D Game engine
+# WASM 2D with Uno Platform
 A simple game engine built with C#. XAML, HTML, CSS, and JavaScript that runs on Uno Platform & WebAssembly.
 This repository contains an arcade honk busting game.
 
