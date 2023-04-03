@@ -379,6 +379,7 @@ namespace HonkBusterGame
                 recycleAction: (se) => { });
 
             promptOrientationChangeScreen.SetZ(z: 10);
+            promptOrientationChangeScreen.MoveOutOfSight();
 
             _scene_main_menu.AddToScene(promptOrientationChangeScreen);
         }
@@ -416,6 +417,7 @@ namespace HonkBusterGame
                 recycleAction: (se) => { });
 
             assetsLoadingScreen.SetZ(z: 10);
+            assetsLoadingScreen.MoveOutOfSight();
 
             _scene_main_menu.AddToScene(assetsLoadingScreen);
         }
@@ -508,6 +510,7 @@ namespace HonkBusterGame
                 });
 
             gameStartScreen.SetZ(z: 10);
+            gameStartScreen.MoveOutOfSight();
 
             _scene_main_menu.AddToScene(gameStartScreen);
         }
@@ -561,6 +564,7 @@ namespace HonkBusterGame
                 });
 
             playerCharacterSelectionScreen.SetZ(z: 10);
+            playerCharacterSelectionScreen.MoveOutOfSight();
 
             _scene_main_menu.AddToScene(playerCharacterSelectionScreen);
         }
@@ -614,6 +618,7 @@ namespace HonkBusterGame
                 });
 
             playerHonkBombSelectionScreen.SetZ(z: 10);
+            playerHonkBombSelectionScreen.MoveOutOfSight();
 
             _scene_main_menu.AddToScene(playerHonkBombSelectionScreen);
         }
@@ -652,6 +657,7 @@ namespace HonkBusterGame
                 recycleAction: RecycleInterimScreen);
 
             interimScreen.SetZ(z: 10);
+            interimScreen.MoveOutOfSight();
 
             _scene_main_menu.AddToScene(interimScreen);
         }
@@ -662,7 +668,7 @@ namespace HonkBusterGame
             {
                 interimScreen.SetTitle(title);
                 interimScreen.Reset();
-                interimScreen.Reposition();                
+                interimScreen.Reposition();
                 interimScreen.IsAnimating = true;
 
                 _scene_main_menu.Play();
@@ -702,6 +708,7 @@ namespace HonkBusterGame
                 recycleAction: (_player) => { });
 
             _player.SetZ(z: 7);
+            _player.MoveOutOfSight();
 
             SpawnDropShadow(source: _player);
 
@@ -875,6 +882,7 @@ namespace HonkBusterGame
                     recycleAction: RecyclePlayerHonkBomb);
 
                 playerHonkBomb.SetZ(z: 7);
+                playerHonkBomb.MoveOutOfSight();
 
                 _scene_game.AddToScene(playerHonkBomb);
 
@@ -977,6 +985,7 @@ namespace HonkBusterGame
                     recycleAction: RecyclePlayerRocket);
 
                 playerRocket.SetZ(z: 8);
+                playerRocket.MoveOutOfSight();
 
                 _scene_game.AddToScene(playerRocket);
 
@@ -1138,6 +1147,7 @@ namespace HonkBusterGame
                     recycleAction: RecyclePlayerRocketSeeking);
 
                 playerRocketSeeking.SetZ(z: 7);
+                playerRocketSeeking.MoveOutOfSight();
 
                 _scene_game.AddToScene(playerRocketSeeking);
 
@@ -1275,6 +1285,7 @@ namespace HonkBusterGame
                     recycleAction: RecyclePlayerRocketBullsEye);
 
                 playerRocketBullsEye.SetZ(z: 7);
+                playerRocketBullsEye.MoveOutOfSight();
 
                 _scene_game.AddToScene(playerRocketBullsEye);
 
@@ -1432,6 +1443,8 @@ namespace HonkBusterGame
                 animateAction: AnimateRoadSideWalk,
                 recycleAction: RecycleRoadSideWalk);
 
+                roadSideWalk.MoveOutOfSight();
+
                 _scene_game.AddToScene(roadSideWalk);
             }
         }
@@ -1486,9 +1499,9 @@ namespace HonkBusterGame
                     animateAction: AnimateRoadSideTree,
                     recycleAction: RecycleRoadSideTree);
 
-                _scene_game.AddToScene(roadSideTree);
+                roadSideTree.MoveOutOfSight();
 
-                //SpawnDropShadow(source: roadSideTree);
+                _scene_game.AddToScene(roadSideTree);
             }
         }
 
@@ -1549,6 +1562,8 @@ namespace HonkBusterGame
                     animateAction: AnimateRoadSideHedge,
                     recycleAction: RecycleRoadSideHedge);
 
+                roadSideHedge.MoveOutOfSight();
+
                 _scene_game.AddToScene(roadSideHedge);
             }
         }
@@ -1604,6 +1619,8 @@ namespace HonkBusterGame
                 RoadSideLamp roadSideLamp = new(
                     animateAction: AnimateRoadSideLamp,
                     recycleAction: RecycleRoadSideLamp);
+
+                roadSideLamp.MoveOutOfSight();
 
                 _scene_game.AddToScene(roadSideLamp);
             }
@@ -1662,10 +1679,9 @@ namespace HonkBusterGame
                     recycleAction: RecycleRoadSideBillboard);
 
                 roadSideBillboard.SetZ(z: 4);
+                roadSideBillboard.MoveOutOfSight();
 
                 _scene_game.AddToScene(roadSideBillboard);
-
-                //SpawnDropShadow(source: roadSideBillboard);
             }
         }
 
@@ -1710,9 +1726,9 @@ namespace HonkBusterGame
                     animateAction: AnimateRoadSideLightBillboard,
                     recycleAction: RecycleRoadSideLightBillboard);
 
-                _scene_game.AddToScene(roadSideLight);
+                roadSideLight.MoveOutOfSight();
 
-                //SpawnDropShadow(source: roadSideLight);
+                _scene_game.AddToScene(roadSideLight);
             }
         }
 
@@ -1759,6 +1775,7 @@ namespace HonkBusterGame
                     recycleAction: RecycleRoadMark);
 
                 roadMark.SetZ(z: 0);
+                roadMark.MoveOutOfSight();
 
                 _scene_game.AddToScene(roadMark);
             }
@@ -1808,6 +1825,7 @@ namespace HonkBusterGame
                 recycleAction: RecycleUfoBoss);
 
             ufoBoss.SetZ(z: 8);
+            ufoBoss.MoveOutOfSight();
 
             _scene_game.AddToScene(ufoBoss);
 
@@ -1952,6 +1970,7 @@ namespace HonkBusterGame
                     recycleAction: RecycleUfoBossRocket);
 
                 ufoBossRocket.SetZ(z: 7);
+                ufoBossRocket.MoveOutOfSight();
 
                 _scene_game.AddToScene(ufoBossRocket);
 
@@ -2046,6 +2065,7 @@ namespace HonkBusterGame
                     recycleAction: RecycleUfoBossRocketSeeking);
 
                 ufoBossRocketSeeking.SetZ(z: 7);
+                ufoBossRocketSeeking.MoveOutOfSight();
 
                 _scene_game.AddToScene(ufoBossRocketSeeking);
 
@@ -2136,11 +2156,12 @@ namespace HonkBusterGame
             {
                 UfoEnemy ufoEnemy = new(
                     animateAction: AnimateUfoEnemy,
-                    recycleAction: RecycleUfoEnemy);
-
-                _scene_game.AddToScene(ufoEnemy);
+                    recycleAction: RecycleUfoEnemy);             
 
                 ufoEnemy.SetZ(z: 8);
+                ufoEnemy.MoveOutOfSight();
+
+                _scene_game.AddToScene(ufoEnemy);
 
                 SpawnDropShadow(source: ufoEnemy);
             }
@@ -2251,6 +2272,7 @@ namespace HonkBusterGame
                     recycleAction: RecycleUfoEnemyRocket);
 
                 ufoEnemyRocket.SetZ(z: 8);
+                ufoEnemyRocket.MoveOutOfSight();
 
                 _scene_game.AddToScene(ufoEnemyRocket);
 
@@ -2328,9 +2350,10 @@ namespace HonkBusterGame
                     animateAction: AnimateVehicleEnemy,
                     recycleAction: RecycleVehicleEnemy);
 
-                _scene_game.AddToScene(vehicleEnemy);
-
                 vehicleEnemy.SetZ(z: 5);
+                vehicleEnemy.MoveOutOfSight();
+
+                _scene_game.AddToScene(vehicleEnemy);
             }
         }
 
@@ -2420,6 +2443,7 @@ namespace HonkBusterGame
                 recycleAction: RecycleVehicleBoss);
 
             vehicleBoss.SetZ(z: 5);
+            vehicleBoss.MoveOutOfSight();
 
             _scene_game.AddToScene(vehicleBoss);
         }
@@ -2559,6 +2583,7 @@ namespace HonkBusterGame
                     recycleAction: RecycleVehicleBossRocket);
 
                 vehicleBossRocket.SetZ(z: 7);
+                vehicleBossRocket.MoveOutOfSight();
 
                 _scene_game.AddToScene(vehicleBossRocket);
 
@@ -2645,6 +2670,7 @@ namespace HonkBusterGame
                 recycleAction: RecycleZombieBoss);
 
             zombieBoss.SetZ(z: 8);
+            zombieBoss.MoveOutOfSight();
 
             _scene_game.AddToScene(zombieBoss);
 
@@ -2786,6 +2812,7 @@ namespace HonkBusterGame
                     recycleAction: RecycleZombieBossRocketBlock);
 
                 zombieBossRocket.SetZ(z: 7);
+                zombieBossRocket.MoveOutOfSight();
 
                 _scene_game.AddToScene(zombieBossRocket);
 
@@ -2874,6 +2901,7 @@ namespace HonkBusterGame
                 recycleAction: RecycleMafiaBoss);
 
             mafiaBoss.SetZ(z: 8);
+            mafiaBoss.MoveOutOfSight();
 
             _scene_game.AddToScene(mafiaBoss);
 
@@ -3018,6 +3046,7 @@ namespace HonkBusterGame
                     recycleAction: RecycleMafiaBossRocket);
 
                 mafiaBossRocket.SetZ(z: 7);
+                mafiaBossRocket.MoveOutOfSight();
 
                 _scene_game.AddToScene(mafiaBossRocket);
 
@@ -3112,6 +3141,7 @@ namespace HonkBusterGame
                     recycleAction: RecycleMafiaBossRocketBullsEye);
 
                 mafiaBossRocketBullsEye.SetZ(z: 7);
+                mafiaBossRocketBullsEye.MoveOutOfSight();
 
                 _scene_game.AddToScene(mafiaBossRocketBullsEye);
 
@@ -3204,6 +3234,7 @@ namespace HonkBusterGame
                     recycleAction: RecycleHonk);
 
                 honk.SetZ(z: 5);
+                honk.MoveOutOfSight();
 
                 _scene_game.AddToScene(honk);
             }
@@ -3285,6 +3316,7 @@ namespace HonkBusterGame
                     recycleAction: RecycleCloud);
 
                 cloud.SetZ(z: 9);
+                cloud.MoveOutOfSight();
 
                 _scene_game.AddToScene(cloud);
             }
@@ -3402,6 +3434,7 @@ namespace HonkBusterGame
                     recycleAction: RecycleHealthPickup);
 
                 healthPickup.SetZ(z: 6);
+                healthPickup.MoveOutOfSight();
 
                 _scene_game.AddToScene(healthPickup);
             }
@@ -3495,6 +3528,7 @@ namespace HonkBusterGame
                     recycleAction: RecyclePowerUpPickup);
 
                 powerUpPickup.SetZ(z: 6);
+                powerUpPickup.MoveOutOfSight();
 
                 _scene_game.AddToScene(powerUpPickup);
             }
@@ -3637,6 +3671,7 @@ namespace HonkBusterGame
                     recycleAction: RecycleFloatingNumber);
 
                 floatingNumber.SetZ(z: 10);
+                floatingNumber.MoveOutOfSight();
 
                 _scene_game.AddToScene(floatingNumber);
             }

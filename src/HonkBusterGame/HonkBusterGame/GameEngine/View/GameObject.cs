@@ -10,8 +10,7 @@
             Speed = Constants.DEFAULT_CONSTRUCT_SPEED;
             AnimateAction = (s) => { };
             RecycleAction = (s) => { };
-            GameView = new();
-            IsAnimating = false;
+            GameView = new();            
         }
 
         #region Properties

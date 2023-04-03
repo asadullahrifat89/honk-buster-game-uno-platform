@@ -185,6 +185,9 @@ namespace HonkBusterGame
                 {
                     construct.GameView = this;
                     GameObjects.Add(construct);
+
+                    //TODO: comment this after testing:  _canvas.Children.Add(construct.Content);
+                    //_canvas.Children.Add(construct.Content);
                 }
             }
         }
@@ -241,11 +244,11 @@ namespace HonkBusterGame
                 generator.Generate();
             }
 
-            foreach (GameObject construct in GameObjects.Where(x => x.IsAnimating)) // only add animating constructs in canvas and then cache them
+            foreach (GameObject construct in GameObjects.Where(x => x.IsAnimating))
             {
                 if (!_canvas.Children.Contains(construct.Content))
                 {
-                    _canvas.Children.Add(construct.Content);
+                    _canvas.Children.Add(construct.Content); // lazy loading, only add animating constructs in canvas and then cache them
                 }
 
                 construct.Animate();
