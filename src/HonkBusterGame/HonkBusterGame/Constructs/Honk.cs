@@ -40,7 +40,7 @@
         public void Reset()
         {
             _audioStub.Play(SoundType.HONK);
-            Opacity = 1;
+            SetOpacity(1);
         }
 
         public void Reposition(Construct source)

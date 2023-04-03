@@ -56,7 +56,7 @@
         {
             _audioStub.Play(SoundType.ORB_LAUNCH);
 
-            Opacity = 1;
+            SetOpacity(1);
             Speed = Constants.DEFAULT_CONSTRUCT_SPEED + 2;
             SetScaleTransform(1);
 

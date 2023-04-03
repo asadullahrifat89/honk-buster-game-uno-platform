@@ -55,7 +55,7 @@
         {
             _audioStub.Play(SoundType.ROCKET_LAUNCH);
 
-            Opacity = 1;
+            SetOpacity(1);
 
             var uri = ConstructExtensions.GetRandomContentUri(_bomb_uris);
             _content_image.SetSource(uri);

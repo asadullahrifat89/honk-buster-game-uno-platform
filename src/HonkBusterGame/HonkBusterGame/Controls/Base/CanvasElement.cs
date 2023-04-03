@@ -111,6 +111,14 @@ namespace HonkBusterGame
         /// </summary>
         public int Z { get; set; }
 
+        public double ScaleX { get; set; }
+
+        public double ScaleY { get; set; }
+
+        public double SkewX { get; set; }
+
+        public double SkewY { get; set; }
+
         #endregion
 
         #region Methods
@@ -218,6 +226,11 @@ namespace HonkBusterGame
         public void SetSkewY(double skewY)
         {
             _compositeTransform.SkewY = skewY;
+        }
+
+        public void SetOpacity(double opacity)
+        {
+            Opacity = opacity;
         }
 
         public void Fade()

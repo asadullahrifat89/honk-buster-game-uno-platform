@@ -64,7 +64,7 @@
 
             _audioStub.Play(SoundType.CRACKER_DROP);
 
-            Opacity = 1;
+            SetOpacity(1);
             //BorderBrush = new SolidColorBrush(Colors.Transparent);
 
             SetScaleTransform(1);

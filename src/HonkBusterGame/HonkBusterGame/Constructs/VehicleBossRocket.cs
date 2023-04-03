@@ -56,7 +56,7 @@
         {
             _audioStub.Play(SoundType.ROCKET_LAUNCH);
 
-            Opacity = 1;
+            SetOpacity(1);
             SetScaleTransform(1);
 
             //BorderBrush = new SolidColorBrush(Colors.Transparent);

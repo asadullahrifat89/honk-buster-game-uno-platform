@@ -30,7 +30,7 @@ namespace HonkBusterGame
 
             Background = Application.Current.Resources["DropShadowColor"] as SolidColorBrush;
             CornerRadius = new CornerRadius(100);
-            Opacity = 0.9;
+            SetOpacity(0.9);
 
             SetConstructSize(ConstructType);
 

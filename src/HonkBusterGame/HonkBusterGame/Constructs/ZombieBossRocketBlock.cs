@@ -65,7 +65,7 @@
         {
             _audioStub.Play(SoundType.ORB_LAUNCH);
 
-            Opacity = 1;
+            SetOpacity(1);
             SetScaleTransform(1);
 
             var uri = ConstructExtensions.GetRandomContentUri(_bomb_uris);

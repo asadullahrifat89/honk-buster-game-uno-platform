@@ -12,7 +12,7 @@
 
         public void Reset()
         {
-            Opacity = 1;
+            SetOpacity(1);
             Health = 100;
 
             IsAttacking = false;

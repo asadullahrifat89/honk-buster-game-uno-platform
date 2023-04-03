@@ -436,7 +436,7 @@
             {
                 //TODO: set default  Health -= HitPoint;
                 Health -= HitPoint;
-                Opacity = 0.7;
+                SetOpacity(0.7);
 
                 _audioStub.Play(SoundType.PLAYER_HEALTH_LOSS);
 
@@ -456,11 +456,11 @@
                 {
                     if (Opacity != 1)
                     {
-                        Opacity = 1;
+                        SetOpacity(1);
                     }
                     else
                     {
-                        Opacity = 0.7;
+                        SetOpacity(0.7);  
                     }
 
                     _health_loss_opacity_effect = 0;
@@ -468,7 +468,7 @@
             }
 
             if (_health_loss_recovery_Delay <= 0 && Opacity != 1)
-                Opacity = 1;
+                SetOpacity(1);
         }
 
         public void GainHealth()

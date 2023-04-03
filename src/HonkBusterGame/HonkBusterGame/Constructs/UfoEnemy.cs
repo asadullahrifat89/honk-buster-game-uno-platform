@@ -46,7 +46,7 @@
 
         public void Reset()
         {
-            Opacity = 1;
+            SetOpacity(1);
             SetScaleTransform(1);
 
             Health = HitPoint * _random.Next(4);
