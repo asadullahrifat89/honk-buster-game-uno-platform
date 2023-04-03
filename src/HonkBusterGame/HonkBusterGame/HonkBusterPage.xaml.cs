@@ -177,7 +177,7 @@ namespace HonkBusterGame
             _scene_main_menu.Pause();
 
             _game_controller.ActivateGyrometerReading();
-            _game_controller.FocusController();
+            _game_controller.FocusAttackButton();
         }
 
         private void NewGame()
@@ -227,7 +227,7 @@ namespace HonkBusterGame
 
             ToggleHudVisibility(Visibility.Visible);
 
-            _game_controller.FocusController();
+            _game_controller.FocusAttackButton();
             _game_controller.SetDefaultThumbstickPosition();
             _game_controller.ActivateGyrometerReading();
         }

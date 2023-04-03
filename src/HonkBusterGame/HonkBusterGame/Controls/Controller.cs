@@ -25,7 +25,7 @@ namespace HonkBusterGame
 
         private Button PauseButton { get; set; }
 
-        private Button FocusButton { get; set; }
+        private Button AttackFocusButton { get; set; }
 
         private Border AttackButton { get; set; }
 
@@ -73,7 +73,6 @@ namespace HonkBusterGame
 
             SetAttackButton();
             SetPauseButton();
-            SetFocusButton();
 
             KeyUp += Controller_KeyUp;
             KeyDown += Controller_KeyDown;
@@ -773,13 +772,29 @@ namespace HonkBusterGame
             AttackButton.Background = color;
         }
 
-        public void FocusController()
+        public void FocusAttackButton()
         {
-            FocusButton.Focus(FocusState.Programmatic);
+            AttackFocusButton.Focus(FocusState.Programmatic);
         }
 
         private void SetAttackButton()
         {
+            AttackFocusButton = new()
+            {
+                Height = Constants.DEFAULT_CONTROLLER_KEY_SIZE * 1.2,
+                Width = Constants.DEFAULT_CONTROLLER_KEY_SIZE * 1.2,
+                CornerRadius = new CornerRadius(Constants.DEFAULT_CONTROLLER_KEY_CORNER_RADIUS * 2),
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top,
+                Margin = new Thickness(-100, -100),
+                Opacity = 0.0
+            };
+            AttackFocusButton.Click += (s, e) =>
+            {
+                ActivateAttack();
+            };
+            this.Children.Add(AttackFocusButton);
+
             AttackButton = new()
             {
                 Background = new SolidColorBrush(Colors.Crimson),
@@ -803,22 +818,6 @@ namespace HonkBusterGame
                 ActivateAttack();
             };
             this.Children.Add(AttackButton);
-        }
-
-        private void SetFocusButton()
-        {
-            FocusButton = new()
-            {
-                Height = Constants.DEFAULT_CONTROLLER_KEY_SIZE * 1.2,
-                Width = Constants.DEFAULT_CONTROLLER_KEY_SIZE * 1.2,
-                Margin = new Thickness(300, 300),
-                Opacity = 0.0
-            };
-            FocusButton.Click += (s, e) =>
-            {
-                ActivateAttack();
-            };
-            this.Children.Add(FocusButton);
         }
 
         #endregion

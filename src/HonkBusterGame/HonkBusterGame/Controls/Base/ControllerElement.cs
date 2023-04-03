@@ -3,8 +3,7 @@ using Windows.Foundation;
 
 namespace HonkBusterGame
 {
-    public partial class ControllerElement
-        : Grid
+    public partial class ControllerElement : Grid
     {
         #region Fields
 
