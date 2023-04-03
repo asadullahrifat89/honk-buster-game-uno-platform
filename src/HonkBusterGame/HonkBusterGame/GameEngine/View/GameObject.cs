@@ -8,6 +8,9 @@
         public GameObject()
         {
             Speed = Constants.DEFAULT_CONSTRUCT_SPEED;
+            AnimateAction = (s) => { };
+            RecycleAction = (s) => { };
+            GameView = new();
         }
 
         #region Properties
@@ -40,7 +43,7 @@
         /// <summary>
         /// The scene in which this construct exists.
         /// </summary>
-        public GameView Scene { get; set; }
+        public GameView GameView { get; set; }
 
         #endregion
 
@@ -70,5 +73,5 @@
         }
 
         #endregion
-    }   
+    }
 }

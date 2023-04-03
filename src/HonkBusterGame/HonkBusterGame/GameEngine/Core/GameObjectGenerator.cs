@@ -16,7 +16,7 @@
 
         private Action GenerationAction { get; set; }
 
-        public GameView Scene { get; set; }
+        public GameView GameView { get; set; }
 
         #endregion
 
@@ -39,7 +39,7 @@
         {
             if (_generationDelay > 0)
             {
-                _generationDelayInCount -= Scene.IsSlowMotionActivated ? 0.5 : 1;
+                _generationDelayInCount -= GameView.IsSlowMotionActivated ? 0.5 : 1;
 
                 if (_generationDelayInCount <= 0)
                 {

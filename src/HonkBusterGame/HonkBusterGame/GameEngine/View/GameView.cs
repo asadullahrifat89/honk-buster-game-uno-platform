@@ -79,7 +79,7 @@ namespace HonkBusterGame
                 Height = Constants.DEFAULT_SCENE_HEIGHT,
             };
 
-            SceneState = SceneState.GAME_STOPPED;
+            SceneState = GameViewState.GAME_STOPPED;
 
             //Loaded += Scene_Loaded;
             Unloaded += Scene_Unloaded;
@@ -95,7 +95,7 @@ namespace HonkBusterGame
 
         public bool IsInNightMode { get; set; }
 
-        public SceneState SceneState { get; set; }
+        public GameViewState SceneState { get; set; }
 
         public List<GameObject> Children { get; set; }
 
@@ -187,7 +187,7 @@ namespace HonkBusterGame
             {
                 foreach (var construct in constructs)
                 {
-                    construct.Scene = this;
+                    construct.GameView = this;
                     Children.Add(construct);
                 }
             }
@@ -199,7 +199,7 @@ namespace HonkBusterGame
             {
                 foreach (var generator in generators)
                 {
-                    generator.Scene = this;
+                    generator.GameView = this;
                     _generators.Add(generator);
                 }
             }
@@ -210,7 +210,7 @@ namespace HonkBusterGame
             _destroyables.Add(construct);
         }
 
-        public void SetState(SceneState sceneState)
+        public void SetState(GameViewState sceneState)
         {
             SceneState = sceneState;
         }
@@ -221,7 +221,7 @@ namespace HonkBusterGame
             {
                 _slowMotionDelay = _slowMotionDelayDefault;
             }
-        }      
+        }
 
         public void Clear()
         {
@@ -239,7 +239,7 @@ namespace HonkBusterGame
         }
 
         private void Run()
-        {           
+        {
             foreach (GameObjectGenerator generator in _generators)  // generate new constructs in scene from generators
             {
                 generator.Generate();
@@ -293,7 +293,7 @@ namespace HonkBusterGame
         #endregion
     }
 
-    public enum SceneState
+    public enum GameViewState
     {
         GAME_STOPPED, GAME_RUNNING,
     }

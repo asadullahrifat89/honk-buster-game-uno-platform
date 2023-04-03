@@ -6,7 +6,7 @@
 
         public void MoveUp(double speed)
         {
-            if (Scene.IsSlowMotionActivated)
+            if (GameView.IsSlowMotionActivated)
                 speed /= 2;
 
             SetTop(GetTop() - speed * 2);
@@ -14,7 +14,7 @@
 
         public void MoveDown(double speed)
         {
-            if (Scene.IsSlowMotionActivated)
+            if (GameView.IsSlowMotionActivated)
                 speed /= 2;
 
             SetTop(GetTop() + speed * 2);
@@ -22,7 +22,7 @@
 
         public void MoveLeft(double speed)
         {
-            if (Scene.IsSlowMotionActivated)
+            if (GameView.IsSlowMotionActivated)
                 speed /= 2;
 
             SetLeft(GetLeft() - speed * 2);
@@ -30,7 +30,7 @@
 
         public void MoveRight(double speed)
         {
-            if (Scene.IsSlowMotionActivated)
+            if (GameView.IsSlowMotionActivated)
                 speed /= 2;
 
             SetLeft(GetLeft() + speed * 2);
@@ -38,7 +38,7 @@
 
         public void MoveUpRight(double speed)
         {
-            if (Scene.IsSlowMotionActivated)
+            if (GameView.IsSlowMotionActivated)
                 speed /= 2;
 
             SetLeft(GetLeft() + speed * 2);
@@ -47,7 +47,7 @@
 
         public void MoveUpLeft(double speed)
         {
-            if (Scene.IsSlowMotionActivated)
+            if (GameView.IsSlowMotionActivated)
                 speed /= 2;
 
             SetLeft(GetLeft() - speed * 2);
@@ -56,7 +56,7 @@
 
         public void MoveDownRight(double speed)
         {
-            if (Scene.IsSlowMotionActivated)
+            if (GameView.IsSlowMotionActivated)
                 speed /= 2;
 
             SetLeft(GetLeft() + speed * 2);
@@ -65,7 +65,7 @@
 
         public void MoveDownLeft(double speed)
         {
-            if (Scene.IsSlowMotionActivated)
+            if (GameView.IsSlowMotionActivated)
                 speed /= 2;
 
             SetLeft(GetLeft() - speed * 2);

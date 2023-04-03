@@ -97,7 +97,7 @@ namespace HonkBusterGame
         public double Height { get; set; }
 
         /// <summary>
-        /// The content to be rendered in scene.
+        /// The content to be rendered in scene. This objects is added to the canvas element in GameView.
         /// </summary>
         public FrameworkElement Content { get; set; }
 
@@ -395,6 +395,9 @@ namespace HonkBusterGame
             //{
             Content.RenderTransformOrigin = new Point(0.5, 0.5);
             Content.RenderTransform = _transform;
+            Content.Width = Width;
+            Content.Height = Height;
+
             //}
         }
 
@@ -402,10 +405,6 @@ namespace HonkBusterGame
         {
             if (Content is not null)
             {
-                Canvas.SetZIndex(Content, Z);
-                Canvas.SetLeft(Content, X);
-                Canvas.SetTop(Content, Y);
-
                 if (Content.Width != Width)
                     Content.Width = Width;
 
@@ -453,6 +452,10 @@ namespace HonkBusterGame
                 if (_transform.SkewY != SkewY)
                     _transform.SkewY = SkewY;
                 //}
+
+                Canvas.SetZIndex(Content, Z);
+                Canvas.SetLeft(Content, X);
+                Canvas.SetTop(Content, Y);
             }
         }
 
