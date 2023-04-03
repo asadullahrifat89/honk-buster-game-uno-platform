@@ -41,38 +41,64 @@ namespace HonkBusterGame
         /// </summary>
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
-
         /// <summary>
-        /// The canvas X position of the element.
+        /// The canvas X position of the content.
         /// </summary>
         public double X { get; set; }
 
         /// <summary>
-        /// The canvas Y position of the element.
+        /// The canvas Y position of the content.
         /// </summary>
         public double Y { get; set; }
 
         /// <summary>
-        /// The canvas Z order of the element.
+        /// The canvas Z order of the content.
         /// </summary>
         public int Z { get; set; }
 
+        /// <summary>
+        /// Scale X factor of the content.
+        /// </summary>
         public double ScaleX { get; set; }
 
+        /// <summary>
+        /// Scale Y factor of the content.
+        /// </summary>
         public double ScaleY { get; set; }
 
+        /// <summary>
+        /// Skew X offset of the content.
+        /// </summary>
         public double SkewX { get; set; }
 
+        /// <summary>
+        /// Skew Y offset of the content.
+        /// </summary>
         public double SkewY { get; set; }
 
+        /// <summary>
+        /// Rotation of the content.
+        /// </summary>
         public double Rotation { get; set; }
 
+        /// <summary>
+        /// Opacity of the content.
+        /// </summary>
         public double Opacity { get; set; }
 
+        /// <summary>
+        /// Width of the content.
+        /// </summary>
         public double Width { get; set; }
 
+        /// <summary>
+        /// Height of the content.
+        /// </summary>
         public double Height { get; set; }
 
+        /// <summary>
+        /// The content to be rendered in scene.
+        /// </summary>
         public UIElement Content { get; set; }
 
         public object Tag { get; set; }
