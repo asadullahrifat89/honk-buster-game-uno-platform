@@ -10,9 +10,6 @@ namespace HonkBusterGame
         {
             CenterX = 0.5,
             CenterY = 0.5,
-            Rotation = 0,
-            ScaleX = 1,
-            ScaleY = 1,
         };
 
         private bool _isPoppingComplete;
@@ -27,7 +24,13 @@ namespace HonkBusterGame
             RenderTransformOrigin = new Point(0.5, 0.5);
             RenderTransform = _compositeTransform;
             CanDrag = false;
+
             IsAnimating = false;
+
+            ScaleX = 1;
+            ScaleY = 1;
+            Rotation = 0;
+            Opacity = 1;
         }
 
         #endregion
@@ -70,7 +73,7 @@ namespace HonkBusterGame
 
                 if (!_IsAnimating)
                 {
-                    Canvas.SetLeft(this,-3000);
+                    Canvas.SetLeft(this, -3000);
                     Canvas.SetTop(this, -3000);
                 }
             }
@@ -118,6 +121,8 @@ namespace HonkBusterGame
         public double SkewX { get; set; }
 
         public double SkewY { get; set; }
+
+        public new double Rotation { get; set; }
 
         #endregion
 
@@ -178,54 +183,54 @@ namespace HonkBusterGame
 
         public void SetScaleTransform(double scaleXY)
         {
-            _compositeTransform.ScaleX = scaleXY;
-            _compositeTransform.ScaleY = scaleXY;
+            ScaleX = scaleXY;
+            ScaleY = scaleXY;
         }
 
         public void SetScaleTransform(double scaleX, double scaleY)
         {
-            _compositeTransform.ScaleX = scaleX;
-            _compositeTransform.ScaleY = scaleY;
+            ScaleX = scaleX;
+            ScaleY = scaleY;
         }
 
         public double GetScaleX()
         {
-            return _compositeTransform.ScaleX;
+            return ScaleX;
         }
 
         public double GetScaleY()
         {
-            return _compositeTransform.ScaleY;
+            return ScaleY;
         }
 
         public void SetScaleX(double scaleX)
         {
-            _compositeTransform.ScaleX = scaleX;
+            ScaleX = scaleX;
         }
 
         public void SetScaleY(double scaleY)
         {
-            _compositeTransform.ScaleY = scaleY;
+            ScaleY = scaleY;
         }
 
         public double GetRotation()
         {
-            return _compositeTransform.Rotation;
+            return Rotation;
         }
 
         public void SetRotation(double rotation)
         {
-            _compositeTransform.Rotation = rotation;
+            Rotation = rotation;
         }
 
         public void SetSkewX(double skewX)
         {
-            _compositeTransform.SkewX = skewX;
+            SkewX = skewX;
         }
 
         public void SetSkewY(double skewY)
         {
-            _compositeTransform.SkewY = skewY;
+            SkewY = skewY;
         }
 
         public void SetOpacity(double opacity)
@@ -245,14 +250,14 @@ namespace HonkBusterGame
 
         public void Shrink()
         {
-            _compositeTransform.ScaleX -= 0.1;
-            _compositeTransform.ScaleY -= 0.1;
+            ScaleX -= 0.1;
+            ScaleY -= 0.1;
         }
 
         public void Expand()
         {
-            _compositeTransform.ScaleX += 0.1;
-            _compositeTransform.ScaleY += 0.1;
+            ScaleX += 0.1;
+            ScaleY += 0.1;
         }
 
         public void SetPopping()
@@ -299,12 +304,12 @@ namespace HonkBusterGame
                     {
                         if (threadhold == 0)
                         {
-                            _compositeTransform.Rotation += rotationSpeed;
+                            Rotation += rotationSpeed;
                         }
                         else
                         {
-                            if (_compositeTransform.Rotation <= threadhold)
-                                _compositeTransform.Rotation += rotationSpeed;
+                            if (Rotation <= threadhold)
+                                Rotation += rotationSpeed;
                         }
                     }
                     break;
@@ -312,12 +317,12 @@ namespace HonkBusterGame
                     {
                         if (threadhold == 0)
                         {
-                            _compositeTransform.Rotation -= rotationSpeed;
+                            Rotation -= rotationSpeed;
                         }
                         else
                         {
-                            if (_compositeTransform.Rotation >= threadhold * -1)
-                                _compositeTransform.Rotation -= rotationSpeed;
+                            if (Rotation >= threadhold * -1)
+                                Rotation -= rotationSpeed;
                         }
 
                     }
@@ -327,17 +332,17 @@ namespace HonkBusterGame
 
         public void UnRotate(double rotationSpeed = 0.1)
         {
-            if (Convert.ToInt32(_compositeTransform.Rotation) != 0)
+            if (Convert.ToInt32(Rotation) != 0)
             {
-                if (_compositeTransform.Rotation < 0)
+                if (Rotation < 0)
                 {
-                    _compositeTransform.Rotation += rotationSpeed;
+                    Rotation += rotationSpeed;
                     return;
                 }
 
-                if (_compositeTransform.Rotation > 0)
+                if (Rotation > 0)
                 {
-                    _compositeTransform.Rotation -= rotationSpeed;
+                    Rotation -= rotationSpeed;
                 }
             }
         }
@@ -350,9 +355,16 @@ namespace HonkBusterGame
 
         public void Update()
         {
-            Canvas.SetTop(this, Y);
             Canvas.SetLeft(this, X);
+            Canvas.SetTop(this, Y);
             Canvas.SetZIndex(this, Z);
+
+            _compositeTransform.ScaleX = ScaleX;
+            _compositeTransform.ScaleY = ScaleY;
+
+            _compositeTransform.Rotation = Rotation;
+            _compositeTransform.SkewX = SkewX;
+            _compositeTransform.SkewY = SkewY;
         }
 
         #endregion
