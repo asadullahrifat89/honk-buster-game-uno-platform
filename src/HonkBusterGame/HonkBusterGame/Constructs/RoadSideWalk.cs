@@ -45,14 +45,7 @@
 
         public void Reset()
         {
-            if (Scene.IsInNightMode)
-            {
-                _content_image.ImageBrightness = 50;
-            }
-            else
-            {
-                _content_image.ImageBrightness = 100;
-            }
+            _content_image.SetBrighness(Scene.IsInNightMode ? 50 : 100);
         }
 
         #endregion
