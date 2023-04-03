@@ -405,10 +405,6 @@ namespace HonkBusterGame
         {
             if (Content is not null)
             {
-                Canvas.SetZIndex(Content, Z);
-                Canvas.SetLeft(Content, X);
-                Canvas.SetTop(Content, Y);
-
                 if (Content is FrameworkElement element && (element.Width != Width || element.Height != Height))
                 {
                     element.Width = Width;
@@ -417,6 +413,10 @@ namespace HonkBusterGame
 
                 if (Content is ImageElement imageElement)
                 {
+                    Canvas.SetZIndex(imageElement, Z);
+                    Canvas.SetLeft(imageElement, X);
+                    Canvas.SetTop(imageElement, Y);
+
                     if (imageElement.ImageOpacity != Opacity)
                         imageElement.ImageOpacity = Opacity;
 
@@ -437,6 +437,10 @@ namespace HonkBusterGame
                 }
                 else
                 {
+                    Canvas.SetZIndex(Content, Z);
+                    Canvas.SetLeft(Content, X);
+                    Canvas.SetTop(Content, Y);
+
                     if (Content.Opacity != Opacity)
                         Content.Opacity = Opacity;
 

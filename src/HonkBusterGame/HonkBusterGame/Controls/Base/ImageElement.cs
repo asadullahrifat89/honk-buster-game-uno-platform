@@ -3,8 +3,7 @@
     public partial class ImageElement : Border
     {
         #region Fields
-
-        private readonly ImgElement _imgElement;
+                
         private readonly string _baseUrl = string.Empty;
         private Uri _uri;
 
@@ -20,7 +19,7 @@
             var appPackageId = Environment.GetEnvironmentVariable("UNO_BOOTSTRAP_APP_BASE");
 
             _baseUrl = $"{indexUrl}{appPackageId}";
-            _imgElement = new ImgElement();
+            ImgContent = new ImgElement();
 
             Width = width;
             Height = height;
@@ -30,7 +29,7 @@
             ImageWidth = width;
             ImageHeight = height;
 
-            Child = _imgElement;
+            Child = ImgContent;
 
             SetId(uri);
             SetSource(uri);
@@ -40,29 +39,30 @@
 
         #region Properties
 
-        private string id = string.Empty;
+        public ImgElement ImgContent { get; }
 
+
+        private string id = string.Empty;
         public string Id
         {
             get { return id; }
             set
             {
                 id = value;
-                if (_imgElement is not null)
-                    _imgElement.Id = id;
+                if (ImgContent is not null)
+                    ImgContent.Id = id;
             }
         }
 
         private string source = string.Empty;
-
         public string ImageSource
         {
             get { return source; }
             set
             {
                 source = value;
-                if (_imgElement is not null)
-                    _imgElement.Source = source;
+                if (ImgContent is not null)
+                    ImgContent.Source = source;
             }
         }
 
@@ -74,8 +74,8 @@
             {
                 blur = value;
 
-                if (_imgElement is not null)
-                    _imgElement.Blur = blur;
+                if (ImgContent is not null)
+                    ImgContent.Blur = blur;
             }
         }
 
@@ -88,8 +88,8 @@
             {
                 contrast = value;
 
-                if (_imgElement is not null)
-                    _imgElement.Contrast = contrast;
+                if (ImgContent is not null)
+                    ImgContent.Contrast = contrast;
             }
         }
 
@@ -102,8 +102,8 @@
             {
                 brightness = value;
 
-                if (_imgElement is not null)
-                    _imgElement.Brightness = brightness;
+                if (ImgContent is not null)
+                    ImgContent.Brightness = brightness;
             }
         }
 
@@ -116,8 +116,8 @@
             {
                 saturation = value;
 
-                if (_imgElement is not null)
-                    _imgElement.Saturation = saturation;
+                if (ImgContent is not null)
+                    ImgContent.Saturation = saturation;
             }
         }
 
@@ -130,8 +130,8 @@
             {
                 sepia = value;
 
-                if (_imgElement is not null)
-                    _imgElement.Sepia = sepia;
+                if (ImgContent is not null)
+                    ImgContent.Sepia = sepia;
             }
         }
 
@@ -144,8 +144,8 @@
             {
                 invert = value;
 
-                if (_imgElement is not null)
-                    _imgElement.Invert = invert;
+                if (ImgContent is not null)
+                    ImgContent.Invert = invert;
             }
         }
 
@@ -158,8 +158,8 @@
             {
                 hue = value;
 
-                if (_imgElement is not null)
-                    _imgElement.Hue = hue;
+                if (ImgContent is not null)
+                    ImgContent.Hue = hue;
             }
         }
 
@@ -172,8 +172,8 @@
             {
                 opacity = value;
 
-                if (_imgElement is not null)
-                    _imgElement.Opacity = opacity;
+                if (ImgContent is not null)
+                    ImgContent.Opacity = opacity;
             }
         }
 
@@ -186,8 +186,8 @@
             {
                 rotation = value;
 
-                if (_imgElement is not null)
-                    _imgElement.Rotation = rotation;
+                if (ImgContent is not null)
+                    ImgContent.Rotation = rotation;
             }
         }
 
@@ -200,8 +200,8 @@
             {
                 scaleX = value;
 
-                if (_imgElement is not null)
-                    _imgElement.ScaleX = scaleX;
+                if (ImgContent is not null)
+                    ImgContent.ScaleX = scaleX;
             }
         }
 
@@ -214,8 +214,8 @@
             {
                 scaleY = value;
 
-                if (_imgElement is not null)
-                    _imgElement.ScaleY = scaleY;
+                if (ImgContent is not null)
+                    ImgContent.ScaleY = scaleY;
             }
         }
 
@@ -228,8 +228,8 @@
             {
                 skewX = value;
 
-                if (_imgElement is not null)
-                    _imgElement.SkewX = skewX;
+                if (ImgContent is not null)
+                    ImgContent.SkewX = skewX;
             }
         }
 
@@ -242,8 +242,8 @@
             {
                 skewY = value;
 
-                if (_imgElement is not null)
-                    _imgElement.SkewY = skewY;
+                if (ImgContent is not null)
+                    ImgContent.SkewY = skewY;
             }
         }
 
@@ -256,8 +256,8 @@
             {
                 width = value;
 
-                if (_imgElement is not null)
-                    _imgElement.Width = width;
+                if (ImgContent is not null)
+                    ImgContent.Width = width;
             }
         }
 
@@ -270,8 +270,8 @@
             {
                 height = value;
 
-                if (_imgElement is not null)
-                    _imgElement.Height = height;
+                if (ImgContent is not null)
+                    ImgContent.Height = height;
             }
         }
 
@@ -281,25 +281,25 @@
 
         public void SetGrayscale(double grayscale)
         {
-            if (_imgElement is not null)
-                _imgElement.Grayscale = grayscale;
+            if (ImgContent is not null)
+                ImgContent.Grayscale = grayscale;
         }
 
         public void SetDropShadow(int offsetX, int offsetY, int blurRadius, string color = "#202020")
         {
-            if (_imgElement is not null)
+            if (ImgContent is not null)
             {
-                _imgElement.DropShadowX = offsetX;
-                _imgElement.DropShadowY = offsetY;
-                _imgElement.DropShadowBlurRadius = blurRadius;
-                _imgElement.DropShadowColor = color;
+                ImgContent.DropShadowX = offsetX;
+                ImgContent.DropShadowY = offsetY;
+                ImgContent.DropShadowBlurRadius = blurRadius;
+                ImgContent.DropShadowColor = color;
             }
         }
 
         public void SetBlur(double blur)
         {
-            if (_imgElement is not null)
-                _imgElement.Blur = blur;
+            if (ImgContent is not null)
+                ImgContent.Blur = blur;
         }
 
         public void SetSource(Uri uri)

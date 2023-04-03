@@ -35,8 +35,6 @@ namespace HonkBusterGame
             AnimateAction = animateAction;
             RecycleAction = recycleAction;
 
-            //CornerRadius = new CornerRadius(5);
-
             IsometricDisplacement = Constants.DEFAULT_ISOMETRIC_DISPLACEMENT;
             Speed = Constants.DEFAULT_CONSTRUCT_SPEED;
             DropShadowDistance = Constants.DEFAULT_DROP_SHADOW_DISTANCE;
@@ -50,8 +48,6 @@ namespace HonkBusterGame
                 Background = new SolidColorBrush(Colors.DeepSkyBlue),
                 CornerRadius = new CornerRadius(15),
                 Opacity = Constants.DEFAULT_HOVERING_SCREEN_OPACITY,
-                //BorderBrush = new SolidColorBrush(Colors.White),
-                //BorderThickness = new Thickness(Constants.DEFAULT_CONTROLLER_KEY_BORDER_THICKNESS),
             });
 
             Grid container = new() { VerticalAlignment = VerticalAlignment.Center };

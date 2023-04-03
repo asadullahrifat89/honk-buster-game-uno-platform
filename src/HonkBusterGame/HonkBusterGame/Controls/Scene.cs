@@ -139,7 +139,6 @@ namespace HonkBusterGame
                 foreach (var construct in constructs)
                 {
                     construct.Scene = this;
-                    //_canvas.Children.Add(construct.Child);
                     Children.Add(construct);
                 }
             }
@@ -244,11 +243,6 @@ namespace HonkBusterGame
                 construct.Animate();
                 construct.Update();
                 construct.Recycle();
-
-                //if (!construct.IsAnimating)
-                //{
-                //    DisposeFromScene(construct);
-                //}
             }
 
             // remove the destroyables from the scene

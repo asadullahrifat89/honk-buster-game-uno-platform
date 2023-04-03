@@ -77,8 +77,7 @@
             new (ConstructType.HEALTH_PICKUP, 100, 100),
             new (ConstructType.POWERUP_PICKUP, 100, 100),
 
-            new (ConstructType.TITLE_SCREEN, DEFAULT_CONTROLLER_KEY_SIZE * 10, 400),
-            new (ConstructType.INTERIM_SCREEN, DEFAULT_CONTROLLER_KEY_SIZE * 10, 400),
+            new (ConstructType.TITLE_SCREEN, DEFAULT_CONTROLLER_KEY_SIZE * 10, 400),            
         };
 
         public static (ConstructType ConstructType, Uri Uri)[] CONSTRUCT_TEMPLATES = new (ConstructType, Uri)[]
@@ -391,7 +390,6 @@
         FLOATING_NUMBER,
 
         TITLE_SCREEN,
-        INTERIM_SCREEN,
     }
 
     public enum SoundType

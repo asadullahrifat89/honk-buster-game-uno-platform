@@ -661,8 +661,8 @@ namespace HonkBusterGame
             if (_scene_main_menu.Children.OfType<InterimScreen>().FirstOrDefault(x => x.IsAnimating == false) is InterimScreen interimScreen)
             {
                 interimScreen.SetTitle(title);
-                interimScreen.Reposition();
                 interimScreen.Reset();
+                interimScreen.Reposition();                
                 interimScreen.IsAnimating = true;
 
                 _scene_main_menu.Play();
@@ -681,7 +681,6 @@ namespace HonkBusterGame
             if (interimScreen is InterimScreen interimScreen1 && interimScreen1.IsDepleted)
             {
                 interimScreen.IsAnimating = false;
-
                 _scene_main_menu.Pause();
             }
         }
