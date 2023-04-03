@@ -168,13 +168,6 @@ namespace HonkBusterGame
             Z = z;
         }
 
-        public void Update()
-        {
-            Canvas.SetTop(this, Y);
-            Canvas.SetLeft(this, X);
-            Canvas.SetZIndex(this, Z);
-        }
-
         public void SetScaleTransform(double scaleXY)
         {
             _compositeTransform.ScaleX = scaleXY;
@@ -340,6 +333,13 @@ namespace HonkBusterGame
         {
             Width = width;
             Height = height;
+        }
+
+        public void Update()
+        {
+            Canvas.SetTop(this, Y);
+            Canvas.SetLeft(this, X);
+            Canvas.SetZIndex(this, Z);
         }
 
         #endregion
