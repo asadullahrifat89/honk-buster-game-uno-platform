@@ -174,6 +174,8 @@ namespace HonkBusterGame
 #endif
                 _gameViewTimer = new PeriodicTimer(_frameTime);
 
+                Children = Children.OrderBy(x => x.Z).ToList();
+
                 while (await _gameViewTimer.WaitForNextTickAsync())
                 {
                     UpdateFrame();
@@ -212,6 +214,7 @@ namespace HonkBusterGame
         public void Clear()
         {
             Children.Clear();
+
             _canvas.Children.Clear();
 
             _generators.Clear();

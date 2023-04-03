@@ -51,7 +51,7 @@
         public void Recycle()
         {
             RecycleAction(this);
-        }       
+        }
 
         public void SetConstructSize(ConstructType constructType)
         {
@@ -67,5 +67,5 @@
         }
 
         #endregion
-    }
+    }   
 }

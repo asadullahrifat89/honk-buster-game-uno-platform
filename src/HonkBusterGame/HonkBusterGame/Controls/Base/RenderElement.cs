@@ -21,8 +21,6 @@ namespace HonkBusterGame
 
         public RenderElement()
         {
-            //CanDrag = false;
-
             Content = new UIElement();
             IsAnimating = false;
 
@@ -54,7 +52,7 @@ namespace HonkBusterGame
         public double Y { get; set; }
 
         /// <summary>
-        /// The canvas X order of the element.
+        /// The canvas Z order of the element.
         /// </summary>
         public int Z { get; set; }
 
@@ -66,15 +64,15 @@ namespace HonkBusterGame
 
         public double SkewY { get; set; }
 
-        public new double Rotation { get; set; }
+        public double Rotation { get; set; }
 
-        public new double Opacity { get; set; }
+        public double Opacity { get; set; }
 
-        public new double Width { get; set; }
+        public double Width { get; set; }
 
-        public new double Height { get; set; }
+        public double Height { get; set; }
 
-        public new UIElement Content { get; set; }
+        public UIElement Content { get; set; }
 
         public object Tag { get; set; }
 
