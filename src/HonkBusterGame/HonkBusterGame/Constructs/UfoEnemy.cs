@@ -7,7 +7,7 @@
         private readonly Random _random;
         private readonly Uri[] _enemy_uris;
 
-        private readonly ImageContainer _content_image;
+        private readonly ImageContainer _imageContainer;
 
         private double _attackDelay;
 
@@ -31,10 +31,10 @@
             SetConstructSize(ConstructType);
 
             var uri = ConstructExtensions.GetRandomContentUri(_enemy_uris);
-            _content_image = new(uri: uri, width: this.Width, height: this.Height);
-            //_content_image.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 6, color: "#956ec4");
+            _imageContainer = new(uri: uri, width: this.Width, height: this.Height);
+            //_imageContainer.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 6, color: "#956ec4");
 
-            SetContent(_content_image);
+            SetContent(_imageContainer);
 
             IsometricDisplacement = Constants.DEFAULT_ISOMETRIC_DISPLACEMENT;
             DropShadowDistance = Constants.DEFAULT_DROP_SHADOW_DISTANCE;
@@ -57,7 +57,7 @@
                 SetHonkDelay();
 
             var uri = ConstructExtensions.GetRandomContentUri(_enemy_uris);
-            _content_image.SetSource(uri);
+            _imageContainer.SetSource(uri);
 
             Speed = _random.Next(Constants.DEFAULT_CONSTRUCT_SPEED - 2, Constants.DEFAULT_CONSTRUCT_SPEED);
         }

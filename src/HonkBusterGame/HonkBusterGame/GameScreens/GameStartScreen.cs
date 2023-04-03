@@ -8,7 +8,7 @@ namespace HonkBusterGame
 
         private readonly TextBlock _title_text;
         private readonly TextBlock _sub_title_text;
-        private readonly ImageContainer _content_image;
+        private readonly ImageContainer _imageContainer;
 
         private readonly AudioStub _audioStub;
 
@@ -65,16 +65,16 @@ namespace HonkBusterGame
             var playerUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON).Select(x => x.Uri).ToArray();
 
             var uri = ConstructExtensions.GetRandomContentUri(playerUris);
-            _content_image = new(uri: uri, width: 110, height: 110)
+            _imageContainer = new(uri: uri, width: 110, height: 110)
             {
                 HorizontalAlignment = HorizontalAlignment.Center,
                 //Stretch = Stretch.Uniform,
                 Margin = new Thickness(0, 10, 0, 5)
             };
 
-            Grid.SetRow(_content_image, 0);
+            Grid.SetRow(_imageContainer, 0);
 
-            container.Children.Add(_content_image);
+            container.Children.Add(_imageContainer);
 
             #endregion
 
@@ -153,7 +153,7 @@ namespace HonkBusterGame
 
         public void SetContent(Uri uri)
         {            
-            _content_image.SetSource(uri);
+            _imageContainer.SetSource(uri);
         }
 
         public void SetTitle(string title)

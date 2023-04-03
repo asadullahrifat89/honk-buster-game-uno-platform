@@ -9,7 +9,7 @@
         private readonly Uri[] _vehicle_small_uris;
         private readonly Uri[] _vehicle_large_uris;
 
-        private readonly ImageContainer _content_image;
+        private readonly ImageContainer _imageContainer;
         private readonly AudioStub _audioStub;
 
         #endregion
@@ -55,9 +55,9 @@
                     break;
             }
 
-            _content_image = new(uri: uri, width: this.Width, height: this.Height);
-            _content_image.SetDropShadow(offsetX: 0, offsetY: 10, blurRadius: 2);
-            SetContent(_content_image);
+            _imageContainer = new(uri: uri, width: this.Width, height: this.Height);
+            _imageContainer.SetDropShadow(offsetX: 0, offsetY: 10, blurRadius: 2);
+            SetContent(_imageContainer);
 
             IsometricDisplacement = Constants.DEFAULT_ISOMETRIC_DISPLACEMENT;
 
@@ -73,7 +73,7 @@
 
         public void Reset()
         {
-            _content_image.SetGrayscale(0);
+            _imageContainer.SetGrayscale(0);
             SetScaleTransform(1);
 
             Speed = _random.Next(Constants.DEFAULT_CONSTRUCT_SPEED - 4, Constants.DEFAULT_CONSTRUCT_SPEED - 2);
@@ -97,7 +97,7 @@
             WillHonk = false;
 
             Speed = Constants.DEFAULT_CONSTRUCT_SPEED - 1;
-            _content_image.SetGrayscale(100);
+            _imageContainer.SetGrayscale(100);
             
             _audioStub.Play(SoundType.HONK_BUST_REACTION);
         }

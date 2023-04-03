@@ -5,7 +5,7 @@
         #region Fields
 
         private readonly Random _random;
-        private readonly ImageContainer _content_image;
+        private readonly ImageContainer _imageContainer;
         private readonly AudioStub _audioStub;
         #endregion
 
@@ -53,10 +53,10 @@
                     break;
             }
 
-            _content_image = new(uri: uri, width: this.Width, height: this.Height);
-            _content_image.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 6, color: glowColor);
+            _imageContainer = new(uri: uri, width: this.Width, height: this.Height);
+            _imageContainer.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 6, color: glowColor);
 
-            SetContent(_content_image);
+            SetContent(_imageContainer);
 
             Speed = Constants.DEFAULT_CONSTRUCT_SPEED - 2;
             DropShadowDistance = Constants.DEFAULT_DROP_SHADOW_DISTANCE;
@@ -99,7 +99,7 @@
                     break;
             }
 
-            _content_image.SetSource(uri);
+            _imageContainer.SetSource(uri);
         }
 
         public void PickedUp()

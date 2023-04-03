@@ -4,7 +4,7 @@
     {
         #region Fields
 
-        private readonly ImageContainer _content_image;
+        private readonly ImageContainer _imageContainer;
         private readonly Uri[] _side_walk_uris;
 
         #endregion
@@ -25,9 +25,9 @@
             RecycleAction = recycleAction;
 
             var uri = ConstructExtensions.GetRandomContentUri(_side_walk_uris);
-            _content_image = new(uri: uri, width: this.Width, height: this.Height);
-            _content_image.SetDropShadow(offsetX: -7, offsetY: 0, blurRadius: 2);
-            SetContent(_content_image);
+            _imageContainer = new(uri: uri, width: this.Width, height: this.Height);
+            _imageContainer.SetDropShadow(offsetX: -7, offsetY: 0, blurRadius: 2);
+            SetContent(_imageContainer);
 
             //BorderBrush = Application.Current.Resources["BorderColor"] as SolidColorBrush;
             //BorderThickness = new Thickness(Constants.DEFAULT_CONTROLLER_KEY_BORDER_THICKNESS, 0);
@@ -45,7 +45,7 @@
 
         public void Reset()
         {
-            _content_image.SetBrighness(GameView.IsInNightMode ? 50 : 100);
+            _imageContainer.SetBrighness(GameView.IsInNightMode ? 50 : 100);
         }
 
         #endregion

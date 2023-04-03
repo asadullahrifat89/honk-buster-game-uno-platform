@@ -4,7 +4,7 @@
     {
         #region Fields
 
-        private readonly ImageContainer _content_image;
+        private readonly ImageContainer _imageContainer;
         private readonly Uri[] _tree_uris;
 
         #endregion
@@ -25,9 +25,9 @@
             SetConstructSize(ConstructType);
 
             var uri = ConstructExtensions.GetRandomContentUri(_tree_uris);
-            _content_image = new(uri: uri, width: this.Width, height: this.Height);
-            //_content_image.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 5);
-            SetContent(_content_image);
+            _imageContainer = new(uri: uri, width: this.Width, height: this.Height);
+            //_imageContainer.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 5);
+            SetContent(_imageContainer);
 
             SetSkewY(36);
             SetRotation(-63.5);
@@ -40,7 +40,7 @@
 
         public void Reset()
         {
-            _content_image.SetBrighness(GameView.IsInNightMode ? 50 : 100);
+            _imageContainer.SetBrighness(GameView.IsInNightMode ? 50 : 100);
         }
     }
 }

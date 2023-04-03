@@ -11,7 +11,7 @@
 
         private double _changeMovementPatternDelay;
 
-        private readonly ImageContainer _content_image;
+        private readonly ImageContainer _imageContainer;
 
         private double _hitStanceDelay;
         private readonly double _hitStanceDelayDefault = 1.5;
@@ -43,10 +43,10 @@
             SetConstructSize(ConstructType);
 
             var uri = ConstructExtensions.GetRandomContentUri(_zombie_boss_idle_uris);
-            _content_image = new(uri: uri, width: this.Width, height: this.Height);
-            //_content_image.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 7, color: "#544e36");
+            _imageContainer = new(uri: uri, width: this.Width, height: this.Height);
+            //_imageContainer.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 7, color: "#544e36");
 
-            SetContent(_content_image);
+            SetContent(_imageContainer);
 
             IsometricDisplacement = Constants.DEFAULT_ISOMETRIC_DISPLACEMENT;
             DropShadowDistance = Constants.DEFAULT_DROP_SHADOW_DISTANCE;
@@ -69,7 +69,7 @@
             ZombieBossStance = BossStance.Idle;
 
             var uri = ConstructExtensions.GetRandomContentUri(_zombie_boss_idle_uris);
-            _content_image.SetSource(uri);
+            _imageContainer.SetSource(uri);
 
             RandomizeMovementPattern();
             SetScaleTransform(1);
@@ -81,7 +81,7 @@
             {
                 ZombieBossStance = BossStance.Hit;
                 var uri = ConstructExtensions.GetRandomContentUri(_zombie_boss_hit_uris);
-                _content_image.SetSource(uri);
+                _imageContainer.SetSource(uri);
                 _hitStanceDelay = _hitStanceDelayDefault;
             }
         }
@@ -90,7 +90,7 @@
         {
             ZombieBossStance = BossStance.Win;
             var uri = ConstructExtensions.GetRandomContentUri(_zombie_boss_win_uris);
-            _content_image.SetSource(uri);
+            _imageContainer.SetSource(uri);
             _winStanceDelay = _winStanceDelayDefault;
         }
 
@@ -98,7 +98,7 @@
         {
             ZombieBossStance = BossStance.Idle;
             var uri = ConstructExtensions.GetRandomContentUri(_zombie_boss_idle_uris);
-            _content_image.SetSource(uri);
+            _imageContainer.SetSource(uri);
         }
 
         public void DepleteWinStance()

@@ -9,7 +9,7 @@
         private readonly Uri[] _bomb_uris;
         private readonly Uri[] _bomb_blast_uris;
 
-        private readonly ImageContainer _content_image;
+        private readonly ImageContainer _imageContainer;
 
         private double _autoBlastDelay;
         private readonly double _autoBlastDelayDefault = 14;
@@ -37,10 +37,10 @@
             SetConstructSize(ConstructType);
 
             var uri = ConstructExtensions.GetRandomContentUri(_bomb_uris);
-            _content_image = new(uri: uri, width: this.Width, height: this.Height);
-            _content_image.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 6, color: "#ffd11a");
+            _imageContainer = new(uri: uri, width: this.Width, height: this.Height);
+            _imageContainer.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 6, color: "#ffd11a");
 
-            SetContent(_content_image);
+            SetContent(_imageContainer);
 
             //BorderThickness = new Microsoft.UI.Xaml.Thickness(Constants.DEFAULT_BLAST_RING_BORDER_THICKNESS);
             //CornerRadius = new Microsoft.UI.Xaml.CornerRadius(Constants.DEFAULT_BLAST_RING_CORNER_RADIUS * Width);
@@ -69,7 +69,7 @@
             SetScaleTransform(1);
 
             var uri = ConstructExtensions.GetRandomContentUri(_bomb_uris);
-            _content_image.SetSource(uri);
+            _imageContainer.SetSource(uri);
 
             //BorderBrush = new SolidColorBrush(Colors.Transparent);
 
@@ -192,7 +192,7 @@
             //BorderBrush = new SolidColorBrush(Colors.DarkGreen);
 
             var uri = ConstructExtensions.GetRandomContentUri(_bomb_blast_uris);
-            _content_image.SetSource(uri);
+            _imageContainer.SetSource(uri);
 
             IsBlasting = true;
         }

@@ -16,7 +16,7 @@ namespace HonkBusterGame
             Margin = new Thickness(0, 0, 5, 0)
         };
 
-        private readonly ImageContainer _content_image;
+        private readonly ImageContainer _imageContainer;
         private readonly StackPanel _container;
 
         #endregion
@@ -34,13 +34,13 @@ namespace HonkBusterGame
                 Orientation = Orientation.Horizontal
             };
 
-            _content_image = new ImageContainer(uri: Constants.CONSTRUCT_TEMPLATES.FirstOrDefault(x => x.ConstructType == ConstructType.HEALTH_PICKUP).Uri, width: 30, height: 30)
+            _imageContainer = new ImageContainer(uri: Constants.CONSTRUCT_TEMPLATES.FirstOrDefault(x => x.ConstructType == ConstructType.HEALTH_PICKUP).Uri, width: 30, height: 30)
             {
                 //Stretch = Stretch.Uniform,
                 Margin = new Thickness(5)
             };
 
-            _container.Children.Add(_content_image);
+            _container.Children.Add(_imageContainer);
             _container.Children.Add(_progressBar);
 
             Child = _container;
@@ -65,7 +65,7 @@ namespace HonkBusterGame
 
         public void SetIcon(Uri uri)
         {
-            _content_image.SetSource(uri);
+            _imageContainer.SetSource(uri);
         }
 
         public void SetMaxiumHealth(double value)

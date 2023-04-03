@@ -16,7 +16,7 @@ namespace HonkBusterGame
 
         private double _changeMovementPatternDelay;
 
-        private readonly ImageContainer _content_image;
+        private readonly ImageContainer _imageContainer;
 
         private double _hitStanceDelay;
         private readonly double _hitStanceDelayDefault = 1.5;
@@ -48,10 +48,10 @@ namespace HonkBusterGame
             SetConstructSize(ConstructType);
 
             var uri = ConstructExtensions.GetRandomContentUri(_ufo_boss_idle_uris);
-            _content_image = new(uri: uri, width: this.Width, height: this.Height);
-            //_content_image.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 7, color: "#f73e3e");
+            _imageContainer = new(uri: uri, width: this.Width, height: this.Height);
+            //_imageContainer.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 7, color: "#f73e3e");
 
-            SetContent(_content_image);
+            SetContent(_imageContainer);
 
             IsometricDisplacement = Constants.DEFAULT_ISOMETRIC_DISPLACEMENT;
             DropShadowDistance = Constants.DEFAULT_DROP_SHADOW_DISTANCE;
@@ -76,7 +76,7 @@ namespace HonkBusterGame
             UfoBossStance = BossStance.Idle;
 
             var uri = ConstructExtensions.GetRandomContentUri(_ufo_boss_idle_uris);
-            _content_image.SetSource(uri);
+            _imageContainer.SetSource(uri);
 
             RandomizeMovementPattern();
             SetScaleTransform(1);
@@ -89,7 +89,7 @@ namespace HonkBusterGame
                 UfoBossStance = BossStance.Hit;
 
                 var uri = ConstructExtensions.GetRandomContentUri(_ufo_boss_hit_uris);
-                _content_image.SetSource(uri);
+                _imageContainer.SetSource(uri);
 
                 _hitStanceDelay = _hitStanceDelayDefault;
             }
@@ -99,7 +99,7 @@ namespace HonkBusterGame
         {
             UfoBossStance = BossStance.Win;
             var uri = ConstructExtensions.GetRandomContentUri(_ufo_boss_win_uris);
-            _content_image.SetSource(uri);
+            _imageContainer.SetSource(uri);
             _winStanceDelay = _winStanceDelayDefault;
         }
 
@@ -107,7 +107,7 @@ namespace HonkBusterGame
         {
             UfoBossStance = BossStance.Idle;
             var uri = ConstructExtensions.GetRandomContentUri(_ufo_boss_idle_uris);
-            _content_image.SetSource(uri);
+            _imageContainer.SetSource(uri);
         }
 
         public void DepleteWinStance()

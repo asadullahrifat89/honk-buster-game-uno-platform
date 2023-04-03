@@ -5,7 +5,7 @@
         #region Fields
 
         private readonly Uri[] _honk_uris;
-        private readonly ImageContainer _content_image;
+        private readonly ImageContainer _imageContainer;
         private readonly AudioStub _audioStub;
 
         #endregion
@@ -26,9 +26,9 @@
             SetConstructSize(ConstructType);
 
             var uri = ConstructExtensions.GetRandomContentUri(_honk_uris);
-            _content_image = new(uri: uri, width: this.Width, height: this.Height);
+            _imageContainer = new(uri: uri, width: this.Width, height: this.Height);
 
-            SetContent(_content_image);
+            SetContent(_imageContainer);
 
             _audioStub = new AudioStub((SoundType.HONK, 0.5, false));
         }

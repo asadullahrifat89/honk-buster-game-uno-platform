@@ -26,7 +26,7 @@
         private double _hitStanceDelay;
         private readonly double _hitStanceDelayDefault = 1.5;
 
-        private readonly ImageContainer _content_image;
+        private readonly ImageContainer _imageContainer;
         private readonly AudioStub _audioStub;
 
         private MovementDirection _movementDirection;
@@ -52,9 +52,9 @@
             _player_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_IDLE).Select(x => x.Uri).ToArray();
 
             var uri = ConstructExtensions.GetRandomContentUri(_player_uris);
-            _content_image = new(uri: uri, width: this.Width, height: this.Height);
+            _imageContainer = new(uri: uri, width: this.Width, height: this.Height);
 
-            SetContent(_content_image);
+            SetContent(_imageContainer);
 
             IsometricDisplacement = Constants.DEFAULT_ISOMETRIC_DISPLACEMENT;
             Speed = Constants.DEFAULT_CONSTRUCT_SPEED;
@@ -103,7 +103,7 @@
                         _player_win_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_WIN && x.Uri.OriginalString.Contains("1")).Select(x => x.Uri).ToArray();
                         _player_hit_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_HIT && x.Uri.OriginalString.Contains("1")).Select(x => x.Uri).ToArray();
                         _player_attack_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_ATTACK && x.Uri.OriginalString.Contains("1")).Select(x => x.Uri).ToArray();
-                        //_content_image.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 5, color: "#5fc4f8");
+                        //_imageContainer.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 5, color: "#5fc4f8");
                     }
                     break;
                 case PlayerBalloonTemplate.Red:
@@ -112,7 +112,7 @@
                         _player_win_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_WIN && x.Uri.OriginalString.Contains("2")).Select(x => x.Uri).ToArray();
                         _player_hit_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_HIT && x.Uri.OriginalString.Contains("2")).Select(x => x.Uri).ToArray();
                         _player_attack_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_ATTACK && x.Uri.OriginalString.Contains("2")).Select(x => x.Uri).ToArray();
-                        //_content_image.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 5, color: "#d75e72");
+                        //_imageContainer.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 5, color: "#d75e72");
                     }
                     break;
                 default:
@@ -120,7 +120,7 @@
             }
 
             var uri = ConstructExtensions.GetRandomContentUri(_player_uris);
-            _content_image.SetSource(uri);
+            _imageContainer.SetSource(uri);
         }
 
         public void SetAttackStance()
@@ -128,7 +128,7 @@
             PlayerBalloonStance = PlayerBalloonStance.Attack;
 
             var uri = ConstructExtensions.GetRandomContentUri(_player_attack_uris);
-            _content_image.SetSource(uri);
+            _imageContainer.SetSource(uri);
 
             _attackStanceDelay = _attackStanceDelayDefault;
         }
@@ -138,7 +138,7 @@
             PlayerBalloonStance = PlayerBalloonStance.Win;
 
             var uri = ConstructExtensions.GetRandomContentUri(_player_win_uris);
-            _content_image.SetSource(uri);
+            _imageContainer.SetSource(uri);
 
             _winStanceDelay = _winStanceDelayDefault;
         }
@@ -150,7 +150,7 @@
                 PlayerBalloonStance = PlayerBalloonStance.Hit;
 
                 var uri = ConstructExtensions.GetRandomContentUri(_player_hit_uris);
-                _content_image.SetSource(uri);
+                _imageContainer.SetSource(uri);
 
                 _hitStanceDelay = _hitStanceDelayDefault;
             }
@@ -161,7 +161,7 @@
             PlayerBalloonStance = PlayerBalloonStance.Idle;
 
             var uri = ConstructExtensions.GetRandomContentUri(_player_uris);
-            _content_image.SetSource(uri);
+            _imageContainer.SetSource(uri);
         }
 
 

@@ -4,7 +4,7 @@
     {
         #region Fields
 
-        private readonly ImageContainer _content_image;
+        private readonly ImageContainer _imageContainer;
         private readonly Uri[] _cloud_uris;
         private readonly Random _random;
 
@@ -28,11 +28,11 @@
             SetConstructSize(ConstructType);
 
             var uri = ConstructExtensions.GetRandomContentUri(_cloud_uris);
-            _content_image = new(uri: uri, width: this.Width, height: this.Height);
+            _imageContainer = new(uri: uri, width: this.Width, height: this.Height);
 
-            _content_image.SetBlur(6);
+            _imageContainer.SetBlur(6);
 
-            SetContent(_content_image);
+            SetContent(_imageContainer);
 
             IsometricDisplacement = Constants.DEFAULT_ISOMETRIC_DISPLACEMENT;
             DropShadowDistance = Constants.DEFAULT_DROP_SHADOW_DISTANCE + 200;
@@ -47,7 +47,7 @@
             Speed = _random.Next(Constants.DEFAULT_CONSTRUCT_SPEED - 2, Constants.DEFAULT_CONSTRUCT_SPEED);
 
             var uri = ConstructExtensions.GetRandomContentUri(_cloud_uris);
-            _content_image.SetSource(uri);
+            _imageContainer.SetSource(uri);
         }
 
         #endregion

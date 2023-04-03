@@ -8,7 +8,7 @@
         private readonly Uri[] _blast_uris;
         private readonly Uri[] _bang_uris;
 
-        private readonly ImageContainer _content_image;
+        private readonly ImageContainer _imageContainer;
         private readonly AudioStub _audioStub;
 
         #endregion
@@ -31,10 +31,10 @@
             SetConstructSize(ConstructType);
 
             var uri = ConstructExtensions.GetRandomContentUri(_bomb_uris);
-            _content_image = new(uri: uri, width: this.Width, height: this.Height);
-            _content_image.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 6, color: "#ffae3e");
+            _imageContainer = new(uri: uri, width: this.Width, height: this.Height);
+            _imageContainer.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 6, color: "#ffae3e");
 
-            SetContent(_content_image);
+            SetContent(_imageContainer);
 
             IsometricDisplacement = Constants.DEFAULT_ISOMETRIC_DISPLACEMENT;
             Speed = Constants.DEFAULT_CONSTRUCT_SPEED + 1;
@@ -60,7 +60,7 @@
             IsBlasting = false;
 
             var uri = ConstructExtensions.GetRandomContentUri(_bomb_uris);
-            _content_image.SetSource(uri);
+            _imageContainer.SetSource(uri);
 
             _audioStub.Play(SoundType.CRACKER_DROP);
 
@@ -92,7 +92,7 @@
             }
 
             var uri = ConstructExtensions.GetRandomContentUri(_bomb_uris);
-            _content_image.SetSource(uri);
+            _imageContainer.SetSource(uri);
         }
 
         public void Reposition(PlayerBalloon player)
@@ -130,7 +130,7 @@
 
             SetScaleTransform(Constants.DEFAULT_BLAST_SHRINK_SCALE);
 
-            _content_image.SetSource(uri);
+            _imageContainer.SetSource(uri);
             IsBlasting = true;
         }
 

@@ -4,7 +4,7 @@
     {
         #region Fields
 
-        private readonly ImageContainer _content_image;
+        private readonly ImageContainer _imageContainer;
         private readonly Uri[] _tree_uris;
 
         #endregion
@@ -25,10 +25,10 @@
             SetConstructSize(ConstructType);
 
             var uri = ConstructExtensions.GetRandomContentUri(_tree_uris);
-            _content_image = new(uri: uri, width: this.Width, height: this.Height);
-            _content_image.SetDropShadow(offsetX: 0, offsetY: 10, blurRadius: 2);
+            _imageContainer = new(uri: uri, width: this.Width, height: this.Height);
+            _imageContainer.SetDropShadow(offsetX: 0, offsetY: 10, blurRadius: 2);
 
-            SetContent(_content_image);
+            SetContent(_imageContainer);
 
             Speed = Constants.DEFAULT_CONSTRUCT_SPEED;
             IsometricDisplacement = Constants.DEFAULT_ISOMETRIC_DISPLACEMENT;
@@ -41,7 +41,7 @@
 
         public void Reset()
         {
-            _content_image.SetBrighness(GameView.IsInNightMode ? 50 : 100);
+            _imageContainer.SetBrighness(GameView.IsInNightMode ? 50 : 100);
         } 
 
         #endregion

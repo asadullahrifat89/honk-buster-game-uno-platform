@@ -9,7 +9,7 @@
         private readonly Uri[] _vehicle_small_uris;
         private readonly Uri[] _vehicle_large_uris;
 
-        private readonly ImageContainer _content_image;
+        private readonly ImageContainer _imageContainer;
         private MovementDirection _movementDirection;
 
         private double _changeMovementPatternDelay;
@@ -53,10 +53,10 @@
                     break;
             }
 
-            _content_image = new(uri: uri, width: this.Width, height: this.Height);
-            _content_image.SetDropShadow(offsetX: 0, offsetY: 10, blurRadius: 2);
+            _imageContainer = new(uri: uri, width: this.Width, height: this.Height);
+            _imageContainer.SetDropShadow(offsetX: 0, offsetY: 10, blurRadius: 2);
 
-            SetContent(_content_image);
+            SetContent(_imageContainer);
 
             IsometricDisplacement = Constants.DEFAULT_ISOMETRIC_DISPLACEMENT;
         }
@@ -96,7 +96,7 @@
                     break;
             }
 
-            _content_image.SetSource(uri);
+            _imageContainer.SetSource(uri);
 
             RandomizeMovementPattern();
             SetScaleTransform(1);
