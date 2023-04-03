@@ -66,6 +66,7 @@ namespace HonkBusterGame
             #endregion
 
             CanDrag = false;
+            Children = new List<Construct>();
 
             _canvas = new()
             {
@@ -92,11 +93,11 @@ namespace HonkBusterGame
 
         public SceneState SceneState { get; set; }
 
+        public List<Construct> Children { get; set; }
+
         public bool IsSlowMotionActivated => _slowMotionDelay > 0;
 
         public bool GeneratorsExist => _generators.Any();
-
-        public IEnumerable<Construct> Children => _canvas?.Children.OfType<Construct>();
 
         #endregion
 
@@ -140,6 +141,7 @@ namespace HonkBusterGame
                 {
                     construct.Scene = this;
                     _canvas.Children.Add(construct);
+                    Children.Add(construct);
                 }
             }
         }
@@ -210,6 +212,7 @@ namespace HonkBusterGame
 
         public void Clear()
         {
+            Children.Clear();
             _canvas.Children.Clear();
 
             _generators.Clear();

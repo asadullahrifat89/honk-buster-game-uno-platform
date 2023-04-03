@@ -124,6 +124,10 @@ namespace HonkBusterGame
 
         public new double Opacity { get; set; }
 
+        public new double Width { get; set; }
+
+        public new double Height { get; set; }
+
         #endregion
 
         #region Methods
@@ -368,6 +372,12 @@ namespace HonkBusterGame
                 Canvas.SetLeft(this, X);
                 Canvas.SetTop(this, Y);
                 Canvas.SetZIndex(this, Z);
+
+                if (Child is FrameworkElement element)
+                {
+                    element.Width = Width;
+                    element.Height = Height;
+                }
 
                 Child.Opacity = Opacity;
 
