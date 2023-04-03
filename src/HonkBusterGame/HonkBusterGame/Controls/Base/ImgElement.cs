@@ -308,12 +308,12 @@ namespace HonkBusterGame
         public string GetCssFilter()
         {
             return $"grayscale({grayscale}%) " +
-                $"contrast({contrast}%) " +
+                //$"contrast({contrast}%) " +
                 $"brightness({brightness}%) " +
-                $"saturate({saturation}%) " +
-                $"sepia({sepia}%) " +
-                $"invert({invert}%) " +
-                $"hue-rotate({hue}deg) " +
+                //$"saturate({saturation}%) " +
+                //$"sepia({sepia}%) " +
+                //$"invert({invert}%) " +
+                //$"hue-rotate({hue}deg) " +
                 $"blur({blur}px) " +
                 $"drop-shadow({dropShadowX}px {dropShadowY}px {dropShadowBlur}px {dropShadowColor})";
         }
@@ -321,9 +321,10 @@ namespace HonkBusterGame
         public void SetProperties()
         {
             this.SetCssStyle(
-                ("filter", GetCssFilter()),
-                ("opacity", $"{opacity}"),
-                ("transform", $"rotate({rotation}deg) scaleX({scaleX}) scaleY({scaleY}) skew({skewX}deg,{skewY}deg)"));
+                ("filter", GetCssFilter())/*,*/
+                //("opacity", $"{opacity}"),
+                //("transform", $"rotate({rotation}deg) scaleX({scaleX}) scaleY({scaleY}) skew({skewX}deg,{skewY}deg)")
+                );
         }
 
         #endregion
