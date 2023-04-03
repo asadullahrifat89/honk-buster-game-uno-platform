@@ -32,9 +32,9 @@
             {
                 if (_audioTuples.FirstOrDefault(x => x.SoundType == soundType) is AudioTuple audioTuple)
                 {
-                    audioTuple.AudioInstance?.Stop();
-                    audioTuple.AudioInstance = audioTuple.AudioSources[_random.Next(audioTuple.AudioSources.Length)];
-                    audioTuple.AudioInstance.Play();
+                    audioTuple.Instance?.Stop();
+                    audioTuple.Instance = audioTuple.Sources[_random.Next(audioTuple.Sources.Length)];
+                    audioTuple.Instance.Play();
                 }
             }
         }
@@ -43,8 +43,8 @@
         {
             foreach (var soundType in soundTypes)
             {
-                if (_audioTuples.FirstOrDefault(x => x.SoundType == soundType && x.AudioInstance is not null && x.AudioInstance.IsPlaying) is AudioTuple audioTuple)
-                    audioTuple.AudioInstance?.Pause();
+                if (_audioTuples.FirstOrDefault(x => x.SoundType == soundType && x.Instance is not null && x.Instance.IsPlaying) is AudioTuple audioTuple)
+                    audioTuple.Instance?.Pause();
             }
         }
 
@@ -52,8 +52,8 @@
         {
             foreach (var soundType in soundTypes)
             {
-                if (_audioTuples.FirstOrDefault(x => x.SoundType == soundType && x.AudioInstance is not null && x.AudioInstance.IsPaused) is AudioTuple audioTuple)
-                    audioTuple.AudioInstance?.Resume();
+                if (_audioTuples.FirstOrDefault(x => x.SoundType == soundType && x.Instance is not null && x.Instance.IsPaused) is AudioTuple audioTuple)
+                    audioTuple.Instance?.Resume();
             }
         }
 
@@ -61,15 +61,15 @@
         {
             foreach (var soundType in soundTypes)
             {
-                if (_audioTuples.FirstOrDefault(x => x.SoundType == soundType && x.AudioInstance is not null && (x.AudioInstance.IsPlaying || x.AudioInstance.IsPaused)) is AudioTuple audioTuple)
-                    audioTuple.AudioInstance?.Stop();
+                if (_audioTuples.FirstOrDefault(x => x.SoundType == soundType && x.Instance is not null && (x.Instance.IsPlaying || x.Instance.IsPaused)) is AudioTuple audioTuple)
+                    audioTuple.Instance?.Stop();
             }
         }
 
         public void SetVolume(SoundType soundType, double volume)
         {
-            if (_audioTuples.FirstOrDefault(x => x.SoundType == soundType && x.AudioInstance is not null && x.AudioInstance.IsPlaying) is AudioTuple audioTuple)
-                audioTuple.AudioInstance?.SetVolume(volume);
+            if (_audioTuples.FirstOrDefault(x => x.SoundType == soundType && x.Instance is not null && x.Instance.IsPlaying) is AudioTuple audioTuple)
+                audioTuple.Instance?.SetVolume(volume);
         }
     }
 }

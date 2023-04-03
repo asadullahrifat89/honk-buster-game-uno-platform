@@ -2,16 +2,16 @@
 {
     public partial class AudioTuple
     {
-        public AudioElement[] AudioSources { get; set; }
+        public AudioElement[] Sources { get; set; }
 
-        public AudioElement AudioInstance { get; set; }
+        public AudioElement Instance { get; set; }
 
         public SoundType SoundType { get; set; }
 
         public AudioTuple(AudioElement[] audioSources, AudioElement audioInstance, SoundType soundType)
         {
-            AudioSources = audioSources;
-            AudioInstance = audioInstance;
+            Sources = audioSources;
+            Instance = audioInstance;
             SoundType = soundType;
         }
     }
