@@ -2,7 +2,7 @@
 {
     static class Constants
     {
-        public const double DEFAULT_FRAME_TIME = 19;
+        public const double DEFAULT_FRAME_TIME = 20;
 
         public const int DEFAULT_CONSTRUCT_SPEED = 6;
 

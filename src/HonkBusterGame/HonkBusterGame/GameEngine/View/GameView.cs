@@ -185,9 +185,7 @@ namespace HonkBusterGame
                 {
                     construct.GameView = this;
                     GameObjects.Add(construct);
-
-                    //TODO: comment this after testing:  _canvas.Children.Add(construct.Content);
-                    //_canvas.Children.Add(construct.Content);
+                    _canvas.Children.Add(construct.Content);
                 }
             }
         }
@@ -246,10 +244,10 @@ namespace HonkBusterGame
 
             foreach (GameObject construct in GameObjects.Where(x => x.IsAnimating))
             {
-                if (!_canvas.Children.Contains(construct.Content))
-                {
-                    _canvas.Children.Add(construct.Content); // lazy loading, only add animating constructs in canvas and then cache them
-                }
+                //if (!_canvas.Children.Contains(construct.Content))
+                //{
+                //    _canvas.Children.Add(construct.Content); // lazy loading, only add animating constructs in canvas and then cache them
+                //}
 
                 construct.Animate();
                 construct.Render();
@@ -257,12 +255,12 @@ namespace HonkBusterGame
             }
 
             // remove the destroyables from the scene
-            foreach (GameObject destroyable in _destroyables)
-            {
-                _canvas.Children.Remove(destroyable.Content);
-            }
+            //foreach (GameObject destroyable in _destroyables)
+            //{
+            //    _canvas.Children.Remove(destroyable.Content);
+            //}
 
-            _destroyables.Clear();
+            //_destroyables.Clear();
 
             DepleteSlowMotion();
 #if DEBUG
@@ -274,7 +272,7 @@ namespace HonkBusterGame
 
                 var fps = _famesCount / 2;
 
-                LoggingExtensions.Log($"Scene: {Name} ~ Generators: {_generators.Count} ~ Animating Objects: {GameObjects.Count(x => x.IsAnimating)} \n Rendered Objects: {_canvas.Children.Count} \n Total Objects: {GameObjects.Count} \n FPS: {fps}");
+                LoggingExtensions.Log($"Scene: {Name} \n Animating Objects: {GameObjects.Count(x => x.IsAnimating)} \n Total Objects: {GameObjects.Count} \n Generators: {_generators.Count} \n FPS: {fps}");
 
                 _famesCount = 0;
             }
