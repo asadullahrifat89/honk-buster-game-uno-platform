@@ -1439,7 +1439,7 @@ namespace HonkBusterGame
 
         private void GenerateRoadSideWalk()
         {
-            if (/*!_scene_game.IsSlowMotionActivated &&*/ _scene_game.Children.OfType<RoadSideWalk>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideWalk roadSideWalkTop)
+            if (_scene_game.Children.OfType<RoadSideWalk>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideWalk roadSideWalkTop)
             {
                 roadSideWalkTop.Reset();
                 roadSideWalkTop.SetPosition(
@@ -1448,7 +1448,7 @@ namespace HonkBusterGame
                 roadSideWalkTop.IsAnimating = true;
             }
 
-            if (/*!_scene_game.IsSlowMotionActivated &&*/ _scene_game.Children.OfType<RoadSideWalk>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideWalk roadSideWalkBottom)
+            if (_scene_game.Children.OfType<RoadSideWalk>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideWalk roadSideWalkBottom)
             {
                 roadSideWalkBottom.Reset();
                 roadSideWalkBottom.SetPosition(
@@ -1497,6 +1497,7 @@ namespace HonkBusterGame
         {
             if (!_scene_game.IsSlowMotionActivated && _scene_game.Children.OfType<RoadSideTree>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideTree roadSideTreeTop)
             {
+                roadSideTreeTop.Reset();
                 roadSideTreeTop.SetPosition(
                   left: (Constants.DEFAULT_SCENE_WIDTH / 5),
                   top: (roadSideTreeTop.Height * -1.1),
@@ -1509,6 +1510,7 @@ namespace HonkBusterGame
 
             if (!_scene_game.IsSlowMotionActivated && _scene_game.Children.OfType<RoadSideTree>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideTree roadSideTreeBottom)
             {
+                roadSideTreeBottom.Reset();
                 roadSideTreeBottom.SetPosition(
                   left: (roadSideTreeBottom.Width * -1.1),
                   top: (Constants.DEFAULT_SCENE_HEIGHT / 7.8),
@@ -1556,6 +1558,7 @@ namespace HonkBusterGame
         {
             if (!_scene_game.IsSlowMotionActivated && _scene_game.Children.OfType<RoadSideHedge>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideHedge roadSideHedgeTop)
             {
+                roadSideHedgeTop.Reset();
                 roadSideHedgeTop.SetPosition(
                   left: (Constants.DEFAULT_SCENE_WIDTH / 20),
                   top: (roadSideHedgeTop.Height * -1.1),
@@ -1565,6 +1568,7 @@ namespace HonkBusterGame
 
             if (!_scene_game.IsSlowMotionActivated && _scene_game.Children.OfType<RoadSideHedge>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideHedge roadSideHedgeBottom)
             {
+                roadSideHedgeBottom.Reset();
                 roadSideHedgeBottom.SetPosition(
                   left: (roadSideHedgeBottom.Width * -1.1),
                   top: (Constants.DEFAULT_SCENE_HEIGHT / 7.9),
@@ -1610,6 +1614,7 @@ namespace HonkBusterGame
         {
             if (!_scene_game.IsSlowMotionActivated && _scene_game.Children.OfType<RoadSideLamp>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideLamp roadSideLampTop)
             {
+                roadSideLampTop.Reset();
                 roadSideLampTop.SetPosition(
                   left: (Constants.DEFAULT_SCENE_WIDTH / 3 - roadSideLampTop.Width) - 100,
                   top: ((roadSideLampTop.Height * 1.5) * -1) - 50,
@@ -1619,6 +1624,7 @@ namespace HonkBusterGame
 
             if (!_scene_game.IsSlowMotionActivated && _scene_game.Children.OfType<RoadSideLamp>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideLamp roadSideLampBottom)
             {
+                roadSideLampBottom.Reset();
                 roadSideLampBottom.SetPosition(
                   left: (-1.9 * roadSideLampBottom.Width),
                   top: (Constants.DEFAULT_SCENE_HEIGHT / 4.3),
@@ -1668,6 +1674,7 @@ namespace HonkBusterGame
         {
             if (!_scene_game.IsSlowMotionActivated && _scene_game.Children.OfType<RoadSideBillboard>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideBillboard roadSideBillboardTop)
             {
+                roadSideBillboardTop.Reset();
                 roadSideBillboardTop.SetPosition(
                   left: (Constants.DEFAULT_SCENE_WIDTH / 3.1),
                   top: (roadSideBillboardTop.Height * -1.1));
@@ -1714,6 +1721,7 @@ namespace HonkBusterGame
         {
             if (!_scene_game.IsSlowMotionActivated && _scene_game.Children.OfType<RoadSideLightBillboard>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideLightBillboard roadSideLight)
             {
+                roadSideLight.Reset();
                 roadSideLight.SetPosition(
                   left: (-3.5 * roadSideLight.Width) + 10,
                   top: (Constants.DEFAULT_SCENE_HEIGHT / 5.2) + 10,
@@ -1761,6 +1769,7 @@ namespace HonkBusterGame
         {
             if (_scene_game.Children.OfType<RoadMark>().FirstOrDefault(x => x.IsAnimating == false) is RoadMark roadMark)
             {
+                roadMark.Reset();
                 roadMark.SetPosition(
                   left: roadMark.Height * -1.5,
                   top: roadMark.Height * -1);

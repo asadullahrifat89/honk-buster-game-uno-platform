@@ -37,5 +37,17 @@
         }
 
         #endregion
+
+        public void Reset()
+        {
+            if (Scene.IsInNightMode)
+            {
+                _content_image.ImageBrightness = 50;
+            }
+            else
+            {
+                _content_image.ImageBrightness = 100;
+            }
+        }
     }
 }

@@ -49,7 +49,7 @@ namespace HonkBusterGame
 
             var uri = ConstructExtensions.GetRandomContentUri(_mafia_boss_idle_uris);
             _content_image = new(uri: uri, width: this.Width, height: this.Height);
-            _content_image.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 7, color: "#dc451c");
+            //_content_image.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 7, color: "#dc451c");
 
             SetContent(_content_image);
 
