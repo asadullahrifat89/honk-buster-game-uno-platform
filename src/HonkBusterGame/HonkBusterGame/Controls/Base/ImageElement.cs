@@ -28,8 +28,8 @@
 
             CanDrag = false;
 
-            _imgElement.Width = width;
-            _imgElement.Height = height;
+            ImageWidth = width;
+            ImageHeight = height;
 
             Child = _imgElement;
 
@@ -41,18 +41,45 @@
 
         #region Properties
 
-        //private string id = string.Empty;
+        private string id = string.Empty;
 
-        //public string Id
-        //{
-        //    get { return id; }
-        //    set
-        //    {
-        //        id = value;
-        //        if (_imgElement is not null)
-        //            _imgElement.Id = id;
-        //    }
-        //}
+        public string Id
+        {
+            get { return id; }
+            set
+            {
+                id = value;
+                if (_imgElement is not null)
+                    _imgElement.Id = id;
+            }
+        }
+
+        private string source = string.Empty;
+
+        public string ImageSource
+        {
+            get { return source; }
+            set
+            {
+                source = value;
+                if (_imgElement is not null)
+                    _imgElement.Source = source;
+            }
+        }
+
+        private double blur = 0;
+
+        public double ImageBlur
+        {
+            get { return blur; }
+            set
+            {
+                blur = value;
+
+                if (_imgElement is not null)
+                    _imgElement.Blur = blur;
+            }
+        }
 
         private double contrast = 100;
 
@@ -194,32 +221,66 @@
             }
         }
 
-        #endregion
 
-        #region Methods
+        private double skewX = 0;
 
-        public void SetId(Uri uri)
+        public double ImageSkewX
         {
-            if (_imgElement is not null)
+            get { return skewX; }
+            set
             {
-                var id = uri.AbsoluteUri.Replace("ms-appx:///HonkBusterGame/Assets/Images/", "");
-                _imgElement.Id = id;
+                skewX = value;
+
+                if (_imgElement is not null)
+                    _imgElement.SkewX = skewX;
             }
         }
 
-        public string GetId()
+        private double skewY = 0;
+
+        public double ImageSkewY
         {
-            if (_imgElement is not null)
-                return _imgElement.Id;
-            else
-                return string.Empty;
+            get { return skewY; }
+            set
+            {
+                skewY = value;
+
+                if (_imgElement is not null)
+                    _imgElement.SkewY = skewY;
+            }
         }
 
-        public void SetOpacity(double opacity)
+        private double width = 0;
+
+        public double ImageWidth
         {
-            if (_imgElement is not null)
-                _imgElement.Opacity = opacity;
+            get { return width; }
+            set
+            {
+                width = value;
+
+                if (_imgElement is not null)
+                    _imgElement.Width = width;
+            }
         }
+
+        private double height = 0;
+
+        public double ImageHeight
+        {
+            get { return height; }
+            set
+            {
+                height = value;
+
+                if (_imgElement is not null)
+                    _imgElement.Height = height;
+            }
+        }
+
+        #endregion
+
+        #region Methods
 
         public void SetGrayscale(double grayscale)
         {
@@ -246,73 +307,17 @@
 
         public void SetSource(Uri uri)
         {
-            if (_imgElement is not null)
-            {
-                var source = $"{_baseUrl}/{uri.AbsoluteUri.Replace("ms-appx:///", "")}";
-                _imgElement.Source = source;
+            _uri = uri;
 
-                _uri = uri;
-            }
+            var source = $"{_baseUrl}/{uri.AbsoluteUri.Replace("ms-appx:///", "")}";
+            ImageSource = source;
         }
 
-        public void SetSize(double width, double height)
+        public void SetId(Uri uri)
         {
-            Width = width;
-            Height = height;
-
-            _imgElement.Width = width;
-            _imgElement.Height = height;
-        }
-
-        //public void SetScaleX(double scaleX)
-        //{
-
-        //    if (_imgElement is not null)
-        //        _imgElement.ScaleX = scaleX;
-        //}
-
-        //public void SetScaleY(double scaleY)
-        //{
-        //    if (_imgElement is not null)
-        //        _imgElement.ScaleY = scaleY;
-        //}
-
-        public void SetScaleXY(double scaleX, double scaleY)
-        {
-            if (_imgElement is not null)
-            {
-                _imgElement.ScaleX = scaleX;
-                _imgElement.ScaleY = scaleY;
-            }
-        }
-
-        //public void SetSkewX(double skewX)
-        //{
-
-        //    if (_imgElement is not null)
-        //        _imgElement.SkewX = skewX;
-        //}
-
-        //public void SetSkewY(double skewY)
-        //{
-        //    if (_imgElement is not null)
-        //        _imgElement.SkewY = skewY;
-        //}
-
-        public void SetSkewXY(double skewX, double skewY)
-        {
-            if (_imgElement is not null)
-            {
-                _imgElement.SkewX = skewX;
-                _imgElement.SkewY = skewY;
-            }
-        }
-
-        public void SetRotation(double rotation)
-        {
-            if (_imgElement is not null)
-                _imgElement.Rotation = rotation;
-        }
+            var id = uri.AbsoluteUri.Replace("ms-appx:///HonkBusterGame/Assets/Images/", "");
+            Id = id;
+        }       
 
         public Uri GetSourceUri()
         {

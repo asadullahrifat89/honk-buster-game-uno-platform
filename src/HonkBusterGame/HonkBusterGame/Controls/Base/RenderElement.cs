@@ -404,32 +404,53 @@ namespace HonkBusterGame
                 Canvas.SetLeft(Content, X);
                 Canvas.SetTop(Content, Y);
 
-                if (Content is FrameworkElement element)
+                if (Content is FrameworkElement element && (element.Width != Width || element.Height != Height))
                 {
                     element.Width = Width;
                     element.Height = Height;
                 }
 
-                //if (Content is ImageElement imageElement)
-                //{
-                //    imageElement.SetOpacity(Opacity);
-                //    imageElement.SetScaleXY(ScaleX, ScaleY);
-                //    imageElement.SetRotation(Rotation);
-                //    imageElement.SetSkewXY(SkewX, SkewY);
-                //}
-                //else
-                //{
-                Content.Opacity = Opacity;
+                if (Content is ImageElement imageElement)
+                {
+                    if (imageElement.ImageOpacity != Opacity)
+                        imageElement.ImageOpacity = Opacity;
 
-                _transform.ScaleX = ScaleX;
-                _transform.ScaleY = ScaleY;
+                    if (imageElement.ImageScaleX != ScaleX)
+                        imageElement.ImageScaleX = ScaleX;
 
-                _transform.Rotation = Rotation;
-                _transform.SkewX = SkewX;
-                _transform.SkewY = SkewY;
-                //}
+                    if (imageElement.ImageScaleY != ScaleY)
+                        imageElement.ImageScaleY = ScaleY;
 
+                    if (imageElement.ImageRotation != Rotation)
+                        imageElement.ImageRotation = Rotation;
 
+                    if (imageElement.ImageSkewX != SkewX)
+                        imageElement.ImageSkewX = SkewX;
+
+                    if (imageElement.ImageSkewY != SkewY)
+                        imageElement.ImageSkewY = SkewY;
+                }
+                else
+                {
+
+                    if (Content.Opacity != Opacity)
+                        Content.Opacity = Opacity;
+
+                    if (_transform.ScaleX != ScaleX)
+                        _transform.ScaleX = ScaleX;
+
+                    if (_transform.ScaleY != ScaleY)
+                        _transform.ScaleY = ScaleY;
+
+                    if (_transform.Rotation != Rotation)
+                        _transform.Rotation = Rotation;
+
+                    if (_transform.SkewX != SkewX)
+                        _transform.SkewX = SkewX;
+
+                    if (_transform.SkewY != SkewY)
+                        _transform.SkewY = SkewY;
+                }
 
                 //TODO: draw function to render element in HTML Canvas
             }
