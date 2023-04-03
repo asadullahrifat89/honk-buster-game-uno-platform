@@ -256,7 +256,6 @@ namespace HonkBusterGame
             _destroyables.Clear();
 
             DepleteSlowMotion();
-
 #if DEBUG
             _famesCount++;
 

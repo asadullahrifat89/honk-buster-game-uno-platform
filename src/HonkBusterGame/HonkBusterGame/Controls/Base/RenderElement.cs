@@ -459,8 +459,6 @@ namespace HonkBusterGame
                     if (_transform.SkewY != SkewY)
                         _transform.SkewY = SkewY;
                 }
-
-                //TODO: draw function to render element in HTML Canvas
             }
         }
 
