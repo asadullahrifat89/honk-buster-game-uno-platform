@@ -305,7 +305,6 @@
         public void SetSource(Uri uri)
         {
             _uri = uri;
-
             var source = $"{_baseUrl}/{uri.AbsoluteUri.Replace("ms-appx:///", "")}";
             ImageSource = source;
         }
