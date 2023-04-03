@@ -3,25 +3,6 @@ using Uno.UI.Runtime.WebAssembly;
 
 namespace HonkBusterGame
 {
-    [HtmlElement("canvas")]
-    public sealed class CanvasElement : FrameworkElement
-    {
-        #region Ctor
-        
-        public CanvasElement()
-        {
-
-        }
-
-        #endregion
-
-        #region Properties
-
-
-
-        #endregion
-    }
-
     [HtmlElement("img")]
     public sealed class ImgElement : FrameworkElement
     {
@@ -251,7 +232,16 @@ namespace HonkBusterGame
 
         #region Dependency Properties
 
-        public static readonly DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(string), typeof(ImgElement), new PropertyMetadata(default(string), OnSourceChanged));
+        public static readonly DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(string), typeof(ImgElement), new PropertyMetadata(default(string), (s, e) =>
+        {
+            if (s is ImgElement image)
+            {
+                var encodedSource = WebAssemblyRuntime.EscapeJs("" + e.NewValue);
+                image.SetHtmlAttribute("src", encodedSource);
+                image.SetProperties();
+            }
+
+        }));
 
         public string Source
         {
@@ -259,15 +249,37 @@ namespace HonkBusterGame
             set => SetValue(SourceProperty, value);
         }
 
-        private static void OnSourceChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
+      
+
+        public new static readonly DependencyProperty WidthProperty = DependencyProperty.Register("Width", typeof(double), typeof(ImgElement), new PropertyMetadata(default(double), (s, e) =>
         {
-            if (dependencyObject is ImgElement image)
+            if (s is ImgElement image)
             {
-                var encodedSource = WebAssemblyRuntime.EscapeJs("" + args.NewValue);
-                image.SetHtmlAttribute("src", encodedSource);
-                image.SetProperties();
+                var encodedWidth = e.NewValue.ToString();
+                image.SetHtmlAttribute("width", encodedWidth);
             }
+        }));
+
+        public new double Width
+        {
+            get => (double)GetValue(WidthProperty);
+            set => SetValue(WidthProperty, value);
         }
+
+        public new static readonly DependencyProperty HeightProperty = DependencyProperty.Register("Height", typeof(double), typeof(ImgElement), new PropertyMetadata(default(double), (s, e) =>
+        {
+            if (s is ImgElement image)
+            {
+                var encodedHeight = e.NewValue.ToString();
+                image.SetHtmlAttribute("height", encodedHeight);
+            }
+        }));
+
+        public new double Height
+        {
+            get => (double)GetValue(HeightProperty);
+            set => SetValue(HeightProperty, value);
+        }      
 
         #endregion
 
@@ -275,12 +287,12 @@ namespace HonkBusterGame
 
         public string GetCssFilter()
         {
-            return $"grayscale({grayscale}%) contrast({contrast}%) brightness({brightness}%) saturate({saturation}%) sepia({sepia}%) invert({invert}%) hue-rotate({hue}deg) blur({blur}px)";
+            return $"grayscale({grayscale}%) contrast({contrast}%) brightness({brightness}%) saturate({saturation}%) sepia({sepia}%) invert({invert}%) hue-rotate({hue}deg) blur({blur}px) drop-shadow({dropShadowX}px {dropShadowY}px {dropShadowBlur}px {dropShadowColor})";
         }
 
         public void SetProperties()
         {
-            this.SetCssStyle(("filter", GetCssFilter() + $" drop-shadow(-{dropShadowX}px {dropShadowY}px {dropShadowBlur}px {dropShadowColor})"), ("opacity", $"{opacity}"), ("transform", $"rotate({rotation}deg) scaleX({scaleX}) scaleY({scaleY})"));
+            this.SetCssStyle(("filter", GetCssFilter()), ("opacity", $"{opacity}"), ("transform", $"rotate({rotation}deg) scaleX({scaleX}) scaleY({scaleY})"));
         }
 
         #endregion

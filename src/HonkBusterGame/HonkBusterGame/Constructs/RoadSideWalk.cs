@@ -26,7 +26,7 @@
 
             var uri = ConstructExtensions.GetRandomContentUri(_side_walk_uris);
             _content_image = new(uri: uri, width: this.Width, height: this.Height);
-            _content_image.SetDropShadow(offsetX: 7, offsetY: 0, blurRadius: 2);
+            _content_image.SetDropShadow(offsetX: -7, offsetY: 0, blurRadius: 2);
             SetContent(_content_image);
 
             //BorderBrush = Application.Current.Resources["BorderColor"] as SolidColorBrush;

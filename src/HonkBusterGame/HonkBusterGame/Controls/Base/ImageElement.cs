@@ -25,7 +25,12 @@
             RenderTransformOrigin = new Windows.Foundation.Point(0.5, 0.5);
             Width = width;
             Height = height;
+
             CanDrag = false;
+
+            _imgElement.Width = width;
+            _imgElement.Height = height;
+
             Child = _imgElement;
 
             SetId(uri);
@@ -242,6 +247,15 @@
 
                 _uri = uri;
             }
+        }
+
+        public void SetSize(double width, double height)
+        {
+            Width = width;
+            Height = height;
+
+            _imgElement.Width = width;
+            _imgElement.Height = height;
         }
 
         public Uri GetSourceUri()
