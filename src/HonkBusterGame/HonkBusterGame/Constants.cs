@@ -23,7 +23,7 @@
 
         public const double DEFAULT_BLAST_RING_CORNER_RADIUS = 100;
         public const double DEFAULT_BLAST_RING_BORDER_THICKNESS = 10;
-        public const double DEFAULT_BLAST_SHRINK_SCALE = 0.8; // 0.4;
+        public const double DEFAULT_BLAST_SHRINK_SCALE = 0.8;
         public const double DEFAULT_BLAST_FADE_SCALE = 0.02;
 
         public const double DEFAULT_ROCKET_SIZE = 85;

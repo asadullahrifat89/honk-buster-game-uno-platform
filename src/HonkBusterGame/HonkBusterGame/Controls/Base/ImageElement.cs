@@ -3,34 +3,6 @@ using System;
 
 namespace HonkBusterGame
 {
-    //public partial class ImageElement : Image
-    //{
-    //    private readonly BitmapImage _bitmapImage;
-
-    //    private Uri _uri;
-
-    //    public ImageElement(Uri uri, double width, double height)
-    //    {
-    //        _uri = uri;
-    //        _bitmapImage = new BitmapImage(uriSource: _uri);
-    //        Source = _bitmapImage;
-    //        Width = width;
-    //        Height = height;
-    //        CanDrag = false;
-    //    }
-
-    //    public void SetSource(Uri uri)
-    //    {
-    //        _uri = uri;
-    //        _bitmapImage.UriSource = _uri;
-    //    }
-
-    //    public Uri GetSourceUri()
-    //    {
-    //        return _uri;
-    //    }
-    //}
-
     public partial class ImageElement : Border
     {
         #region Fields
@@ -50,15 +22,16 @@ namespace HonkBusterGame
             var indexUrl = "./"; //Uno.Foundation.WebAssemblyRuntime.InvokeJS("window.location.href;");
             var appPackageId = Environment.GetEnvironmentVariable("UNO_BOOTSTRAP_APP_BASE");
 
-            _baseUrl = $"{indexUrl}{appPackageId}";            
+            _baseUrl = $"{indexUrl}{appPackageId}";
             _imgElement = new ImgElement();
 
-            RenderTransformOrigin = new Windows.Foundation.Point(0.5, 0.5);            
+            RenderTransformOrigin = new Windows.Foundation.Point(0.5, 0.5);
             Width = width;
             Height = height;
             CanDrag = false;
             Child = _imgElement;
 
+            SetId(uri);
             SetSource(uri);
         }
 
@@ -66,18 +39,18 @@ namespace HonkBusterGame
 
         #region Properties
 
-        private string id = string.Empty;
+        //private string id = string.Empty;
 
-        public string Id
-        {
-            get { return id; }
-            set
-            {
-                id = value;
-                if (_imgElement is not null)
-                    _imgElement.Id = id;
-            }
-        }
+        //public string Id
+        //{
+        //    get { return id; }
+        //    set
+        //    {
+        //        id = value;
+        //        if (_imgElement is not null)
+        //            _imgElement.Id = id;
+        //    }
+        //}
 
         private double contrast = 100;
 
@@ -161,7 +134,7 @@ namespace HonkBusterGame
                 if (_imgElement is not null)
                     _imgElement.Hue = hue;
             }
-        }       
+        }
 
         private double opacity = 1;
 
@@ -221,31 +194,24 @@ namespace HonkBusterGame
 
         #endregion
 
-        #region Dependency Properties
-
-        //public static readonly DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(string), typeof(ImageElement), new PropertyMetadata(default(string), OnSourceChanged));
-
-        //public string Source
-        //{
-        //    get => (string)GetValue(SourceProperty);
-        //    set => SetValue(SourceProperty, value);
-        //}
-
-        //private static void OnSourceChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
-        //{
-        //    if (dependencyObject is ImageElement image)
-        //    {
-        //        if (image.ImgElement is not null)
-        //        {
-        //            image.ImgElement.Id = image.Id;
-        //            image.ImgElement.Source = image.Source;
-        //        }
-        //    }
-        //}
-
-        #endregion
-
         #region Methods
+
+        public void SetId(Uri uri)
+        {
+            if (_imgElement is not null)
+            {
+                var id = uri.AbsoluteUri.Replace("ms-appx:///HonkBusterGame/Assets/Images/", "");
+                _imgElement.Id = id;
+            }
+        }
+
+        public string GetId()
+        {
+            if (_imgElement is not null)
+                return _imgElement.Id;
+            else
+                return string.Empty;
+        }
 
         public void SetGrayscale(double grayscale)
         {
@@ -288,4 +254,32 @@ namespace HonkBusterGame
 
         #endregion
     }
+
+    //public partial class ImageElement : Image
+    //{
+    //    private readonly BitmapImage _bitmapImage;
+
+    //    private Uri _uri;
+
+    //    public ImageElement(Uri uri, double width, double height)
+    //    {
+    //        _uri = uri;
+    //        _bitmapImage = new BitmapImage(uriSource: _uri);
+    //        Source = _bitmapImage;
+    //        Width = width;
+    //        Height = height;
+    //        CanDrag = false;
+    //    }
+
+    //    public void SetSource(Uri uri)
+    //    {
+    //        _uri = uri;
+    //        _bitmapImage.UriSource = _uri;
+    //    }
+
+    //    public Uri GetSourceUri()
+    //    {
+    //        return _uri;
+    //    }
+    //}
 }
