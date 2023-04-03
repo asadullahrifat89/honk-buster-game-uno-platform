@@ -6,8 +6,8 @@ namespace HonkBusterGame
     {
         #region Fields
 
-        private readonly Storyboard _opacity_storyboard;
-        private readonly DoubleAnimation _doubleAnimation;
+        //private readonly Storyboard _opacity_storyboard;
+        //private readonly DoubleAnimation _doubleAnimation;
 
         #endregion
 
@@ -15,24 +15,28 @@ namespace HonkBusterGame
 
         public HoveringTitleScreen()
         {
-            _doubleAnimation = new DoubleAnimation()
-            {
-                Duration = new Duration(TimeSpan.FromMilliseconds(700)),
-                From = 0,
-                To = 1,
-            };
+            #region Opacity Animation
 
-            Storyboard.SetTarget(_doubleAnimation, this.Content);
-            Storyboard.SetTargetProperty(_doubleAnimation, "Opacity");
+            //_doubleAnimation = new DoubleAnimation()
+            //{
+            //    Duration = new Duration(TimeSpan.FromMilliseconds(700)),
+            //    From = 0,
+            //    To = 1,
+            //};
 
-            _opacity_storyboard = new Storyboard();
-            _opacity_storyboard.Children.Add(_doubleAnimation);
-            _opacity_storyboard.Completed += (s, e) =>
-            {
-                _opacity_storyboard.Stop();
+            //Storyboard.SetTarget(_doubleAnimation, this.Content);
+            //Storyboard.SetTargetProperty(_doubleAnimation, "Opacity");
 
-                LoggingExtensions.Log($"HoveringTitleScreen: _opacity_storyboard -> Completed");
-            };
+            //_opacity_storyboard = new Storyboard();
+            //_opacity_storyboard.Children.Add(_doubleAnimation);
+            //_opacity_storyboard.Completed += (s, e) =>
+            //{
+            //    _opacity_storyboard.Stop();
+
+            //    LoggingExtensions.Log($"HoveringTitleScreen: _opacity_storyboard -> Completed");
+            //}; 
+
+            #endregion
         }
 
         #endregion
@@ -41,7 +45,7 @@ namespace HonkBusterGame
 
         public void Reset()
         {
-            _opacity_storyboard.Begin();
+            //_opacity_storyboard.Begin();
         }
 
         public void Reposition()

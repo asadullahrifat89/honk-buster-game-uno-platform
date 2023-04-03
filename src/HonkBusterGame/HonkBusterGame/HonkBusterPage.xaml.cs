@@ -324,7 +324,7 @@ namespace HonkBusterGame
         {
             foreach (var screen in _scene_main_menu.Children.OfType<HoveringTitleScreen>().Where(x => x.IsAnimating))
             {
-                screen.Reposition();                
+                screen.Reposition();
             }
         }
 
@@ -388,7 +388,7 @@ namespace HonkBusterGame
             if (_scene_main_menu.Children.OfType<PromptOrientationChangeScreen>().FirstOrDefault(x => x.IsAnimating == false) is PromptOrientationChangeScreen promptOrientationChangeScreen)
             {
                 promptOrientationChangeScreen.Reposition();
-                promptOrientationChangeScreen.IsAnimating = true;                
+                promptOrientationChangeScreen.IsAnimating = true;
             }
         }
 
@@ -424,9 +424,9 @@ namespace HonkBusterGame
         {
             if (_scene_main_menu.Children.OfType<AssetsLoadingScreen>().FirstOrDefault(x => x.IsAnimating == false) is AssetsLoadingScreen assetsLoadingScreen)
             {
-                assetsLoadingScreen.Reposition();                
+                assetsLoadingScreen.Reposition();
                 assetsLoadingScreen.SetSubTitle($"... Loading Assets ...");
-                assetsLoadingScreen.IsAnimating = true;                
+                assetsLoadingScreen.IsAnimating = true;
 
                 _ = assetsLoadingScreen.PreloadAssets(async () =>
                 {
@@ -1485,7 +1485,7 @@ namespace HonkBusterGame
             {
                 RoadSideTree roadSideTree = new(
                     animateAction: AnimateRoadSideTree,
-                    recycleAction: RecycleRoadSideTree);              
+                    recycleAction: RecycleRoadSideTree);
 
                 _scene_game.AddToScene(roadSideTree);
 
@@ -1512,7 +1512,7 @@ namespace HonkBusterGame
                 roadSideTreeBottom.SetPosition(
                   left: (roadSideTreeBottom.Width * -1.1),
                   top: (Constants.DEFAULT_SCENE_HEIGHT / 7.8),
-                  z: 5);
+                  z: 7);
                 roadSideTreeBottom.IsAnimating = true;
 
                 //GenerateDropShadow(source: roadSideTreeBottom);
@@ -1568,7 +1568,7 @@ namespace HonkBusterGame
                 roadSideHedgeBottom.SetPosition(
                   left: (roadSideHedgeBottom.Width * -1.1),
                   top: (Constants.DEFAULT_SCENE_HEIGHT / 7.9),
-                  z: 3);
+                  z: 4);
                 roadSideHedgeBottom.IsAnimating = true;
             }
         }
@@ -1622,7 +1622,7 @@ namespace HonkBusterGame
                 roadSideLampBottom.SetPosition(
                   left: (-1.9 * roadSideLampBottom.Width),
                   top: (Constants.DEFAULT_SCENE_HEIGHT / 4.3),
-                  z: 5);
+                  z: 6);
                 roadSideLampBottom.IsAnimating = true;
             }
         }
@@ -1717,7 +1717,7 @@ namespace HonkBusterGame
                 roadSideLight.SetPosition(
                   left: (-3.5 * roadSideLight.Width) + 10,
                   top: (Constants.DEFAULT_SCENE_HEIGHT / 5.2) + 10,
-                  z: 4);
+                  z: 5);
                 roadSideLight.IsAnimating = true;
             }
         }
@@ -2322,7 +2322,7 @@ namespace HonkBusterGame
 
                 _scene_game.AddToScene(vehicleEnemy);
 
-                vehicleEnemy.SetZ(z: 4);
+                vehicleEnemy.SetZ(z: 5);
             }
         }
 
@@ -2367,10 +2367,7 @@ namespace HonkBusterGame
 
         private void PreventVehicleEnemyOverlapping(Construct vehicleEnemy)
         {
-            //var vehicleEnemy_distantHitBox = vehicleEnemy.GetDistantHitBox();
-
-            if (_scene_game.Children.OfType<VehicleEnemy>()
-                .FirstOrDefault(x => x.IsAnimating && x.GetHitBox().IntersectsWith(vehicleEnemy.GetHitBox())) is Construct collidingVehicleEnemy)
+            if (_scene_game.Children.OfType<VehicleEnemy>().FirstOrDefault(x => x.IsAnimating && x.GetHitBox().IntersectsWith(vehicleEnemy.GetHitBox())) is Construct collidingVehicleEnemy)
             {
                 var hitBox = vehicleEnemy.GetHitBox();
 
@@ -2414,7 +2411,7 @@ namespace HonkBusterGame
                 animateAction: AnimateVehicleBoss,
                 recycleAction: RecycleVehicleBoss);
 
-            vehicleBoss.SetZ(z: 4);
+            vehicleBoss.SetZ(z: 5);
 
             _scene_game.AddToScene(vehicleBoss);
         }
@@ -2621,7 +2618,7 @@ namespace HonkBusterGame
             if (vehicleBossRocket.IsFadingComplete || hitbox.Left > Constants.DEFAULT_SCENE_WIDTH || hitbox.Right < 0 || hitbox.Bottom < 0 || hitbox.Top > Constants.DEFAULT_SCENE_HEIGHT)
             {
                 vehicleBossRocket.IsAnimating = false;
-                vehicleBossRocket.IsGravitatingUpwards = false;                
+                vehicleBossRocket.IsGravitatingUpwards = false;
             }
         }
 

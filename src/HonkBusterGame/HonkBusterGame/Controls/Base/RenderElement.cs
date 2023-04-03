@@ -28,6 +28,7 @@ namespace HonkBusterGame
 
             ScaleX = 1;
             ScaleY = 1;
+            Z = 0;
             Rotation = 0;
             Opacity = 1;
         }
@@ -366,17 +367,17 @@ namespace HonkBusterGame
         {
             Content = content;
 
-            content.RenderTransformOrigin = new Point(0.5, 0.5);
-            content.RenderTransform = _transform;
+            Content.RenderTransformOrigin = new Point(0.5, 0.5);
+            Content.RenderTransform = _transform;
         }
 
         public void Update()
         {
             if (Content is not null)
             {
-                Canvas.SetLeft(Content, X);
-                Canvas.SetTop(Content, Y);
                 Canvas.SetZIndex(Content, Z);
+                Canvas.SetLeft(Content, X);
+                Canvas.SetTop(Content, Y);                
 
                 if (Content is FrameworkElement element)
                 {

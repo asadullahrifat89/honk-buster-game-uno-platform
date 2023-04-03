@@ -11,8 +11,8 @@ namespace HonkBusterGame
 
         private readonly Canvas _canvas;
 
-        private readonly Storyboard _opacity_storyboard;
-        private readonly DoubleAnimation _doubleAnimation;
+        //private readonly Storyboard _opacity_storyboard;
+        //private readonly DoubleAnimation _doubleAnimation;
 
         private readonly CompositeTransform _transform = new()
         {
@@ -45,23 +45,23 @@ namespace HonkBusterGame
         {
             #region Opacity Animation
 
-            _doubleAnimation = new DoubleAnimation()
-            {
-                Duration = new Duration(TimeSpan.FromSeconds(4)),
-                From = 0,
-                To = 1,
-            };
+            //_doubleAnimation = new DoubleAnimation()
+            //{
+            //    Duration = new Duration(TimeSpan.FromSeconds(4)),
+            //    From = 0,
+            //    To = 1,
+            //};
 
-            Storyboard.SetTarget(_doubleAnimation, this);
-            Storyboard.SetTargetProperty(_doubleAnimation, "Opacity");
+            //Storyboard.SetTarget(_doubleAnimation, this);
+            //Storyboard.SetTargetProperty(_doubleAnimation, "Opacity");
 
-            _opacity_storyboard = new Storyboard();
-            _opacity_storyboard.Children.Add(_doubleAnimation);
-            _opacity_storyboard.Completed += (s, e) =>
-            {
-                _opacity_storyboard.Stop();
-                LoggingExtensions.Log($"Scene: _opacity_storyboard -> Completed");
-            };
+            //_opacity_storyboard = new Storyboard();
+            //_opacity_storyboard.Children.Add(_doubleAnimation);
+            //_opacity_storyboard.Completed += (s, e) =>
+            //{
+            //    _opacity_storyboard.Stop();
+            //    LoggingExtensions.Log($"Scene: _opacity_storyboard -> Completed");
+            //};
 
             #endregion
 
@@ -105,7 +105,7 @@ namespace HonkBusterGame
 
         private void Scene_Loaded(object sender, RoutedEventArgs e)
         {
-            _opacity_storyboard.Begin();
+            //_opacity_storyboard.Begin();
         }
 
         private void Scene_Unloaded(object sender, RoutedEventArgs e)
