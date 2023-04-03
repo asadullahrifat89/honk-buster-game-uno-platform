@@ -79,7 +79,7 @@
         {
             SetPosition(
                 left: (vehicleBoss.GetLeft() + vehicleBoss.Width / 2) - Width / 2,
-                top: vehicleBoss.GetTop());
+                top: vehicleBoss.GetTop() + vehicleBoss.Height / 2);
         }
 
         public void SetBlast()
