@@ -1,6 +1,6 @@
 ﻿namespace HonkBusterGame
 {
-    public partial class Construct : CanvasElement
+    public partial class Construct : RenderElement
     {
         public Construct()
         {

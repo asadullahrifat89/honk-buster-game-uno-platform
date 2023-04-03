@@ -2,7 +2,7 @@
 
 namespace HonkBusterGame
 {
-    public partial class CanvasElement : Border
+    public partial class RenderElement : Border
     {
         #region Fields
 
@@ -19,7 +19,7 @@ namespace HonkBusterGame
 
         #region Ctor
 
-        public CanvasElement()
+        public RenderElement()
         {
             RenderTransformOrigin = new Point(0.5, 0.5);
             RenderTransform = _compositeTransform;
