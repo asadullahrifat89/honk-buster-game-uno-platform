@@ -6,6 +6,7 @@ namespace HonkBusterGame
     {
         #region Fields
 
+        private readonly Border _content;
 
         #endregion
 
@@ -28,8 +29,13 @@ namespace HonkBusterGame
             AnimateAction = animateAction;
             RecycleAction = recycleAction;
 
-            Background = Application.Current.Resources["DropShadowColor"] as SolidColorBrush;
-            CornerRadius = new CornerRadius(100);
+            _content = new Border();
+
+            _content.Background = Application.Current.Resources["DropShadowColor"] as SolidColorBrush;
+            _content.CornerRadius = new CornerRadius(100);
+
+            SetChild(_content);
+
             SetOpacity(0.9);
 
             SetConstructSize(ConstructType);

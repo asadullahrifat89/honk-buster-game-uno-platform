@@ -32,7 +32,7 @@ namespace HonkBusterGame
             AnimateAction = animateAction;
             RecycleAction = recycleAction;
 
-            CornerRadius = new CornerRadius(5);
+            //CornerRadius = new CornerRadius(5);
 
             IsometricDisplacement = Constants.DEFAULT_ISOMETRIC_DISPLACEMENT;
             Speed = Constants.DEFAULT_CONSTRUCT_SPEED;

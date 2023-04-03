@@ -2,7 +2,7 @@
 
 namespace HonkBusterGame
 {
-    public partial class RenderElement : Border
+    public partial class RenderElement
     {
         #region Fields
 
@@ -21,8 +21,9 @@ namespace HonkBusterGame
 
         public RenderElement()
         {
-            CanDrag = false;
+            //CanDrag = false;
 
+            Child = new UIElement();
             IsAnimating = false;
 
             ScaleX = 1;
@@ -40,62 +41,6 @@ namespace HonkBusterGame
         /// </summary>
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
-        /// <summary>
-        /// Returns true if faded.
-        /// </summary>
-        public bool IsFadingComplete => Opacity <= 0;
-
-        /// <summary>
-        /// Returns true if shrinked.
-        /// </summary>
-        public bool IsShrinkingComplete => GetScaleX() <= 0 || GetScaleY() <= 0;
-
-        /// <summary>
-        /// Returns true of expanded.
-        /// </summary>
-        public bool IsExpandingComplete => GetScaleX() >= 2 || GetScaleY() >= 2;
-
-        /// <summary>
-        /// Only animated by the scene if set to true.
-        /// </summary>
-        //public bool IsAnimating { get; set; }
-
-        private bool _IsAnimating;
-
-        public bool IsAnimating
-        {
-            get { return _IsAnimating; }
-            set
-            {
-                _IsAnimating = value;
-
-                if (!_IsAnimating)
-                {
-                    Canvas.SetLeft(this, -3000);
-                    Canvas.SetTop(this, -3000);
-                }
-            }
-        }
-
-        /// <summary>
-        /// The distance from this construct at which a shadow should appear.
-        /// </summary>
-        public double DropShadowDistance { get; set; }
-
-        /// <summary>
-        /// Determines gravitating effect so that it can reach it's drop shadow.
-        /// </summary>
-        public bool IsGravitatingDownwards { get; set; }
-
-        /// <summary>
-        /// Determines flying up effect.
-        /// </summary>
-        public bool IsGravitatingUpwards { get; set; }
-
-        /// <summary>
-        /// Determines if pop effect should execute for this construct.
-        /// </summary>
-        private bool IsAwaitingPop { get; set; }
 
         /// <summary>
         /// The canvas X position of the element.
@@ -128,17 +73,69 @@ namespace HonkBusterGame
 
         public new double Height { get; set; }
 
+        public new UIElement Child { get; set; }
+
+        public object Tag { get; set; }
+
+        /// <summary>
+        /// Returns true if faded.
+        /// </summary>
+        public bool IsFadingComplete => Opacity <= 0;
+
+        /// <summary>
+        /// Returns true if shrinked.
+        /// </summary>
+        public bool IsShrinkingComplete => GetScaleX() <= 0 || GetScaleY() <= 0;
+
+        /// <summary>
+        /// Returns true of expanded.
+        /// </summary>
+        public bool IsExpandingComplete => GetScaleX() >= 2 || GetScaleY() >= 2;
+
+        /// <summary>
+        /// The distance from this construct at which a shadow should appear.
+        /// </summary>
+        public double DropShadowDistance { get; set; }
+
+        /// <summary>
+        /// Determines gravitating effect so that it can reach it's drop shadow.
+        /// </summary>
+        public bool IsGravitatingDownwards { get; set; }
+
+        /// <summary>
+        /// Determines flying up effect.
+        /// </summary>
+        public bool IsGravitatingUpwards { get; set; }
+
+        /// <summary>
+        /// Determines if pop effect should execute for this construct.
+        /// </summary>
+        private bool IsAwaitingPop { get; set; }
+
+        private bool _IsAnimating;
+
+        /// <summary>
+        /// Only animated by the scene if set to true.
+        /// </summary>
+        public bool IsAnimating
+        {
+            get { return _IsAnimating; }
+            set
+            {
+                _IsAnimating = value;
+
+                if (!_IsAnimating && Child is not null)
+                {
+                    Canvas.SetLeft(Child, -3000);
+                    Canvas.SetTop(Child, -3000);
+                }
+            }
+        }
+
+
         #endregion
 
         #region Methods
-
-        public void SetChild(UIElement content)
-        {
-            Child = content;
-
-            content.RenderTransformOrigin = new Point(0.5, 0.5);
-            content.RenderTransform = _transform;
-        }
 
         public double GetTop()
         {
@@ -365,13 +362,21 @@ namespace HonkBusterGame
             Height = height;
         }
 
+        public void SetChild(UIElement content)
+        {
+            Child = content;
+
+            content.RenderTransformOrigin = new Point(0.5, 0.5);
+            content.RenderTransform = _transform;
+        }
+
         public void Update()
         {
             if (Child is not null)
             {
-                Canvas.SetLeft(this, X);
-                Canvas.SetTop(this, Y);
-                Canvas.SetZIndex(this, Z);
+                Canvas.SetLeft(Child, X);
+                Canvas.SetTop(Child, Y);
+                Canvas.SetZIndex(Child, Z);
 
                 if (Child is FrameworkElement element)
                 {

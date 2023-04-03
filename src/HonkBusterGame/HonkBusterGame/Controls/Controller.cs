@@ -17,6 +17,8 @@ namespace HonkBusterGame
         //private int _move_x_activator;
         //private int _move_y_activator;
 
+        private Border _thumbstickThumbChild = new Border();
+
         #endregion
 
         #region Properties
@@ -87,7 +89,7 @@ namespace HonkBusterGame
 
         public void SetThumbstickThumbColor(SolidColorBrush color)
         {
-            ThumbstickThumb.Background = color;
+            _thumbstickThumbChild.Background = color;
         }
 
         public void SetDefaultThumbstickPosition()
@@ -118,39 +120,35 @@ namespace HonkBusterGame
                 RenderTransformOrigin = new Point(1, 1),
                 HorizontalAlignment = HorizontalAlignment.Right,
                 VerticalAlignment = VerticalAlignment.Bottom,
-                //RenderTransform = new ScaleTransform() { CenterX = 0.5, CenterY = 0.5, ScaleX = 0.70, ScaleY = 0.70 }
             };
 
-            var neutralZone = new Construct()
+            Border neutralZoneChild = new()
             {
-                Height = Constants.DEFAULT_CONTROLLER_KEY_SIZE * 1.55,
-                Width = Constants.DEFAULT_CONTROLLER_KEY_SIZE * 1.55,
                 Background = new SolidColorBrush(Colors.Goldenrod),
                 CornerRadius = new CornerRadius(Constants.DEFAULT_CONTROLLER_KEY_CORNER_RADIUS * sizeXY),
                 BorderBrush = Application.Current.Resources["BorderColor"] as SolidColorBrush,
                 BorderThickness = new Thickness(Constants.DEFAULT_CONTROLLER_KEY_BORDER_THICKNESS),
                 HorizontalAlignment = HorizontalAlignment.Right,
                 VerticalAlignment = VerticalAlignment.Bottom,
+            };
+
+            var neutralZone = new Construct()
+            {
+                Height = Constants.DEFAULT_CONTROLLER_KEY_SIZE * 1.55,
+                Width = Constants.DEFAULT_CONTROLLER_KEY_SIZE * 1.55,
                 Opacity = 0.4,
             };
 
-            //grid.Children.Add(Thumbstick);
+            neutralZone.SetChild(neutralZoneChild);
 
             ThumbstickUpLeft = new()
             {
                 Tag = MovementDirection.UpLeft,
                 Height = Constants.DEFAULT_CONTROLLER_KEY_SIZE,
                 Width = Constants.DEFAULT_CONTROLLER_KEY_SIZE,
-                //Child = new SymbolIcon()
-                //{
-                //    Symbol = Symbol.Up,
-                //},
-                RenderTransformOrigin = new Point(0.5, 0.5),
-                RenderTransform = new RotateTransform() { CenterX = 0.5, CenterY = 0.5, Angle = -45 },
-
-                //Background = new SolidColorBrush(Colors.Goldenrod),
-                //BorderBrush = new SolidColorBrush(Colors.White),
-                //BorderThickness = new Thickness(Constants.DEFAULT_CONTROLLER_KEY_BORDER_THICKNESS),
+                Rotation = -45,
+                //RenderTransformOrigin = new Point(0.5, 0.5),
+                //RenderTransform = new RotateTransform() { CenterX = 0.5, CenterY = 0.5, Angle = -45 },
             };
 
             ThumbstickUp = new()
@@ -158,15 +156,7 @@ namespace HonkBusterGame
                 Tag = MovementDirection.Up,
                 Height = Constants.DEFAULT_CONTROLLER_KEY_SIZE,
                 Width = Constants.DEFAULT_CONTROLLER_KEY_SIZE * sizeXY,
-                //Child = new SymbolIcon()
-                //{
-                //    Symbol = Symbol.Up,
-                //},
-                RenderTransformOrigin = new Point(0.5, 0.5),
-
-                //Background = new SolidColorBrush(Colors.Goldenrod),
-                //BorderBrush = new SolidColorBrush(Colors.White),
-                //BorderThickness = new Thickness(Constants.DEFAULT_CONTROLLER_KEY_BORDER_THICKNESS),
+                //RenderTransformOrigin = new Point(0.5, 0.5),
             };
 
             ThumbstickUpRight = new()
@@ -174,16 +164,9 @@ namespace HonkBusterGame
                 Tag = MovementDirection.UpRight,
                 Height = Constants.DEFAULT_CONTROLLER_KEY_SIZE,
                 Width = Constants.DEFAULT_CONTROLLER_KEY_SIZE,
-                //Child = new SymbolIcon()
-                //{
-                //    Symbol = Symbol.Forward,
-                //},
-                RenderTransformOrigin = new Point(0.5, 0.5),
-                RenderTransform = new RotateTransform() { CenterX = 0.5, CenterY = 0.5, Angle = -45 },
-
-                //Background = new SolidColorBrush(Colors.Goldenrod),
-                //BorderBrush = new SolidColorBrush(Colors.White),
-                //BorderThickness = new Thickness(Constants.DEFAULT_CONTROLLER_KEY_BORDER_THICKNESS),
+                Rotation = -45,
+                //RenderTransformOrigin = new Point(0.5, 0.5),
+                //RenderTransform = new RotateTransform() { CenterX = 0.5, CenterY = 0.5, Angle = -45 },
             };
 
             ThumbstickLeft = new()
@@ -191,15 +174,7 @@ namespace HonkBusterGame
                 Tag = MovementDirection.Left,
                 Height = Constants.DEFAULT_CONTROLLER_KEY_SIZE * sizeXY,
                 Width = Constants.DEFAULT_CONTROLLER_KEY_SIZE,
-                //Child = new SymbolIcon()
-                //{
-                //    Symbol = Symbol.Back,
-                //},
-                RenderTransformOrigin = new Point(0.5, 0.5),
-
-                //Background = new SolidColorBrush(Colors.Goldenrod),
-                //BorderBrush = new SolidColorBrush(Colors.White),
-                //BorderThickness = new Thickness(Constants.DEFAULT_CONTROLLER_KEY_BORDER_THICKNESS),
+                //RenderTransformOrigin = new Point(0.5, 0.5),
             };
 
             ThumbstickRight = new()
@@ -207,15 +182,7 @@ namespace HonkBusterGame
                 Tag = MovementDirection.Right,
                 Height = Constants.DEFAULT_CONTROLLER_KEY_SIZE * sizeXY,
                 Width = Constants.DEFAULT_CONTROLLER_KEY_SIZE,
-                //Child = new SymbolIcon()
-                //{
-                //    Symbol = Symbol.Forward,
-                //},
-                RenderTransformOrigin = new Point(0.5, 0.5),
-
-                //Background = new SolidColorBrush(Colors.Goldenrod),
-                //BorderBrush = new SolidColorBrush(Colors.White),
-                //BorderThickness = new Thickness(Constants.DEFAULT_CONTROLLER_KEY_BORDER_THICKNESS),
+                //RenderTransformOrigin = new Point(0.5, 0.5),
             };
 
             ThumbstickDownLeft = new()
@@ -223,16 +190,9 @@ namespace HonkBusterGame
                 Tag = MovementDirection.DownLeft,
                 Height = Constants.DEFAULT_CONTROLLER_KEY_SIZE,
                 Width = Constants.DEFAULT_CONTROLLER_KEY_SIZE,
-                //Child = new SymbolIcon()
-                //{
-                //    Symbol = Symbol.Back,
-                //},
-                RenderTransformOrigin = new Point(0.5, 0.5),
-                RenderTransform = new RotateTransform() { CenterX = 0.5, CenterY = 0.5, Angle = -45 },
-
-                //Background = new SolidColorBrush(Colors.Goldenrod),
-                //BorderBrush = new SolidColorBrush(Colors.White),
-                //BorderThickness = new Thickness(Constants.DEFAULT_CONTROLLER_KEY_BORDER_THICKNESS),
+                Rotation = -45,
+                //RenderTransformOrigin = new Point(0.5, 0.5),
+                //RenderTransform = new RotateTransform() { CenterX = 0.5, CenterY = 0.5, Angle = -45 },
             };
 
             ThumbstickDown = new()
@@ -240,16 +200,9 @@ namespace HonkBusterGame
                 Tag = MovementDirection.Down,
                 Height = Constants.DEFAULT_CONTROLLER_KEY_SIZE,
                 Width = Constants.DEFAULT_CONTROLLER_KEY_SIZE * sizeXY,
-                //Child = new SymbolIcon()
-                //{
-                //    Symbol = Symbol.Up
-                //},
-                RenderTransformOrigin = new Point(0.5, 0.5),
-                RenderTransform = new RotateTransform() { CenterX = 0.5, CenterY = 0.5, Angle = 180 },
-
-                //Background = new SolidColorBrush(Colors.Goldenrod),
-                //BorderBrush = new SolidColorBrush(Colors.White),
-                //BorderThickness = new Thickness(Constants.DEFAULT_CONTROLLER_KEY_BORDER_THICKNESS),
+                Rotation = 180,
+                //RenderTransformOrigin = new Point(0.5, 0.5),
+                //RenderTransform = new RotateTransform() { CenterX = 0.5, CenterY = 0.5, Angle = 180 },
             };
 
             ThumbstickDownRight = new()
@@ -257,16 +210,17 @@ namespace HonkBusterGame
                 Tag = MovementDirection.DownRight,
                 Height = Constants.DEFAULT_CONTROLLER_KEY_SIZE,
                 Width = Constants.DEFAULT_CONTROLLER_KEY_SIZE,
-                //Child = new SymbolIcon()
-                //{
-                //    Symbol = Symbol.Forward
-                //},
-                RenderTransformOrigin = new Point(0.5, 0.5),
-                RenderTransform = new RotateTransform() { CenterX = 0.5, CenterY = 0.5, Angle = 45 },
+                Rotation = 45,
+                //RenderTransformOrigin = new Point(0.5, 0.5),
+                //RenderTransform = new RotateTransform() { CenterX = 0.5, CenterY = 0.5, Angle = 45 },
+            };
 
-                //Background = new SolidColorBrush(Colors.Goldenrod),
-                //BorderBrush = new SolidColorBrush(Colors.White),
-                //BorderThickness = new Thickness(Constants.DEFAULT_CONTROLLER_KEY_BORDER_THICKNESS),
+            _thumbstickThumbChild = new Border()
+            {
+                CornerRadius = new CornerRadius(Constants.DEFAULT_CONTROLLER_KEY_CORNER_RADIUS * 2),
+                Background = new SolidColorBrush(Colors.Crimson),
+                BorderBrush = Application.Current.Resources["BorderColor"] as SolidColorBrush,
+                BorderThickness = new Thickness(Constants.DEFAULT_CONTROLLER_KEY_BORDER_THICKNESS),
             };
 
             ThumbstickThumb = new()
@@ -274,51 +228,48 @@ namespace HonkBusterGame
                 Tag = MovementDirection.None,
                 Height = Constants.DEFAULT_CONTROLLER_KEY_SIZE * 0.90,
                 Width = Constants.DEFAULT_CONTROLLER_KEY_SIZE * 0.90,
-                CornerRadius = new CornerRadius(Constants.DEFAULT_CONTROLLER_KEY_CORNER_RADIUS * 2),
-
-                Background = new SolidColorBrush(Colors.Crimson),
-                BorderBrush = Application.Current.Resources["BorderColor"] as SolidColorBrush,
-                BorderThickness = new Thickness(Constants.DEFAULT_CONTROLLER_KEY_BORDER_THICKNESS),
             };
 
+            ThumbstickThumb.SetChild(_thumbstickThumbChild);
+
             neutralZone.SetPosition(left: ThumbstickCanvas.Width / 2 - neutralZone.Width / 2, top: ThumbstickCanvas.Height / 2 - neutralZone.Height / 2);
-            ThumbstickCanvas.Children.Add(neutralZone);
+            ThumbstickCanvas.Children.Add(neutralZone.Child);
             neutralZone.Update();
 
             ThumbstickUpLeft.SetPosition(left: 0, top: 0);
-            ThumbstickCanvas.Children.Add(ThumbstickUpLeft);
+            ThumbstickCanvas.Children.Add(ThumbstickUpLeft.Child);
             ThumbstickUpLeft.Update();
 
             ThumbstickUp.SetPosition(left: 0 * 1.25, top: 0);
-            ThumbstickCanvas.Children.Add(ThumbstickUp);
+            ThumbstickCanvas.Children.Add(ThumbstickUp.Child);
             ThumbstickUp.Update();
 
             ThumbstickUpRight.SetPosition(left: Constants.DEFAULT_CONTROLLER_KEY_SIZE * 2 * 1.25, top: 0);
-            ThumbstickCanvas.Children.Add(ThumbstickUpRight);
+            ThumbstickCanvas.Children.Add(ThumbstickUpRight.Child);
             ThumbstickUpRight.Update();
 
             ThumbstickLeft.SetPosition(left: 0, top: 0);
-            ThumbstickCanvas.Children.Add(ThumbstickLeft);
+            ThumbstickCanvas.Children.Add(ThumbstickLeft.Child);
             ThumbstickLeft.Update();
 
             ThumbstickRight.SetPosition(left: Constants.DEFAULT_CONTROLLER_KEY_SIZE * 2 * 1.25, top: 0);
-            ThumbstickCanvas.Children.Add(ThumbstickRight);
+            ThumbstickCanvas.Children.Add(ThumbstickRight.Child);
             ThumbstickRight.Update();
 
             ThumbstickDownLeft.SetPosition(left: 0, top: Constants.DEFAULT_CONTROLLER_KEY_SIZE * 2 * 1.25);
-            ThumbstickCanvas.Children.Add(ThumbstickDownLeft);
+            ThumbstickCanvas.Children.Add(ThumbstickDownLeft.Child);
             ThumbstickDownLeft.Update();
 
             ThumbstickDown.SetPosition(left: 0 * 1.25, top: Constants.DEFAULT_CONTROLLER_KEY_SIZE * 2 * 1.25);
-            ThumbstickCanvas.Children.Add(ThumbstickDown);
+            ThumbstickCanvas.Children.Add(ThumbstickDown.Child);
             ThumbstickDown.Update();
 
             ThumbstickDownRight.SetPosition(left: Constants.DEFAULT_CONTROLLER_KEY_SIZE * 2 * 1.25, top: Constants.DEFAULT_CONTROLLER_KEY_SIZE * 2 * 1.25);
-            ThumbstickCanvas.Children.Add(ThumbstickDownRight);
+            ThumbstickCanvas.Children.Add(ThumbstickDownRight.Child);
             ThumbstickDownRight.Update();
 
             SetDefaultThumbstickPosition();
-            ThumbstickCanvas.Children.Add(ThumbstickThumb);
+            ThumbstickCanvas.Children.Add(ThumbstickThumb.Child);
 
             ThumbstickCanvas.PointerPressed += (s, e) =>
             {

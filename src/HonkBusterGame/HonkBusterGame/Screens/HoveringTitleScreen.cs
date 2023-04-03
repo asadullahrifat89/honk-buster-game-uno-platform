@@ -22,7 +22,7 @@ namespace HonkBusterGame
                 To = 1,
             };
 
-            Storyboard.SetTarget(_doubleAnimation, this);
+            Storyboard.SetTarget(_doubleAnimation, this.Child);
             Storyboard.SetTargetProperty(_doubleAnimation, "Opacity");
 
             _opacity_storyboard = new Storyboard();

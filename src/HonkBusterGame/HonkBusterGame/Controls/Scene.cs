@@ -140,7 +140,7 @@ namespace HonkBusterGame
                 foreach (var construct in constructs)
                 {
                     construct.Scene = this;
-                    _canvas.Children.Add(construct);
+                    _canvas.Children.Add(construct.Child);
                     Children.Add(construct);
                 }
             }
@@ -242,7 +242,7 @@ namespace HonkBusterGame
             // remove the destroyables from the scene
             foreach (Construct destroyable in _destroyables)
             {
-                _canvas.Children.Remove(destroyable);
+                _canvas.Children.Remove(destroyable.Child);
             }
 
             _destroyables.Clear();
@@ -258,7 +258,7 @@ namespace HonkBusterGame
 
                 var fps = _famesCount / 2;
 
-                LoggingExtensions.Log($"Scene: {Name} ~ Generators: {_generators.Count} ~ Animating Objects: {Children.Count(x => x.IsAnimating)} \n Total Objects: {Children.Count()} ~ FPS: {fps}");
+                LoggingExtensions.Log($"Scene: {Name} ~ Generators: {_generators.Count} ~ Animating Objects: {Children.Count(x => x.IsAnimating)} \n Total Objects: {Children.Count} ~ FPS: {fps}");
 
                 _famesCount = 0;
             }
