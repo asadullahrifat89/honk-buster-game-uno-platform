@@ -1,6 +1,4 @@
-﻿using Microsoft.UI;
-
-namespace HonkBusterGame
+﻿namespace HonkBusterGame
 {
     public partial class DropShadow : MovableConstruct
     {

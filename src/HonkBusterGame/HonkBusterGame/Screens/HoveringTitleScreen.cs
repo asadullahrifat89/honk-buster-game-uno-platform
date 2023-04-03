@@ -1,6 +1,4 @@
-﻿using Microsoft.UI.Xaml.Media.Animation;
-
-namespace HonkBusterGame
+﻿namespace HonkBusterGame
 {
     public partial class HoveringTitleScreen : AnimableConstruct
     {

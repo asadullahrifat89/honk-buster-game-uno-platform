@@ -1,5 +1,4 @@
-﻿using Microsoft.UI.Xaml.Media.Imaging;
-using Windows.UI;
+﻿using Windows.UI;
 
 namespace HonkBusterGame
 {

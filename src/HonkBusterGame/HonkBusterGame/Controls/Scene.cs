@@ -1,5 +1,4 @@
 ﻿using Microsoft.UI;
-using Microsoft.UI.Xaml.Media.Animation;
 using System.Diagnostics;
 using Windows.Foundation;
 

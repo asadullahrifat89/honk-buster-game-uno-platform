@@ -1,7 +1,4 @@
-﻿using Microsoft.UI.Xaml.Media.Imaging;
-using System;
-
-namespace HonkBusterGame
+﻿namespace HonkBusterGame
 {
     public partial class ImageElement : Border
     {
