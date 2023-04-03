@@ -21,7 +21,7 @@
 
             _baseUrl = $"{indexUrl}{appPackageId}";
             _imgElement = new ImgElement();
-            
+
             Width = width;
             Height = height;
 
@@ -312,9 +312,9 @@
 
         public void SetId(Uri uri)
         {
-            var id = uri.AbsoluteUri.Replace("ms-appx:///HonkBusterGame/Assets/Images/", "");
+            var id = uri.AbsoluteUri.Replace("ms-appx:///HonkBusterGame/Assets/Images/", "").Replace(".png", "");
             Id = id;
-        }       
+        }
 
         public Uri GetSourceUri()
         {
