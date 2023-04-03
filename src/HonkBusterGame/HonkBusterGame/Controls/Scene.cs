@@ -118,6 +118,50 @@ namespace HonkBusterGame
 
         #region Methods
 
+        public async void Play()
+        {
+            if (!IsAnimating)
+            {
+                IsAnimating = true;
+#if DEBUG
+                _stopwatch = Stopwatch.StartNew();
+                _famesCount = 0;
+                _lastElapsed = TimeSpan.FromSeconds(0);
+#endif
+                _gameViewTimer = new PeriodicTimer(_frameTime);
+
+                Children = Children.OrderBy(x => x.Z).ToList();
+
+                while (await _gameViewTimer.WaitForNextTickAsync())
+                {
+                    Run();
+                }
+            }
+        }
+
+        public void Pause()
+        {
+            if (IsAnimating)
+            {
+                IsAnimating = false;
+#if DEBUG
+                _stopwatch?.Reset();
+#endif
+                _gameViewTimer?.Dispose();
+            }
+        }
+
+        public void Stop()
+        {
+            IsAnimating = false;
+#if DEBUG
+            _stopwatch?.Stop();
+#endif
+            _gameViewTimer?.Dispose();
+
+            Clear();
+        }
+
         public void ToggleNightMode(bool isNightMode)
         {
             IsInNightMode = isNightMode;
@@ -163,54 +207,18 @@ namespace HonkBusterGame
             _destroyables.Add(construct);
         }
 
-        public async void Play()
-        {
-            if (!IsAnimating)
-            {
-                IsAnimating = true;
-#if DEBUG
-                _stopwatch = Stopwatch.StartNew();
-                _famesCount = 0;
-                _lastElapsed = TimeSpan.FromSeconds(0);
-#endif
-                _gameViewTimer = new PeriodicTimer(_frameTime);
-
-                Children = Children.OrderBy(x => x.Z).ToList();
-
-                while (await _gameViewTimer.WaitForNextTickAsync())
-                {
-                    UpdateFrame();
-                }
-            }
-        }
-
-        public void Pause()
-        {
-            if (IsAnimating)
-            {
-                IsAnimating = false;
-#if DEBUG
-                _stopwatch?.Reset();
-#endif
-                _gameViewTimer?.Dispose();
-            }
-        }
-
         public void SetState(SceneState sceneState)
         {
             SceneState = sceneState;
         }
 
-        public void Stop()
+        public void ActivateSlowMotion()
         {
-            IsAnimating = false;
-#if DEBUG
-            _stopwatch?.Stop();
-#endif
-            _gameViewTimer?.Dispose();
-
-            Clear();
-        }
+            if (!IsSlowMotionActivated)
+            {
+                _slowMotionDelay = _slowMotionDelayDefault;
+            }
+        }      
 
         public void Clear()
         {
@@ -227,15 +235,14 @@ namespace HonkBusterGame
             _gameViewTimer?.Dispose();
         }
 
-        private void UpdateFrame()
-        {
-            // generate new constructs in scene from generators
-            foreach (Generator generator in _generators)
+        private void Run()
+        {           
+            foreach (Generator generator in _generators)  // generate new constructs in scene from generators
             {
                 generator.Generate();
             }
 
-            foreach (Construct construct in Children.Where(x => x.IsAnimating))
+            foreach (Construct construct in Children.Where(x => x.IsAnimating)) // only add animating constructs in canvas and then cache them
             {
                 if (!_canvas.Children.Contains(construct.Content))
                 {
@@ -270,14 +277,6 @@ namespace HonkBusterGame
                 _famesCount = 0;
             }
 #endif
-        }
-
-        public void ActivateSlowMotion()
-        {
-            if (!IsSlowMotionActivated)
-            {
-                _slowMotionDelay = _slowMotionDelayDefault;
-            }
         }
 
         private void DepleteSlowMotion()

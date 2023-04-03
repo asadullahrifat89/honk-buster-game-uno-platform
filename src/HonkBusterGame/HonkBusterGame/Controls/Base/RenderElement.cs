@@ -21,7 +21,7 @@ namespace HonkBusterGame
 
         public RenderElement()
         {
-            Content = new UIElement();
+            Content = new FrameworkElement();
             IsAnimating = false;
 
             ScaleX = 1;
@@ -99,7 +99,7 @@ namespace HonkBusterGame
         /// <summary>
         /// The content to be rendered in scene.
         /// </summary>
-        public UIElement Content { get; set; }
+        public FrameworkElement Content { get; set; }
 
         /// <summary>
         /// An object tag for element.
@@ -390,11 +390,11 @@ namespace HonkBusterGame
             Height = height;
         }
 
-        public void SetContent(UIElement content)
+        public void SetContent(FrameworkElement content)
         {
             Content = content;
 
-            if (content is not ImageElement)
+            if (content is not ImageElement) // only use composite transformation on non html image element
             {
                 Content.RenderTransformOrigin = new Point(0.5, 0.5);
                 Content.RenderTransform = _transform;
@@ -405,18 +405,18 @@ namespace HonkBusterGame
         {
             if (Content is not null)
             {
-                if (Content is FrameworkElement element && (element.Width != Width || element.Height != Height))
-                {
-                    element.Width = Width;
-                    element.Height = Height;
-                }
+                Canvas.SetZIndex(Content, Z);
+                Canvas.SetLeft(Content, X);
+                Canvas.SetTop(Content, Y);
+
+                if (Content.Width != Width)
+                    Content.Width = Width;
+
+                if (Content.Height != Height)
+                    Content.Height = Height;
 
                 if (Content is ImageElement imageElement)
                 {
-                    Canvas.SetZIndex(imageElement, Z);
-                    Canvas.SetLeft(imageElement, X);
-                    Canvas.SetTop(imageElement, Y);
-
                     if (imageElement.ImageOpacity != Opacity)
                         imageElement.ImageOpacity = Opacity;
 
@@ -437,9 +437,6 @@ namespace HonkBusterGame
                 }
                 else
                 {
-                    Canvas.SetZIndex(Content, Z);
-                    Canvas.SetLeft(Content, X);
-                    Canvas.SetTop(Content, Y);
 
                     if (Content.Opacity != Opacity)
                         Content.Opacity = Opacity;
