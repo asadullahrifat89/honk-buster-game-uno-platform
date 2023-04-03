@@ -14,7 +14,7 @@ namespace HonkBusterGame
         private readonly Storyboard _opacity_storyboard;
         private readonly DoubleAnimation _doubleAnimation;
 
-        private readonly CompositeTransform _compositeTransform = new()
+        private readonly CompositeTransform _transform = new()
         {
             CenterX = 0.5,
             CenterY = 0.5,
@@ -70,7 +70,7 @@ namespace HonkBusterGame
             _canvas = new()
             {
                 RenderTransformOrigin = new Point(0, 0),
-                RenderTransform = _compositeTransform,
+                RenderTransform = _transform,
                 Background = new SolidColorBrush(Colors.Transparent),
             };
 
@@ -128,8 +128,8 @@ namespace HonkBusterGame
 
         public void SetScaleTransform(double scaleXY)
         {
-            _compositeTransform.ScaleX = scaleXY;
-            _compositeTransform.ScaleY = scaleXY;
+            _transform.ScaleX = scaleXY;
+            _transform.ScaleY = scaleXY;
         }
 
         public void AddToScene(params Construct[] constructs)

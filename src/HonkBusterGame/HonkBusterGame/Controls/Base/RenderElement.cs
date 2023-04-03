@@ -6,7 +6,7 @@ namespace HonkBusterGame
     {
         #region Fields
 
-        private readonly CompositeTransform _compositeTransform = new()
+        private readonly CompositeTransform _transform = new()
         {
             CenterX = 0.5,
             CenterY = 0.5,
@@ -21,8 +21,6 @@ namespace HonkBusterGame
 
         public RenderElement()
         {
-            RenderTransformOrigin = new Point(0.5, 0.5);
-            RenderTransform = _compositeTransform;
             CanDrag = false;
 
             IsAnimating = false;
@@ -124,9 +122,19 @@ namespace HonkBusterGame
 
         public new double Rotation { get; set; }
 
+        public new double Opacity { get; set; }
+
         #endregion
 
         #region Methods
+
+        public void SetChild(UIElement content)
+        {
+            Child = content;
+
+            content.RenderTransformOrigin = new Point(0.5, 0.5);
+            content.RenderTransform = _transform;
+        }
 
         public double GetTop()
         {
@@ -355,16 +363,21 @@ namespace HonkBusterGame
 
         public void Update()
         {
-            Canvas.SetLeft(this, X);
-            Canvas.SetTop(this, Y);
-            Canvas.SetZIndex(this, Z);
+            if (Child is not null)
+            {
+                Canvas.SetLeft(this, X);
+                Canvas.SetTop(this, Y);
+                Canvas.SetZIndex(this, Z);
 
-            _compositeTransform.ScaleX = ScaleX;
-            _compositeTransform.ScaleY = ScaleY;
+                Child.Opacity = Opacity;
 
-            _compositeTransform.Rotation = Rotation;
-            _compositeTransform.SkewX = SkewX;
-            _compositeTransform.SkewY = SkewY;
+                _transform.ScaleX = ScaleX;
+                _transform.ScaleY = ScaleY;
+
+                _transform.Rotation = Rotation;
+                _transform.SkewX = SkewX;
+                _transform.SkewY = SkewY;
+            }
         }
 
         #endregion

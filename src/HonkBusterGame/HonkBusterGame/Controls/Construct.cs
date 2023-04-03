@@ -51,12 +51,7 @@
         public void Recycle()
         {
             RecycleAction(this);
-        }
-
-        public void SetChild(UIElement content)
-        {
-            Child = content;
-        }
+        }       
 
         public void SetConstructSize(ConstructType constructType)
         {
