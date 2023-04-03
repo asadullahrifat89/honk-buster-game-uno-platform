@@ -141,23 +141,20 @@ namespace HonkBusterGame
         /// </summary>
         private bool IsAwaitingPop { get; set; }
 
-        private bool _IsAnimating;
+        private bool isAnimating;
 
         /// <summary>
         /// Only animated by the scene if set to true.
         /// </summary>
         public bool IsAnimating
         {
-            get { return _IsAnimating; }
+            get { return isAnimating; }
             set
             {
-                _IsAnimating = value;
+                isAnimating = value;
 
-                if (!_IsAnimating && Content is not null)
-                {
-                    Canvas.SetLeft(Content, -3000);
-                    Canvas.SetTop(Content, -3000);
-                }
+                if (!isAnimating && Content is not null)
+                    MoveOutOfSight();
             }
         }
 
@@ -394,11 +391,11 @@ namespace HonkBusterGame
         {
             Content = content;
 
-            if (content is not ImageElement) // only use composite transformation on non html image element
-            {
-                Content.RenderTransformOrigin = new Point(0.5, 0.5);
-                Content.RenderTransform = _transform;
-            }
+            //if (content is not ImageElement) // only use composite transformation on non html image element
+            //{
+            Content.RenderTransformOrigin = new Point(0.5, 0.5);
+            Content.RenderTransform = _transform;
+            //}
         }
 
         public void Update()
@@ -415,48 +412,54 @@ namespace HonkBusterGame
                 if (Content.Height != Height)
                     Content.Height = Height;
 
-                if (Content is ImageElement imageElement)
-                {
-                    if (imageElement.ImageOpacity != Opacity)
-                        imageElement.ImageOpacity = Opacity;
+                //if (Content is ImageElement imageElement)
+                //{
+                //    if (imageElement.ImageOpacity != Opacity)
+                //        imageElement.ImageOpacity = Opacity;
 
-                    if (imageElement.ImageScaleX != ScaleX)
-                        imageElement.ImageScaleX = ScaleX;
+                //    if (imageElement.ImageScaleX != ScaleX)
+                //        imageElement.ImageScaleX = ScaleX;
 
-                    if (imageElement.ImageScaleY != ScaleY)
-                        imageElement.ImageScaleY = ScaleY;
+                //    if (imageElement.ImageScaleY != ScaleY)
+                //        imageElement.ImageScaleY = ScaleY;
 
-                    if (imageElement.ImageRotation != Rotation)
-                        imageElement.ImageRotation = Rotation;
+                //    if (imageElement.ImageRotation != Rotation)
+                //        imageElement.ImageRotation = Rotation;
 
-                    if (imageElement.ImageSkewX != SkewX)
-                        imageElement.ImageSkewX = SkewX;
+                //    if (imageElement.ImageSkewX != SkewX)
+                //        imageElement.ImageSkewX = SkewX;
 
-                    if (imageElement.ImageSkewY != SkewY)
-                        imageElement.ImageSkewY = SkewY;
-                }
-                else
-                {
+                //    if (imageElement.ImageSkewY != SkewY)
+                //        imageElement.ImageSkewY = SkewY;
+                //}
+                //else
+                //{
 
-                    if (Content.Opacity != Opacity)
-                        Content.Opacity = Opacity;
+                if (Content.Opacity != Opacity)
+                    Content.Opacity = Opacity;
 
-                    if (_transform.ScaleX != ScaleX)
-                        _transform.ScaleX = ScaleX;
+                if (_transform.ScaleX != ScaleX)
+                    _transform.ScaleX = ScaleX;
 
-                    if (_transform.ScaleY != ScaleY)
-                        _transform.ScaleY = ScaleY;
+                if (_transform.ScaleY != ScaleY)
+                    _transform.ScaleY = ScaleY;
 
-                    if (_transform.Rotation != Rotation)
-                        _transform.Rotation = Rotation;
+                if (_transform.Rotation != Rotation)
+                    _transform.Rotation = Rotation;
 
-                    if (_transform.SkewX != SkewX)
-                        _transform.SkewX = SkewX;
+                if (_transform.SkewX != SkewX)
+                    _transform.SkewX = SkewX;
 
-                    if (_transform.SkewY != SkewY)
-                        _transform.SkewY = SkewY;
-                }
+                if (_transform.SkewY != SkewY)
+                    _transform.SkewY = SkewY;
+                //}
             }
+        }
+
+        private void MoveOutOfSight()
+        {
+            Canvas.SetLeft(Content, -3000);
+            Canvas.SetTop(Content, -3000);
         }
 
         #endregion
