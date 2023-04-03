@@ -402,7 +402,7 @@ namespace HonkBusterGame
             {
                 Canvas.SetZIndex(Content, Z);
                 Canvas.SetLeft(Content, X);
-                Canvas.SetTop(Content, Y);                
+                Canvas.SetTop(Content, Y);
 
                 if (Content is FrameworkElement element)
                 {
@@ -410,6 +410,15 @@ namespace HonkBusterGame
                     element.Height = Height;
                 }
 
+                //if (Content is ImageElement imageElement)
+                //{
+                //    imageElement.SetOpacity(Opacity);
+                //    imageElement.SetScaleXY(ScaleX, ScaleY);
+                //    imageElement.SetRotation(Rotation);
+                //    imageElement.SetSkewXY(SkewX, SkewY);
+                //}
+                //else
+                //{
                 Content.Opacity = Opacity;
 
                 _transform.ScaleX = ScaleX;
@@ -418,6 +427,9 @@ namespace HonkBusterGame
                 _transform.Rotation = Rotation;
                 _transform.SkewX = SkewX;
                 _transform.SkewY = SkewY;
+                //}
+
+
 
                 //TODO: draw function to render element in HTML Canvas
             }

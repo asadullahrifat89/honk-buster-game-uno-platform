@@ -215,6 +215,12 @@
                 return string.Empty;
         }
 
+        public void SetOpacity(double opacity)
+        {
+            if (_imgElement is not null)
+                _imgElement.Opacity = opacity;
+        }
+
         public void SetGrayscale(double grayscale)
         {
             if (_imgElement is not null)
@@ -256,6 +262,56 @@
 
             _imgElement.Width = width;
             _imgElement.Height = height;
+        }
+
+        //public void SetScaleX(double scaleX)
+        //{
+
+        //    if (_imgElement is not null)
+        //        _imgElement.ScaleX = scaleX;
+        //}
+
+        //public void SetScaleY(double scaleY)
+        //{
+        //    if (_imgElement is not null)
+        //        _imgElement.ScaleY = scaleY;
+        //}
+
+        public void SetScaleXY(double scaleX, double scaleY)
+        {
+            if (_imgElement is not null)
+            {
+                _imgElement.ScaleX = scaleX;
+                _imgElement.ScaleY = scaleY;
+            }
+        }
+
+        //public void SetSkewX(double skewX)
+        //{
+
+        //    if (_imgElement is not null)
+        //        _imgElement.SkewX = skewX;
+        //}
+
+        //public void SetSkewY(double skewY)
+        //{
+        //    if (_imgElement is not null)
+        //        _imgElement.SkewY = skewY;
+        //}
+
+        public void SetSkewXY(double skewX, double skewY)
+        {
+            if (_imgElement is not null)
+            {
+                _imgElement.SkewX = skewX;
+                _imgElement.SkewY = skewY;
+            }
+        }
+
+        public void SetRotation(double rotation)
+        {
+            if (_imgElement is not null)
+                _imgElement.Rotation = rotation;
         }
 
         public Uri GetSourceUri()

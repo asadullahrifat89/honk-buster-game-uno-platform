@@ -180,6 +180,30 @@ namespace HonkBusterGame
             }
         }
 
+        private double skewX = 0;
+
+        public double SkewX
+        {
+            get { return skewX; }
+            set
+            {
+                skewX = value;
+                SetProperties();
+            }
+        }
+
+        private double skewY = 0;
+
+        public double SkewY
+        {
+            get { return skewY; }
+            set
+            {
+                skewY = value;
+                SetProperties();
+            }
+        }
+
         private int dropShadowX = 0;
 
         public int DropShadowX
@@ -249,7 +273,7 @@ namespace HonkBusterGame
             set => SetValue(SourceProperty, value);
         }
 
-      
+
 
         public new static readonly DependencyProperty WidthProperty = DependencyProperty.Register("Width", typeof(double), typeof(ImgElement), new PropertyMetadata(default(double), (s, e) =>
         {
@@ -279,7 +303,7 @@ namespace HonkBusterGame
         {
             get => (double)GetValue(HeightProperty);
             set => SetValue(HeightProperty, value);
-        }      
+        }
 
         #endregion
 
@@ -301,9 +325,9 @@ namespace HonkBusterGame
         public void SetProperties()
         {
             this.SetCssStyle(
-                ("filter", GetCssFilter()), 
-                ("opacity", $"{opacity}"), 
-                ("transform", $"rotate({rotation}deg) scaleX({scaleX}) scaleY({scaleY})"));
+                ("filter", GetCssFilter()),
+                ("opacity", $"{opacity}"),
+                ("transform", $"rotate({rotation}deg) scaleX({scaleX}) scaleY({scaleY}) skew({skewX}deg,{skewY}deg)"));
         }
 
         #endregion
