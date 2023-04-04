@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Xaml.Media.Imaging;
+using Uno;
 
 namespace HonkBusterGame
 {
@@ -18,20 +19,8 @@ namespace HonkBusterGame
             _uri = uri;
             _bitmapImage = new BitmapImage(uriSource: _uri);
             Source = _bitmapImage;
-          
+
             CanDrag = false;
-        }
-
-        private double brightness = 100;
-        public double ImageBrightness
-        {
-            get { return brightness; }
-            set
-            {
-                brightness = value;
-
-                Opacity = brightness / 100;
-            }
         }
 
         public void SetBrighness(double brightness)
@@ -50,22 +39,22 @@ namespace HonkBusterGame
             return _uri;
         }
 
+        [NotImplemented]
         public void SetGrayscale(double grayscale)
         {
-            //_htmlImage.Grayscale = grayscale;
+
         }
 
+        [NotImplemented]
         public void SetDropShadow(int offsetX, int offsetY, int blurRadius, string color = "#202020")
         {
-            //_htmlImage.DropShadowX = offsetX;
-            //_htmlImage.DropShadowY = offsetY;
-            //_htmlImage.DropShadowBlurRadius = blurRadius;
-            //_htmlImage.DropShadowColor = color;
+
         }
 
+        [NotImplemented]
         public void SetBlur(double blur)
         {
-            //_htmlImage.Blur = blur;
+            
         }
     }
 

@@ -161,9 +161,9 @@ namespace HonkBusterGame
             Clear();
         }
 
-        public void ToggleNightMode(bool isNightMode)
+        public void ToggleNightMode(bool activate)
         {
-            IsNightModeActivated = isNightMode;
+            IsNightModeActivated = activate;
         }
 
         public void SetRenderTransformOrigin(double xy)
