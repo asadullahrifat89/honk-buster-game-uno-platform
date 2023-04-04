@@ -9,61 +9,61 @@ namespace HonkBusterGame
 
         private readonly Random _random;
 
-        private readonly GameView _scene_game;
-        private readonly GameView _scene_main_menu;
-        private readonly GameController _game_controller;
+        private readonly GameView _gameScene;
+        private readonly GameView _mainMenuScene;
+        private readonly GameController _gameController;
 
-        private readonly HealthBar _player_health_bar;
+        private readonly HealthBar _playerHealthBar;
 
-        private readonly HealthBar _ufo_boss_health_bar;
-        private readonly HealthBar _vehicle_boss_health_bar;
-        private readonly HealthBar _zombie_boss_health_bar;
-        private readonly HealthBar _mafia_boss_health_bar;
+        private readonly HealthBar _ufoBossHealthBar;
+        private readonly HealthBar _vehicleBossHealthBar;
+        private readonly HealthBar _zombieBossHealthBar;
+        private readonly HealthBar _mafiaBossHealthBar;
 
-        private readonly HealthBar _powerUp_health_bar;
-        private readonly HealthBar _sound_pollution_health_bar;
+        private readonly HealthBar _powerUpMeter;
+        private readonly HealthBar _soundPollutionMeter;
 
-        private readonly ScoreBar _game_score_bar;
-        private readonly StackPanel _health_bars;
+        private readonly ScoreBar _gameScoreBar;
+        private readonly StackPanel _healthBars;
 
-        private readonly GameCheckpoint _ufo_boss_threashold;
-        private readonly GameCheckpoint _vehicle_boss_threashold;
-        private readonly GameCheckpoint _zombie_boss_threashold;
-        private readonly GameCheckpoint _mafia_boss_threashold;
+        private readonly GameCheckpoint _ufoBossCheckpoint;
+        private readonly GameCheckpoint _vehicleBossCheckpoint;
+        private readonly GameCheckpoint _zombieBossCheckpoint;
+        private readonly GameCheckpoint _mafiaBossCheckpoint;
 
-        private readonly GameCheckpoint _ufo_enemy_threashold;
+        private readonly GameCheckpoint _ufoEnemyCheckpoint;
 
-        private readonly double _sound_pollution_max_limit = 6; // max 3 vehicles or ufos honking to trigger sound pollution limit
+        private readonly double _soundPollutionMaxLimit = 6; // max 3 vehicles or ufos honking to trigger sound pollution limit
 
-        //TODO: set defaults _vehicle_boss_threashold_limit = 25
-        private readonly double _vehicle_boss_threashold_limit = 25; // first appearance
-        private readonly double _vehicle_boss_threashold_limit_increase = 15;
+        //TODO: set defaults _vehicleReleasePoint = 25
+        private readonly double _vehicleBossReleasePoint = 25; // first appearance
+        private readonly double _vehicleBossReleasePoint_increase = 15;
 
-        //TODO: set defaults _ufo_boss_threashold_limit = 50
-        private readonly double _ufo_boss_threashold_limit = 50; // first appearance
-        private readonly double _ufo_boss_threashold_limit_increase = 15;
+        //TODO: set defaults _ufoBossReleasePoint = 50
+        private readonly double _ufoBossReleasePoint = 50; // first appearance
+        private readonly double _ufoBossReleasePoint_increase = 15;
 
-        //TODO: set defaults _zombie_boss_threashold_limit = 75
-        private readonly double _zombie_boss_threashold_limit = 75; // first appearance
-        private readonly double _zombie_boss_threashold_limit_increase = 15;
+        //TODO: set defaults _zombieBossReleasePoint = 75
+        private readonly double _zombieBossReleasePoint = 75; // first appearance
+        private readonly double _zombieBossReleasePoint_increase = 15;
 
-        //TODO: set defaults _mafia_boss_threashold_limit = 100
-        private readonly double _mafia_boss_threashold_limit = 100; // first appearance
-        private readonly double _mafia_boss_threashold_limit_increase = 15;
+        //TODO: set defaults _mafiaBossReleasePoint = 100
+        private readonly double _mafiaBossReleasePoint = 100; // first appearance
+        private readonly double _mafiaBossReleasePoint_increase = 15;
 
-        //TODO: set defaults _enemy_threashold_limit = 35
-        private readonly double _ufo_enemy_threashold_limit = 35; // first appearance
-        private readonly double _ufo_enemy_threashold_limit_increase = 5;
+        //TODO: set defaults _ufoEnemyReleasePoint = 35
+        private readonly double _ufoEnemyReleasePoint = 35; // first appearance
+        private readonly double _ufoEnemyReleasePoint_increase = 5;
 
-        private double _ufo_enemy_kill_count;
-        private readonly double _ufo_enemy_kill_count_limit = 20;
+        private double _ufoEnemyKillCount;
+        private readonly double _ufoEnemyKillCount_limit = 20;
 
-        private bool _ufo_enemy_fleet_appeared;
+        private bool _ufoEnemyFleetAppeared;
 
         private PlayerBalloon _player;
-        private PlayerBalloonTemplate _selected_player_template;
-        private PlayerHonkBombTemplate _selected_player_honk_bomb_template;
-        private int _game_level;
+        private PlayerBalloonTemplate _selectedPlayerTemplate;
+        private PlayerHonkBombTemplate _selectedPlayerHonkBombTemplate;
+        private int _gameLevel;
 
         private readonly AudioStub _audioStub;
 
@@ -75,30 +75,30 @@ namespace HonkBusterGame
         {
             this.InitializeComponent();
 
-            _scene_game = this.GameScene;
-            _scene_main_menu = this.MainMenuScene;
+            _gameScene = this.GameScene;
+            _mainMenuScene = this.MainMenuScene;
 
-            _player_health_bar = this.PlayerHealthBar;
+            _playerHealthBar = this.PlayerHealthBar;
 
-            _ufo_boss_health_bar = this.UfoBossHealthBar;
-            _zombie_boss_health_bar = this.ZombieBossHealthBar;
-            _vehicle_boss_health_bar = this.VehicleBossHealthBar;
-            _mafia_boss_health_bar = this.MafiaBossHealthBar;
+            _ufoBossHealthBar = this.UfoBossHealthBar;
+            _zombieBossHealthBar = this.ZombieBossHealthBar;
+            _vehicleBossHealthBar = this.VehicleBossHealthBar;
+            _mafiaBossHealthBar = this.MafiaBossHealthBar;
 
-            _powerUp_health_bar = this.PowerUpHealthBar;
-            _sound_pollution_health_bar = this.SoundPollutionBar;
+            _powerUpMeter = this.PowerUpHealthBar;
+            _soundPollutionMeter = this.SoundPollutionBar;
 
-            _game_controller = this.GameController;
+            _gameController = this.GameController;
 
-            _game_score_bar = this.GameScoreBar;
-            _health_bars = this.HealthBars;
+            _gameScoreBar = this.GameScoreBar;
+            _healthBars = this.HealthBars;
 
-            _ufo_boss_threashold = new GameCheckpoint(_ufo_boss_threashold_limit);
-            _zombie_boss_threashold = new GameCheckpoint(_zombie_boss_threashold_limit);
-            _vehicle_boss_threashold = new GameCheckpoint(_vehicle_boss_threashold_limit);
-            _mafia_boss_threashold = new GameCheckpoint(_mafia_boss_threashold_limit);
+            _ufoBossCheckpoint = new GameCheckpoint(_ufoBossReleasePoint);
+            _zombieBossCheckpoint = new GameCheckpoint(_zombieBossReleasePoint);
+            _vehicleBossCheckpoint = new GameCheckpoint(_vehicleBossReleasePoint);
+            _mafiaBossCheckpoint = new GameCheckpoint(_mafiaBossReleasePoint);
 
-            _ufo_enemy_threashold = new GameCheckpoint(_ufo_enemy_threashold_limit);
+            _ufoEnemyCheckpoint = new GameCheckpoint(_ufoEnemyReleasePoint);
 
             ToggleHudVisibility(Visibility.Collapsed);
 
@@ -116,7 +116,7 @@ namespace HonkBusterGame
             ScreenExtensions.Width = Constants.DEFAULT_SCENE_WIDTH;
             ScreenExtensions.Height = Constants.DEFAULT_SCENE_HEIGHT;
 
-            _scene_main_menu.SetRenderTransformOrigin(0.5);
+            _mainMenuScene.SetRenderTransformOrigin(0.5);
 
             SetSceneScaling();
 
@@ -147,11 +147,11 @@ namespace HonkBusterGame
 
             ToggleHudVisibility(Visibility.Collapsed);
 
-            _scene_game.Pause();
-            _scene_main_menu.Play();
+            _gameScene.Pause();
+            _mainMenuScene.Play();
 
-            _game_controller.DeactivateGyrometerReading();
-            _game_controller.SetDefaultThumbstickPosition();
+            _gameController.DeactivateGyrometerReading();
+            _gameController.SetDefaultThumbstickPosition();
 
             GenerateGameStartScreen(title: "Game Paused", subTitle: "-Taking a break-");
 
@@ -173,72 +173,72 @@ namespace HonkBusterGame
 
             ToggleHudVisibility(Visibility.Visible);
 
-            _scene_game.Play();
-            _scene_main_menu.Pause();
+            _gameScene.Play();
+            _mainMenuScene.Pause();
 
-            _game_controller.ActivateGyrometerReading();
-            _game_controller.FocusAttackButton();
+            _gameController.ActivateGyrometerReading();
+            _gameController.FocusAttackButton();
         }
 
         private void NewGame()
         {
             LoggingExtensions.Log("New game dtarted.");
 
-            if (_scene_game.IsNightModeActivated)
+            if (_gameScene.IsNightModeActivated)
                 ToggleNightMode(false);
 
-            _game_level = 0;
+            _gameLevel = 0;
 
             _audioStub.Play(SoundType.AMBIENCE, SoundType.GAME_BACKGROUND_MUSIC);
 
-            _game_controller.Reset();
+            _gameController.Reset();
 
-            _game_score_bar.Reset();
-            _powerUp_health_bar.Reset();
+            _gameScoreBar.Reset();
+            _powerUpMeter.Reset();
 
-            _ufo_boss_health_bar.Reset();
-            _vehicle_boss_health_bar.Reset();
-            _zombie_boss_health_bar.Reset();
-            _mafia_boss_health_bar.Reset();
+            _ufoBossHealthBar.Reset();
+            _vehicleBossHealthBar.Reset();
+            _zombieBossHealthBar.Reset();
+            _mafiaBossHealthBar.Reset();
 
-            _sound_pollution_health_bar.Reset();
-            _sound_pollution_health_bar.SetMaxiumHealth(_sound_pollution_max_limit);
-            _sound_pollution_health_bar.SetIcon(Constants.CONSTRUCT_TEMPLATES.FirstOrDefault(x => x.ConstructType == ConstructType.HONK).Uri);
-            _sound_pollution_health_bar.SetBarColor(color: Colors.Purple);
+            _soundPollutionMeter.Reset();
+            _soundPollutionMeter.SetMaxiumHealth(_soundPollutionMaxLimit);
+            _soundPollutionMeter.SetIcon(Constants.CONSTRUCT_TEMPLATES.FirstOrDefault(x => x.ConstructType == ConstructType.HONK).Uri);
+            _soundPollutionMeter.SetBarColor(color: Colors.Purple);
 
-            _ufo_boss_threashold.Reset(_ufo_boss_threashold_limit);
-            _vehicle_boss_threashold.Reset(_vehicle_boss_threashold_limit);
-            _zombie_boss_threashold.Reset(_zombie_boss_threashold_limit);
-            _mafia_boss_threashold.Reset(_mafia_boss_threashold_limit);
+            _ufoBossCheckpoint.Reset(_ufoBossReleasePoint);
+            _vehicleBossCheckpoint.Reset(_vehicleBossReleasePoint);
+            _zombieBossCheckpoint.Reset(_zombieBossReleasePoint);
+            _mafiaBossCheckpoint.Reset(_mafiaBossReleasePoint);
 
-            _ufo_enemy_threashold.Reset(_ufo_enemy_threashold_limit);
-            _ufo_enemy_kill_count = 0;
-            _ufo_enemy_fleet_appeared = false;
+            _ufoEnemyCheckpoint.Reset(_ufoEnemyReleasePoint);
+            _ufoEnemyKillCount = 0;
+            _ufoEnemyFleetAppeared = false;
 
             SetupSetPlayerBalloon();
 
             GeneratePlayerBalloon();
             RepositionConstructs();
 
-            _scene_game.GameViewState = GameViewState.GAME_RUNNING;
-            _scene_game.Play();
+            _gameScene.GameViewState = GameViewState.GAME_RUNNING;
+            _gameScene.Play();
 
-            _scene_main_menu.Pause();
+            _mainMenuScene.Pause();
 
             ToggleHudVisibility(Visibility.Visible);
 
-            _game_controller.FocusAttackButton();
-            _game_controller.SetDefaultThumbstickPosition();
-            _game_controller.ActivateGyrometerReading();
+            _gameController.FocusAttackButton();
+            _gameController.SetDefaultThumbstickPosition();
+            _gameController.ActivateGyrometerReading();
         }
 
         private void SetupSetPlayerBalloon()
         {
-            _player.SetPlayerTemplate(_selected_player_template); // change player template
+            _player.SetPlayerTemplate(_selectedPlayerTemplate); // change player template
 
-            foreach (var honkBomb in _scene_game.GameObjects.OfType<PlayerHonkBomb>()) // change player honk bomb template
+            foreach (var honkBomb in _gameScene.GameObjects.OfType<PlayerHonkBomb>()) // change player honk bomb template
             {
-                honkBomb.SetHonkBombTemplate(_selected_player_honk_bomb_template);
+                honkBomb.SetHonkBombTemplate(_selectedPlayerHonkBombTemplate);
             }
         }
 
@@ -249,7 +249,7 @@ namespace HonkBusterGame
             {
                 _audioStub.Stop(SoundType.AMBIENCE, SoundType.GAME_BACKGROUND_MUSIC, SoundType.BOSS_BACKGROUND_MUSIC);
 
-                if (_scene_game.GameObjects.OfType<UfoBoss>().FirstOrDefault(x => x.IsAnimating) is UfoBoss ufoBoss)
+                if (_gameScene.GameObjects.OfType<UfoBoss>().FirstOrDefault(x => x.IsAnimating) is UfoBoss ufoBoss)
                 {
                     ufoBoss.SetWinStance();
                     ufoBoss.StopSoundLoop();
@@ -257,19 +257,19 @@ namespace HonkBusterGame
 
                 _audioStub.Play(SoundType.GAME_OVER);
 
-                _scene_main_menu.Play();
-                _scene_game.GameViewState = GameViewState.GAME_STOPPED;
+                _mainMenuScene.Play();
+                _gameScene.GameViewState = GameViewState.GAME_STOPPED;
 
                 ToggleHudVisibility(Visibility.Collapsed);
-                GenerateGameStartScreen(title: "Game Over", subTitle: $"-Score: {_game_score_bar.GetScore():0000} Level: {_game_level}-");
+                GenerateGameStartScreen(title: "Game Over", subTitle: $"-Score: {_gameScoreBar.GetScore():0000} Level: {_gameLevel}-");
 
-                _game_controller.DeactivateGyrometerReading();
+                _gameController.DeactivateGyrometerReading();
             }
         }
 
         private void RepositionConstructs()
         {
-            foreach (var construct in _scene_game.GameObjects.OfType<GameObject>()
+            foreach (var construct in _gameScene.GameObjects.OfType<GameObject>()
                 .Where(x => x.ConstructType is
                 ConstructType.VEHICLE_ENEMY_LARGE or
                 ConstructType.VEHICLE_ENEMY_SMALL or
@@ -322,7 +322,7 @@ namespace HonkBusterGame
 
         private void RepositionHoveringTitleScreens()
         {
-            foreach (var screen in _scene_main_menu.GameObjects.OfType<HoveringTitleScreen>().Where(x => x.IsAnimating))
+            foreach (var screen in _mainMenuScene.GameObjects.OfType<HoveringTitleScreen>().Where(x => x.IsAnimating))
             {
                 screen.Reposition();
             }
@@ -330,15 +330,15 @@ namespace HonkBusterGame
 
         private void LevelUp()
         {
-            _game_level++;
-            GenerateInterimScreen($"LEVEL {_game_level} COMPLETE");
+            _gameLevel++;
+            GenerateInterimScreen($"LEVEL {_gameLevel} COMPLETE");
         }
 
         private void ToggleNightMode(bool isNightMode)
         {
-            _scene_game.ToggleNightMode(isNightMode);
+            _gameScene.ToggleNightMode(isNightMode);
 
-            if (_scene_game.IsNightModeActivated)
+            if (_gameScene.IsNightModeActivated)
             {
                 this.NightToDayStoryboard.Stop();
                 this.DayToNightStoryboard.Begin();
@@ -352,8 +352,8 @@ namespace HonkBusterGame
 
         private async Task OpenGame()
         {
-            _scene_game.Play();
-            _scene_main_menu.Play();
+            _gameScene.Play();
+            _mainMenuScene.Play();
 
             ToggleNightMode(false);
 
@@ -381,12 +381,12 @@ namespace HonkBusterGame
             promptOrientationChangeScreen.SetZ(z: 10);
             promptOrientationChangeScreen.MoveOutOfSight();
 
-            _scene_main_menu.AddToScene(promptOrientationChangeScreen);
+            _mainMenuScene.AddToScene(promptOrientationChangeScreen);
         }
 
         private void GeneratePromptOrientationChangeScreen()
         {
-            if (_scene_main_menu.GameObjects.OfType<PromptOrientationChangeScreen>().FirstOrDefault(x => x.IsAnimating == false) is PromptOrientationChangeScreen promptOrientationChangeScreen)
+            if (_mainMenuScene.GameObjects.OfType<PromptOrientationChangeScreen>().FirstOrDefault(x => x.IsAnimating == false) is PromptOrientationChangeScreen promptOrientationChangeScreen)
             {
                 promptOrientationChangeScreen.Reposition();
                 promptOrientationChangeScreen.IsAnimating = true;
@@ -419,12 +419,12 @@ namespace HonkBusterGame
             assetsLoadingScreen.SetZ(z: 10);
             assetsLoadingScreen.MoveOutOfSight();
 
-            _scene_main_menu.AddToScene(assetsLoadingScreen);
+            _mainMenuScene.AddToScene(assetsLoadingScreen);
         }
 
         private void GenerateAssetsLoadingScreen()
         {
-            if (_scene_main_menu.GameObjects.OfType<AssetsLoadingScreen>().FirstOrDefault(x => x.IsAnimating == false) is AssetsLoadingScreen assetsLoadingScreen)
+            if (_mainMenuScene.GameObjects.OfType<AssetsLoadingScreen>().FirstOrDefault(x => x.IsAnimating == false) is AssetsLoadingScreen assetsLoadingScreen)
             {
                 assetsLoadingScreen.Reposition();
                 assetsLoadingScreen.SetSubTitle($"... Loading Assets ...");
@@ -436,7 +436,7 @@ namespace HonkBusterGame
 
                     if (ScreenExtensions.IsScreenInRequiredOrientation())
                     {
-                        if (!_scene_game.GameObjectGeneratorsAdded)
+                        if (!_gameScene.GameObjectGeneratorsAdded)
                         {
                             PrepareGameScene();
                             await Task.Delay(500);
@@ -479,7 +479,7 @@ namespace HonkBusterGame
                 recycleAction: (se) => { },
                 playAction: () =>
                 {
-                    if (_scene_game.GameViewState == GameViewState.GAME_STOPPED)
+                    if (_gameScene.GameViewState == GameViewState.GAME_STOPPED)
                     {
                         if (ScreenExtensions.IsScreenInRequiredOrientation())
                         {
@@ -494,7 +494,7 @@ namespace HonkBusterGame
                     }
                     else
                     {
-                        if (!_scene_game.IsAnimating)
+                        if (!_gameScene.IsAnimating)
                         {
                             if (ScreenExtensions.IsScreenInRequiredOrientation())
                             {
@@ -512,12 +512,12 @@ namespace HonkBusterGame
             gameStartScreen.SetZ(z: 10);
             gameStartScreen.MoveOutOfSight();
 
-            _scene_main_menu.AddToScene(gameStartScreen);
+            _mainMenuScene.AddToScene(gameStartScreen);
         }
 
         private void GenerateGameStartScreen(string title, string subTitle = "")
         {
-            if (_scene_main_menu.GameObjects.OfType<GameStartScreen>().FirstOrDefault(x => x.IsAnimating == false) is GameStartScreen gameStartScreen)
+            if (_mainMenuScene.GameObjects.OfType<GameStartScreen>().FirstOrDefault(x => x.IsAnimating == false) is GameStartScreen gameStartScreen)
             {
                 gameStartScreen.SetTitle(title);
                 gameStartScreen.SetSubTitle(subTitle);
@@ -552,7 +552,7 @@ namespace HonkBusterGame
                 recycleAction: (se) => { },
                 playAction: (int playerTemplate) =>
                 {
-                    _selected_player_template = (PlayerBalloonTemplate)playerTemplate;
+                    _selectedPlayerTemplate = (PlayerBalloonTemplate)playerTemplate;
 
                     RecyclePlayerCharacterSelectionScreen(playerCharacterSelectionScreen);
                     GeneratePlayerHonkBombSelectionScreen();
@@ -566,12 +566,12 @@ namespace HonkBusterGame
             playerCharacterSelectionScreen.SetZ(z: 10);
             playerCharacterSelectionScreen.MoveOutOfSight();
 
-            _scene_main_menu.AddToScene(playerCharacterSelectionScreen);
+            _mainMenuScene.AddToScene(playerCharacterSelectionScreen);
         }
 
         private void GeneratePlayerCharacterSelectionScreen()
         {
-            if (_scene_main_menu.GameObjects.OfType<PlayerCharacterSelectionScreen>().FirstOrDefault(x => x.IsAnimating == false) is PlayerCharacterSelectionScreen playerCharacterSelectionScreen)
+            if (_mainMenuScene.GameObjects.OfType<PlayerCharacterSelectionScreen>().FirstOrDefault(x => x.IsAnimating == false) is PlayerCharacterSelectionScreen playerCharacterSelectionScreen)
             {
                 //playerCharacterSelectionScreen.Reset();
                 playerCharacterSelectionScreen.Reposition();
@@ -603,9 +603,9 @@ namespace HonkBusterGame
                 recycleAction: (se) => { },
                 playAction: (int playerTemplate) =>
                 {
-                    _selected_player_honk_bomb_template = (PlayerHonkBombTemplate)playerTemplate;
+                    _selectedPlayerHonkBombTemplate = (PlayerHonkBombTemplate)playerTemplate;
 
-                    if (_scene_game.GameViewState == GameViewState.GAME_STOPPED)
+                    if (_gameScene.GameViewState == GameViewState.GAME_STOPPED)
                     {
                         RecyclePlayerHonkBombSelectionScreen(playerHonkBombSelectionScreen);
                         NewGame();
@@ -620,12 +620,12 @@ namespace HonkBusterGame
             playerHonkBombSelectionScreen.SetZ(z: 10);
             playerHonkBombSelectionScreen.MoveOutOfSight();
 
-            _scene_main_menu.AddToScene(playerHonkBombSelectionScreen);
+            _mainMenuScene.AddToScene(playerHonkBombSelectionScreen);
         }
 
         private void GeneratePlayerHonkBombSelectionScreen()
         {
-            if (_scene_main_menu.GameObjects.OfType<PlayerHonkBombSelectionScreen>().FirstOrDefault(x => x.IsAnimating == false) is PlayerHonkBombSelectionScreen playerHonkBombSelectionScreen)
+            if (_mainMenuScene.GameObjects.OfType<PlayerHonkBombSelectionScreen>().FirstOrDefault(x => x.IsAnimating == false) is PlayerHonkBombSelectionScreen playerHonkBombSelectionScreen)
             {
                 //playerHonkBombSelectionScreen.Reset();
                 playerHonkBombSelectionScreen.Reposition();
@@ -659,19 +659,19 @@ namespace HonkBusterGame
             interimScreen.SetZ(z: 10);
             interimScreen.MoveOutOfSight();
 
-            _scene_main_menu.AddToScene(interimScreen);
+            _mainMenuScene.AddToScene(interimScreen);
         }
 
         private void GenerateInterimScreen(string title)
         {
-            if (_scene_main_menu.GameObjects.OfType<InterimScreen>().FirstOrDefault(x => x.IsAnimating == false) is InterimScreen interimScreen)
+            if (_mainMenuScene.GameObjects.OfType<InterimScreen>().FirstOrDefault(x => x.IsAnimating == false) is InterimScreen interimScreen)
             {
                 interimScreen.SetTitle(title);
                 interimScreen.Reset();
                 interimScreen.Reposition();
                 interimScreen.IsAnimating = true;
 
-                _scene_main_menu.Play();
+                _mainMenuScene.Play();
             }
         }
 
@@ -687,7 +687,7 @@ namespace HonkBusterGame
             if (interimScreen is InterimScreen interimScreen1 && interimScreen1.IsDepleted)
             {
                 interimScreen.IsAnimating = false;
-                _scene_main_menu.Pause();
+                _mainMenuScene.Pause();
             }
         }
 
@@ -712,7 +712,7 @@ namespace HonkBusterGame
 
             SpawnDropShadow(source: _player);
 
-            _scene_game.AddToScene(_player);
+            _gameScene.AddToScene(_player);
 
             LoggingExtensions.Log($"Player Template: {playerTemplate}");
         }
@@ -723,18 +723,18 @@ namespace HonkBusterGame
             _player.Reposition();
             _player.IsAnimating = true;
 
-            switch (_selected_player_template)
+            switch (_selectedPlayerTemplate)
             {
                 case PlayerBalloonTemplate.Blue:
                     {
-                        _game_controller.SetAttackButtonColor(Application.Current.Resources["PlayerBlueAccentColor"] as SolidColorBrush);
-                        _game_controller.SetThumbstickThumbColor(Application.Current.Resources["PlayerBlueAccentColor"] as SolidColorBrush);
+                        _gameController.SetAttackButtonColor(Application.Current.Resources["PlayerBlueAccentColor"] as SolidColorBrush);
+                        _gameController.SetThumbstickThumbColor(Application.Current.Resources["PlayerBlueAccentColor"] as SolidColorBrush);
                     }
                     break;
                 case PlayerBalloonTemplate.Red:
                     {
-                        _game_controller.SetAttackButtonColor(Application.Current.Resources["PlayerRedAccentColor"] as SolidColorBrush);
-                        _game_controller.SetThumbstickThumbColor(Application.Current.Resources["PlayerRedAccentColor"] as SolidColorBrush);
+                        _gameController.SetAttackButtonColor(Application.Current.Resources["PlayerRedAccentColor"] as SolidColorBrush);
+                        _gameController.SetThumbstickThumbColor(Application.Current.Resources["PlayerRedAccentColor"] as SolidColorBrush);
                     }
                     break;
                 default:
@@ -747,9 +747,9 @@ namespace HonkBusterGame
 
         private void SetPlayerHealthBar()
         {
-            _player_health_bar.SetMaxiumHealth(_player.Health);
-            _player_health_bar.SetValue(_player.Health);
-            _player_health_bar.SetBarColor(color: Colors.Crimson);
+            _playerHealthBar.SetMaxiumHealth(_player.Health);
+            _playerHealthBar.SetValue(_player.Health);
+            _playerHealthBar.SetBarColor(color: Colors.Crimson);
         }
 
         private void AnimatePlayerBalloon(GameObject player)
@@ -761,21 +761,21 @@ namespace HonkBusterGame
             _player.DepleteHitStance();
             _player.RecoverFromHealthLoss();
 
-            if (_scene_game.GameViewState == GameViewState.GAME_RUNNING)
+            if (_gameScene.GameViewState == GameViewState.GAME_RUNNING)
             {
-                if (_game_controller.IsPausing)
+                if (_gameController.IsPausing)
                 {
                     PauseGame();
-                    _game_controller.IsPausing = false;
+                    _gameController.IsPausing = false;
                 }
                 else
                 {
-                    var count = _scene_game.GameObjects.OfType<VehicleEnemy>().Count(x => x.IsAnimating && x.WillHonk) + _scene_game.GameObjects.OfType<UfoEnemy>().Count(x => x.IsAnimating && x.WillHonk);
-                    _sound_pollution_health_bar.SetValue(count * 2);
+                    var count = _gameScene.GameObjects.OfType<VehicleEnemy>().Count(x => x.IsAnimating && x.WillHonk) + _gameScene.GameObjects.OfType<UfoEnemy>().Count(x => x.IsAnimating && x.WillHonk);
+                    _soundPollutionMeter.SetValue(count * 2);
 
-                    if (_sound_pollution_health_bar.GetValue() >= _sound_pollution_health_bar.GetMaxiumHealth()) // loose score slowly if sound pollution has reached the limit
+                    if (_soundPollutionMeter.GetValue() >= _soundPollutionMeter.GetMaxiumHealth()) // loose score slowly if sound pollution has reached the limit
                     {
-                        _game_score_bar.LooseScore(0.01);
+                        _gameScoreBar.LooseScore(0.01);
                     }
 
                     var scaling = ScreenExtensions.GetScreenSpaceScaling();
@@ -785,15 +785,15 @@ namespace HonkBusterGame
                         speed: speed,
                         sceneWidth: Constants.DEFAULT_SCENE_WIDTH * scaling,
                         sceneHeight: Constants.DEFAULT_SCENE_HEIGHT * scaling,
-                        controller: _game_controller);
+                        controller: _gameController);
 
-                    if (_game_controller.IsAttacking)
+                    if (_gameController.IsAttacking)
                     {
                         if (UfoEnemyExists() || AnyInAirBossExists())
                         {
-                            if (_powerUp_health_bar.HasHealth)
+                            if (_powerUpMeter.HasHealth)
                             {
-                                switch ((PowerUpType)_powerUp_health_bar.Tag)
+                                switch ((PowerUpType)_powerUpMeter.Tag)
                                 {
                                     case PowerUpType.SEEKING_SNITCH:
                                         {
@@ -824,7 +824,7 @@ namespace HonkBusterGame
                             GeneratePlayerHonkBomb();
                         }
 
-                        _game_controller.DeactivateAttack();
+                        _gameController.DeactivateAttack();
                     }
                 }
             }
@@ -834,7 +834,7 @@ namespace HonkBusterGame
         {
             _player.SetPopping();
 
-            if (_powerUp_health_bar.HasHealth && (PowerUpType)_powerUp_health_bar.Tag == PowerUpType.ARMOR)
+            if (_powerUpMeter.HasHealth && (PowerUpType)_powerUpMeter.Tag == PowerUpType.ARMOR)
             {
                 DepletePowerUp();
                 GenerateFloatingNumber(_player);
@@ -846,9 +846,9 @@ namespace HonkBusterGame
 
                 GenerateFloatingNumber(_player);
 
-                _player_health_bar.SetValue(_player.Health);
+                _playerHealthBar.SetValue(_player.Health);
 
-                if (_scene_game.GameObjects.OfType<GameObject>().FirstOrDefault(x => x.IsAnimating &&
+                if (_gameScene.GameObjects.OfType<GameObject>().FirstOrDefault(x => x.IsAnimating &&
                     (x.ConstructType == ConstructType.UFO_BOSS || x.ConstructType == ConstructType.ZOMBIE_BOSS || x.ConstructType == ConstructType.MAFIA_BOSS)) is GameObject boss)
                 {
                     if (boss is UfoBoss ufo)
@@ -884,7 +884,7 @@ namespace HonkBusterGame
                 playerHonkBomb.SetZ(z: 7);
                 playerHonkBomb.MoveOutOfSight();
 
-                _scene_game.AddToScene(playerHonkBomb);
+                _gameScene.AddToScene(playerHonkBomb);
 
                 SpawnDropShadow(source: playerHonkBomb);
             }
@@ -892,10 +892,10 @@ namespace HonkBusterGame
 
         private void GeneratePlayerHonkBomb()
         {
-            if (_scene_game.GameViewState == GameViewState.GAME_RUNNING && !_scene_game.IsSlowMotionActivated)
+            if (_gameScene.GameViewState == GameViewState.GAME_RUNNING && !_gameScene.IsSlowMotionActivated)
             {
-                if ((VehicleBossExists() || _scene_game.GameObjects.OfType<VehicleEnemy>().Any(x => x.IsAnimating)) &&
-                    _scene_game.GameObjects.OfType<PlayerHonkBomb>().FirstOrDefault(x => x.IsAnimating == false) is PlayerHonkBomb playerHonkBomb)
+                if ((VehicleBossExists() || _gameScene.GameObjects.OfType<VehicleEnemy>().Any(x => x.IsAnimating)) &&
+                    _gameScene.GameObjects.OfType<PlayerHonkBomb>().FirstOrDefault(x => x.IsAnimating == false) is PlayerHonkBomb playerHonkBomb)
                 {
                     _player.SetAttackStance();
 
@@ -931,23 +931,23 @@ namespace HonkBusterGame
                 playerHonkBomb.SetLeft(playerHonkBomb.GetLeft() + speed);
                 playerHonkBomb.SetTop(playerHonkBomb.GetTop() + speed * 1.2);
 
-                if (_scene_game.GameViewState == GameViewState.GAME_RUNNING)
+                if (_gameScene.GameViewState == GameViewState.GAME_RUNNING)
                 {
-                    DropShadow dropShadow = _scene_game.GameObjects.OfType<DropShadow>().First(x => x.Id == playerHonkBomb.Id);
+                    DropShadow dropShadow = _gameScene.GameObjects.OfType<DropShadow>().First(x => x.Id == playerHonkBomb.Id);
 
                     var drpShdwHitBox = dropShadow.GetCloseHitBox();
                     var fireCrackerHitBox = playerHonkBomb.GetCloseHitBox();
 
                     if (drpShdwHitBox.IntersectsWith(fireCrackerHitBox) && playerHonkBomb.GetBottom() > dropShadow.GetBottom())  // start blast animation when the bomb touches it's shadow
                     {
-                        if (_scene_game.GameObjects.OfType<VehicleEnemy>()
+                        if (_gameScene.GameObjects.OfType<VehicleEnemy>()
                             .Where(x => x.IsAnimating /*&& x.WillHonk*/)
                             .FirstOrDefault(x => x.GetCloseHitBox().IntersectsWith(fireCrackerHitBox)) is VehicleEnemy vehicleEnemy) // while in blast check if it intersects with any vehicle, if it does then the vehicle stops honking and slows down
                         {
                             LooseVehicleEnemyHealth(vehicleEnemy);
                         }
 
-                        if (_scene_game.GameObjects.OfType<VehicleBoss>()
+                        if (_gameScene.GameObjects.OfType<VehicleBoss>()
                             .FirstOrDefault(x => x.IsAnimating && x.IsAttacking) is VehicleBoss vehicleBoss && vehicleBoss.GetCloseHitBox().IntersectsWith(fireCrackerHitBox)) // if a vechile boss is in place then boss looses health
                         {
                             LooseVehicleBossHealth(vehicleBoss);
@@ -987,7 +987,7 @@ namespace HonkBusterGame
                 playerRocket.SetZ(z: 8);
                 playerRocket.MoveOutOfSight();
 
-                _scene_game.AddToScene(playerRocket);
+                _gameScene.AddToScene(playerRocket);
 
                 SpawnDropShadow(source: playerRocket);
             }
@@ -995,8 +995,8 @@ namespace HonkBusterGame
 
         private void GeneratePlayerRocket()
         {
-            if (_scene_game.GameViewState == GameViewState.GAME_RUNNING && !_scene_game.IsSlowMotionActivated &&
-                _scene_game.GameObjects.OfType<PlayerRocket>().FirstOrDefault(x => x.IsAnimating == false) is PlayerRocket playerRocket)
+            if (_gameScene.GameViewState == GameViewState.GAME_RUNNING && !_gameScene.IsSlowMotionActivated &&
+                _gameScene.GameObjects.OfType<PlayerRocket>().FirstOrDefault(x => x.IsAnimating == false) is PlayerRocket playerRocket)
             {
                 _player.SetAttackStance();
 
@@ -1010,21 +1010,21 @@ namespace HonkBusterGame
                 var playerDistantHitBox = _player.GetDistantHitBox();
 
                 // get closest possible target
-                UfoBossRocketSeeking ufoBossRocketSeeking = _scene_game.GameObjects.OfType<UfoBossRocketSeeking>()?.FirstOrDefault(x => x.IsAnimating && !x.IsBlasting && x.GetHitBox().IntersectsWith(playerDistantHitBox));
+                UfoBossRocketSeeking ufoBossRocketSeeking = _gameScene.GameObjects.OfType<UfoBossRocketSeeking>()?.FirstOrDefault(x => x.IsAnimating && !x.IsBlasting && x.GetHitBox().IntersectsWith(playerDistantHitBox));
 
-                UfoBoss ufoBoss = _scene_game.GameObjects.OfType<UfoBoss>()?.FirstOrDefault(x => x.IsAnimating && x.IsAttacking && x.GetHitBox().IntersectsWith(playerDistantHitBox));
-                ZombieBoss zombieBoss = _scene_game.GameObjects.OfType<ZombieBoss>()?.FirstOrDefault(x => x.IsAnimating && x.IsAttacking && x.GetHitBox().IntersectsWith(playerDistantHitBox));
-                MafiaBoss mafiaBoss = _scene_game.GameObjects.OfType<MafiaBoss>()?.FirstOrDefault(x => x.IsAnimating && x.IsAttacking && x.GetHitBox().IntersectsWith(playerDistantHitBox));
+                UfoBoss ufoBoss = _gameScene.GameObjects.OfType<UfoBoss>()?.FirstOrDefault(x => x.IsAnimating && x.IsAttacking && x.GetHitBox().IntersectsWith(playerDistantHitBox));
+                ZombieBoss zombieBoss = _gameScene.GameObjects.OfType<ZombieBoss>()?.FirstOrDefault(x => x.IsAnimating && x.IsAttacking && x.GetHitBox().IntersectsWith(playerDistantHitBox));
+                MafiaBoss mafiaBoss = _gameScene.GameObjects.OfType<MafiaBoss>()?.FirstOrDefault(x => x.IsAnimating && x.IsAttacking && x.GetHitBox().IntersectsWith(playerDistantHitBox));
 
-                UfoEnemy ufoEnemy = _scene_game.GameObjects.OfType<UfoEnemy>()?.FirstOrDefault(x => x.IsAnimating && !x.IsFadingComplete && x.GetHitBox().IntersectsWith(playerDistantHitBox));
+                UfoEnemy ufoEnemy = _gameScene.GameObjects.OfType<UfoEnemy>()?.FirstOrDefault(x => x.IsAnimating && !x.IsFadingComplete && x.GetHitBox().IntersectsWith(playerDistantHitBox));
 
                 // if not found then find random target
-                ufoBossRocketSeeking ??= _scene_game.GameObjects.OfType<UfoBossRocketSeeking>().FirstOrDefault(x => x.IsAnimating && !x.IsBlasting);
-                ufoBoss ??= _scene_game.GameObjects.OfType<UfoBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking);
-                zombieBoss ??= _scene_game.GameObjects.OfType<ZombieBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking);
-                mafiaBoss ??= _scene_game.GameObjects.OfType<MafiaBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking);
+                ufoBossRocketSeeking ??= _gameScene.GameObjects.OfType<UfoBossRocketSeeking>().FirstOrDefault(x => x.IsAnimating && !x.IsBlasting);
+                ufoBoss ??= _gameScene.GameObjects.OfType<UfoBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking);
+                zombieBoss ??= _gameScene.GameObjects.OfType<ZombieBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking);
+                mafiaBoss ??= _gameScene.GameObjects.OfType<MafiaBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking);
 
-                ufoEnemy ??= _scene_game.GameObjects.OfType<UfoEnemy>().FirstOrDefault(x => x.IsAnimating && !x.IsFadingComplete);
+                ufoEnemy ??= _gameScene.GameObjects.OfType<UfoEnemy>().FirstOrDefault(x => x.IsAnimating && !x.IsFadingComplete);
 
                 if (ufoEnemy is not null)
                 {
@@ -1082,36 +1082,36 @@ namespace HonkBusterGame
                 playerRocket.Pop();
                 playerRocket1.Hover();
 
-                if (_scene_game.GameViewState == GameViewState.GAME_RUNNING)
+                if (_gameScene.GameViewState == GameViewState.GAME_RUNNING)
                 {
                     var hitBox = playerRocket.GetCloseHitBox();
 
-                    if (_scene_game.GameObjects.OfType<UfoBossRocketSeeking>().FirstOrDefault(x => x.IsAnimating && !x.IsBlasting && x.GetCloseHitBox().IntersectsWith(hitBox)) is UfoBossRocketSeeking ufoBossRocketSeeking) // if player bomb touches UfoBoss's seeking bomb, it blasts
+                    if (_gameScene.GameObjects.OfType<UfoBossRocketSeeking>().FirstOrDefault(x => x.IsAnimating && !x.IsBlasting && x.GetCloseHitBox().IntersectsWith(hitBox)) is UfoBossRocketSeeking ufoBossRocketSeeking) // if player bomb touches UfoBoss's seeking bomb, it blasts
                     {
                         playerRocket1.SetBlast();
                         ufoBossRocketSeeking.SetBlast();
                     }
-                    else if (_scene_game.GameObjects.OfType<ZombieBossRocketBlock>().FirstOrDefault(x => x.IsAnimating && !x.IsBlasting && x.GetCloseHitBox().IntersectsWith(hitBox)) is ZombieBossRocketBlock zombieBossRocket) // if player bomb touches ZombieBoss's seeking bomb, it blasts
+                    else if (_gameScene.GameObjects.OfType<ZombieBossRocketBlock>().FirstOrDefault(x => x.IsAnimating && !x.IsBlasting && x.GetCloseHitBox().IntersectsWith(hitBox)) is ZombieBossRocketBlock zombieBossRocket) // if player bomb touches ZombieBoss's seeking bomb, it blasts
                     {
                         playerRocket1.SetBlast();
                         LooseZombieBossRocketBlockHealth(zombieBossRocket);
                     }
-                    else if (_scene_game.GameObjects.OfType<UfoBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking && x.GetCloseHitBox().IntersectsWith(hitBox)) is UfoBoss ufoBoss) // if player bomb touches UfoBoss, it blasts, UfoBoss looses health
+                    else if (_gameScene.GameObjects.OfType<UfoBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking && x.GetCloseHitBox().IntersectsWith(hitBox)) is UfoBoss ufoBoss) // if player bomb touches UfoBoss, it blasts, UfoBoss looses health
                     {
                         playerRocket1.SetBlast();
                         LooseUfoBossHealth(ufoBoss);
                     }
-                    else if (_scene_game.GameObjects.OfType<ZombieBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking && x.GetCloseHitBox().IntersectsWith(hitBox)) is ZombieBoss zombieBoss) // if player bomb touches ZombieBoss, it blasts, ZombieBoss looses health
+                    else if (_gameScene.GameObjects.OfType<ZombieBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking && x.GetCloseHitBox().IntersectsWith(hitBox)) is ZombieBoss zombieBoss) // if player bomb touches ZombieBoss, it blasts, ZombieBoss looses health
                     {
                         playerRocket1.SetBlast();
                         LooseZombieBossHealth(zombieBoss);
                     }
-                    else if (_scene_game.GameObjects.OfType<MafiaBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking && x.GetCloseHitBox().IntersectsWith(hitBox)) is MafiaBoss mafiaBoss) // if player bomb touches MafiaBoss, it blasts, MafiaBoss looses health
+                    else if (_gameScene.GameObjects.OfType<MafiaBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking && x.GetCloseHitBox().IntersectsWith(hitBox)) is MafiaBoss mafiaBoss) // if player bomb touches MafiaBoss, it blasts, MafiaBoss looses health
                     {
                         playerRocket1.SetBlast();
                         LooseMafiaBossHealth(mafiaBoss);
                     }
-                    else if (_scene_game.GameObjects.OfType<UfoEnemy>().FirstOrDefault(x => x.IsAnimating && !x.IsDead && x.GetCloseHitBox().IntersectsWith(hitBox)) is UfoEnemy ufoEnemy) // if player bomb touches enemy, it blasts, enemy looses health
+                    else if (_gameScene.GameObjects.OfType<UfoEnemy>().FirstOrDefault(x => x.IsAnimating && !x.IsDead && x.GetCloseHitBox().IntersectsWith(hitBox)) is UfoEnemy ufoEnemy) // if player bomb touches enemy, it blasts, enemy looses health
                     {
                         playerRocket1.SetBlast();
                         LooseUfoEnemyHealth(ufoEnemy);
@@ -1149,7 +1149,7 @@ namespace HonkBusterGame
                 playerRocketSeeking.SetZ(z: 7);
                 playerRocketSeeking.MoveOutOfSight();
 
-                _scene_game.AddToScene(playerRocketSeeking);
+                _gameScene.AddToScene(playerRocketSeeking);
 
                 SpawnDropShadow(source: playerRocketSeeking);
             }
@@ -1159,8 +1159,8 @@ namespace HonkBusterGame
         {
             // generate a seeking bomb if one is not in scene
 
-            if (_scene_game.GameViewState == GameViewState.GAME_RUNNING && !_scene_game.IsSlowMotionActivated &&
-                _scene_game.GameObjects.OfType<PlayerRocketSeeking>().FirstOrDefault(x => x.IsAnimating == false) is PlayerRocketSeeking playerRocketSeeking)
+            if (_gameScene.GameViewState == GameViewState.GAME_RUNNING && !_gameScene.IsSlowMotionActivated &&
+                _gameScene.GameObjects.OfType<PlayerRocketSeeking>().FirstOrDefault(x => x.IsAnimating == false) is PlayerRocketSeeking playerRocketSeeking)
             {
                 _player.SetAttackStance();
 
@@ -1171,7 +1171,7 @@ namespace HonkBusterGame
 
                 GenerateDropShadow(source: playerRocketSeeking);
 
-                if (_powerUp_health_bar.HasHealth && (PowerUpType)_powerUp_health_bar.Tag == PowerUpType.SEEKING_SNITCH)
+                if (_powerUpMeter.HasHealth && (PowerUpType)_powerUpMeter.Tag == PowerUpType.SEEKING_SNITCH)
                     DepletePowerUp();
             }
         }
@@ -1192,9 +1192,9 @@ namespace HonkBusterGame
                 playerRocketSeeking.Pop();
                 playerRocketSeeking.Rotate(rotationSpeed: 3.5);
 
-                if (_scene_game.GameViewState == GameViewState.GAME_RUNNING)
+                if (_gameScene.GameViewState == GameViewState.GAME_RUNNING)
                 {
-                    if (_scene_game.GameObjects.OfType<UfoBossRocketSeeking>().FirstOrDefault(x => x.IsAnimating && !x.IsBlasting) is UfoBossRocketSeeking ufoBossRocketSeeking) // target UfoBossRocketSeeking
+                    if (_gameScene.GameObjects.OfType<UfoBossRocketSeeking>().FirstOrDefault(x => x.IsAnimating && !x.IsBlasting) is UfoBossRocketSeeking ufoBossRocketSeeking) // target UfoBossRocketSeeking
                     {
                         playerRocketSeeking1.Seek(ufoBossRocketSeeking.GetCloseHitBox());
 
@@ -1204,7 +1204,7 @@ namespace HonkBusterGame
                             ufoBossRocketSeeking.SetBlast();
                         }
                     }
-                    else if (_scene_game.GameObjects.OfType<ZombieBossRocketBlock>().FirstOrDefault(x => x.IsAnimating) is ZombieBossRocketBlock zombieBossRocket) // target ZombieBossRocketBlock
+                    else if (_gameScene.GameObjects.OfType<ZombieBossRocketBlock>().FirstOrDefault(x => x.IsAnimating) is ZombieBossRocketBlock zombieBossRocket) // target ZombieBossRocketBlock
                     {
                         playerRocketSeeking1.Seek(zombieBossRocket.GetCloseHitBox());
 
@@ -1214,7 +1214,7 @@ namespace HonkBusterGame
                             zombieBossRocket.LooseHealth();
                         }
                     }
-                    else if (_scene_game.GameObjects.OfType<UfoBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking) is UfoBoss ufoBoss) // target UfoBoss
+                    else if (_gameScene.GameObjects.OfType<UfoBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking) is UfoBoss ufoBoss) // target UfoBoss
                     {
                         playerRocketSeeking1.Seek(ufoBoss.GetCloseHitBox());
 
@@ -1224,7 +1224,7 @@ namespace HonkBusterGame
                             LooseUfoBossHealth(ufoBoss);
                         }
                     }
-                    else if (_scene_game.GameObjects.OfType<ZombieBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking) is ZombieBoss ZombieBoss) // target ZombieBoss
+                    else if (_gameScene.GameObjects.OfType<ZombieBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking) is ZombieBoss ZombieBoss) // target ZombieBoss
                     {
                         playerRocketSeeking1.Seek(ZombieBoss.GetCloseHitBox());
 
@@ -1234,7 +1234,7 @@ namespace HonkBusterGame
                             LooseZombieBossHealth(ZombieBoss);
                         }
                     }
-                    else if (_scene_game.GameObjects.OfType<MafiaBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking) is MafiaBoss MafiaBoss) // target MafiaBoss
+                    else if (_gameScene.GameObjects.OfType<MafiaBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking) is MafiaBoss MafiaBoss) // target MafiaBoss
                     {
                         playerRocketSeeking1.Seek(MafiaBoss.GetCloseHitBox());
 
@@ -1244,7 +1244,7 @@ namespace HonkBusterGame
                             LooseMafiaBossHealth(MafiaBoss);
                         }
                     }
-                    else if (_scene_game.GameObjects.OfType<UfoEnemy>().FirstOrDefault(x => x.IsAnimating && !x.IsFadingComplete) is UfoEnemy enemy) // target UfoEnemy
+                    else if (_gameScene.GameObjects.OfType<UfoEnemy>().FirstOrDefault(x => x.IsAnimating && !x.IsFadingComplete) is UfoEnemy enemy) // target UfoEnemy
                     {
                         playerRocketSeeking1.Seek(enemy.GetCloseHitBox());
 
@@ -1287,7 +1287,7 @@ namespace HonkBusterGame
                 playerRocketBullsEye.SetZ(z: 7);
                 playerRocketBullsEye.MoveOutOfSight();
 
-                _scene_game.AddToScene(playerRocketBullsEye);
+                _gameScene.AddToScene(playerRocketBullsEye);
 
                 SpawnDropShadow(source: playerRocketBullsEye);
             }
@@ -1297,8 +1297,8 @@ namespace HonkBusterGame
         {
             // generate a bulls eye bomb if one is not in scene
 
-            if (_scene_game.GameViewState == GameViewState.GAME_RUNNING && !_scene_game.IsSlowMotionActivated &&
-                _scene_game.GameObjects.OfType<PlayerRocketBullsEye>().FirstOrDefault(x => x.IsAnimating == false) is PlayerRocketBullsEye playerRocketBullsEye)
+            if (_gameScene.GameViewState == GameViewState.GAME_RUNNING && !_gameScene.IsSlowMotionActivated &&
+                _gameScene.GameObjects.OfType<PlayerRocketBullsEye>().FirstOrDefault(x => x.IsAnimating == false) is PlayerRocketBullsEye playerRocketBullsEye)
             {
                 _player.SetAttackStance();
 
@@ -1312,22 +1312,22 @@ namespace HonkBusterGame
                 var playerDistantHitBox = _player.GetDistantHitBox();
 
                 // get closest possible target
-                UfoBossRocketSeeking ufoBossRocketSeeking = _scene_game.GameObjects.OfType<UfoBossRocketSeeking>()?.FirstOrDefault(x => x.IsAnimating && !x.IsBlasting && x.GetHitBox().IntersectsWith(playerDistantHitBox));
+                UfoBossRocketSeeking ufoBossRocketSeeking = _gameScene.GameObjects.OfType<UfoBossRocketSeeking>()?.FirstOrDefault(x => x.IsAnimating && !x.IsBlasting && x.GetHitBox().IntersectsWith(playerDistantHitBox));
 
-                UfoBoss ufoBoss = _scene_game.GameObjects.OfType<UfoBoss>()?.FirstOrDefault(x => x.IsAnimating && x.IsAttacking && x.GetHitBox().IntersectsWith(playerDistantHitBox));
-                ZombieBoss zombieBoss = _scene_game.GameObjects.OfType<ZombieBoss>()?.FirstOrDefault(x => x.IsAnimating && x.IsAttacking && x.GetHitBox().IntersectsWith(playerDistantHitBox));
-                MafiaBoss mafiaBoss = _scene_game.GameObjects.OfType<MafiaBoss>()?.FirstOrDefault(x => x.IsAnimating && x.IsAttacking && x.GetHitBox().IntersectsWith(playerDistantHitBox));
+                UfoBoss ufoBoss = _gameScene.GameObjects.OfType<UfoBoss>()?.FirstOrDefault(x => x.IsAnimating && x.IsAttacking && x.GetHitBox().IntersectsWith(playerDistantHitBox));
+                ZombieBoss zombieBoss = _gameScene.GameObjects.OfType<ZombieBoss>()?.FirstOrDefault(x => x.IsAnimating && x.IsAttacking && x.GetHitBox().IntersectsWith(playerDistantHitBox));
+                MafiaBoss mafiaBoss = _gameScene.GameObjects.OfType<MafiaBoss>()?.FirstOrDefault(x => x.IsAnimating && x.IsAttacking && x.GetHitBox().IntersectsWith(playerDistantHitBox));
 
-                UfoEnemy ufoEnemy = _scene_game.GameObjects.OfType<UfoEnemy>()?.FirstOrDefault(x => x.IsAnimating && !x.IsFadingComplete && x.GetHitBox().IntersectsWith(playerDistantHitBox));
+                UfoEnemy ufoEnemy = _gameScene.GameObjects.OfType<UfoEnemy>()?.FirstOrDefault(x => x.IsAnimating && !x.IsFadingComplete && x.GetHitBox().IntersectsWith(playerDistantHitBox));
 
                 // if not found then find random target
-                ufoBossRocketSeeking ??= _scene_game.GameObjects.OfType<UfoBossRocketSeeking>().FirstOrDefault(x => x.IsAnimating && !x.IsBlasting);
+                ufoBossRocketSeeking ??= _gameScene.GameObjects.OfType<UfoBossRocketSeeking>().FirstOrDefault(x => x.IsAnimating && !x.IsBlasting);
 
-                ufoBoss ??= _scene_game.GameObjects.OfType<UfoBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking);
-                zombieBoss ??= _scene_game.GameObjects.OfType<ZombieBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking);
-                mafiaBoss ??= _scene_game.GameObjects.OfType<MafiaBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking);
+                ufoBoss ??= _gameScene.GameObjects.OfType<UfoBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking);
+                zombieBoss ??= _gameScene.GameObjects.OfType<ZombieBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking);
+                mafiaBoss ??= _gameScene.GameObjects.OfType<MafiaBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking);
 
-                ufoEnemy ??= _scene_game.GameObjects.OfType<UfoEnemy>().FirstOrDefault(x => x.IsAnimating && !x.IsFadingComplete);
+                ufoEnemy ??= _gameScene.GameObjects.OfType<UfoEnemy>().FirstOrDefault(x => x.IsAnimating && !x.IsFadingComplete);
 
                 if (ufoEnemy is not null)
                 {
@@ -1350,7 +1350,7 @@ namespace HonkBusterGame
                     playerRocketBullsEye.SetTarget(mafiaBoss.GetCloseHitBox());
                 }
 
-                if (_powerUp_health_bar.HasHealth && (PowerUpType)_powerUp_health_bar.Tag == PowerUpType.BULLS_EYE)
+                if (_powerUpMeter.HasHealth && (PowerUpType)_powerUpMeter.Tag == PowerUpType.BULLS_EYE)
                     DepletePowerUp();
             }
         }
@@ -1371,40 +1371,40 @@ namespace HonkBusterGame
                 playerRocketBullsEye.Pop();
                 playerRocketBullsEye.Rotate(rotationSpeed: 3.5);
 
-                if (_scene_game.GameViewState == GameViewState.GAME_RUNNING) // check if the rocket intersects with any target on its path
+                if (_gameScene.GameViewState == GameViewState.GAME_RUNNING) // check if the rocket intersects with any target on its path
                 {
                     var speed = playerRocketBullsEye1.Speed;
                     playerRocketBullsEye1.Move();
 
                     var hitbox = playerRocketBullsEye1.GetCloseHitBox();
 
-                    if (_scene_game.GameObjects.OfType<UfoBossRocketSeeking>().FirstOrDefault(x => x.IsAnimating && !x.IsBlasting && x.GetCloseHitBox().IntersectsWith(hitbox)) is UfoBossRocketSeeking ufoBossRocketSeeking) // target UfoBossRocketSeeking
+                    if (_gameScene.GameObjects.OfType<UfoBossRocketSeeking>().FirstOrDefault(x => x.IsAnimating && !x.IsBlasting && x.GetCloseHitBox().IntersectsWith(hitbox)) is UfoBossRocketSeeking ufoBossRocketSeeking) // target UfoBossRocketSeeking
                     {
                         playerRocketBullsEye1.SetBlast();
                         ufoBossRocketSeeking.SetBlast();
 
                     }
-                    else if (_scene_game.GameObjects.OfType<ZombieBossRocketBlock>().FirstOrDefault(x => x.IsAnimating && x.GetCloseHitBox().IntersectsWith(hitbox)) is ZombieBossRocketBlock zombieBossRocket) // target ZombieBossRocketBlock
+                    else if (_gameScene.GameObjects.OfType<ZombieBossRocketBlock>().FirstOrDefault(x => x.IsAnimating && x.GetCloseHitBox().IntersectsWith(hitbox)) is ZombieBossRocketBlock zombieBossRocket) // target ZombieBossRocketBlock
                     {
                         playerRocketBullsEye1.SetBlast();
                         zombieBossRocket.LooseHealth();
                     }
-                    else if (_scene_game.GameObjects.OfType<UfoBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking && x.GetCloseHitBox().IntersectsWith(hitbox)) is UfoBoss ufoBoss) // target UfoBoss
+                    else if (_gameScene.GameObjects.OfType<UfoBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking && x.GetCloseHitBox().IntersectsWith(hitbox)) is UfoBoss ufoBoss) // target UfoBoss
                     {
                         playerRocketBullsEye1.SetBlast();
                         LooseUfoBossHealth(ufoBoss);
                     }
-                    else if (_scene_game.GameObjects.OfType<ZombieBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking && x.GetCloseHitBox().IntersectsWith(hitbox)) is ZombieBoss zombieBoss) // target ZombieBoss
+                    else if (_gameScene.GameObjects.OfType<ZombieBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking && x.GetCloseHitBox().IntersectsWith(hitbox)) is ZombieBoss zombieBoss) // target ZombieBoss
                     {
                         playerRocketBullsEye1.SetBlast();
                         LooseZombieBossHealth(zombieBoss);
                     }
-                    else if (_scene_game.GameObjects.OfType<MafiaBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking && x.GetCloseHitBox().IntersectsWith(hitbox)) is MafiaBoss mafiaBoss) // target MafiaBoss
+                    else if (_gameScene.GameObjects.OfType<MafiaBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking && x.GetCloseHitBox().IntersectsWith(hitbox)) is MafiaBoss mafiaBoss) // target MafiaBoss
                     {
                         playerRocketBullsEye1.SetBlast();
                         LooseMafiaBossHealth(mafiaBoss);
                     }
-                    else if (_scene_game.GameObjects.OfType<UfoEnemy>().FirstOrDefault(x => x.IsAnimating && !x.IsFadingComplete && x.GetCloseHitBox().IntersectsWith(hitbox)) is UfoEnemy enemy) // target UfoEnemy
+                    else if (_gameScene.GameObjects.OfType<UfoEnemy>().FirstOrDefault(x => x.IsAnimating && !x.IsFadingComplete && x.GetCloseHitBox().IntersectsWith(hitbox)) is UfoEnemy enemy) // target UfoEnemy
                     {
                         playerRocketBullsEye1.SetBlast();
                         LooseUfoEnemyHealth(enemy);
@@ -1445,13 +1445,13 @@ namespace HonkBusterGame
 
                 roadSideWalk.MoveOutOfSight();
 
-                _scene_game.AddToScene(roadSideWalk);
+                _gameScene.AddToScene(roadSideWalk);
             }
         }
 
         private void GenerateRoadSideWalk()
         {
-            if (_scene_game.GameObjects.OfType<RoadSideWalk>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideWalk roadSideWalkTop)
+            if (_gameScene.GameObjects.OfType<RoadSideWalk>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideWalk roadSideWalkTop)
             {
                 roadSideWalkTop.Reset();
                 roadSideWalkTop.SetPosition(
@@ -1460,7 +1460,7 @@ namespace HonkBusterGame
                 roadSideWalkTop.IsAnimating = true;
             }
 
-            if (_scene_game.GameObjects.OfType<RoadSideWalk>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideWalk roadSideWalkBottom)
+            if (_gameScene.GameObjects.OfType<RoadSideWalk>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideWalk roadSideWalkBottom)
             {
                 roadSideWalkBottom.Reset();
                 roadSideWalkBottom.SetPosition(
@@ -1501,13 +1501,13 @@ namespace HonkBusterGame
 
                 roadSideTree.MoveOutOfSight();
 
-                _scene_game.AddToScene(roadSideTree);
+                _gameScene.AddToScene(roadSideTree);
             }
         }
 
         private void GenerateRoadSideTree()
         {
-            if (!_scene_game.IsSlowMotionActivated && _scene_game.GameObjects.OfType<RoadSideTree>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideTree roadSideTreeTop)
+            if (!_gameScene.IsSlowMotionActivated && _gameScene.GameObjects.OfType<RoadSideTree>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideTree roadSideTreeTop)
             {
                 roadSideTreeTop.Reset();
                 roadSideTreeTop.SetPosition(
@@ -1520,7 +1520,7 @@ namespace HonkBusterGame
                 //GenerateDropShadow(source: roadSideTreeTop);
             }
 
-            if (!_scene_game.IsSlowMotionActivated && _scene_game.GameObjects.OfType<RoadSideTree>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideTree roadSideTreeBottom)
+            if (!_gameScene.IsSlowMotionActivated && _gameScene.GameObjects.OfType<RoadSideTree>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideTree roadSideTreeBottom)
             {
                 roadSideTreeBottom.Reset();
                 roadSideTreeBottom.SetPosition(
@@ -1564,13 +1564,13 @@ namespace HonkBusterGame
 
                 roadSideHedge.MoveOutOfSight();
 
-                _scene_game.AddToScene(roadSideHedge);
+                _gameScene.AddToScene(roadSideHedge);
             }
         }
 
         private void GenerateRoadSideHedge()
         {
-            if (!_scene_game.IsSlowMotionActivated && _scene_game.GameObjects.OfType<RoadSideHedge>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideHedge roadSideHedgeTop)
+            if (!_gameScene.IsSlowMotionActivated && _gameScene.GameObjects.OfType<RoadSideHedge>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideHedge roadSideHedgeTop)
             {
                 roadSideHedgeTop.Reset();
                 roadSideHedgeTop.SetPosition(
@@ -1580,7 +1580,7 @@ namespace HonkBusterGame
                 roadSideHedgeTop.IsAnimating = true;
             }
 
-            if (!_scene_game.IsSlowMotionActivated && _scene_game.GameObjects.OfType<RoadSideHedge>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideHedge roadSideHedgeBottom)
+            if (!_gameScene.IsSlowMotionActivated && _gameScene.GameObjects.OfType<RoadSideHedge>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideHedge roadSideHedgeBottom)
             {
                 roadSideHedgeBottom.Reset();
                 roadSideHedgeBottom.SetPosition(
@@ -1622,13 +1622,13 @@ namespace HonkBusterGame
 
                 roadSideLamp.MoveOutOfSight();
 
-                _scene_game.AddToScene(roadSideLamp);
+                _gameScene.AddToScene(roadSideLamp);
             }
         }
 
         private void GenerateRoadSideLamp()
         {
-            if (!_scene_game.IsSlowMotionActivated && _scene_game.GameObjects.OfType<RoadSideLamp>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideLamp roadSideLampTop)
+            if (!_gameScene.IsSlowMotionActivated && _gameScene.GameObjects.OfType<RoadSideLamp>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideLamp roadSideLampTop)
             {
                 roadSideLampTop.Reset();
                 roadSideLampTop.SetPosition(
@@ -1638,7 +1638,7 @@ namespace HonkBusterGame
                 roadSideLampTop.IsAnimating = true;
             }
 
-            if (!_scene_game.IsSlowMotionActivated && _scene_game.GameObjects.OfType<RoadSideLamp>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideLamp roadSideLampBottom)
+            if (!_gameScene.IsSlowMotionActivated && _gameScene.GameObjects.OfType<RoadSideLamp>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideLamp roadSideLampBottom)
             {
                 roadSideLampBottom.Reset();
                 roadSideLampBottom.SetPosition(
@@ -1681,13 +1681,13 @@ namespace HonkBusterGame
                 roadSideBillboard.SetZ(z: 4);
                 roadSideBillboard.MoveOutOfSight();
 
-                _scene_game.AddToScene(roadSideBillboard);
+                _gameScene.AddToScene(roadSideBillboard);
             }
         }
 
         private void GenerateRoadSideBillboard()
         {
-            if (!_scene_game.IsSlowMotionActivated && _scene_game.GameObjects.OfType<RoadSideBillboard>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideBillboard roadSideBillboardTop)
+            if (!_gameScene.IsSlowMotionActivated && _gameScene.GameObjects.OfType<RoadSideBillboard>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideBillboard roadSideBillboardTop)
             {
                 roadSideBillboardTop.Reset();
                 roadSideBillboardTop.SetPosition(
@@ -1728,13 +1728,13 @@ namespace HonkBusterGame
 
                 roadSideLight.MoveOutOfSight();
 
-                _scene_game.AddToScene(roadSideLight);
+                _gameScene.AddToScene(roadSideLight);
             }
         }
 
         private void GenerateRoadSideLightBillboard()
         {
-            if (!_scene_game.IsSlowMotionActivated && _scene_game.GameObjects.OfType<RoadSideLightBillboard>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideLightBillboard roadSideLight)
+            if (!_gameScene.IsSlowMotionActivated && _gameScene.GameObjects.OfType<RoadSideLightBillboard>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideLightBillboard roadSideLight)
             {
                 roadSideLight.Reset();
                 roadSideLight.SetPosition(
@@ -1777,13 +1777,13 @@ namespace HonkBusterGame
                 roadMark.SetZ(z: 0);
                 roadMark.MoveOutOfSight();
 
-                _scene_game.AddToScene(roadMark);
+                _gameScene.AddToScene(roadMark);
             }
         }
 
         private void GenerateRoadMark()
         {
-            if (_scene_game.GameObjects.OfType<RoadMark>().FirstOrDefault(x => x.IsAnimating == false) is RoadMark roadMark)
+            if (_gameScene.GameObjects.OfType<RoadMark>().FirstOrDefault(x => x.IsAnimating == false) is RoadMark roadMark)
             {
                 roadMark.Reset();
                 roadMark.SetPosition(
@@ -1827,7 +1827,7 @@ namespace HonkBusterGame
             ufoBoss.SetZ(z: 8);
             ufoBoss.MoveOutOfSight();
 
-            _scene_game.AddToScene(ufoBoss);
+            _gameScene.AddToScene(ufoBoss);
 
             SpawnDropShadow(source: ufoBoss);
         }
@@ -1836,9 +1836,9 @@ namespace HonkBusterGame
         {
             // if scene doesn't contain a UfoBoss then pick a UfoBoss and add to scene
 
-            if (_scene_game.GameViewState == GameViewState.GAME_RUNNING &&
-                _ufo_boss_threashold.ShouldRelease(_game_score_bar.GetScore()) && !UfoBossExists() &&
-                _scene_game.GameObjects.OfType<UfoBoss>().FirstOrDefault(x => x.IsAnimating == false) is UfoBoss ufoBoss)
+            if (_gameScene.GameViewState == GameViewState.GAME_RUNNING &&
+                _ufoBossCheckpoint.ShouldRelease(_gameScoreBar.GetScore()) && !UfoBossExists() &&
+                _gameScene.GameObjects.OfType<UfoBoss>().FirstOrDefault(x => x.IsAnimating == false) is UfoBoss ufoBoss)
             {
                 _audioStub.Stop(SoundType.GAME_BACKGROUND_MUSIC);
                 _audioStub.Play(SoundType.BOSS_BACKGROUND_MUSIC);
@@ -1853,16 +1853,16 @@ namespace HonkBusterGame
                 GenerateDropShadow(source: ufoBoss);
 
                 // set UfoBoss health
-                ufoBoss.Health = _ufo_boss_threashold.GetReleasePointDifference() * 1.5;
+                ufoBoss.Health = _ufoBossCheckpoint.GetReleasePointDifference() * 1.5;
 
-                _ufo_boss_threashold.IncreaseThreasholdLimit(increment: _ufo_boss_threashold_limit_increase, currentPoint: _game_score_bar.GetScore());
+                _ufoBossCheckpoint.IncreaseThreasholdLimit(increment: _ufoBossReleasePoint_increase, currentPoint: _gameScoreBar.GetScore());
 
-                _ufo_boss_health_bar.SetMaxiumHealth(ufoBoss.Health);
-                _ufo_boss_health_bar.SetValue(ufoBoss.Health);
-                _ufo_boss_health_bar.SetIcon(ufoBoss.GetContentUri());
-                _ufo_boss_health_bar.SetBarColor(color: Colors.Crimson);
+                _ufoBossHealthBar.SetMaxiumHealth(ufoBoss.Health);
+                _ufoBossHealthBar.SetValue(ufoBoss.Health);
+                _ufoBossHealthBar.SetIcon(ufoBoss.GetContentUri());
+                _ufoBossHealthBar.SetBarColor(color: Colors.Crimson);
 
-                _scene_game.ActivateSlowMotion();
+                _gameScene.ActivateSlowMotion();
 
                 GenerateInterimScreen("Beware of Scarlet Saucer");
 
@@ -1886,7 +1886,7 @@ namespace HonkBusterGame
                 ufoBoss1.DepleteHitStance();
                 ufoBoss1.DepleteWinStance();
 
-                if (_scene_game.GameViewState == GameViewState.GAME_RUNNING)
+                if (_gameScene.GameViewState == GameViewState.GAME_RUNNING)
                 {
                     var speed = ufoBoss1.Speed;
                     var scaling = ScreenExtensions.GetScreenSpaceScaling();
@@ -1934,7 +1934,7 @@ namespace HonkBusterGame
 
             GenerateFloatingNumber(ufoBoss);
 
-            _ufo_boss_health_bar.SetValue(ufoBoss.Health);
+            _ufoBossHealthBar.SetValue(ufoBoss.Health);
 
             if (ufoBoss.IsDead)
             {
@@ -1943,18 +1943,18 @@ namespace HonkBusterGame
                 _audioStub.SetVolume(SoundType.AMBIENCE, 0.6);
 
                 _player.SetWinStance();
-                _game_score_bar.GainScore(3);
+                _gameScoreBar.GainScore(3);
 
                 LevelUp();
 
-                _scene_game.ActivateSlowMotion();
+                _gameScene.ActivateSlowMotion();
                 ToggleNightMode(false);
             }
         }
 
         private bool UfoBossExists()
         {
-            return _scene_game.GameObjects.OfType<UfoBoss>().Any(x => x.IsAnimating);
+            return _gameScene.GameObjects.OfType<UfoBoss>().Any(x => x.IsAnimating);
         }
 
         #endregion
@@ -1972,7 +1972,7 @@ namespace HonkBusterGame
                 ufoBossRocket.SetZ(z: 7);
                 ufoBossRocket.MoveOutOfSight();
 
-                _scene_game.AddToScene(ufoBossRocket);
+                _gameScene.AddToScene(ufoBossRocket);
 
                 SpawnDropShadow(source: ufoBossRocket);
             }
@@ -1980,9 +1980,9 @@ namespace HonkBusterGame
 
         private void GenerateUfoBossRocket()
         {
-            if (_scene_game.GameViewState == GameViewState.GAME_RUNNING &&
-                _scene_game.GameObjects.OfType<UfoBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking) is UfoBoss ufoBoss &&
-                _scene_game.GameObjects.OfType<UfoBossRocket>().FirstOrDefault(x => x.IsAnimating == false) is UfoBossRocket ufoBossRocket)
+            if (_gameScene.GameViewState == GameViewState.GAME_RUNNING &&
+                _gameScene.GameObjects.OfType<UfoBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking) is UfoBoss ufoBoss &&
+                _gameScene.GameObjects.OfType<UfoBossRocket>().FirstOrDefault(x => x.IsAnimating == false) is UfoBossRocket ufoBossRocket)
             {
                 ufoBossRocket.Reset();
                 ufoBossRocket.SetPopping();
@@ -2027,7 +2027,7 @@ namespace HonkBusterGame
                 ufoBossRocket.Pop();
                 ufoBossRocket1.Hover();
 
-                if (_scene_game.GameViewState == GameViewState.GAME_RUNNING)
+                if (_gameScene.GameViewState == GameViewState.GAME_RUNNING)
                 {
                     if (ufoBossRocket.GetCloseHitBox().IntersectsWith(_player.GetCloseHitBox()))
                     {
@@ -2067,7 +2067,7 @@ namespace HonkBusterGame
                 ufoBossRocketSeeking.SetZ(z: 7);
                 ufoBossRocketSeeking.MoveOutOfSight();
 
-                _scene_game.AddToScene(ufoBossRocketSeeking);
+                _gameScene.AddToScene(ufoBossRocketSeeking);
 
                 SpawnDropShadow(source: ufoBossRocketSeeking);
             }
@@ -2076,10 +2076,10 @@ namespace HonkBusterGame
         private void GenerateUfoBossRocketSeeking()
         {
             // generate a seeking bomb if one is not in scene
-            if (_scene_game.GameViewState == GameViewState.GAME_RUNNING &&
-                _scene_game.GameObjects.OfType<UfoBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking) is UfoBoss ufoBoss &&
-                !_scene_game.GameObjects.OfType<UfoBossRocketSeeking>().Any(x => x.IsAnimating) &&
-                _scene_game.GameObjects.OfType<UfoBossRocketSeeking>().FirstOrDefault(x => x.IsAnimating == false) is UfoBossRocketSeeking ufoBossRocketSeeking)
+            if (_gameScene.GameViewState == GameViewState.GAME_RUNNING &&
+                _gameScene.GameObjects.OfType<UfoBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking) is UfoBoss ufoBoss &&
+                !_gameScene.GameObjects.OfType<UfoBossRocketSeeking>().Any(x => x.IsAnimating) &&
+                _gameScene.GameObjects.OfType<UfoBossRocketSeeking>().FirstOrDefault(x => x.IsAnimating == false) is UfoBossRocketSeeking ufoBossRocketSeeking)
             {
                 ufoBossRocketSeeking.Reset();
                 ufoBossRocketSeeking.SetPopping();
@@ -2106,9 +2106,9 @@ namespace HonkBusterGame
             {
                 ufoBossRocketSeeking.Pop();
 
-                if (_scene_game.GameViewState == GameViewState.GAME_RUNNING)
+                if (_gameScene.GameViewState == GameViewState.GAME_RUNNING)
                 {
-                    if (_scene_game.GameObjects.OfType<UfoBoss>().Any(x => x.IsAnimating && x.IsAttacking))
+                    if (_gameScene.GameObjects.OfType<UfoBoss>().Any(x => x.IsAnimating && x.IsAttacking))
                     {
                         ufoBossRocketSeeking1.Seek(_player.GetCloseHitBox());
 
@@ -2161,7 +2161,7 @@ namespace HonkBusterGame
                 ufoEnemy.SetZ(z: 8);
                 ufoEnemy.MoveOutOfSight();
 
-                _scene_game.AddToScene(ufoEnemy);
+                _gameScene.AddToScene(ufoEnemy);
 
                 SpawnDropShadow(source: ufoEnemy);
             }
@@ -2170,8 +2170,8 @@ namespace HonkBusterGame
         private void GenerateUfoEnemy()
         {
             if (!AnyBossExists() &&
-                _ufo_enemy_threashold.ShouldRelease(_game_score_bar.GetScore()) &&
-                _scene_game.GameObjects.OfType<UfoEnemy>().FirstOrDefault(x => x.IsAnimating == false) is UfoEnemy ufoEnemy)
+                _ufoEnemyCheckpoint.ShouldRelease(_gameScoreBar.GetScore()) &&
+                _gameScene.GameObjects.OfType<UfoEnemy>().FirstOrDefault(x => x.IsAnimating == false) is UfoEnemy ufoEnemy)
             {
                 ufoEnemy.Reset();
                 ufoEnemy.Reposition();
@@ -2179,13 +2179,13 @@ namespace HonkBusterGame
 
                 GenerateDropShadow(source: ufoEnemy);
 
-                if (!_ufo_enemy_fleet_appeared)
+                if (!_ufoEnemyFleetAppeared)
                 {
                     _audioStub.Play(SoundType.UFO_ENEMY_ENTRY);
 
                     GenerateInterimScreen("Beware of UFO Fleet");
-                    _scene_game.ActivateSlowMotion();
-                    _ufo_enemy_fleet_appeared = true;
+                    _gameScene.ActivateSlowMotion();
+                    _ufoEnemyFleetAppeared = true;
                 }
             }
         }
@@ -2207,7 +2207,7 @@ namespace HonkBusterGame
 
                 ufoEnemy1.MoveDownRight(speed);
 
-                if (_scene_game.GameViewState == GameViewState.GAME_RUNNING)
+                if (_gameScene.GameViewState == GameViewState.GAME_RUNNING)
                 {
                     if (ufoEnemy1.Honk())
                         GenerateUfoEnemyHonk(ufoEnemy1);
@@ -2237,26 +2237,26 @@ namespace HonkBusterGame
 
             if (ufoEnemy.IsDead)
             {
-                _game_score_bar.GainScore(2);
+                _gameScoreBar.GainScore(2);
 
-                _ufo_enemy_kill_count++;
+                _ufoEnemyKillCount++;
 
-                if (_ufo_enemy_kill_count > _ufo_enemy_kill_count_limit) // after killing limited enemies increase the threadhold limit
+                if (_ufoEnemyKillCount > _ufoEnemyKillCount_limit) // after killing limited enemies increase the threadhold limit
                 {
-                    _ufo_enemy_threashold.IncreaseThreasholdLimit(increment: _ufo_enemy_threashold_limit_increase, currentPoint: _game_score_bar.GetScore());
-                    _ufo_enemy_kill_count = 0;
-                    _ufo_enemy_fleet_appeared = false;
+                    _ufoEnemyCheckpoint.IncreaseThreasholdLimit(increment: _ufoEnemyReleasePoint_increase, currentPoint: _gameScoreBar.GetScore());
+                    _ufoEnemyKillCount = 0;
+                    _ufoEnemyFleetAppeared = false;
 
                     LevelUp();
 
-                    _scene_game.ActivateSlowMotion();
+                    _gameScene.ActivateSlowMotion();
                 }
             }
         }
 
         private bool UfoEnemyExists()
         {
-            return _scene_game.GameObjects.OfType<UfoEnemy>().Any(x => x.IsAnimating);
+            return _gameScene.GameObjects.OfType<UfoEnemy>().Any(x => x.IsAnimating);
         }
 
         #endregion
@@ -2274,7 +2274,7 @@ namespace HonkBusterGame
                 ufoEnemyRocket.SetZ(z: 8);
                 ufoEnemyRocket.MoveOutOfSight();
 
-                _scene_game.AddToScene(ufoEnemyRocket);
+                _gameScene.AddToScene(ufoEnemyRocket);
 
                 SpawnDropShadow(source: ufoEnemyRocket);
             }
@@ -2282,8 +2282,8 @@ namespace HonkBusterGame
 
         private void GenerateUfoEnemyRocket(UfoEnemy ufoEnemy)
         {
-            if (_scene_game.GameViewState == GameViewState.GAME_RUNNING &&
-                _scene_game.GameObjects.OfType<UfoEnemyRocket>().FirstOrDefault(x => x.IsAnimating == false) is UfoEnemyRocket ufoEnemyRocket)
+            if (_gameScene.GameViewState == GameViewState.GAME_RUNNING &&
+                _gameScene.GameObjects.OfType<UfoEnemyRocket>().FirstOrDefault(x => x.IsAnimating == false) is UfoEnemyRocket ufoEnemyRocket)
             {
                 ufoEnemyRocket.Reset();
                 ufoEnemyRocket.SetPopping();
@@ -2311,7 +2311,7 @@ namespace HonkBusterGame
                 ufoEnemyRocket.Pop();
                 ufoEnemyRocket1.Hover();
 
-                if (_scene_game.GameViewState == GameViewState.GAME_RUNNING)
+                if (_gameScene.GameViewState == GameViewState.GAME_RUNNING)
                 {
                     if (ufoEnemyRocket1.GetCloseHitBox().IntersectsWith(_player.GetCloseHitBox()))
                     {
@@ -2353,13 +2353,13 @@ namespace HonkBusterGame
                 vehicleEnemy.SetZ(z: 5);
                 vehicleEnemy.MoveOutOfSight();
 
-                _scene_game.AddToScene(vehicleEnemy);
+                _gameScene.AddToScene(vehicleEnemy);
             }
         }
 
         private void GenerateVehicleEnemy()
         {
-            if (!AnyBossExists() && !_scene_game.IsSlowMotionActivated && _scene_game.GameObjects.OfType<VehicleEnemy>().FirstOrDefault(x => x.IsAnimating == false) is VehicleEnemy vehicleEnemy)
+            if (!AnyBossExists() && !_gameScene.IsSlowMotionActivated && _gameScene.GameObjects.OfType<VehicleEnemy>().FirstOrDefault(x => x.IsAnimating == false) is VehicleEnemy vehicleEnemy)
             {
                 vehicleEnemy.Reset();
                 vehicleEnemy.Reposition();
@@ -2377,7 +2377,7 @@ namespace HonkBusterGame
             var speed = vehicleEnemy1.Speed;
             vehicleEnemy1.MoveDownRight(speed);
 
-            if (_scene_game.GameViewState == GameViewState.GAME_RUNNING)
+            if (_gameScene.GameViewState == GameViewState.GAME_RUNNING)
             {
                 if (vehicleEnemy1.Honk())
                     GenerateVehicleEnemyHonk(vehicleEnemy1);
@@ -2398,7 +2398,7 @@ namespace HonkBusterGame
 
         private void PreventVehicleEnemyOverlapping(GameObject vehicleEnemy)
         {
-            if (_scene_game.GameObjects.OfType<VehicleEnemy>().FirstOrDefault(x => x.IsAnimating && x.GetHitBox().IntersectsWith(vehicleEnemy.GetHitBox())) is GameObject collidingVehicleEnemy)
+            if (_gameScene.GameObjects.OfType<VehicleEnemy>().FirstOrDefault(x => x.IsAnimating && x.GetHitBox().IntersectsWith(vehicleEnemy.GetHitBox())) is GameObject collidingVehicleEnemy)
             {
                 var hitBox = vehicleEnemy.GetHitBox();
 
@@ -2425,7 +2425,7 @@ namespace HonkBusterGame
                 if (vehicleEnemy.IsDead)
                 {
                     vehicleEnemy.SetBlast();
-                    _game_score_bar.GainScore(2);
+                    _gameScoreBar.GainScore(2);
                 }
             }
         }
@@ -2445,17 +2445,17 @@ namespace HonkBusterGame
             vehicleBoss.SetZ(z: 5);
             vehicleBoss.MoveOutOfSight();
 
-            _scene_game.AddToScene(vehicleBoss);
+            _gameScene.AddToScene(vehicleBoss);
         }
 
         private void GenerateVehicleBoss()
         {
             // if scene doesn't contain a VehicleBoss then pick a random VehicleBoss and add to scene
 
-            if (_scene_game.GameViewState == GameViewState.GAME_RUNNING &&
-                _vehicle_boss_threashold.ShouldRelease(_game_score_bar.GetScore()) && !VehicleBossExists())
+            if (_gameScene.GameViewState == GameViewState.GAME_RUNNING &&
+                _vehicleBossCheckpoint.ShouldRelease(_gameScoreBar.GetScore()) && !VehicleBossExists())
             {
-                if (_scene_game.GameObjects.OfType<VehicleBoss>().FirstOrDefault(x => x.IsAnimating == false) is VehicleBoss vehicleBoss)
+                if (_gameScene.GameObjects.OfType<VehicleBoss>().FirstOrDefault(x => x.IsAnimating == false) is VehicleBoss vehicleBoss)
                 {
                     _audioStub.Stop(SoundType.GAME_BACKGROUND_MUSIC);
                     _audioStub.Play(SoundType.BOSS_BACKGROUND_MUSIC);
@@ -2465,17 +2465,17 @@ namespace HonkBusterGame
                     vehicleBoss.Reposition();
                     vehicleBoss.IsAnimating = true;
                     // set VehicleBoss health
-                    vehicleBoss.Health = _vehicle_boss_threashold.GetReleasePointDifference() * 1.5;
+                    vehicleBoss.Health = _vehicleBossCheckpoint.GetReleasePointDifference() * 1.5;
 
-                    _vehicle_boss_threashold.IncreaseThreasholdLimit(increment: _vehicle_boss_threashold_limit_increase, currentPoint: _game_score_bar.GetScore());
+                    _vehicleBossCheckpoint.IncreaseThreasholdLimit(increment: _vehicleBossReleasePoint_increase, currentPoint: _gameScoreBar.GetScore());
 
-                    _vehicle_boss_health_bar.SetMaxiumHealth(vehicleBoss.Health);
-                    _vehicle_boss_health_bar.SetValue(vehicleBoss.Health);
-                    _vehicle_boss_health_bar.SetIcon(vehicleBoss.GetContentUri());
-                    _vehicle_boss_health_bar.SetBarColor(color: Colors.Crimson);
+                    _vehicleBossHealthBar.SetMaxiumHealth(vehicleBoss.Health);
+                    _vehicleBossHealthBar.SetValue(vehicleBoss.Health);
+                    _vehicleBossHealthBar.SetIcon(vehicleBoss.GetContentUri());
+                    _vehicleBossHealthBar.SetBarColor(color: Colors.Crimson);
 
                     GenerateInterimScreen("Crazy Honker Arrived");
-                    _scene_game.ActivateSlowMotion();
+                    _gameScene.ActivateSlowMotion();
 
                     //ToggleNightMode(true); 
                 }
@@ -2496,7 +2496,7 @@ namespace HonkBusterGame
             {
                 vehicleBoss.Pop();
 
-                if (_scene_game.GameViewState == GameViewState.GAME_RUNNING)
+                if (_gameScene.GameViewState == GameViewState.GAME_RUNNING)
                 {
                     var scaling = ScreenExtensions.GetScreenSpaceScaling();
 
@@ -2512,8 +2512,8 @@ namespace HonkBusterGame
                     }
                     else
                     {
-                        if (_scene_game.GameObjects.OfType<VehicleEnemy>().All(x => !x.IsAnimating)
-                            || _scene_game.GameObjects.OfType<VehicleEnemy>().Where(x => x.IsAnimating).All(x => x.GetLeft() > Constants.DEFAULT_SCENE_WIDTH * scaling / 2)) // only bring the boss in view when all other vechiles are gone
+                        if (_gameScene.GameObjects.OfType<VehicleEnemy>().All(x => !x.IsAnimating)
+                            || _gameScene.GameObjects.OfType<VehicleEnemy>().Where(x => x.IsAnimating).All(x => x.GetLeft() > Constants.DEFAULT_SCENE_WIDTH * scaling / 2)) // only bring the boss in view when all other vechiles are gone
                         {
                             vehicleBoss1.MoveDownRight(speed);
 
@@ -2546,7 +2546,7 @@ namespace HonkBusterGame
 
             GenerateFloatingNumber(vehicleBoss);
 
-            _vehicle_boss_health_bar.SetValue(vehicleBoss.Health);
+            _vehicleBossHealthBar.SetValue(vehicleBoss.Health);
 
             if (vehicleBoss.IsDead)
             {
@@ -2555,11 +2555,11 @@ namespace HonkBusterGame
                 _audioStub.SetVolume(SoundType.AMBIENCE, 0.6);
 
                 _player.SetWinStance();
-                _game_score_bar.GainScore(3);
+                _gameScoreBar.GainScore(3);
 
                 LevelUp();
 
-                _scene_game.ActivateSlowMotion();
+                _gameScene.ActivateSlowMotion();
 
                 //ToggleNightMode(false);
             }
@@ -2567,7 +2567,7 @@ namespace HonkBusterGame
 
         private bool VehicleBossExists()
         {
-            return _scene_game.GameObjects.OfType<VehicleBoss>().Any(x => x.IsAnimating);
+            return _gameScene.GameObjects.OfType<VehicleBoss>().Any(x => x.IsAnimating);
         }
 
         #endregion
@@ -2585,7 +2585,7 @@ namespace HonkBusterGame
                 vehicleBossRocket.SetZ(z: 7);
                 vehicleBossRocket.MoveOutOfSight();
 
-                _scene_game.AddToScene(vehicleBossRocket);
+                _gameScene.AddToScene(vehicleBossRocket);
 
                 SpawnDropShadow(source: vehicleBossRocket);
             }
@@ -2593,9 +2593,9 @@ namespace HonkBusterGame
 
         private void GenerateVehicleBossRocket()
         {
-            if (_scene_game.GameViewState == GameViewState.GAME_RUNNING &&
-                _scene_game.GameObjects.OfType<VehicleBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking) is VehicleBoss vehicleBoss &&
-                _scene_game.GameObjects.OfType<VehicleBossRocket>().FirstOrDefault(x => x.IsAnimating == false) is VehicleBossRocket vehicleBossRocket)
+            if (_gameScene.GameViewState == GameViewState.GAME_RUNNING &&
+                _gameScene.GameObjects.OfType<VehicleBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking) is VehicleBoss vehicleBoss &&
+                _gameScene.GameObjects.OfType<VehicleBossRocket>().FirstOrDefault(x => x.IsAnimating == false) is VehicleBossRocket vehicleBossRocket)
             {
                 vehicleBossRocket.Reset();
                 vehicleBossRocket.Reposition(vehicleBoss: vehicleBoss);
@@ -2629,7 +2629,7 @@ namespace HonkBusterGame
                 vehicleBossRocket.Pop();
                 vehicleBossRocket1.DillyDally();
 
-                if (_scene_game.GameViewState == GameViewState.GAME_RUNNING)
+                if (_gameScene.GameViewState == GameViewState.GAME_RUNNING)
                 {
                     if (vehicleBossRocket.GetCloseHitBox().IntersectsWith(_player.GetCloseHitBox()))
                     {
@@ -2672,7 +2672,7 @@ namespace HonkBusterGame
             zombieBoss.SetZ(z: 8);
             zombieBoss.MoveOutOfSight();
 
-            _scene_game.AddToScene(zombieBoss);
+            _gameScene.AddToScene(zombieBoss);
 
             SpawnDropShadow(source: zombieBoss);
         }
@@ -2681,9 +2681,9 @@ namespace HonkBusterGame
         {
             // if scene doesn't contain a ZombieBoss then pick a ZombieBoss and add to scene
 
-            if (_scene_game.GameViewState == GameViewState.GAME_RUNNING &&
-                _zombie_boss_threashold.ShouldRelease(_game_score_bar.GetScore()) && !ZombieBossExists() &&
-                _scene_game.GameObjects.OfType<ZombieBoss>().FirstOrDefault(x => x.IsAnimating == false) is ZombieBoss zombieBoss)
+            if (_gameScene.GameViewState == GameViewState.GAME_RUNNING &&
+                _zombieBossCheckpoint.ShouldRelease(_gameScoreBar.GetScore()) && !ZombieBossExists() &&
+                _gameScene.GameObjects.OfType<ZombieBoss>().FirstOrDefault(x => x.IsAnimating == false) is ZombieBoss zombieBoss)
             {
                 _audioStub.Stop(SoundType.GAME_BACKGROUND_MUSIC);
                 _audioStub.Play(SoundType.BOSS_BACKGROUND_MUSIC);
@@ -2698,16 +2698,16 @@ namespace HonkBusterGame
                 GenerateDropShadow(source: zombieBoss);
 
                 // set ZombieBoss health
-                zombieBoss.Health = _zombie_boss_threashold.GetReleasePointDifference() * 1.5;
+                zombieBoss.Health = _zombieBossCheckpoint.GetReleasePointDifference() * 1.5;
 
-                _zombie_boss_threashold.IncreaseThreasholdLimit(increment: _zombie_boss_threashold_limit_increase, currentPoint: _game_score_bar.GetScore());
+                _zombieBossCheckpoint.IncreaseThreasholdLimit(increment: _zombieBossReleasePoint_increase, currentPoint: _gameScoreBar.GetScore());
 
-                _zombie_boss_health_bar.SetMaxiumHealth(zombieBoss.Health);
-                _zombie_boss_health_bar.SetValue(zombieBoss.Health);
-                _zombie_boss_health_bar.SetIcon(zombieBoss.GetContentUri());
-                _zombie_boss_health_bar.SetBarColor(color: Colors.Crimson);
+                _zombieBossHealthBar.SetMaxiumHealth(zombieBoss.Health);
+                _zombieBossHealthBar.SetValue(zombieBoss.Health);
+                _zombieBossHealthBar.SetIcon(zombieBoss.GetContentUri());
+                _zombieBossHealthBar.SetBarColor(color: Colors.Crimson);
 
-                _scene_game.ActivateSlowMotion();
+                _gameScene.ActivateSlowMotion();
                 ToggleNightMode(true);
 
                 GenerateInterimScreen("Beware of Blocks Zombie");
@@ -2730,7 +2730,7 @@ namespace HonkBusterGame
                 zombieBoss1.DepleteHitStance();
                 zombieBoss1.DepleteWinStance();
 
-                if (_scene_game.GameViewState == GameViewState.GAME_RUNNING)
+                if (_gameScene.GameViewState == GameViewState.GAME_RUNNING)
                 {
                     var speed = zombieBoss1.Speed;
                     var scaling = ScreenExtensions.GetScreenSpaceScaling();
@@ -2776,7 +2776,7 @@ namespace HonkBusterGame
 
             GenerateFloatingNumber(zombieBoss);
 
-            _zombie_boss_health_bar.SetValue(zombieBoss.Health);
+            _zombieBossHealthBar.SetValue(zombieBoss.Health);
 
             if (zombieBoss.IsDead)
             {
@@ -2785,18 +2785,18 @@ namespace HonkBusterGame
                 _audioStub.SetVolume(SoundType.AMBIENCE, 0.6);
 
                 _player.SetWinStance();
-                _game_score_bar.GainScore(3);
+                _gameScoreBar.GainScore(3);
 
                 LevelUp();
 
-                _scene_game.ActivateSlowMotion();
+                _gameScene.ActivateSlowMotion();
                 ToggleNightMode(false);
             }
         }
 
         private bool ZombieBossExists()
         {
-            return _scene_game.GameObjects.OfType<ZombieBoss>().Any(x => x.IsAnimating);
+            return _gameScene.GameObjects.OfType<ZombieBoss>().Any(x => x.IsAnimating);
         }
 
         #endregion
@@ -2814,7 +2814,7 @@ namespace HonkBusterGame
                 zombieBossRocket.SetZ(z: 7);
                 zombieBossRocket.MoveOutOfSight();
 
-                _scene_game.AddToScene(zombieBossRocket);
+                _gameScene.AddToScene(zombieBossRocket);
 
                 SpawnDropShadow(source: zombieBossRocket);
             }
@@ -2822,9 +2822,9 @@ namespace HonkBusterGame
 
         private void GenerateZombieBossRocketBlock()
         {
-            if (_scene_game.GameViewState == GameViewState.GAME_RUNNING &&
-                _scene_game.GameObjects.OfType<ZombieBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking) is ZombieBoss zombieBoss &&
-                _scene_game.GameObjects.OfType<ZombieBossRocketBlock>().FirstOrDefault(x => x.IsAnimating == false) is ZombieBossRocketBlock zombieBossRocket)
+            if (_gameScene.GameViewState == GameViewState.GAME_RUNNING &&
+                _gameScene.GameObjects.OfType<ZombieBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking) is ZombieBoss zombieBoss &&
+                _gameScene.GameObjects.OfType<ZombieBossRocketBlock>().FirstOrDefault(x => x.IsAnimating == false) is ZombieBossRocketBlock zombieBossRocket)
             {
                 zombieBossRocket.Reset();
                 zombieBossRocket.SetPopping();
@@ -2853,7 +2853,7 @@ namespace HonkBusterGame
                 zombieBossRocket.Pop();
                 zombieBossRocket1.Hover();
 
-                if (_scene_game.GameViewState == GameViewState.GAME_RUNNING)
+                if (_gameScene.GameViewState == GameViewState.GAME_RUNNING)
                 {
                     if (zombieBossRocket.GetCloseHitBox().IntersectsWith(_player.GetCloseHitBox()))
                     {
@@ -2903,7 +2903,7 @@ namespace HonkBusterGame
             mafiaBoss.SetZ(z: 8);
             mafiaBoss.MoveOutOfSight();
 
-            _scene_game.AddToScene(mafiaBoss);
+            _gameScene.AddToScene(mafiaBoss);
 
             SpawnDropShadow(source: mafiaBoss);
         }
@@ -2912,9 +2912,9 @@ namespace HonkBusterGame
         {
             // if scene doesn't contain a MafiaBoss then pick a MafiaBoss and add to scene
 
-            if (_scene_game.GameViewState == GameViewState.GAME_RUNNING &&
-                _mafia_boss_threashold.ShouldRelease(_game_score_bar.GetScore()) && !MafiaBossExists() &&
-                _scene_game.GameObjects.OfType<MafiaBoss>().FirstOrDefault(x => x.IsAnimating == false) is MafiaBoss mafiaBoss)
+            if (_gameScene.GameViewState == GameViewState.GAME_RUNNING &&
+                _mafiaBossCheckpoint.ShouldRelease(_gameScoreBar.GetScore()) && !MafiaBossExists() &&
+                _gameScene.GameObjects.OfType<MafiaBoss>().FirstOrDefault(x => x.IsAnimating == false) is MafiaBoss mafiaBoss)
             {
                 _audioStub.Stop(SoundType.GAME_BACKGROUND_MUSIC);
                 _audioStub.Play(SoundType.BOSS_BACKGROUND_MUSIC);
@@ -2929,16 +2929,16 @@ namespace HonkBusterGame
                 GenerateDropShadow(source: mafiaBoss);
 
                 // set MafiaBoss health
-                mafiaBoss.Health = _mafia_boss_threashold.GetReleasePointDifference() * 1.5;
+                mafiaBoss.Health = _mafiaBossCheckpoint.GetReleasePointDifference() * 1.5;
 
-                _mafia_boss_threashold.IncreaseThreasholdLimit(increment: _mafia_boss_threashold_limit_increase, currentPoint: _game_score_bar.GetScore());
+                _mafiaBossCheckpoint.IncreaseThreasholdLimit(increment: _mafiaBossReleasePoint_increase, currentPoint: _gameScoreBar.GetScore());
 
-                _mafia_boss_health_bar.SetMaxiumHealth(mafiaBoss.Health);
-                _mafia_boss_health_bar.SetValue(mafiaBoss.Health);
-                _mafia_boss_health_bar.SetIcon(mafiaBoss.GetContentUri());
-                _mafia_boss_health_bar.SetBarColor(color: Colors.Crimson);
+                _mafiaBossHealthBar.SetMaxiumHealth(mafiaBoss.Health);
+                _mafiaBossHealthBar.SetValue(mafiaBoss.Health);
+                _mafiaBossHealthBar.SetIcon(mafiaBoss.GetContentUri());
+                _mafiaBossHealthBar.SetBarColor(color: Colors.Crimson);
 
-                _scene_game.ActivateSlowMotion();
+                _gameScene.ActivateSlowMotion();
 
                 GenerateInterimScreen("Beware of Crimson Mafia");
 
@@ -2962,7 +2962,7 @@ namespace HonkBusterGame
                 mafiaBoss1.DepleteHitStance();
                 mafiaBoss1.DepleteWinStance();
 
-                if (_scene_game.GameViewState == GameViewState.GAME_RUNNING)
+                if (_gameScene.GameViewState == GameViewState.GAME_RUNNING)
                 {
                     var speed = mafiaBoss1.Speed;
                     var scaling = ScreenExtensions.GetScreenSpaceScaling();
@@ -3010,7 +3010,7 @@ namespace HonkBusterGame
 
             GenerateFloatingNumber(mafiaBoss);
 
-            _mafia_boss_health_bar.SetValue(mafiaBoss.Health);
+            _mafiaBossHealthBar.SetValue(mafiaBoss.Health);
 
             if (mafiaBoss.IsDead)
             {
@@ -3019,18 +3019,18 @@ namespace HonkBusterGame
                 _audioStub.SetVolume(SoundType.AMBIENCE, 0.6);
 
                 _player.SetWinStance();
-                _game_score_bar.GainScore(3);
+                _gameScoreBar.GainScore(3);
 
                 LevelUp();
 
-                _scene_game.ActivateSlowMotion();
+                _gameScene.ActivateSlowMotion();
                 ToggleNightMode(false);
             }
         }
 
         private bool MafiaBossExists()
         {
-            return _scene_game.GameObjects.OfType<MafiaBoss>().Any(x => x.IsAnimating);
+            return _gameScene.GameObjects.OfType<MafiaBoss>().Any(x => x.IsAnimating);
         }
 
         #endregion
@@ -3048,7 +3048,7 @@ namespace HonkBusterGame
                 mafiaBossRocket.SetZ(z: 7);
                 mafiaBossRocket.MoveOutOfSight();
 
-                _scene_game.AddToScene(mafiaBossRocket);
+                _gameScene.AddToScene(mafiaBossRocket);
 
                 SpawnDropShadow(source: mafiaBossRocket);
             }
@@ -3056,9 +3056,9 @@ namespace HonkBusterGame
 
         private void GenerateMafiaBossRocket()
         {
-            if (_scene_game.GameViewState == GameViewState.GAME_RUNNING &&
-                _scene_game.GameObjects.OfType<MafiaBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking) is MafiaBoss mafiaBoss &&
-                _scene_game.GameObjects.OfType<MafiaBossRocket>().FirstOrDefault(x => x.IsAnimating == false) is MafiaBossRocket mafiaBossRocket)
+            if (_gameScene.GameViewState == GameViewState.GAME_RUNNING &&
+                _gameScene.GameObjects.OfType<MafiaBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking) is MafiaBoss mafiaBoss &&
+                _gameScene.GameObjects.OfType<MafiaBossRocket>().FirstOrDefault(x => x.IsAnimating == false) is MafiaBossRocket mafiaBossRocket)
             {
                 mafiaBossRocket.Reset();
                 mafiaBossRocket.SetPopping();
@@ -3103,7 +3103,7 @@ namespace HonkBusterGame
                 mafiaBossRocket.Pop();
                 mafiaBossRocket1.Hover();
 
-                if (_scene_game.GameViewState == GameViewState.GAME_RUNNING)
+                if (_gameScene.GameViewState == GameViewState.GAME_RUNNING)
                 {
                     if (mafiaBossRocket.GetCloseHitBox().IntersectsWith(_player.GetCloseHitBox()))
                     {
@@ -3143,7 +3143,7 @@ namespace HonkBusterGame
                 mafiaBossRocketBullsEye.SetZ(z: 7);
                 mafiaBossRocketBullsEye.MoveOutOfSight();
 
-                _scene_game.AddToScene(mafiaBossRocketBullsEye);
+                _gameScene.AddToScene(mafiaBossRocketBullsEye);
 
                 SpawnDropShadow(source: mafiaBossRocketBullsEye);
             }
@@ -3152,9 +3152,9 @@ namespace HonkBusterGame
         private void GenerateMafiaBossRocketBullsEye()
         {
             // generate a seeking bomb if one is not in scene
-            if (_scene_game.GameViewState == GameViewState.GAME_RUNNING &&
-                _scene_game.GameObjects.OfType<MafiaBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking) is MafiaBoss mafiaBoss &&
-                _scene_game.GameObjects.OfType<MafiaBossRocketBullsEye>().FirstOrDefault(x => x.IsAnimating == false) is MafiaBossRocketBullsEye mafiaBossRocketBullsEye)
+            if (_gameScene.GameViewState == GameViewState.GAME_RUNNING &&
+                _gameScene.GameObjects.OfType<MafiaBoss>().FirstOrDefault(x => x.IsAnimating && x.IsAttacking) is MafiaBoss mafiaBoss &&
+                _gameScene.GameObjects.OfType<MafiaBossRocketBullsEye>().FirstOrDefault(x => x.IsAnimating == false) is MafiaBossRocketBullsEye mafiaBossRocketBullsEye)
             {
                 mafiaBossRocketBullsEye.Reset();
                 mafiaBossRocketBullsEye.SetPopping();
@@ -3183,9 +3183,9 @@ namespace HonkBusterGame
                 mafiaBossRocketBullsEye.Pop();
                 mafiaBossRocketBullsEye.Rotate(rotationSpeed: 2.5);
 
-                if (_scene_game.GameViewState == GameViewState.GAME_RUNNING)
+                if (_gameScene.GameViewState == GameViewState.GAME_RUNNING)
                 {
-                    if (_scene_game.GameObjects.OfType<MafiaBoss>().Any(x => x.IsAnimating && x.IsAttacking))
+                    if (_gameScene.GameObjects.OfType<MafiaBoss>().Any(x => x.IsAnimating && x.IsAttacking))
                     {
                         mafiaBossRocketBullsEye1.Move();
 
@@ -3236,13 +3236,13 @@ namespace HonkBusterGame
                 honk.SetZ(z: 5);
                 honk.MoveOutOfSight();
 
-                _scene_game.AddToScene(honk);
+                _gameScene.AddToScene(honk);
             }
         }
 
         private void GenerateHonk(GameObject source)
         {
-            if (_scene_game.GameObjects.OfType<Honk>().FirstOrDefault(x => x.IsAnimating == false) is Honk honk)
+            if (_gameScene.GameObjects.OfType<Honk>().FirstOrDefault(x => x.IsAnimating == false) is Honk honk)
             {
                 honk.SetPopping();
 
@@ -3277,7 +3277,7 @@ namespace HonkBusterGame
         {
             // if there are no UfoBosses or enemies in the scene the vehicles will honk
 
-            if (_scene_game.GameViewState == GameViewState.GAME_RUNNING && !UfoBossExists())
+            if (_gameScene.GameViewState == GameViewState.GAME_RUNNING && !UfoBossExists())
             {
                 GenerateHonk(source);
             }
@@ -3287,7 +3287,7 @@ namespace HonkBusterGame
         {
             // if there are no UfoBosses or enemies in the scene the vehicles will honk
 
-            if (_scene_game.GameViewState == GameViewState.GAME_RUNNING && !UfoEnemyExists() && !AnyBossExists())
+            if (_gameScene.GameViewState == GameViewState.GAME_RUNNING && !UfoEnemyExists() && !AnyBossExists())
             {
                 GenerateHonk(source);
             }
@@ -3297,7 +3297,7 @@ namespace HonkBusterGame
         {
             // if there are no UfoBosses in the scene the vehicles will honk
 
-            if (_scene_game.GameViewState == GameViewState.GAME_RUNNING && !UfoBossExists())
+            if (_gameScene.GameViewState == GameViewState.GAME_RUNNING && !UfoBossExists())
             {
                 GenerateHonk(source);
             }
@@ -3318,13 +3318,13 @@ namespace HonkBusterGame
                 cloud.SetZ(z: 9);
                 cloud.MoveOutOfSight();
 
-                _scene_game.AddToScene(cloud);
+                _gameScene.AddToScene(cloud);
             }
         }
 
         private void GenerateCloud()
         {
-            if (!AnyBossExists() && _scene_game.GameObjects.OfType<Cloud>().FirstOrDefault(x => x.IsAnimating == false) is Cloud cloud)
+            if (!AnyBossExists() && _gameScene.GameObjects.OfType<Cloud>().FirstOrDefault(x => x.IsAnimating == false) is Cloud cloud)
             {
                 cloud.Reset();
 
@@ -3386,7 +3386,7 @@ namespace HonkBusterGame
                 animateAction: AnimateDropShadow,
                 recycleAction: RecycleDropShadow);
 
-            _scene_game.AddToScene(dropShadow);
+            _gameScene.AddToScene(dropShadow);
 
             dropShadow.SetParent(construct: source);
             dropShadow.Move();
@@ -3411,7 +3411,7 @@ namespace HonkBusterGame
 
         private void GenerateDropShadow(GameObject source)
         {
-            if (_scene_game.GameObjects.OfType<DropShadow>().FirstOrDefault(x => x.Id == source.Id) is DropShadow dropShadow)
+            if (_gameScene.GameObjects.OfType<DropShadow>().FirstOrDefault(x => x.Id == source.Id) is DropShadow dropShadow)
             {
                 dropShadow.SetZ(source.GetZ() - 2);
                 dropShadow.Reset();
@@ -3436,14 +3436,14 @@ namespace HonkBusterGame
                 healthPickup.SetZ(z: 6);
                 healthPickup.MoveOutOfSight();
 
-                _scene_game.AddToScene(healthPickup);
+                _gameScene.AddToScene(healthPickup);
             }
         }
 
         private void GenerateHealthPickups()
         {
-            if (_scene_game.GameViewState == GameViewState.GAME_RUNNING && HealthPickup.ShouldGenerate(_player.Health) &&
-                _scene_game.GameObjects.OfType<HealthPickup>().FirstOrDefault(x => x.IsAnimating == false) is HealthPickup healthPickup)
+            if (_gameScene.GameViewState == GameViewState.GAME_RUNNING && HealthPickup.ShouldGenerate(_player.Health) &&
+                _gameScene.GameObjects.OfType<HealthPickup>().FirstOrDefault(x => x.IsAnimating == false) is HealthPickup healthPickup)
             {
                 healthPickup.Reset();
 
@@ -3490,7 +3490,7 @@ namespace HonkBusterGame
             {
                 healthPickup1.MoveDownRight(speed);
 
-                if (_scene_game.GameViewState == GameViewState.GAME_RUNNING)
+                if (_gameScene.GameViewState == GameViewState.GAME_RUNNING)
                 {
                     var hitbox = healthPickup.GetCloseHitBox();
 
@@ -3499,7 +3499,7 @@ namespace HonkBusterGame
                         healthPickup1.PickedUp();
 
                         _player.GainHealth();
-                        _player_health_bar.SetValue(_player.Health);
+                        _playerHealthBar.SetValue(_player.Health);
                     }
                 }
             }
@@ -3530,17 +3530,17 @@ namespace HonkBusterGame
                 powerUpPickup.SetZ(z: 6);
                 powerUpPickup.MoveOutOfSight();
 
-                _scene_game.AddToScene(powerUpPickup);
+                _gameScene.AddToScene(powerUpPickup);
             }
         }
 
         private void GeneratePowerUpPickup()
         {
-            if (_scene_game.GameViewState == GameViewState.GAME_RUNNING)
+            if (_gameScene.GameViewState == GameViewState.GAME_RUNNING)
             {
-                if ((AnyInAirBossExists() || UfoEnemyExists()) && !_powerUp_health_bar.HasHealth) // if any in air boss or enemy exists and currently player has no other power up
+                if ((AnyInAirBossExists() || UfoEnemyExists()) && !_powerUpMeter.HasHealth) // if any in air boss or enemy exists and currently player has no other power up
                 {
-                    if (_scene_game.GameObjects.OfType<PowerUpPickup>().FirstOrDefault(x => x.IsAnimating == false) is PowerUpPickup powerUpPickup)
+                    if (_gameScene.GameObjects.OfType<PowerUpPickup>().FirstOrDefault(x => x.IsAnimating == false) is PowerUpPickup powerUpPickup)
                     {
                         powerUpPickup.Reset();
 
@@ -3592,7 +3592,7 @@ namespace HonkBusterGame
             {
                 powerUpPickup1.MoveDownRight(speed);
 
-                if (_scene_game.GameViewState == GameViewState.GAME_RUNNING)
+                if (_gameScene.GameViewState == GameViewState.GAME_RUNNING)
                 {
                     var hitbox = powerUpPickup.GetCloseHitBox();
 
@@ -3600,30 +3600,30 @@ namespace HonkBusterGame
                     {
                         powerUpPickup1.PickedUp();
 
-                        _powerUp_health_bar.Tag = powerUpPickup1.PowerUpType;
+                        _powerUpMeter.Tag = powerUpPickup1.PowerUpType;
 
                         switch (powerUpPickup1.PowerUpType)
                         {
                             case PowerUpType.SEEKING_SNITCH: // if seeking snitch powerup, allow using a burst of 3 seeking bombs 3 times
                                 {
-                                    _powerUp_health_bar.SetMaxiumHealth(9);
-                                    _powerUp_health_bar.SetValue(9);
+                                    _powerUpMeter.SetMaxiumHealth(9);
+                                    _powerUpMeter.SetValue(9);
 
                                     GenerateInterimScreen("Seeking Snitch +9");
                                 }
                                 break;
                             case PowerUpType.BULLS_EYE: // if bulls eye powerup, allow using a single shot of 20 bombs
                                 {
-                                    _powerUp_health_bar.SetMaxiumHealth(20);
-                                    _powerUp_health_bar.SetValue(20);
+                                    _powerUpMeter.SetMaxiumHealth(20);
+                                    _powerUpMeter.SetValue(20);
 
                                     GenerateInterimScreen("Bylls Eye +20");
                                 }
                                 break;
                             case PowerUpType.ARMOR:
                                 {
-                                    _powerUp_health_bar.SetMaxiumHealth(10); // if armor powerup then take additional 10 hits
-                                    _powerUp_health_bar.SetValue(10);
+                                    _powerUpMeter.SetMaxiumHealth(10); // if armor powerup then take additional 10 hits
+                                    _powerUpMeter.SetValue(10);
 
                                     GenerateInterimScreen("Armor +10");
                                 }
@@ -3632,8 +3632,8 @@ namespace HonkBusterGame
                                 break;
                         }
 
-                        _powerUp_health_bar.SetIcon(powerUpPickup1.GetContentUri());
-                        _powerUp_health_bar.SetBarColor(color: Colors.Green);
+                        _powerUpMeter.SetIcon(powerUpPickup1.GetContentUri());
+                        _powerUpMeter.SetBarColor(color: Colors.Green);
                     }
                 }
             }
@@ -3652,8 +3652,8 @@ namespace HonkBusterGame
         private void DepletePowerUp()
         {
             // use up the power up
-            if (_powerUp_health_bar.HasHealth)
-                _powerUp_health_bar.SetValue(_powerUp_health_bar.GetValue() - 1);
+            if (_powerUpMeter.HasHealth)
+                _powerUpMeter.SetValue(_powerUpMeter.GetValue() - 1);
         }
 
         #endregion      
@@ -3673,13 +3673,13 @@ namespace HonkBusterGame
                 floatingNumber.SetZ(z: 10);
                 floatingNumber.MoveOutOfSight();
 
-                _scene_game.AddToScene(floatingNumber);
+                _gameScene.AddToScene(floatingNumber);
             }
         }
 
         private void GenerateFloatingNumber(AnimableHealthyBase source)
         {
-            if (!_scene_game.IsSlowMotionActivated && _scene_game.GameObjects.OfType<FloatingNumber>().FirstOrDefault(x => x.IsAnimating == false) is FloatingNumber floatingNumberTop)
+            if (!_gameScene.IsSlowMotionActivated && _gameScene.GameObjects.OfType<FloatingNumber>().FirstOrDefault(x => x.IsAnimating == false) is FloatingNumber floatingNumberTop)
             {
                 floatingNumberTop.Reset(source.HitPoint);
                 floatingNumberTop.Reposition(source);
@@ -3794,22 +3794,22 @@ namespace HonkBusterGame
 
         private void SetController()
         {
-            _game_controller.SetScene(_scene_game);
-            _game_controller.SetGyrometer();
+            _gameController.SetScene(_gameScene);
+            _gameController.SetGyrometer();
         }
 
         private void UnsetController()
         {
-            _game_controller.SetScene(null);
-            _game_controller.UnsetGyrometer();
+            _gameController.SetScene(null);
+            _gameController.UnsetGyrometer();
         }
 
         private void ToggleHudVisibility(Visibility visibility)
         {
-            _game_controller.Visibility = visibility;
-            _game_score_bar.Visibility = visibility;
-            _health_bars.Visibility = visibility;
-            _sound_pollution_health_bar.Visibility = visibility;
+            _gameController.Visibility = visibility;
+            _gameScoreBar.Visibility = visibility;
+            _healthBars.Visibility = visibility;
+            _soundPollutionMeter.Visibility = visibility;
         }
 
         #endregion
@@ -3818,7 +3818,7 @@ namespace HonkBusterGame
 
         private void PrepareGameScene()
         {
-            _scene_game.Clear();
+            _gameScene.Clear();
 
             #region Player
 
@@ -3835,7 +3835,7 @@ namespace HonkBusterGame
             SpawnUfoEnemys();
             SpawnUfoEnemyRockets();
 
-            _scene_game.AddToScene(
+            _gameScene.AddToScene(
             new GameObjectGenerator(
                 delay: 180,
                 elaspedAction: GenerateUfoEnemy,
@@ -3849,7 +3849,7 @@ namespace HonkBusterGame
             SpawnUfoBossRockets();
             SpawnUfoBossRocketSeekings();
 
-            _scene_game.AddToScene(
+            _gameScene.AddToScene(
 
             new GameObjectGenerator(
                 delay: 10,
@@ -3879,7 +3879,7 @@ namespace HonkBusterGame
             SpawnHealthPickups();
             SpawnPowerUpPickups();
 
-            _scene_game.AddToScene(
+            _gameScene.AddToScene(
 
             new GameObjectGenerator(
                 delay: 800,
@@ -3901,7 +3901,7 @@ namespace HonkBusterGame
             SpawnRoadSideTrees();
             SpawnRoadSideHedges();
 
-            _scene_game.AddToScene(
+            _gameScene.AddToScene(
 
             new GameObjectGenerator(
                 delay: 38,
@@ -3937,7 +3937,7 @@ namespace HonkBusterGame
 
             SpawnClouds();
 
-            _scene_game.AddToScene(
+            _gameScene.AddToScene(
             new GameObjectGenerator(
                 delay: 300,
                 elaspedAction: GenerateCloud,
@@ -3950,7 +3950,7 @@ namespace HonkBusterGame
             SpawnVehicleEnemys();
             SpawnHonks();
 
-            _scene_game.AddToScene(new GameObjectGenerator(
+            _gameScene.AddToScene(new GameObjectGenerator(
                 delay: 95,
                 elaspedAction: GenerateVehicleEnemy));
 
@@ -3961,7 +3961,7 @@ namespace HonkBusterGame
             SpawnVehicleBosses();
             SpawnVehicleBossRockets();
 
-            _scene_game.AddToScene(
+            _gameScene.AddToScene(
             new GameObjectGenerator(
                 delay: 10,
                 elaspedAction: GenerateVehicleBoss),
@@ -3978,7 +3978,7 @@ namespace HonkBusterGame
             SpawnZombieBosses();
             SpawnZombieBossRocketBlocks();
 
-            _scene_game.AddToScene(
+            _gameScene.AddToScene(
             new GameObjectGenerator(
                 delay: 10,
                 elaspedAction: GenerateZombieBoss),
@@ -3996,7 +3996,7 @@ namespace HonkBusterGame
             SpawnMafiaBossRockets();
             SpawnMafiaBossRocketBullsEyes();
 
-            _scene_game.AddToScene(
+            _gameScene.AddToScene(
             new GameObjectGenerator(
                 delay: 10,
                 elaspedAction: GenerateMafiaBoss),
@@ -4014,7 +4014,7 @@ namespace HonkBusterGame
 
         private void PrepareMainMenuScene()
         {
-            _scene_main_menu.Clear();
+            _mainMenuScene.Clear();
 
             SpawnAssetsLoadingScreen();
             SpawnInterimScreen();
@@ -4031,16 +4031,16 @@ namespace HonkBusterGame
             LoggingExtensions.Log($"ScreenSpaceScaling: {scaling}");
 
             // resize the game scene
-            _scene_game.Width = ScreenExtensions.Width;
-            _scene_game.Height = ScreenExtensions.Height;
+            _gameScene.Width = ScreenExtensions.Width;
+            _gameScene.Height = ScreenExtensions.Height;
 
             // resize the main menu
-            _scene_main_menu.Width = ScreenExtensions.Width;
-            _scene_main_menu.Height = ScreenExtensions.Height;
+            _mainMenuScene.Width = ScreenExtensions.Width;
+            _mainMenuScene.Height = ScreenExtensions.Height;
 
             // scale the scenes
-            _scene_game.SetScaleTransform(scaling);
-            _scene_main_menu.SetScaleTransform(scaling);
+            _gameScene.SetScaleTransform(scaling);
+            _mainMenuScene.SetScaleTransform(scaling);
         }
 
         #endregion
@@ -4062,7 +4062,7 @@ namespace HonkBusterGame
 
             SetController();
             PrepareMainMenuScene();
-            _scene_main_menu.Play();
+            _mainMenuScene.Play();
 
             SizeChanged += HonkBusterPage_SizeChanged;
 
@@ -4095,7 +4095,7 @@ namespace HonkBusterGame
 
             SetSceneScaling();
 
-            if (_scene_game.GameViewState == GameViewState.GAME_RUNNING)
+            if (_gameScene.GameViewState == GameViewState.GAME_RUNNING)
             {
                 _player.Reposition();
                 GenerateDropShadow(source: _player);
@@ -4111,7 +4111,7 @@ namespace HonkBusterGame
 
         private void DisplayInformation_OrientationChanged(DisplayInformation sender, object args)
         {
-            if (_scene_game.GameViewState == GameViewState.GAME_RUNNING) // if screen orientation is changed while game is running, pause the game
+            if (_gameScene.GameViewState == GameViewState.GAME_RUNNING) // if screen orientation is changed while game is running, pause the game
             {
                 PauseGame();
             }
@@ -4121,7 +4121,7 @@ namespace HonkBusterGame
 
                 if (ScreenExtensions.IsScreenInRequiredOrientation())
                 {
-                    if (_scene_main_menu.GameObjects.OfType<PromptOrientationChangeScreen>().FirstOrDefault(x => x.IsAnimating) is PromptOrientationChangeScreen promptOrientationChangeScreen)
+                    if (_mainMenuScene.GameObjects.OfType<PromptOrientationChangeScreen>().FirstOrDefault(x => x.IsAnimating) is PromptOrientationChangeScreen promptOrientationChangeScreen)
                     {
                         RecyclePromptOrientationChangeScreen(promptOrientationChangeScreen);
                         GenerateAssetsLoadingScreen();
@@ -4129,17 +4129,17 @@ namespace HonkBusterGame
                 }
                 else // ask to change orientation
                 {
-                    _scene_game.Pause();
-                    _scene_main_menu.Pause();
+                    _gameScene.Pause();
+                    _mainMenuScene.Pause();
 
                     _audioStub.Pause(SoundType.GAME_BACKGROUND_MUSIC);
 
-                    foreach (var hoveringTitleScreen in _scene_main_menu.GameObjects.OfType<HoveringTitleScreen>().Where(x => x.IsAnimating))
+                    foreach (var hoveringTitleScreen in _mainMenuScene.GameObjects.OfType<HoveringTitleScreen>().Where(x => x.IsAnimating))
                     {
                         hoveringTitleScreen.IsAnimating = false;
                     }
 
-                    foreach (var construct in _scene_game.GameObjects.OfType<GameObject>())
+                    foreach (var construct in _gameScene.GameObjects.OfType<GameObject>())
                     {
                         construct.IsAnimating = false;
                     }

@@ -4,7 +4,7 @@
     {
         #region Fields
 
-        private readonly Uri[] _health_uris;
+        private readonly Uri[] _healthUris;
         private readonly ImageContainer _imageContainer;
         private readonly AudioStub _audioStub;
 
@@ -23,9 +23,9 @@
 
             SetConstructSize(ConstructType);
 
-            _health_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.HEALTH_PICKUP).Select(x => x.Uri).ToArray();
+            _healthUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.HEALTH_PICKUP).Select(x => x.Uri).ToArray();
 
-            var uri = ConstructExtensions.GetRandomContentUri(_health_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_healthUris);
             _imageContainer = new(uri: uri, width: this.Width, height: this.Height);
             _imageContainer.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 6, color: "#f24d3a");
 

@@ -6,8 +6,8 @@ namespace HonkBusterGame
     {
         #region Fields
 
-        private readonly Uri[] _bomb_uris;
-        private readonly Uri[] _bomb_blast_uris;
+        private readonly Uri[] _bombUris;
+        private readonly Uri[] _bombBlastUris;
 
         private readonly ImageContainer _imageContainer;
 
@@ -31,12 +31,12 @@ namespace HonkBusterGame
             AnimateAction = animateAction;
             RecycleAction = recycleAction;
 
-            _bomb_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_ROCKET_BULLS_EYE).Select(x => x.Uri).ToArray();
-            _bomb_blast_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.BLAST).Select(x => x.Uri).ToArray();
+            _bombUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_ROCKET_BULLS_EYE).Select(x => x.Uri).ToArray();
+            _bombBlastUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.BLAST).Select(x => x.Uri).ToArray();
 
             SetConstructSize(ConstructType);
 
-            var uri = ConstructExtensions.GetRandomContentUri(_bomb_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_bombUris);
             _imageContainer = new(uri: uri, width: this.Width, height: this.Height);
             _imageContainer.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 6, color: "#f63455");
 
@@ -68,7 +68,7 @@ namespace HonkBusterGame
 
             SetOpacity(1);
 
-            var uri = ConstructExtensions.GetRandomContentUri(_bomb_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_bombUris);
             _imageContainer.SetSource(uri);
 
             //BorderBrush = new SolidColorBrush(Colors.Transparent);
@@ -168,7 +168,7 @@ namespace HonkBusterGame
 
             //BorderBrush = new SolidColorBrush(Colors.Crimson);
 
-            var uri = ConstructExtensions.GetRandomContentUri(_bomb_blast_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_bombBlastUris);
             _imageContainer.SetSource(uri);
             IsBlasting = true;
         }

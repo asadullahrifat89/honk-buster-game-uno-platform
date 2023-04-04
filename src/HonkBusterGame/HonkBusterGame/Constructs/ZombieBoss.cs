@@ -5,9 +5,9 @@
         #region Fields
 
         private readonly Random _random;
-        private readonly Uri[] _zombie_boss_idle_uris;
-        private readonly Uri[] _zombie_boss_hit_uris;
-        private readonly Uri[] _zombie_boss_win_uris;
+        private readonly Uri[] _zombieBossIdleUris;
+        private readonly Uri[] _zombieBossHitUris;
+        private readonly Uri[] _zombieBossWinUris;
 
         private double _changeMovementPatternDelay;
 
@@ -36,13 +36,13 @@
 
             _random = new Random();
 
-            _zombie_boss_idle_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.ZOMBIE_BOSS_IDLE).Select(x => x.Uri).ToArray();
-            _zombie_boss_hit_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.ZOMBIE_BOSS_HIT).Select(x => x.Uri).ToArray();
-            _zombie_boss_win_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.ZOMBIE_BOSS_WIN).Select(x => x.Uri).ToArray();
+            _zombieBossIdleUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.ZOMBIE_BOSS_IDLE).Select(x => x.Uri).ToArray();
+            _zombieBossHitUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.ZOMBIE_BOSS_HIT).Select(x => x.Uri).ToArray();
+            _zombieBossWinUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.ZOMBIE_BOSS_WIN).Select(x => x.Uri).ToArray();
 
             SetConstructSize(ConstructType);
 
-            var uri = ConstructExtensions.GetRandomContentUri(_zombie_boss_idle_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_zombieBossIdleUris);
             _imageContainer = new(uri: uri, width: this.Width, height: this.Height);
             //_imageContainer.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 7, color: "#544e36");
 
@@ -68,7 +68,7 @@
 
             ZombieBossStance = BossStance.Idle;
 
-            var uri = ConstructExtensions.GetRandomContentUri(_zombie_boss_idle_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_zombieBossIdleUris);
             _imageContainer.SetSource(uri);
 
             RandomizeMovementPattern();
@@ -80,7 +80,7 @@
             if (ZombieBossStance != BossStance.Win)
             {
                 ZombieBossStance = BossStance.Hit;
-                var uri = ConstructExtensions.GetRandomContentUri(_zombie_boss_hit_uris);
+                var uri = ConstructExtensions.GetRandomContentUri(_zombieBossHitUris);
                 _imageContainer.SetSource(uri);
                 _hitStanceDelay = _hitStanceDelayDefault;
             }
@@ -89,7 +89,7 @@
         public void SetWinStance()
         {
             ZombieBossStance = BossStance.Win;
-            var uri = ConstructExtensions.GetRandomContentUri(_zombie_boss_win_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_zombieBossWinUris);
             _imageContainer.SetSource(uri);
             _winStanceDelay = _winStanceDelayDefault;
         }
@@ -97,7 +97,7 @@
         private void SetIdleStance()
         {
             ZombieBossStance = BossStance.Idle;
-            var uri = ConstructExtensions.GetRandomContentUri(_zombie_boss_idle_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_zombieBossIdleUris);
             _imageContainer.SetSource(uri);
         }
 

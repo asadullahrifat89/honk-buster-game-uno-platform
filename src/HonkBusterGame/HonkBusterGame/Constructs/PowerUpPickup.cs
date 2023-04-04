@@ -7,6 +7,7 @@
         private readonly Random _random;
         private readonly ImageContainer _imageContainer;
         private readonly AudioStub _audioStub;
+
         #endregion
 
         #region Ctor
