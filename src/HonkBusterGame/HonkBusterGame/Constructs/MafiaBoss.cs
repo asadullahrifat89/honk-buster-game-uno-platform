@@ -7,9 +7,9 @@ namespace HonkBusterGame
         #region Fields
 
         private readonly Random _random;
-        private readonly Uri[] _mafia_boss_idle_uris;
-        private readonly Uri[] _mafia_boss_hit_uris;
-        private readonly Uri[] _mafia_boss_win_uris;
+        private readonly Uri[] _mafiaBossIdleUris;
+        private readonly Uri[] _mafiaBossHitUris;
+        private readonly Uri[] _mafiaBossWinUris;
 
         private readonly double _grace = 7;
         private readonly double _lag = 125;
@@ -41,13 +41,13 @@ namespace HonkBusterGame
 
             _random = new Random();
 
-            _mafia_boss_idle_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.MAFIA_BOSS_IDLE).Select(x => x.Uri).ToArray();
-            _mafia_boss_hit_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.MAFIA_BOSS_HIT).Select(x => x.Uri).ToArray();
-            _mafia_boss_win_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.MAFIA_BOSS_WIN).Select(x => x.Uri).ToArray();
+            _mafiaBossIdleUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.MAFIA_BOSS_IDLE).Select(x => x.Uri).ToArray();
+            _mafiaBossHitUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.MAFIA_BOSS_HIT).Select(x => x.Uri).ToArray();
+            _mafiaBossWinUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.MAFIA_BOSS_WIN).Select(x => x.Uri).ToArray();
 
             SetConstructSize(ConstructType);
 
-            var uri = ConstructExtensions.GetRandomContentUri(_mafia_boss_idle_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_mafiaBossIdleUris);
             _imageContainer = new(uri: uri, width: this.Width, height: this.Height);
             //_imageContainer.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 7, color: "#dc451c");
 
@@ -75,7 +75,7 @@ namespace HonkBusterGame
 
             MafiaBossStance = BossStance.Idle;
 
-            var uri = ConstructExtensions.GetRandomContentUri(_mafia_boss_idle_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_mafiaBossIdleUris);
             _imageContainer.SetSource(uri);
 
             RandomizeMovementPattern();
@@ -88,7 +88,7 @@ namespace HonkBusterGame
             {
                 MafiaBossStance = BossStance.Hit;
 
-                var uri = ConstructExtensions.GetRandomContentUri(_mafia_boss_hit_uris);
+                var uri = ConstructExtensions.GetRandomContentUri(_mafiaBossHitUris);
                 _imageContainer.SetSource(uri);
 
                 _hitStanceDelay = _hitStanceDelayDefault;
@@ -98,7 +98,7 @@ namespace HonkBusterGame
         public void SetWinStance()
         {
             MafiaBossStance = BossStance.Win;
-            var uri = ConstructExtensions.GetRandomContentUri(_mafia_boss_win_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_mafiaBossWinUris);
             _imageContainer.SetSource(uri);
             _winStanceDelay = _winStanceDelayDefault;
         }
@@ -106,7 +106,7 @@ namespace HonkBusterGame
         public void SetIdleStance()
         {
             MafiaBossStance = BossStance.Idle;
-            var uri = ConstructExtensions.GetRandomContentUri(_mafia_boss_idle_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_mafiaBossIdleUris);
             _imageContainer.SetSource(uri);
         }
 

@@ -4,10 +4,10 @@
     {
         #region Fields
 
-        private Uri[] _player_uris;
-        private Uri[] _player_attack_uris;
-        private Uri[] _player_win_uris;
-        private Uri[] _player_hit_uris;
+        private Uri[] _playerUris;
+        private Uri[] _playerAttackUris;
+        private Uri[] _playerWinUris;
+        private Uri[] _playerHitUris;
 
         private double _movementStopDelay;
         private readonly double _movementStopDelayDefault = 6;
@@ -31,8 +31,8 @@
 
         private MovementDirection _movementDirection;
 
-        private double _health_loss_recovery_Delay;
-        private int _health_loss_opacity_effect;
+        private double _healthLossRecoveryDelay;
+        private int _healthLossOpacityEffect;
 
         #endregion
 
@@ -49,9 +49,9 @@
 
             SetConstructSize(ConstructType);
 
-            _player_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_IDLE).Select(x => x.Uri).ToArray();
+            _playerUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_IDLE).Select(x => x.Uri).ToArray();
 
-            var uri = ConstructExtensions.GetRandomContentUri(_player_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_playerUris);
             _imageContainer = new(uri: uri, width: this.Width, height: this.Height);
 
             SetContent(_imageContainer);
@@ -99,19 +99,19 @@
             {
                 case PlayerBalloonTemplate.Blue:
                     {
-                        _player_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_IDLE && x.Uri.OriginalString.Contains("1")).Select(x => x.Uri).ToArray();
-                        _player_win_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_WIN && x.Uri.OriginalString.Contains("1")).Select(x => x.Uri).ToArray();
-                        _player_hit_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_HIT && x.Uri.OriginalString.Contains("1")).Select(x => x.Uri).ToArray();
-                        _player_attack_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_ATTACK && x.Uri.OriginalString.Contains("1")).Select(x => x.Uri).ToArray();
+                        _playerUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_IDLE && x.Uri.OriginalString.Contains("1")).Select(x => x.Uri).ToArray();
+                        _playerWinUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_WIN && x.Uri.OriginalString.Contains("1")).Select(x => x.Uri).ToArray();
+                        _playerHitUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_HIT && x.Uri.OriginalString.Contains("1")).Select(x => x.Uri).ToArray();
+                        _playerAttackUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_ATTACK && x.Uri.OriginalString.Contains("1")).Select(x => x.Uri).ToArray();
                         //_imageContainer.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 5, color: "#5fc4f8");
                     }
                     break;
                 case PlayerBalloonTemplate.Red:
                     {
-                        _player_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_IDLE && x.Uri.OriginalString.Contains("2")).Select(x => x.Uri).ToArray();
-                        _player_win_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_WIN && x.Uri.OriginalString.Contains("2")).Select(x => x.Uri).ToArray();
-                        _player_hit_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_HIT && x.Uri.OriginalString.Contains("2")).Select(x => x.Uri).ToArray();
-                        _player_attack_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_ATTACK && x.Uri.OriginalString.Contains("2")).Select(x => x.Uri).ToArray();
+                        _playerUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_IDLE && x.Uri.OriginalString.Contains("2")).Select(x => x.Uri).ToArray();
+                        _playerWinUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_WIN && x.Uri.OriginalString.Contains("2")).Select(x => x.Uri).ToArray();
+                        _playerHitUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_HIT && x.Uri.OriginalString.Contains("2")).Select(x => x.Uri).ToArray();
+                        _playerAttackUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON_ATTACK && x.Uri.OriginalString.Contains("2")).Select(x => x.Uri).ToArray();
                         //_imageContainer.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 5, color: "#d75e72");
                     }
                     break;
@@ -119,7 +119,7 @@
                     break;
             }
 
-            var uri = ConstructExtensions.GetRandomContentUri(_player_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_playerUris);
             _imageContainer.SetSource(uri);
         }
 
@@ -127,7 +127,7 @@
         {
             PlayerBalloonStance = PlayerBalloonStance.Attack;
 
-            var uri = ConstructExtensions.GetRandomContentUri(_player_attack_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_playerAttackUris);
             _imageContainer.SetSource(uri);
 
             _attackStanceDelay = _attackStanceDelayDefault;
@@ -137,7 +137,7 @@
         {
             PlayerBalloonStance = PlayerBalloonStance.Win;
 
-            var uri = ConstructExtensions.GetRandomContentUri(_player_win_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_playerWinUris);
             _imageContainer.SetSource(uri);
 
             _winStanceDelay = _winStanceDelayDefault;
@@ -149,7 +149,7 @@
             {
                 PlayerBalloonStance = PlayerBalloonStance.Hit;
 
-                var uri = ConstructExtensions.GetRandomContentUri(_player_hit_uris);
+                var uri = ConstructExtensions.GetRandomContentUri(_playerHitUris);
                 _imageContainer.SetSource(uri);
 
                 _hitStanceDelay = _hitStanceDelayDefault;
@@ -160,7 +160,7 @@
         {
             PlayerBalloonStance = PlayerBalloonStance.Idle;
 
-            var uri = ConstructExtensions.GetRandomContentUri(_player_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_playerUris);
             _imageContainer.SetSource(uri);
         }
 
@@ -432,7 +432,7 @@
 
         public void LooseHealth()
         {
-            if (_health_loss_recovery_Delay <= 0) // only loose health if recovery delay is less that 0 as upon taking damage this is set to 10
+            if (_healthLossRecoveryDelay <= 0) // only loose health if recovery delay is less that 0 as upon taking damage this is set to 10
             {
                 //TODO: set default  Health -= HitPoint;
                 Health -= HitPoint;
@@ -440,19 +440,19 @@
 
                 _audioStub.Play(SoundType.PLAYER_HEALTH_LOSS);
 
-                _health_loss_recovery_Delay = 10;
+                _healthLossRecoveryDelay = 10;
             }
         }
 
         public void RecoverFromHealthLoss()
         {
-            if (_health_loss_recovery_Delay > 0)
+            if (_healthLossRecoveryDelay > 0)
             {
-                _health_loss_recovery_Delay -= 0.1;
+                _healthLossRecoveryDelay -= 0.1;
 
-                _health_loss_opacity_effect++; // blinking effect
+                _healthLossOpacityEffect++; // blinking effect
 
-                if (_health_loss_opacity_effect > 2)
+                if (_healthLossOpacityEffect > 2)
                 {
                     if (Opacity != 1)
                     {
@@ -463,11 +463,11 @@
                         SetOpacity(0.7);  
                     }
 
-                    _health_loss_opacity_effect = 0;
+                    _healthLossOpacityEffect = 0;
                 }
             }
 
-            if (_health_loss_recovery_Delay <= 0 && Opacity != 1)
+            if (_healthLossRecoveryDelay <= 0 && Opacity != 1)
                 SetOpacity(1);
         }
 

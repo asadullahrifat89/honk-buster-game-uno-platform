@@ -4,9 +4,9 @@
     {
         #region Fields
 
-        private Uri[] _bomb_uris;
-        private readonly Uri[] _blast_uris;
-        private readonly Uri[] _bang_uris;
+        private Uri[] _bombUris;
+        private readonly Uri[] _blastUris;
+        private readonly Uri[] _bangUris;
 
         private readonly ImageContainer _imageContainer;
         private readonly AudioStub _audioStub;
@@ -24,13 +24,13 @@
             AnimateAction = animateAction;
             RecycleAction = recycleAction;
 
-            _bomb_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_HONK_BOMB && x.Uri.OriginalString.Contains("cracker")).Select(x => x.Uri).ToArray();
-            _blast_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.BLAST).Select(x => x.Uri).ToArray();
-            _bang_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.BANG).Select(x => x.Uri).ToArray();
+            _bombUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_HONK_BOMB && x.Uri.OriginalString.Contains("cracker")).Select(x => x.Uri).ToArray();
+            _blastUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.BLAST).Select(x => x.Uri).ToArray();
+            _bangUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.BANG).Select(x => x.Uri).ToArray();
 
             SetConstructSize(ConstructType);
 
-            var uri = ConstructExtensions.GetRandomContentUri(_bomb_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_bombUris);
             _imageContainer = new(uri: uri, width: this.Width, height: this.Height);
             _imageContainer.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 6, color: "#ffae3e");
 
@@ -59,7 +59,7 @@
         {
             IsBlasting = false;
 
-            var uri = ConstructExtensions.GetRandomContentUri(_bomb_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_bombUris);
             _imageContainer.SetSource(uri);
 
             _audioStub.Play(SoundType.CRACKER_DROP);
@@ -79,19 +79,19 @@
             {
                 case PlayerHonkBombTemplate.Cracker:
                     {
-                        _bomb_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_HONK_BOMB && x.Uri.OriginalString.Contains("cracker")).Select(x => x.Uri).ToArray();
+                        _bombUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_HONK_BOMB && x.Uri.OriginalString.Contains("cracker")).Select(x => x.Uri).ToArray();
                     }
                     break;
                 case PlayerHonkBombTemplate.TrashCan:
                     {
-                        _bomb_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_HONK_BOMB && x.Uri.OriginalString.Contains("trash")).Select(x => x.Uri).ToArray();
+                        _bombUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_HONK_BOMB && x.Uri.OriginalString.Contains("trash")).Select(x => x.Uri).ToArray();
                     }
                     break;
                 default:
                     break;
             }
 
-            var uri = ConstructExtensions.GetRandomContentUri(_bomb_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_bombUris);
             _imageContainer.SetSource(uri);
         }
 
@@ -111,7 +111,7 @@
                 case PlayerHonkBombTemplate.Cracker:
                     {
                         _audioStub.Play(SoundType.CRACKER_BLAST);
-                        uri = ConstructExtensions.GetRandomContentUri(_blast_uris);
+                        uri = ConstructExtensions.GetRandomContentUri(_blastUris);
 
                         //BorderBrush = new SolidColorBrush(Colors.Goldenrod);
                     }
@@ -119,7 +119,7 @@
                 case PlayerHonkBombTemplate.TrashCan:
                     {
                         _audioStub.Play(SoundType.TRASH_CAN_HIT);
-                        uri = ConstructExtensions.GetRandomContentUri(_bang_uris);
+                        uri = ConstructExtensions.GetRandomContentUri(_bangUris);
 
                         //BorderBrush = new SolidColorBrush(Colors.GreenYellow);
                     }

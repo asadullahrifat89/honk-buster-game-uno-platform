@@ -5,7 +5,7 @@
         #region Fields
 
         private readonly ImageContainer _imageContainer;
-        private readonly Uri[] _tree_uris;
+        private readonly Uri[] _treeUris;
 
         #endregion
 
@@ -20,11 +20,11 @@
             AnimateAction = animateAction;
             RecycleAction = recycleAction;
 
-            _tree_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.ROAD_SIDE_LIGHT_BILLBOARD).Select(x => x.Uri).ToArray();
+            _treeUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.ROAD_SIDE_LIGHT_BILLBOARD).Select(x => x.Uri).ToArray();
 
             SetConstructSize(ConstructType);
 
-            var uri = ConstructExtensions.GetRandomContentUri(_tree_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_treeUris);
             _imageContainer = new(uri: uri, width: this.Width, height: this.Height);
             _imageContainer.SetDropShadow(offsetX: 0, offsetY: 15, blurRadius: 5);
 

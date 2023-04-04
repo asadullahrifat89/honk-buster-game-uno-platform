@@ -7,9 +7,9 @@ namespace HonkBusterGame
         #region Fields
 
         private readonly Random _random;
-        private readonly Uri[] _ufo_boss_idle_uris;
-        private readonly Uri[] _ufo_boss_hit_uris;
-        private readonly Uri[] _ufo_boss_win_uris;
+        private readonly Uri[] _ufoBossIdleUris;
+        private readonly Uri[] _ufoBossHitUris;
+        private readonly Uri[] _ufoBossWinUris;
 
         private readonly double _grace = 7;
         private readonly double _lag = 125;
@@ -41,13 +41,13 @@ namespace HonkBusterGame
 
             _random = new Random();
 
-            _ufo_boss_idle_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.UFO_BOSS_IDLE).Select(x => x.Uri).ToArray();
-            _ufo_boss_hit_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.UFO_BOSS_HIT).Select(x => x.Uri).ToArray();
-            _ufo_boss_win_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.UFO_BOSS_WIN).Select(x => x.Uri).ToArray();
+            _ufoBossIdleUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.UFO_BOSS_IDLE).Select(x => x.Uri).ToArray();
+            _ufoBossHitUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.UFO_BOSS_HIT).Select(x => x.Uri).ToArray();
+            _ufoBossWinUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.UFO_BOSS_WIN).Select(x => x.Uri).ToArray();
 
             SetConstructSize(ConstructType);
 
-            var uri = ConstructExtensions.GetRandomContentUri(_ufo_boss_idle_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_ufoBossIdleUris);
             _imageContainer = new(uri: uri, width: this.Width, height: this.Height);
             //_imageContainer.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 7, color: "#f73e3e");
 
@@ -75,7 +75,7 @@ namespace HonkBusterGame
 
             UfoBossStance = BossStance.Idle;
 
-            var uri = ConstructExtensions.GetRandomContentUri(_ufo_boss_idle_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_ufoBossIdleUris);
             _imageContainer.SetSource(uri);
 
             RandomizeMovementPattern();
@@ -88,7 +88,7 @@ namespace HonkBusterGame
             {
                 UfoBossStance = BossStance.Hit;
 
-                var uri = ConstructExtensions.GetRandomContentUri(_ufo_boss_hit_uris);
+                var uri = ConstructExtensions.GetRandomContentUri(_ufoBossHitUris);
                 _imageContainer.SetSource(uri);
 
                 _hitStanceDelay = _hitStanceDelayDefault;
@@ -98,7 +98,7 @@ namespace HonkBusterGame
         public void SetWinStance()
         {
             UfoBossStance = BossStance.Win;
-            var uri = ConstructExtensions.GetRandomContentUri(_ufo_boss_win_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_ufoBossWinUris);
             _imageContainer.SetSource(uri);
             _winStanceDelay = _winStanceDelayDefault;
         }
@@ -106,7 +106,7 @@ namespace HonkBusterGame
         public void SetIdleStance()
         {
             UfoBossStance = BossStance.Idle;
-            var uri = ConstructExtensions.GetRandomContentUri(_ufo_boss_idle_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_ufoBossIdleUris);
             _imageContainer.SetSource(uri);
         }
 

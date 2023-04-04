@@ -5,7 +5,7 @@
         #region Fields
 
         private readonly ImageContainer _imageContainer;
-        private readonly Uri[] _side_walk_uris;
+        private readonly Uri[] _sideWalkUris;
 
         #endregion
 
@@ -17,14 +17,14 @@
         {
             ConstructType = ConstructType.ROAD_SIDE_WALK;
 
-            _side_walk_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.ROAD_SIDE_WALK).Select(x => x.Uri).ToArray();
+            _sideWalkUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.ROAD_SIDE_WALK).Select(x => x.Uri).ToArray();
 
             SetConstructSize(ConstructType);
 
             AnimateAction = animateAction;
             RecycleAction = recycleAction;
 
-            var uri = ConstructExtensions.GetRandomContentUri(_side_walk_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_sideWalkUris);
             _imageContainer = new(uri: uri, width: this.Width, height: this.Height);
             _imageContainer.SetDropShadow(offsetX: -7, offsetY: 0, blurRadius: 2);
             SetContent(_imageContainer);

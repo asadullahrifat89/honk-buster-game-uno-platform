@@ -4,7 +4,7 @@
     {
         #region Fields
 
-        private readonly Uri[] _honk_uris;
+        private readonly Uri[] _honkUris;
         private readonly ImageContainer _imageContainer;
         private readonly AudioStub _audioStub;
 
@@ -21,11 +21,11 @@
             AnimateAction = animateAction;
             RecycleAction = recycleAction;
 
-            _honk_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.HONK).Select(x => x.Uri).ToArray();
+            _honkUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.HONK).Select(x => x.Uri).ToArray();
 
             SetConstructSize(ConstructType);
 
-            var uri = ConstructExtensions.GetRandomContentUri(_honk_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_honkUris);
             _imageContainer = new(uri: uri, width: this.Width, height: this.Height);
 
             SetContent(_imageContainer);

@@ -6,8 +6,8 @@
 
         private readonly Random _random;
 
-        private readonly Uri[] _vehicle_small_uris;
-        private readonly Uri[] _vehicle_large_uris;
+        private readonly Uri[] _vehicleSmallUris;
+        private readonly Uri[] _vehicleLargeUris;
 
         private readonly ImageContainer _imageContainer;
         private MovementDirection _movementDirection;
@@ -29,8 +29,8 @@
 
             _random = new Random();
 
-            _vehicle_small_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.VEHICLE_ENEMY_SMALL).Select(x => x.Uri).ToArray();
-            _vehicle_large_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.VEHICLE_ENEMY_LARGE).Select(x => x.Uri).ToArray();
+            _vehicleSmallUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.VEHICLE_ENEMY_SMALL).Select(x => x.Uri).ToArray();
+            _vehicleLargeUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.VEHICLE_ENEMY_LARGE).Select(x => x.Uri).ToArray();
 
             var vehicleType = _random.Next(2);
             Uri uri = null;
@@ -40,13 +40,13 @@
                 case 0:
                     {
                         SetConstructSize(ConstructType.VEHICLE_ENEMY_SMALL);
-                        uri = ConstructExtensions.GetRandomContentUri(_vehicle_small_uris);
+                        uri = ConstructExtensions.GetRandomContentUri(_vehicleSmallUris);
                     }
                     break;
                 case 1:
                     {
                         SetConstructSize(ConstructType.VEHICLE_ENEMY_LARGE);
-                        uri = ConstructExtensions.GetRandomContentUri(_vehicle_large_uris);
+                        uri = ConstructExtensions.GetRandomContentUri(_vehicleLargeUris);
                     }
                     break;
                 default:
@@ -83,13 +83,13 @@
                 case 0:
                     {
                         SetConstructSize(ConstructType.VEHICLE_ENEMY_SMALL);
-                        uri = ConstructExtensions.GetRandomContentUri(_vehicle_small_uris);
+                        uri = ConstructExtensions.GetRandomContentUri(_vehicleSmallUris);
                     }
                     break;
                 case 1:
                     {
                         SetConstructSize(ConstructType.VEHICLE_ENEMY_LARGE);
-                        uri = ConstructExtensions.GetRandomContentUri(_vehicle_large_uris);
+                        uri = ConstructExtensions.GetRandomContentUri(_vehicleLargeUris);
                     }
                     break;
                 default:

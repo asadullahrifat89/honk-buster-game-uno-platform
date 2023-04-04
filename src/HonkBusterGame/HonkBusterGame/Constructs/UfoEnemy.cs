@@ -5,7 +5,7 @@
         #region Fields
 
         private readonly Random _random;
-        private readonly Uri[] _enemy_uris;
+        private readonly Uri[] _enemyUris;
 
         private readonly ImageContainer _imageContainer;
 
@@ -26,11 +26,11 @@
 
             _random = new Random();
 
-            _enemy_uris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.UFO_ENEMY).Select(x => x.Uri).ToArray();
+            _enemyUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.UFO_ENEMY).Select(x => x.Uri).ToArray();
 
             SetConstructSize(ConstructType);
 
-            var uri = ConstructExtensions.GetRandomContentUri(_enemy_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_enemyUris);
             _imageContainer = new(uri: uri, width: this.Width, height: this.Height);
             //_imageContainer.SetDropShadow(offsetX: 0, offsetY: 0, blurRadius: 6, color: "#956ec4");
 
@@ -56,7 +56,7 @@
             if (WillHonk)
                 SetHonkDelay();
 
-            var uri = ConstructExtensions.GetRandomContentUri(_enemy_uris);
+            var uri = ConstructExtensions.GetRandomContentUri(_enemyUris);
             _imageContainer.SetSource(uri);
 
             Speed = _random.Next(Constants.DEFAULT_CONSTRUCT_SPEED - 2, Constants.DEFAULT_CONSTRUCT_SPEED);
