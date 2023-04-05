@@ -1,19 +1,47 @@
-﻿namespace HonkBusterGame
+﻿using Microsoft.UI;
+using Windows.Foundation;
+
+namespace HonkBusterGame
 {
-    public partial class GameObjectContainer : DisplayObjectBase
+    public partial class GameObjectContainer : MovableBase
     {
         #region Fields
 
-        private readonly Canvas _canvas;
+
+        private readonly CompositeTransform _transform = new()
+        {
+            CenterX = 0.5,
+            CenterY = 0.5,
+            Rotation = 0,
+            ScaleX = 1,
+            ScaleY = 1,
+        };
+
+
+        private readonly Canvas _canvas = new()
+        {
+            RenderTransformOrigin = new Point(0.5, 0.5),
+            Background = new SolidColorBrush(Colors.Transparent),
+            Width = 512,
+            Height = 512,
+        };
 
         #endregion
 
         #region Ctor
 
-        public GameObjectContainer()
+        public GameObjectContainer(
+            Action<GameObjectContainer> animateAction,
+            Action<GameObjectContainer> recycleAction)
         {
-            _canvas = new Canvas();
+            Width = 512;
+            Height = 512;
+
+            _canvas.RenderTransform = _transform;
             SetContent(_canvas);
+
+            AnimateAction = animateAction;
+            RecycleAction = recycleAction;
         }
 
         #endregion

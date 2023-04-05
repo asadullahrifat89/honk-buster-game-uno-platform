@@ -179,7 +179,7 @@ namespace HonkBusterGame
             _transform.ScaleY = scaleXY;
         }
 
-        public void AddToScene(params GameObject[] constructs)
+        public void AddToView(params GameObject[] constructs)
         {
             if (constructs is not null)
             {
@@ -192,7 +192,7 @@ namespace HonkBusterGame
             }
         }
 
-        public void AddToScene(params GameObjectContainer[] constructs)
+        public void AddToView(params GameObjectContainer[] constructs)
         {
             if (constructs is not null)
             {
@@ -205,7 +205,7 @@ namespace HonkBusterGame
             }
         }
 
-        public void AddToScene(params GameObjectGenerator[] generators)
+        public void AddToView(params GameObjectGenerator[] generators)
         {
             if (generators is not null)
             {
@@ -295,7 +295,7 @@ namespace HonkBusterGame
 
                 var fps = _famesCount / 2;
 
-                LoggingExtensions.Log($"Scene: {Name} \n Animating Objects: {GameObjects.Count(x => x.IsAnimating)} \n Total Objects: {GameObjects.Count} \n Generators: {_generators.Count} \n FPS: {fps}");
+                LoggingExtensions.Log($"Scene: {Name} \n Animating Objects: {GameObjects.Count(x => x.IsAnimating) + GameObjectContainers.Count(x => x.IsAnimating)} \n Total Objects: {_canvas.Children.Count} \n Generators: {_generators.Count} \n FPS: {fps}");
 
                 _famesCount = 0;
             }
