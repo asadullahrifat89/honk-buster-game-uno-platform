@@ -697,13 +697,15 @@ namespace HonkBusterGame
 
         #region GameContainer
 
-        public void SpawnRoadMarkContainer()
+        #region RoadMark
+
+        public void SpawnRoadMarksContainer()
         {
             for (int j = 0; j < 2; j++)
             {
                 GameObjectContainer roadContainer = new(
-                    animateAction: AnimateRoadContainer,
-                    recycleAction: RecycleRoadContainer)
+                    animateAction: AnimateRoadMarksContainer,
+                    recycleAction: RecycleRoadMarksContainer)
                 {
                     Speed = Constants.DEFAULT_CONSTRUCT_SPEED
                 };
@@ -721,7 +723,7 @@ namespace HonkBusterGame
                     RoadMark roadMark = new(
                         animateAction: AnimateRoadMark,
                         recycleAction: RecycleRoadMark);
-                    
+
                     roadMark.SetPosition(
                       left: (roadMarkSize.Width * i),
                       top: ((roadMarkSize.Height / 2) * i),
@@ -737,7 +739,7 @@ namespace HonkBusterGame
             }
         }
 
-        public void GenerateRoadContainer()
+        public void GenerateRoadMarksContainer()
         {
             if (_gameView.GameObjectContainers.OfType<GameObjectContainer>().FirstOrDefault(x => x.IsAnimating == false) is GameObjectContainer roadContainer)
             {
@@ -748,13 +750,13 @@ namespace HonkBusterGame
             }
         }
 
-        private void AnimateRoadContainer(GameObjectContainer roadContainer)
+        private void AnimateRoadMarksContainer(GameObjectContainer roadContainer)
         {
             var speed = roadContainer.Speed;
             roadContainer.MoveDownRight(speed);
         }
 
-        private void RecycleRoadContainer(GameObjectContainer roadContainer)
+        private void RecycleRoadMarksContainer(GameObjectContainer roadContainer)
         {
             var hitBox = roadContainer.GetHitBox();
 
@@ -762,7 +764,9 @@ namespace HonkBusterGame
             {
                 roadContainer.IsAnimating = false;
             }
-        }
+        } 
+
+        #endregion
 
         #endregion
 
@@ -3968,12 +3972,12 @@ namespace HonkBusterGame
 
             #region Road
 
-            SpawnRoadMarkContainer();
+            SpawnRoadMarksContainer();
 
             _gameView.AddToView(
                 new GameObjectGenerator(
                     delay: 213,
-                    elaspedAction: GenerateRoadContainer)
+                    elaspedAction: GenerateRoadMarksContainer)
                 );
 
             //SpawnRoadMarks();
