@@ -776,7 +776,7 @@ namespace HonkBusterGame
             int numberOfRoadSideWalks = 5;
             double xyAdjustment = 31.5;
 
-            for (int j = 0; j < 4; j++)
+            for (int j = 0; j < 5; j++)
             {
                 GameObjectContainer roadSideWalkContainer = new(
                     animateAction: AnimateRoadSideWalksContainer,
@@ -809,22 +809,25 @@ namespace HonkBusterGame
             }
         }
 
-        public void GenerateRoadSideWalksContainer()
+        public void GenerateRoadSideWalksContainerTop()
         {
             if (_gameView.GameObjectContainers.OfType<GameObjectContainer>().FirstOrDefault(x => x.IsAnimating == false && x.ConstructType == ConstructType.ROAD_SIDE_WALK) is GameObjectContainer roadSideWalkContainerTop)
             {
                 roadSideWalkContainerTop.SetPosition(
-                  left: (Constants.DEFAULT_SCENE_WIDTH / 5) * -1,
-                  top: roadSideWalkContainerTop.Height * -1);
+                  left: ((Constants.DEFAULT_SCENE_WIDTH / 5) * -1) - 300,
+                  top: (roadSideWalkContainerTop.Height * -1) - 150);
 
                 roadSideWalkContainerTop.IsAnimating = true;
             }
+        }
 
+        public void GenerateRoadSideWalksContainerBottom()
+        {
             if (_gameView.GameObjectContainers.OfType<GameObjectContainer>().FirstOrDefault(x => x.IsAnimating == false && x.ConstructType == ConstructType.ROAD_SIDE_WALK) is GameObjectContainer roadSideWalkContainerBottom)
             {
                 roadSideWalkContainerBottom.SetPosition(
                   left: roadSideWalkContainerBottom.Width * -1.1,
-                  top: (Constants.DEFAULT_SCENE_HEIGHT / 2.9) * -1);
+                  top: (Constants.DEFAULT_SCENE_HEIGHT / 2.8) * -1);
 
                 roadSideWalkContainerBottom.IsAnimating = true;
             }
@@ -840,7 +843,7 @@ namespace HonkBusterGame
         {
             var hitBox = roadContainer.GetHitBox();
 
-            if (hitBox.Top > Constants.DEFAULT_SCENE_HEIGHT || hitBox.Left > Constants.DEFAULT_SCENE_WIDTH)
+            if (hitBox.Top > Constants.DEFAULT_SCENE_HEIGHT || hitBox.Left - 150 > Constants.DEFAULT_SCENE_WIDTH)
             {
                 roadContainer.IsAnimating = false;
             }
@@ -3989,6 +3992,65 @@ namespace HonkBusterGame
 
             #endregion
 
+            #region Road
+
+            SpawnRoadMarksContainer();
+            SpawnRoadSideWalksContainer();
+
+            _gameView.AddToView(
+                new GameObjectGenerator(
+                    delay: 213,
+                    elaspedAction: GenerateRoadMarksContainer),
+
+                  new GameObjectGenerator(
+                    delay: 110,
+                    elaspedAction: GenerateRoadSideWalksContainerTop),
+
+                   new GameObjectGenerator(
+                    delay: 110,
+                    elaspedAction: GenerateRoadSideWalksContainerBottom)
+                );
+
+            //SpawnRoadMarks();
+            //SpawnRoadSideWalks();
+            SpawnRoadSideBillboards();
+            SpawnRoadSideLamps();
+            SpawnRoadSideLightBillboards();
+            SpawnRoadSideTrees();
+            SpawnRoadSideHedges();
+
+            _gameView.AddToView(
+
+            //new GameObjectGenerator(
+            //    delay: 38,
+            //    elaspedAction: GenerateRoadMark),
+
+            //new GameObjectGenerator(
+            //    delay: 18,
+            //    elaspedAction: GenerateRoadSideWalk),
+
+            new GameObjectGenerator(
+                delay: 72,
+                elaspedAction: GenerateRoadSideBillboard),
+
+            new GameObjectGenerator(
+                delay: 36,
+                elaspedAction: GenerateRoadSideLamp),
+
+            new GameObjectGenerator(
+                delay: 36,
+                elaspedAction: GenerateRoadSideLightBillboard),
+
+            new GameObjectGenerator(
+                delay: 30,
+                elaspedAction: GenerateRoadSideTree),
+
+            new GameObjectGenerator(
+                delay: 38,
+                elaspedAction: GenerateRoadSideHedge));
+
+            #endregion
+
             #region UfoEnemy
 
             SpawnUfoEnemys();
@@ -4048,62 +4110,7 @@ namespace HonkBusterGame
                 delay: 800,
                 elaspedAction: GeneratePowerUpPickup));
 
-            #endregion
-
-            #region Road
-
-            SpawnRoadMarksContainer();
-            SpawnRoadSideWalksContainer();
-
-            _gameView.AddToView(
-                new GameObjectGenerator(
-                    delay: 213,
-                    elaspedAction: GenerateRoadMarksContainer),
-
-                new GameObjectGenerator(
-                    delay: 110,
-                    elaspedAction: GenerateRoadSideWalksContainer)
-                );
-
-            //SpawnRoadMarks();
-            //SpawnRoadSideWalks();
-            SpawnRoadSideBillboards();
-            SpawnRoadSideLamps();
-            SpawnRoadSideLightBillboards();
-            SpawnRoadSideTrees();
-            SpawnRoadSideHedges();
-
-            _gameView.AddToView(
-
-            //new GameObjectGenerator(
-            //    delay: 38,
-            //    elaspedAction: GenerateRoadMark),
-
-            //new GameObjectGenerator(
-            //    delay: 18,
-            //    elaspedAction: GenerateRoadSideWalk),
-
-            new GameObjectGenerator(
-                delay: 72,
-                elaspedAction: GenerateRoadSideBillboard),
-
-            new GameObjectGenerator(
-                delay: 36,
-                elaspedAction: GenerateRoadSideLamp),
-
-            new GameObjectGenerator(
-                delay: 36,
-                elaspedAction: GenerateRoadSideLightBillboard),
-
-            new GameObjectGenerator(
-                delay: 30,
-                elaspedAction: GenerateRoadSideTree),
-
-            new GameObjectGenerator(
-                delay: 38,
-                elaspedAction: GenerateRoadSideHedge));
-
-            #endregion
+            #endregion            
 
             #region Cloud
 
