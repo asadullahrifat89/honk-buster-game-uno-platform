@@ -697,12 +697,10 @@ namespace HonkBusterGame
 
         #region GameContainer
 
-        public void SpawnRoadContainer()
+        public void SpawnRoadMarkContainer()
         {
-            for (int ii = 0; ii < 2; ii++)
+            for (int j = 0; j < 2; j++)
             {
-                int numberOfRoadMarks = 5;
-
                 GameObjectContainer roadContainer = new(
                     animateAction: AnimateRoadContainer,
                     recycleAction: RecycleRoadContainer)
@@ -712,8 +710,10 @@ namespace HonkBusterGame
 
                 var roadMarkSize = Constants.CONSTRUCT_SIZES.FirstOrDefault(x => x.ConstructType == ConstructType.ROAD_MARK);
 
+                int numberOfRoadMarks = 5;
+
                 roadContainer.SetSize(
-                    width: roadMarkSize.Width * numberOfRoadMarks, 
+                    width: roadMarkSize.Width * numberOfRoadMarks,
                     height: (roadMarkSize.Height / 2) * numberOfRoadMarks);
 
                 for (int i = 0; i < numberOfRoadMarks; i++)
@@ -721,11 +721,12 @@ namespace HonkBusterGame
                     RoadMark roadMark = new(
                         animateAction: AnimateRoadMark,
                         recycleAction: RecycleRoadMark);
-
-                    roadMark.SetZ(z: 0);
+                    
                     roadMark.SetPosition(
                       left: (roadMarkSize.Width * i),
-                      top: ((roadMarkSize.Height / 2) * i));
+                      top: ((roadMarkSize.Height / 2) * i),
+                      z: 0);
+
                     roadMark.Render();
 
                     roadContainer.AddChild(roadMark);
@@ -3967,7 +3968,7 @@ namespace HonkBusterGame
 
             #region Road
 
-            SpawnRoadContainer();
+            SpawnRoadMarkContainer();
 
             _gameView.AddToView(
                 new GameObjectGenerator(
