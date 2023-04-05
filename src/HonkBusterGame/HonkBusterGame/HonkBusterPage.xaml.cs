@@ -366,7 +366,7 @@ namespace HonkBusterGame
 
         #endregion
 
-        #region Screen
+        #region Screens
 
         #region PromptOrientationChangeScreen
 
@@ -695,7 +695,7 @@ namespace HonkBusterGame
 
         #endregion
 
-        #region GameContainer
+        #region GameContainers
 
         #region RoadMarks
 
@@ -740,28 +740,29 @@ namespace HonkBusterGame
 
         public void GenerateRoadMarksContainer()
         {
-            if (_gameView.GameObjectContainers.OfType<GameObjectContainer>().FirstOrDefault(x => x.IsAnimating == false && x.ConstructType == ConstructType.ROAD_MARK) is GameObjectContainer roadContainer)
+            if (_gameView.GameObjectContainers.OfType<GameObjectContainer>().FirstOrDefault(x => x.IsAnimating == false && x.ConstructType == ConstructType.ROAD_MARK) is GameObjectContainer roadMarkContainer)
             {
-                roadContainer.SetPosition(
-                  left: roadContainer.Width * -1,
-                  top: roadContainer.Height * -1.1);
-                roadContainer.IsAnimating = true;
+                roadMarkContainer.SetPosition(
+                  left: roadMarkContainer.Width * -1,
+                  top: roadMarkContainer.Height * -1.1);
+
+                roadMarkContainer.IsAnimating = true;
             }
         }
 
-        private void AnimateRoadMarksContainer(GameObjectContainer roadContainer)
+        private void AnimateRoadMarksContainer(GameObjectContainer roadMarkContainer)
         {
-            var speed = roadContainer.Speed;
-            roadContainer.MoveDownRight(speed);
+            var speed = roadMarkContainer.Speed;
+            roadMarkContainer.MoveDownRight(speed);
         }
 
-        private void RecycleRoadMarksContainer(GameObjectContainer roadContainer)
+        private void RecycleRoadMarksContainer(GameObjectContainer roadMarkContainer)
         {
-            var hitBox = roadContainer.GetHitBox();
+            var hitBox = roadMarkContainer.GetHitBox();
 
             if (hitBox.Top > Constants.DEFAULT_SCENE_HEIGHT || hitBox.Left > Constants.DEFAULT_SCENE_WIDTH)
             {
-                roadContainer.IsAnimating = false;
+                roadMarkContainer.IsAnimating = false;
             }
         }
 
@@ -773,8 +774,9 @@ namespace HonkBusterGame
         {
             var roadSideWalkSize = Constants.CONSTRUCT_SIZES.FirstOrDefault(x => x.ConstructType == ConstructType.ROAD_SIDE_WALK);
             int numberOfRoadSideWalks = 5;
+            double xyAdjustment = 31.5;
 
-            for (int j = 0; j < 2; j++)
+            for (int j = 0; j < 4; j++)
             {
                 GameObjectContainer roadSideWalkContainer = new(
                     animateAction: AnimateRoadSideWalksContainer,
@@ -795,11 +797,10 @@ namespace HonkBusterGame
                         recycleAction: RecycleRoadSideWalk);
 
                     roadSideWalk.SetPosition(
-                      left: (roadSideWalkSize.Width * i - (31 * i)),
-                      top: ((roadSideWalkSize.Height / 2) * i - ((31 / 2) * i)));
+                      left: (roadSideWalkSize.Width * i - (xyAdjustment * i)),
+                      top: ((roadSideWalkSize.Height / 2) * i - ((xyAdjustment / 2) * i)));
 
                     roadSideWalk.Render();
-
                     roadSideWalkContainer.AddChild(roadSideWalk);
                 }
 
@@ -810,12 +811,22 @@ namespace HonkBusterGame
 
         public void GenerateRoadSideWalksContainer()
         {
-            if (_gameView.GameObjectContainers.OfType<GameObjectContainer>().FirstOrDefault(x => x.IsAnimating == false && x.ConstructType == ConstructType.ROAD_SIDE_WALK) is GameObjectContainer roadContainer)
+            if (_gameView.GameObjectContainers.OfType<GameObjectContainer>().FirstOrDefault(x => x.IsAnimating == false && x.ConstructType == ConstructType.ROAD_SIDE_WALK) is GameObjectContainer roadSideWalkContainerTop)
             {
-                roadContainer.SetPosition(
-                  left: roadContainer.Width * -1.1,
+                roadSideWalkContainerTop.SetPosition(
+                  left: (Constants.DEFAULT_SCENE_WIDTH / 5) * -1,
+                  top: roadSideWalkContainerTop.Height * -1);
+
+                roadSideWalkContainerTop.IsAnimating = true;
+            }
+
+            if (_gameView.GameObjectContainers.OfType<GameObjectContainer>().FirstOrDefault(x => x.IsAnimating == false && x.ConstructType == ConstructType.ROAD_SIDE_WALK) is GameObjectContainer roadSideWalkContainerBottom)
+            {
+                roadSideWalkContainerBottom.SetPosition(
+                  left: roadSideWalkContainerBottom.Width * -1.1,
                   top: (Constants.DEFAULT_SCENE_HEIGHT / 2.9) * -1);
-                roadContainer.IsAnimating = true;
+
+                roadSideWalkContainerBottom.IsAnimating = true;
             }
         }
 
@@ -839,7 +850,7 @@ namespace HonkBusterGame
 
         #endregion
 
-        #region GameObject
+        #region GameObjects
 
         #region Player
 
@@ -3962,7 +3973,7 @@ namespace HonkBusterGame
 
         #endregion
 
-        #region GameView
+        #region GameViews
 
         private void PrepareGameView()
         {
