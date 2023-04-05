@@ -4448,7 +4448,7 @@ namespace HonkBusterGame
                 elaspedAction: GenerateRoadSideLampsContainerBottom),
 
              new GameObjectGenerator(
-                delay: 76,
+                delay: 216,
                 elaspedAction: GenerateRoadSideBillboardsContainerTop)
                 );
 
