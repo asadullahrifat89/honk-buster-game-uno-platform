@@ -95,6 +95,8 @@ namespace HonkBusterGame
 
         public List<GameObject> GameObjects { get; set; } = new();
 
+        public List<GameObjectContainer> GameObjectContainers { get; set; } = new();
+
         public bool IsSlowMotionActivated => _slowMotionDelay > 0;
 
         public bool GameObjectGeneratorsAdded => _generators.Any();
@@ -190,6 +192,19 @@ namespace HonkBusterGame
             }
         }
 
+        public void AddToScene(params GameObjectContainer[] constructs)
+        {
+            if (constructs is not null)
+            {
+                foreach (var construct in constructs)
+                {
+                    construct.GameView = this;
+                    GameObjectContainers.Add(construct);
+                    _canvas.Children.Add(construct.Content);
+                }
+            }
+        }
+
         public void AddToScene(params GameObjectGenerator[] generators)
         {
             if (generators is not null)
@@ -223,6 +238,7 @@ namespace HonkBusterGame
         public void Clear()
         {
             GameObjects.Clear();
+            GameObjectContainers.Clear();
 
             _canvas.Children.Clear();
 
@@ -252,6 +268,13 @@ namespace HonkBusterGame
                 construct.Animate();
                 construct.Render();
                 construct.Recycle();              
+            }
+
+            foreach (GameObjectContainer construct in GameObjectContainers.Where(x => x.IsAnimating))
+            {
+                construct.Animate();
+                construct.Render();
+                construct.Recycle();
             }
 
             // remove the destroyables from the scene

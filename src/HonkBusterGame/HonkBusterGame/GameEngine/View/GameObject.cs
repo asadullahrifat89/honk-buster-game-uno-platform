@@ -3,14 +3,14 @@
     /// <summary>
     /// A game object that can be added in a game view and be rendered.
     /// </summary>
-    public partial class GameObject : RenderableBase
+    public partial class GameObject : DisplayObjectBase
     {
         public GameObject()
         {
             Speed = Constants.DEFAULT_CONSTRUCT_SPEED;
             AnimateAction = (s) => { };
             RecycleAction = (s) => { };
-            GameView = new();            
+            GameView = new();
         }
 
         #region Properties
