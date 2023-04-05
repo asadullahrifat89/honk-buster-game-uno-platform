@@ -46,34 +46,17 @@ namespace HonkBusterGame
 
         #endregion
 
-        #region Properties
-
-        public List<GameObject> Children { get; set; } = new();
+        #region Properties       
 
         /// <summary>
         /// Animation function.
         /// </summary>
-        public Action<GameObjectContainer> AnimateAction { get; set; }
+        public new Action<GameObjectContainer> AnimateAction { get; set; }
 
         /// <summary>
         /// Recycling function.
         /// </summary>
-        public Action<GameObjectContainer> RecycleAction { get; set; }
-
-        /// <summary>
-        /// Sets the movement speed.
-        /// </summary>
-        public double Speed { get; set; }
-
-        /// <summary>
-        /// Displacement value that determines isometric movement.
-        /// </summary>
-        public double IsometricDisplacement { get; set; }
-
-        /// <summary>
-        /// The scene in which this construct exists.
-        /// </summary>
-        public GameView GameView { get; set; }
+        public new Action<GameObjectContainer> RecycleAction { get; set; }
 
         #endregion
 
@@ -91,19 +74,19 @@ namespace HonkBusterGame
 
         public void AddChild(GameObject gameObject)
         {
-            Children.Add(gameObject);
+            //Children.Add(gameObject);
             _canvas.Children.Add(gameObject.Content);
         }
 
         public void RemoveChild(GameObject gameObject)
         {
-            Children.Remove(gameObject);
+            //Children.Remove(gameObject);
             _canvas.Children.Remove(gameObject.Content);
         }
 
         public void Clear()
         {
-            Children.Clear();
+            //Children.Clear();
             _canvas.Children.Clear();
         }
 

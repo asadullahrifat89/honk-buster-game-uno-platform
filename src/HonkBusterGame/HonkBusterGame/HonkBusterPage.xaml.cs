@@ -697,24 +697,24 @@ namespace HonkBusterGame
 
         #region GameContainer
 
-        #region RoadMark
+        #region RoadMarks
 
         public void SpawnRoadMarksContainer()
         {
+            var roadMarkSize = Constants.CONSTRUCT_SIZES.FirstOrDefault(x => x.ConstructType == ConstructType.ROAD_MARK);
+            int numberOfRoadMarks = 5;
+
             for (int j = 0; j < 2; j++)
             {
-                GameObjectContainer roadContainer = new(
+                GameObjectContainer roadMarkContainer = new(
                     animateAction: AnimateRoadMarksContainer,
                     recycleAction: RecycleRoadMarksContainer)
                 {
-                    Speed = Constants.DEFAULT_CONSTRUCT_SPEED
+                    Speed = Constants.DEFAULT_CONSTRUCT_SPEED,
+                    ConstructType = ConstructType.ROAD_MARK,
                 };
 
-                var roadMarkSize = Constants.CONSTRUCT_SIZES.FirstOrDefault(x => x.ConstructType == ConstructType.ROAD_MARK);
-
-                int numberOfRoadMarks = 5;
-
-                roadContainer.SetSize(
+                roadMarkContainer.SetSize(
                     width: roadMarkSize.Width * numberOfRoadMarks,
                     height: (roadMarkSize.Height / 2) * numberOfRoadMarks);
 
@@ -726,22 +726,21 @@ namespace HonkBusterGame
 
                     roadMark.SetPosition(
                       left: (roadMarkSize.Width * i),
-                      top: ((roadMarkSize.Height / 2) * i),
-                      z: 0);
+                      top: ((roadMarkSize.Height / 2) * i));
 
                     roadMark.Render();
 
-                    roadContainer.AddChild(roadMark);
+                    roadMarkContainer.AddChild(roadMark);
                 }
 
-                roadContainer.MoveOutOfSight();
-                _gameView.AddToView(roadContainer);
+                roadMarkContainer.MoveOutOfSight();
+                _gameView.AddToView(roadMarkContainer);
             }
         }
 
         public void GenerateRoadMarksContainer()
         {
-            if (_gameView.GameObjectContainers.OfType<GameObjectContainer>().FirstOrDefault(x => x.IsAnimating == false) is GameObjectContainer roadContainer)
+            if (_gameView.GameObjectContainers.OfType<GameObjectContainer>().FirstOrDefault(x => x.IsAnimating == false && x.ConstructType == ConstructType.ROAD_MARK) is GameObjectContainer roadContainer)
             {
                 roadContainer.SetPosition(
                   left: roadContainer.Width * -1,
@@ -764,7 +763,77 @@ namespace HonkBusterGame
             {
                 roadContainer.IsAnimating = false;
             }
-        } 
+        }
+
+        #endregion
+
+        #region RoadSideWalks
+
+        public void SpawnRoadSideWalksContainer()
+        {
+            var roadSideWalkSize = Constants.CONSTRUCT_SIZES.FirstOrDefault(x => x.ConstructType == ConstructType.ROAD_SIDE_WALK);
+            int numberOfRoadSideWalks = 5;
+
+            for (int j = 0; j < 2; j++)
+            {
+                GameObjectContainer roadSideWalkContainer = new(
+                    animateAction: AnimateRoadSideWalksContainer,
+                    recycleAction: RecycleRoadSideWalksContainer)
+                {
+                    Speed = Constants.DEFAULT_CONSTRUCT_SPEED,
+                    ConstructType = ConstructType.ROAD_SIDE_WALK,
+                };
+
+                roadSideWalkContainer.SetSize(
+                    width: roadSideWalkSize.Width * numberOfRoadSideWalks,
+                    height: (roadSideWalkSize.Height / 2) * numberOfRoadSideWalks);
+
+                for (int i = 0; i < numberOfRoadSideWalks; i++)
+                {
+                    RoadSideWalk roadSideWalk = new(
+                        animateAction: AnimateRoadSideWalk,
+                        recycleAction: RecycleRoadSideWalk);
+
+                    roadSideWalk.SetPosition(
+                      left: (roadSideWalkSize.Width * i),
+                      top: ((roadSideWalkSize.Height / 2) * i));
+
+                    roadSideWalk.Render();
+
+                    roadSideWalkContainer.AddChild(roadSideWalk);
+                }
+
+                roadSideWalkContainer.MoveOutOfSight();
+                _gameView.AddToView(roadSideWalkContainer);
+            }
+        }
+
+        public void GenerateRoadSideWalksContainer()
+        {
+            if (_gameView.GameObjectContainers.OfType<GameObjectContainer>().FirstOrDefault(x => x.IsAnimating == false && x.ConstructType == ConstructType.ROAD_SIDE_WALK) is GameObjectContainer roadContainer)
+            {
+                roadContainer.SetPosition(
+                  left: roadContainer.Width * -1.1,
+                  top: (Constants.DEFAULT_SCENE_HEIGHT / 2.9) * -1);
+                roadContainer.IsAnimating = true;
+            }
+        }
+
+        private void AnimateRoadSideWalksContainer(GameObjectContainer roadContainer)
+        {
+            var speed = roadContainer.Speed;
+            roadContainer.MoveDownRight(speed);
+        }
+
+        private void RecycleRoadSideWalksContainer(GameObjectContainer roadContainer)
+        {
+            var hitBox = roadContainer.GetHitBox();
+
+            if (hitBox.Top > Constants.DEFAULT_SCENE_HEIGHT || hitBox.Left > Constants.DEFAULT_SCENE_WIDTH)
+            {
+                roadContainer.IsAnimating = false;
+            }
+        }
 
         #endregion
 
@@ -3973,18 +4042,23 @@ namespace HonkBusterGame
             #region Road
 
             SpawnRoadMarksContainer();
+            SpawnRoadSideWalksContainer();
 
             _gameView.AddToView(
                 new GameObjectGenerator(
                     delay: 213,
-                    elaspedAction: GenerateRoadMarksContainer)
+                    elaspedAction: GenerateRoadMarksContainer),
+
+                new GameObjectGenerator(
+                    delay: 125,
+                    elaspedAction: GenerateRoadSideWalksContainer)
                 );
 
             //SpawnRoadMarks();
+            //SpawnRoadSideWalks();
             SpawnRoadSideBillboards();
             SpawnRoadSideLamps();
             SpawnRoadSideLightBillboards();
-            SpawnRoadSideWalks();
             SpawnRoadSideTrees();
             SpawnRoadSideHedges();
 
@@ -3993,6 +4067,10 @@ namespace HonkBusterGame
             //new GameObjectGenerator(
             //    delay: 38,
             //    elaspedAction: GenerateRoadMark),
+
+            //new GameObjectGenerator(
+            //    delay: 18,
+            //    elaspedAction: GenerateRoadSideWalk),
 
             new GameObjectGenerator(
                 delay: 72,
@@ -4005,10 +4083,6 @@ namespace HonkBusterGame
             new GameObjectGenerator(
                 delay: 36,
                 elaspedAction: GenerateRoadSideLightBillboard),
-
-            new GameObjectGenerator(
-                delay: 18,
-                elaspedAction: GenerateRoadSideWalk),
 
             new GameObjectGenerator(
                 delay: 30,
