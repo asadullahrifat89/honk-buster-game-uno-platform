@@ -4050,7 +4050,7 @@ namespace HonkBusterGame
                     elaspedAction: GenerateRoadMarksContainer),
 
                 new GameObjectGenerator(
-                    delay: 125,
+                    delay: 110,
                     elaspedAction: GenerateRoadSideWalksContainer)
                 );
 
