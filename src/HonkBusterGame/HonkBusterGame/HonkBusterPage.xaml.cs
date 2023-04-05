@@ -1030,9 +1030,9 @@ namespace HonkBusterGame
             var roadSideLightBillboardSize = Constants.CONSTRUCT_SIZES.FirstOrDefault(x => x.ConstructType == ConstructType.ROAD_SIDE_LIGHT_BILLBOARD);
             int numberOfRoadSideLightBillboards = 5;
             double xyAdjustment = 31.5;
-            double xyDistance = 200;
+            double xyDistance = 250;
 
-            for (int j = 0; j < 5; j++)
+            for (int j = 0; j < 2; j++)
             {
                 GameObjectContainer roadSideLightBillboardContainer = new(
                     animateAction: AnimateRoadSideLightBillboardsContainer,
@@ -1063,29 +1063,16 @@ namespace HonkBusterGame
                 roadSideLightBillboardContainer.MoveOutOfSight();
                 _gameView.AddToView(roadSideLightBillboardContainer);
             }
-        }
-
-        //public void GenerateRoadSideLightBillboardsContainerTop()
-        //{
-        //    if (_gameView.GameObjectContainers.OfType<GameObjectContainer>().FirstOrDefault(x => x.IsAnimating == false && x.ConstructType == ConstructType.ROAD_SIDE_LIGHT_BILLBOARD) is GameObjectContainer roadSideLightBillboardContainerTop)
-        //    {
-        //        roadSideLightBillboardContainerTop.SetPosition(
-        //          left: ((Constants.DEFAULT_SCENE_WIDTH / 1.5) * -1) - 270,
-        //          top: (roadSideLightBillboardContainerTop.Height * -1) - 150,
-        //          z: 3);
-
-        //        roadSideLightBillboardContainerTop.IsAnimating = true;
-        //    }
-        //}
+        }       
 
         public void GenerateRoadSideLightBillboardsContainerBottom()
         {
             if (_gameView.GameObjectContainers.OfType<GameObjectContainer>().FirstOrDefault(x => x.IsAnimating == false && x.ConstructType == ConstructType.ROAD_SIDE_LIGHT_BILLBOARD) is GameObjectContainer roadSideLightBillboardContainerBottom)
             {
                 roadSideLightBillboardContainerBottom.SetPosition(
-                  left: (roadSideLightBillboardContainerBottom.Width * -1.1) - 30,
-                  top: ((Constants.DEFAULT_SCENE_HEIGHT) * -1),
-                  z: 5);
+                  left: (roadSideLightBillboardContainerBottom.Width * -1.1),
+                  top: ((Constants.DEFAULT_SCENE_HEIGHT) * -0.8),
+                  z: 6);
 
                 roadSideLightBillboardContainerBottom.IsAnimating = true;
             }
@@ -4288,7 +4275,7 @@ namespace HonkBusterGame
                 elaspedAction: GenerateRoadSideHedgesContainerBottom),
 
              new GameObjectGenerator(
-                delay: 182,
+                delay: 156,
                 elaspedAction: GenerateRoadSideLightBillboardsContainerBottom)
                 );
 

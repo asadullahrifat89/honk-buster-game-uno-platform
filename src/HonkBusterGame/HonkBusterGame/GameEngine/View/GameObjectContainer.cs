@@ -58,6 +58,11 @@ namespace HonkBusterGame
         /// </summary>
         public new Action<GameObjectContainer> RecycleAction { get; set; }
 
+        /// <summary>
+        /// Count of total game objects in the container.
+        /// </summary>
+        public int ChildrenCount => _canvas.Children.Count;
+
         #endregion
 
         #region Methods

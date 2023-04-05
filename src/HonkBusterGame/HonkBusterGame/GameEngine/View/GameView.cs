@@ -267,7 +267,7 @@ namespace HonkBusterGame
 
                 construct.Animate();
                 construct.Render();
-                construct.Recycle();              
+                construct.Recycle();
             }
 
             foreach (GameObjectContainer construct in GameObjectContainers.Where(x => x.IsAnimating))
@@ -295,7 +295,11 @@ namespace HonkBusterGame
 
                 var fps = _famesCount / 2;
 
-                LoggingExtensions.Log($"Scene: {Name} \n Animating Objects: {GameObjects.Count(x => x.IsAnimating) + GameObjectContainers.Count(x => x.IsAnimating)} \n Total Objects: {_canvas.Children.Count} \n Generators: {_generators.Count} \n FPS: {fps}");
+                LoggingExtensions.Log($"Scene: {Name} \n " +
+                    $"Animating Objects: {GameObjects.Count(x => x.IsAnimating) + GameObjectContainers.Where(x => x.IsAnimating).Sum(x => x.ChildrenCount)} \n " +
+                    $"Total Objects: {GameObjects.Count() + GameObjectContainers.Sum(x => x.ChildrenCount)} \n " +
+                    $"Generators: {_generators.Count} \n " +
+                    $"FPS: {fps}");
 
                 _famesCount = 0;
             }
