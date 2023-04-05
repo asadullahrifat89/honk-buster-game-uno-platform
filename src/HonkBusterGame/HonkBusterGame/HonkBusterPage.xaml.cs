@@ -815,7 +815,8 @@ namespace HonkBusterGame
             {
                 roadSideWalkContainerTop.SetPosition(
                   left: ((Constants.DEFAULT_SCENE_WIDTH / 5) * -1) - 300,
-                  top: (roadSideWalkContainerTop.Height * -1) - 150);
+                  top: (roadSideWalkContainerTop.Height * -1) - 150,
+                  z: 0);
 
                 roadSideWalkContainerTop.IsAnimating = true;
             }
@@ -826,8 +827,9 @@ namespace HonkBusterGame
             if (_gameView.GameObjectContainers.OfType<GameObjectContainer>().FirstOrDefault(x => x.IsAnimating == false && x.ConstructType == ConstructType.ROAD_SIDE_WALK) is GameObjectContainer roadSideWalkContainerBottom)
             {
                 roadSideWalkContainerBottom.SetPosition(
-                  left: roadSideWalkContainerBottom.Width * -1.1,
-                  top: (Constants.DEFAULT_SCENE_HEIGHT / 2.8) * -1);
+                  left: (roadSideWalkContainerBottom.Width * -1.1),
+                  top: (Constants.DEFAULT_SCENE_HEIGHT / 2.8) * -1,
+                  z: 0);
 
                 roadSideWalkContainerBottom.IsAnimating = true;
             }
@@ -840,6 +842,91 @@ namespace HonkBusterGame
         }
 
         private void RecycleRoadSideWalksContainer(GameObjectContainer roadContainer)
+        {
+            var hitBox = roadContainer.GetHitBox();
+
+            if (hitBox.Top > Constants.DEFAULT_SCENE_HEIGHT || hitBox.Left - 150 > Constants.DEFAULT_SCENE_WIDTH)
+            {
+                roadContainer.IsAnimating = false;
+            }
+        }
+
+        #endregion
+
+        #region RoadSideTrees
+
+        public void SpawnRoadSideTreesContainer()
+        {
+            var roadSideTreeSize = Constants.CONSTRUCT_SIZES.FirstOrDefault(x => x.ConstructType == ConstructType.ROAD_SIDE_TREE);
+            int numberOfRoadSideTrees = 5;
+            double xyAdjustment = 31.5;
+
+            for (int j = 0; j < 5; j++)
+            {
+                GameObjectContainer roadSideTreeContainer = new(
+                    animateAction: AnimateRoadSideTreesContainer,
+                    recycleAction: RecycleRoadSideTreesContainer)
+                {
+                    Speed = Constants.DEFAULT_CONSTRUCT_SPEED,
+                    ConstructType = ConstructType.ROAD_SIDE_TREE,
+                };
+
+                roadSideTreeContainer.SetSize(
+                    width: roadSideTreeSize.Width * numberOfRoadSideTrees,
+                    height: (roadSideTreeSize.Height / 2) * numberOfRoadSideTrees);
+
+                for (int i = 0; i < numberOfRoadSideTrees; i++)
+                {
+                    RoadSideTree roadSideTree = new(
+                        animateAction: (roadSideTree) => { },
+                        recycleAction: (roadSideTree) => { });
+
+                    roadSideTree.SetPosition(
+                      left: (roadSideTreeSize.Width * i - (xyAdjustment * i)),
+                      top: ((roadSideTreeSize.Height / 2) * i - ((xyAdjustment / 2) * i)));
+
+                    roadSideTree.Render();
+                    roadSideTreeContainer.AddChild(roadSideTree);
+                }
+
+                roadSideTreeContainer.MoveOutOfSight();
+                _gameView.AddToView(roadSideTreeContainer);
+            }
+        }
+
+        public void GenerateRoadSideTreesContainerTop()
+        {
+            if (_gameView.GameObjectContainers.OfType<GameObjectContainer>().FirstOrDefault(x => x.IsAnimating == false && x.ConstructType == ConstructType.ROAD_SIDE_TREE) is GameObjectContainer roadSideTreeContainerTop)
+            {
+                roadSideTreeContainerTop.SetPosition(
+                  left: ((Constants.DEFAULT_SCENE_WIDTH / 5) * -1) - 470,
+                  top: (roadSideTreeContainerTop.Height * -1) - 235,
+                  z: 3);
+
+                roadSideTreeContainerTop.IsAnimating = true;
+            }
+        }
+
+        public void GenerateRoadSideTreesContainerBottom()
+        {
+            if (_gameView.GameObjectContainers.OfType<GameObjectContainer>().FirstOrDefault(x => x.IsAnimating == false && x.ConstructType == ConstructType.ROAD_SIDE_TREE) is GameObjectContainer roadSideTreeContainerBottom)
+            {
+                roadSideTreeContainerBottom.SetPosition(
+                  left: (roadSideTreeContainerBottom.Width * -1.1),
+                  top: ((Constants.DEFAULT_SCENE_HEIGHT / 2.8) * -1),
+                  z: 7);
+
+                roadSideTreeContainerBottom.IsAnimating = true;
+            }
+        }
+
+        private void AnimateRoadSideTreesContainer(GameObjectContainer roadContainer)
+        {
+            var speed = roadContainer.Speed;
+            roadContainer.MoveDownRight(speed);
+        }
+
+        private void RecycleRoadSideTreesContainer(GameObjectContainer roadContainer)
         {
             var hitBox = roadContainer.GetHitBox();
 
@@ -3996,27 +4083,36 @@ namespace HonkBusterGame
 
             SpawnRoadMarksContainer();
             SpawnRoadSideWalksContainer();
+            SpawnRoadSideTreesContainer();
 
             _gameView.AddToView(
-                new GameObjectGenerator(
-                    delay: 213,
-                    elaspedAction: GenerateRoadMarksContainer),
+            new GameObjectGenerator(
+                delay: 213,
+                elaspedAction: GenerateRoadMarksContainer),
 
-                  new GameObjectGenerator(
-                    delay: 110,
-                    elaspedAction: GenerateRoadSideWalksContainerTop),
+            new GameObjectGenerator(
+                delay: 110,
+                elaspedAction: GenerateRoadSideWalksContainerTop),
 
-                   new GameObjectGenerator(
-                    delay: 110,
-                    elaspedAction: GenerateRoadSideWalksContainerBottom)
+            new GameObjectGenerator(
+                delay: 110,
+                elaspedAction: GenerateRoadSideWalksContainerBottom),
+
+            new GameObjectGenerator(
+                delay: 110,
+                elaspedAction: GenerateRoadSideTreesContainerTop),
+
+            new GameObjectGenerator(
+                delay: 110,
+                elaspedAction: GenerateRoadSideTreesContainerBottom)
                 );
 
             //SpawnRoadMarks();
             //SpawnRoadSideWalks();
+            //SpawnRoadSideTrees();
             SpawnRoadSideBillboards();
             SpawnRoadSideLamps();
             SpawnRoadSideLightBillboards();
-            SpawnRoadSideTrees();
             SpawnRoadSideHedges();
 
             _gameView.AddToView(
@@ -4029,6 +4125,11 @@ namespace HonkBusterGame
             //    delay: 18,
             //    elaspedAction: GenerateRoadSideWalk),
 
+
+            //new GameObjectGenerator(
+            //    delay: 30,
+            //    elaspedAction: GenerateRoadSideTree),
+
             new GameObjectGenerator(
                 delay: 72,
                 elaspedAction: GenerateRoadSideBillboard),
@@ -4040,10 +4141,6 @@ namespace HonkBusterGame
             new GameObjectGenerator(
                 delay: 36,
                 elaspedAction: GenerateRoadSideLightBillboard),
-
-            new GameObjectGenerator(
-                delay: 30,
-                elaspedAction: GenerateRoadSideTree),
 
             new GameObjectGenerator(
                 delay: 38,
