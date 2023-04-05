@@ -4169,6 +4169,7 @@ namespace HonkBusterGame
             SpawnRoadMarksContainer();
             SpawnRoadSideWalksContainer();
             SpawnRoadSideTreesContainer();
+            SpawnRoadSideHedgesContainer();
 
             _gameView.AddToView(
             new GameObjectGenerator(
@@ -4192,11 +4193,11 @@ namespace HonkBusterGame
                 elaspedAction: GenerateRoadSideTreesContainerBottom),
 
             new GameObjectGenerator(
-                delay: 178,
+                delay: 182,
                 elaspedAction: GenerateRoadSideHedgesContainerTop),
 
             new GameObjectGenerator(
-                delay: 178,
+                delay: 182,
                 elaspedAction: GenerateRoadSideHedgesContainerBottom)
                 );
 
@@ -4206,8 +4207,7 @@ namespace HonkBusterGame
             //SpawnRoadSideHedges();
             SpawnRoadSideBillboards();
             SpawnRoadSideLamps();
-            SpawnRoadSideLightBillboards();
-            SpawnRoadSideHedgesContainer();
+            SpawnRoadSideLightBillboards();            
 
             _gameView.AddToView(
 
