@@ -699,8 +699,10 @@ namespace HonkBusterGame
 
         public void SpawnRoadContainer()
         {
-            for (int ii = 0; ii < 3; ii++)
+            for (int ii = 0; ii < 2; ii++)
             {
+                int numberOfRoadMarks = 5;
+
                 GameObjectContainer roadContainer = new(
                     animateAction: AnimateRoadContainer,
                     recycleAction: RecycleRoadContainer)
@@ -708,7 +710,13 @@ namespace HonkBusterGame
                     Speed = Constants.DEFAULT_CONSTRUCT_SPEED
                 };
 
-                for (int i = 0; i < 3; i++)
+                var roadMarkSize = Constants.CONSTRUCT_SIZES.FirstOrDefault(x => x.ConstructType == ConstructType.ROAD_MARK);
+
+                roadContainer.SetSize(
+                    width: roadMarkSize.Width * numberOfRoadMarks, 
+                    height: (roadMarkSize.Height / 2) * numberOfRoadMarks);
+
+                for (int i = 0; i < numberOfRoadMarks; i++)
                 {
                     RoadMark roadMark = new(
                         animateAction: AnimateRoadMark,
@@ -716,8 +724,8 @@ namespace HonkBusterGame
 
                     roadMark.SetZ(z: 0);
                     roadMark.SetPosition(
-                      left: (roadMark.GetConstructSize(roadMark.ConstructType).Width * i),
-                      top: (roadMark.GetConstructSize(roadMark.ConstructType).Height / 2 * i));
+                      left: (roadMarkSize.Width * i),
+                      top: ((roadMarkSize.Height / 2) * i));
                     roadMark.Render();
 
                     roadContainer.AddChild(roadMark);
@@ -733,8 +741,8 @@ namespace HonkBusterGame
             if (_gameView.GameObjectContainers.OfType<GameObjectContainer>().FirstOrDefault(x => x.IsAnimating == false) is GameObjectContainer roadContainer)
             {
                 roadContainer.SetPosition(
-                  left: roadContainer.Width * -3,
-                  top: roadContainer.Height * -2);
+                  left: roadContainer.Width * -1,
+                  top: roadContainer.Height * -1.1);
                 roadContainer.IsAnimating = true;
             }
         }
@@ -3963,7 +3971,7 @@ namespace HonkBusterGame
 
             _gameView.AddToView(
                 new GameObjectGenerator(
-                    delay: 124,
+                    delay: 213,
                     elaspedAction: GenerateRoadContainer)
                 );
 
