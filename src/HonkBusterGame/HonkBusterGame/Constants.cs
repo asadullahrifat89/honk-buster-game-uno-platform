@@ -61,8 +61,7 @@
             new (ConstructType.CLOUD, 260, 260),
             new (ConstructType.HONK, 90, 90),
             new (ConstructType.FLOATING_NUMBER, 50, 50),
-
-            new (ConstructType.ROAD_SIDE_OBJECT, 300, 300),
+                        
             new (ConstructType.ROAD_MARK, 512, 512),            
 
             new (ConstructType.ROAD_SIDE_TREE, 470, 470),
@@ -334,8 +333,7 @@
         VEHICLE_BOSS,
 
         VEHICLE_BOSS_ROCKET,
-
-        ROAD_SIDE_OBJECT,
+                
         ROAD_MARK,
         ROAD_SIDE_WALK,
 

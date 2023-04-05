@@ -984,7 +984,7 @@ namespace HonkBusterGame
             if (_gameView.GameObjectContainers.OfType<GameObjectContainer>().FirstOrDefault(x => x.IsAnimating == false && x.ConstructType == ConstructType.ROAD_SIDE_HEDGE) is GameObjectContainer roadSideHedgeContainerTop)
             {
                 roadSideHedgeContainerTop.SetPosition(
-                  left: ((Constants.DEFAULT_SCENE_WIDTH / 2.0) * -1) - 300,
+                  left: ((Constants.DEFAULT_SCENE_WIDTH / 1.5) * -1) - 270,
                   top: (roadSideHedgeContainerTop.Height * -1) - 150,
                   z: 3);
 
@@ -997,7 +997,7 @@ namespace HonkBusterGame
             if (_gameView.GameObjectContainers.OfType<GameObjectContainer>().FirstOrDefault(x => x.IsAnimating == false && x.ConstructType == ConstructType.ROAD_SIDE_HEDGE) is GameObjectContainer roadSideHedgeContainerBottom)
             {
                 roadSideHedgeContainerBottom.SetPosition(
-                  left: (roadSideHedgeContainerBottom.Width * -1.1),
+                  left: (roadSideHedgeContainerBottom.Width * -1.1) - 30,
                   top: ((Constants.DEFAULT_SCENE_HEIGHT) * -1),
                   z: 4);
 
@@ -4192,11 +4192,11 @@ namespace HonkBusterGame
                 elaspedAction: GenerateRoadSideTreesContainerBottom),
 
             new GameObjectGenerator(
-                delay: 170,
+                delay: 190,
                 elaspedAction: GenerateRoadSideHedgesContainerTop),
 
             new GameObjectGenerator(
-                delay: 170,
+                delay: 190,
                 elaspedAction: GenerateRoadSideHedgesContainerBottom)
                 );
 
