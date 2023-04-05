@@ -1070,7 +1070,7 @@ namespace HonkBusterGame
             if (_gameView.GameObjectContainers.OfType<GameObjectContainer>().FirstOrDefault(x => x.IsAnimating == false && x.ConstructType == ConstructType.ROAD_SIDE_BILLBOARD) is GameObjectContainer roadSideBillboardContainerTop)
             {
                 roadSideBillboardContainerTop.SetPosition(
-                    left: ((Constants.DEFAULT_SCENE_WIDTH / 1.5) * -1) - 130,
+                    left: ((Constants.DEFAULT_SCENE_WIDTH / 1.4) * -1) - 435,
                     top: (roadSideBillboardContainerTop.Height * -1) - 150,
                     z: 6);
 

@@ -296,9 +296,10 @@ namespace HonkBusterGame
                 var fps = _famesCount / 2;
 
                 LoggingExtensions.Log($"Scene: {Name} \n " +
-                    $"Animating Objects: {GameObjects.Count(x => x.IsAnimating) + GameObjectContainers.Where(x => x.IsAnimating).Sum(x => x.ChildrenCount)} \n " +
-                    $"Total Objects: {GameObjects.Count() + GameObjectContainers.Sum(x => x.ChildrenCount)} \n " +
-                    $"Generators: {_generators.Count} \n " +
+                    $"Total loop count of objects: {GameObjects.Count(x => x.IsAnimating) + GameObjectContainers.Count(x => x.IsAnimating)} \n " +
+                    $"Total animating objects: {GameObjects.Where(x => x.IsAnimating).Count() + GameObjectContainers.Where(x => x.IsAnimating).Sum(x => x.ChildrenCount)} \n " +
+                    $"Total hosted objects: {GameObjects.Count + GameObjectContainers.Sum(x => x.ChildrenCount)} \n " +
+                    $"Total generators: {_generators.Count} \n " +
                     $"FPS: {fps}");
 
                 _famesCount = 0;
