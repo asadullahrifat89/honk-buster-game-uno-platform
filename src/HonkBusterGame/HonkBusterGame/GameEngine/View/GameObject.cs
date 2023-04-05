@@ -3,14 +3,14 @@
     /// <summary>
     /// A game object that can be added in a game view and be rendered.
     /// </summary>
-    public partial class GameObject : RenderableBase
+    public partial class GameObject : DisplayObjectBase
     {
         public GameObject()
         {
             Speed = Constants.DEFAULT_CONSTRUCT_SPEED;
             AnimateAction = (s) => { };
             RecycleAction = (s) => { };
-            GameView = new();            
+            GameView = new();
         }
 
         #region Properties
@@ -70,6 +70,21 @@
 
                 SetSize(width: width, height: height);
             }
+        }
+
+        public (double Width, double Height) GetConstructSize(ConstructType constructType)
+        {
+            if (ConstructType != ConstructType.NONE)
+            {
+                var size = Constants.CONSTRUCT_SIZES.FirstOrDefault(x => x.ConstructType == constructType);
+
+                var width = size.Width;
+                var height = size.Height;
+
+                return (width, height);
+            }
+            else
+                return (0, 0);
         }
 
         #endregion
