@@ -795,8 +795,8 @@ namespace HonkBusterGame
                         recycleAction: RecycleRoadSideWalk);
 
                     roadSideWalk.SetPosition(
-                      left: (roadSideWalkSize.Width * i),
-                      top: ((roadSideWalkSize.Height / 2) * i));
+                      left: (roadSideWalkSize.Width * i - (31 * i)),
+                      top: ((roadSideWalkSize.Height / 2) * i - ((31 / 2) * i)));
 
                     roadSideWalk.Render();
 
