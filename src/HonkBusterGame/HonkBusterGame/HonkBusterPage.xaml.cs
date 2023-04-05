@@ -774,7 +774,7 @@ namespace HonkBusterGame
         {
             var roadSideWalkSize = Constants.CONSTRUCT_SIZES.FirstOrDefault(x => x.ConstructType == ConstructType.ROAD_SIDE_WALK);
             int numberOfRoadSideWalks = 5;
-            double xyAdjustment = 32;
+            double xyAdjustment = 33;
 
             for (int j = 0; j < 5; j++)
             {
