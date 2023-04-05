@@ -913,7 +913,7 @@ namespace HonkBusterGame
             {
                 roadSideTreeContainerBottom.SetPosition(
                   left: (roadSideTreeContainerBottom.Width * -1.1),
-                  top: ((Constants.DEFAULT_SCENE_HEIGHT / 2.8) * -1),
+                  top: ((Constants.DEFAULT_SCENE_HEIGHT) * -1),
                   z: 7);
 
                 roadSideTreeContainerBottom.IsAnimating = true;
@@ -4099,11 +4099,11 @@ namespace HonkBusterGame
                 elaspedAction: GenerateRoadSideWalksContainerBottom),
 
             new GameObjectGenerator(
-                delay: 110,
+                delay: 170,
                 elaspedAction: GenerateRoadSideTreesContainerTop),
 
             new GameObjectGenerator(
-                delay: 110,
+                delay: 170,
                 elaspedAction: GenerateRoadSideTreesContainerBottom)
                 );
 
