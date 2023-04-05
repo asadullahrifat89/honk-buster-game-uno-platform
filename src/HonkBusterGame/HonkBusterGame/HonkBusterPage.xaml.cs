@@ -4379,10 +4379,10 @@ namespace HonkBusterGame
             //SpawnRoadSideTrees();
             //SpawnRoadSideHedges();
             //SpawnRoadSideLamps();
-            SpawnRoadSideBillboards();
+            //SpawnRoadSideBillboards();
             //SpawnRoadSideLightBillboards();
 
-            _gameView.AddToView(
+            //_gameView.AddToView(
 
             //new GameObjectGenerator(
             //    delay: 38,
@@ -4405,14 +4405,14 @@ namespace HonkBusterGame
             //    delay: 36,
             //    elaspedAction: GenerateRoadSideLamp),
 
-            new GameObjectGenerator(
-                delay: 72,
-                elaspedAction: GenerateRoadSideBillboard)
+            //new GameObjectGenerator(
+            //    delay: 72,
+            //    elaspedAction: GenerateRoadSideBillboard)
 
            //new GameObjectGenerator(
            //    delay: 36,
            //    elaspedAction: GenerateRoadSideLightBillboard)
-           );
+           //);
 
             #endregion
 
