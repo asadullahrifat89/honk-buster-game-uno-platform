@@ -1105,7 +1105,7 @@ namespace HonkBusterGame
             double xyAdjustment = 31.5;
             double xyDistance = 250;
 
-            for (int j = 0; j < 3; j++)
+            for (int j = 0; j < 5; j++)
             {
                 GameObjectContainer roadSideLampContainer = new(
                     animateAction: AnimateRoadSideLampsContainer,
@@ -1135,6 +1135,19 @@ namespace HonkBusterGame
 
                 roadSideLampContainer.MoveOutOfSight();
                 _gameView.AddToView(roadSideLampContainer);
+            }
+        }
+
+        public void GenerateRoadSideLampsContainerTop()
+        {
+            if (_gameView.GameObjectContainers.OfType<GameObjectContainer>().FirstOrDefault(x => x.IsAnimating == false && x.ConstructType == ConstructType.ROAD_SIDE_LAMP) is GameObjectContainer roadSideLampContainerTop)
+            {
+                roadSideLampContainerTop.SetPosition(
+                  left: ((Constants.DEFAULT_SCENE_WIDTH / 1.5) * -1) - 130,
+                  top: (roadSideLampContainerTop.Height * -1) - 150,
+                  z: 5);
+
+                roadSideLampContainerTop.IsAnimating = true;
             }
         }
 
@@ -4351,6 +4364,10 @@ namespace HonkBusterGame
              new GameObjectGenerator(
                 delay: 156,
                 elaspedAction: GenerateRoadSideLightBillboardsContainerBottom),
+
+             new GameObjectGenerator(
+                delay: 156,
+                elaspedAction: GenerateRoadSideLampsContainerTop),
 
              new GameObjectGenerator(
                 delay: 156,
