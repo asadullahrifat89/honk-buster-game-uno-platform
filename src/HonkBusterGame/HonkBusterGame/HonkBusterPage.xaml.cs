@@ -1030,7 +1030,7 @@ namespace HonkBusterGame
             var roadSideBillboardSize = Constants.CONSTRUCT_SIZES.FirstOrDefault(x => x.ConstructType == ConstructType.ROAD_SIDE_BILLBOARD);
             int numberOfRoadSideBillboards = 5;
             double xyAdjustment = 31.5;
-            double xyDistance = 250;
+            double xyDistance = 325;
 
             for (int j = 0; j < 2; j++)
             {
@@ -1072,7 +1072,7 @@ namespace HonkBusterGame
                 roadSideBillboardContainerTop.SetPosition(
                     left: ((Constants.DEFAULT_SCENE_WIDTH / 1.4) * -1) - 435,
                     top: (roadSideBillboardContainerTop.Height * -1) - 150,
-                    z: 6);
+                    z: 5);
 
                 roadSideBillboardContainerTop.IsAnimating = true;
             }
@@ -4448,7 +4448,7 @@ namespace HonkBusterGame
                 elaspedAction: GenerateRoadSideLampsContainerBottom),
 
              new GameObjectGenerator(
-                delay: 216,
+                delay: 244,
                 elaspedAction: GenerateRoadSideBillboardsContainerTop)
                 );
 
