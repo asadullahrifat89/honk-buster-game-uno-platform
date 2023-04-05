@@ -4184,19 +4184,19 @@ namespace HonkBusterGame
                 elaspedAction: GenerateRoadSideWalksContainerBottom),
 
             new GameObjectGenerator(
-                delay: 170,
+                delay: 178,
                 elaspedAction: GenerateRoadSideTreesContainerTop),
 
             new GameObjectGenerator(
-                delay: 170,
+                delay: 178,
                 elaspedAction: GenerateRoadSideTreesContainerBottom),
 
             new GameObjectGenerator(
-                delay: 190,
+                delay: 178,
                 elaspedAction: GenerateRoadSideHedgesContainerTop),
 
             new GameObjectGenerator(
-                delay: 190,
+                delay: 178,
                 elaspedAction: GenerateRoadSideHedgesContainerBottom)
                 );
 
