@@ -774,7 +774,7 @@ namespace HonkBusterGame
         {
             var roadSideWalkSize = Constants.CONSTRUCT_SIZES.FirstOrDefault(x => x.ConstructType == ConstructType.ROAD_SIDE_WALK);
             int numberOfRoadSideWalks = 5;
-            double xyAdjustment = 31.5;
+            double xyAdjustment = 32;
 
             for (int j = 0; j < 5; j++)
             {
@@ -899,7 +899,7 @@ namespace HonkBusterGame
             if (_gameView.GameObjectContainers.OfType<GameObjectContainer>().FirstOrDefault(x => x.IsAnimating == false && x.ConstructType == ConstructType.ROAD_SIDE_TREE) is GameObjectContainer roadSideTreeContainerTop)
             {
                 roadSideTreeContainerTop.SetPosition(
-                  left: ((Constants.DEFAULT_SCENE_WIDTH / 2.1) * -1) - 300,
+                  left: ((Constants.DEFAULT_SCENE_WIDTH / 2.0) * -1) - 300,
                   top: (roadSideTreeContainerTop.Height * -1) - 150,
                   z: 3);
 
