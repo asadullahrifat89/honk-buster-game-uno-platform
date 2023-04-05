@@ -721,8 +721,8 @@ namespace HonkBusterGame
                 for (int i = 0; i < numberOfRoadMarks; i++)
                 {
                     RoadMark roadMark = new(
-                        animateAction: AnimateRoadMark,
-                        recycleAction: RecycleRoadMark);
+                        animateAction: (roadMark) => { },
+                        recycleAction: (roadMark) => { });
 
                     roadMark.SetPosition(
                       left: (roadMarkSize.Width * i),
@@ -793,8 +793,8 @@ namespace HonkBusterGame
                 for (int i = 0; i < numberOfRoadSideWalks; i++)
                 {
                     RoadSideWalk roadSideWalk = new(
-                        animateAction: AnimateRoadSideWalk,
-                        recycleAction: RecycleRoadSideWalk);
+                        animateAction: (roadSideWalk) => { },
+                        recycleAction: (roadSideWalk) => { });
 
                     roadSideWalk.SetPosition(
                       left: (roadSideWalkSize.Width * i - (xyAdjustment * i)),
@@ -1595,105 +1595,105 @@ namespace HonkBusterGame
 
         #region RoadMark
 
-        private void SpawnRoadMarks()
-        {
-            for (int i = 0; i < 6; i++)
-            {
-                RoadMark roadMark = new(
-                    animateAction: AnimateRoadMark,
-                    recycleAction: RecycleRoadMark);
+        //private void SpawnRoadMarks()
+        //{
+        //    for (int i = 0; i < 6; i++)
+        //    {
+        //        RoadMark roadMark = new(
+        //            animateAction: AnimateRoadMark,
+        //            recycleAction: RecycleRoadMark);
 
-                roadMark.SetZ(z: 0);
-                roadMark.MoveOutOfSight();
+        //        roadMark.SetZ(z: 0);
+        //        roadMark.MoveOutOfSight();
 
-                _gameView.AddToView(roadMark);
-            }
-        }
+        //        _gameView.AddToView(roadMark);
+        //    }
+        //}
 
-        private void GenerateRoadMark()
-        {
-            if (_gameView.GameObjects.OfType<RoadMark>().FirstOrDefault(x => x.IsAnimating == false) is RoadMark roadMark)
-            {
-                roadMark.Reset();
-                roadMark.SetPosition(
-                  left: roadMark.Height * -1.5,
-                  top: roadMark.Height * -1);
-                roadMark.IsAnimating = true;
-            }
-        }
+        //private void GenerateRoadMark()
+        //{
+        //    if (_gameView.GameObjects.OfType<RoadMark>().FirstOrDefault(x => x.IsAnimating == false) is RoadMark roadMark)
+        //    {
+        //        roadMark.Reset();
+        //        roadMark.SetPosition(
+        //          left: roadMark.Height * -1.5,
+        //          top: roadMark.Height * -1);
+        //        roadMark.IsAnimating = true;
+        //    }
+        //}
 
-        private void AnimateRoadMark(GameObject roadMark)
-        {
-            RoadMark roadMark1 = roadMark as RoadMark;
-            var speed = roadMark1.Speed;
-            roadMark1.MoveDownRight(speed);
-        }
+        //private void AnimateRoadMark(GameObject roadMark)
+        //{
+        //    RoadMark roadMark1 = roadMark as RoadMark;
+        //    var speed = roadMark1.Speed;
+        //    roadMark1.MoveDownRight(speed);
+        //}
 
-        private void RecycleRoadMark(GameObject roadMark)
-        {
-            var hitBox = roadMark.GetHitBox();
+        //private void RecycleRoadMark(GameObject roadMark)
+        //{
+        //    var hitBox = roadMark.GetHitBox();
 
-            if (hitBox.Top > Constants.DEFAULT_SCENE_HEIGHT || hitBox.Left > Constants.DEFAULT_SCENE_WIDTH)
-            {
-                roadMark.IsAnimating = false;
-            }
-        }
+        //    if (hitBox.Top > Constants.DEFAULT_SCENE_HEIGHT || hitBox.Left > Constants.DEFAULT_SCENE_WIDTH)
+        //    {
+        //        roadMark.IsAnimating = false;
+        //    }
+        //}
 
         #endregion
 
         #region RoadSideWalk
 
-        private void SpawnRoadSideWalks()
-        {
-            for (int i = 0; i < 15; i++)
-            {
-                RoadSideWalk roadSideWalk = new(
-                animateAction: AnimateRoadSideWalk,
-                recycleAction: RecycleRoadSideWalk);
+        //private void SpawnRoadSideWalks()
+        //{
+        //    for (int i = 0; i < 15; i++)
+        //    {
+        //        RoadSideWalk roadSideWalk = new(
+        //        animateAction: AnimateRoadSideWalk,
+        //        recycleAction: RecycleRoadSideWalk);
 
-                roadSideWalk.MoveOutOfSight();
+        //        roadSideWalk.MoveOutOfSight();
 
-                _gameView.AddToView(roadSideWalk);
-            }
-        }
+        //        _gameView.AddToView(roadSideWalk);
+        //    }
+        //}
 
-        private void GenerateRoadSideWalk()
-        {
-            if (_gameView.GameObjects.OfType<RoadSideWalk>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideWalk roadSideWalkTop)
-            {
-                roadSideWalkTop.Reset();
-                roadSideWalkTop.SetPosition(
-                    left: (Constants.DEFAULT_SCENE_WIDTH / 2.25 - roadSideWalkTop.Width),
-                    top: roadSideWalkTop.Height * -1);
-                roadSideWalkTop.IsAnimating = true;
-            }
+        //private void GenerateRoadSideWalk()
+        //{
+        //    if (_gameView.GameObjects.OfType<RoadSideWalk>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideWalk roadSideWalkTop)
+        //    {
+        //        roadSideWalkTop.Reset();
+        //        roadSideWalkTop.SetPosition(
+        //            left: (Constants.DEFAULT_SCENE_WIDTH / 2.25 - roadSideWalkTop.Width),
+        //            top: roadSideWalkTop.Height * -1);
+        //        roadSideWalkTop.IsAnimating = true;
+        //    }
 
-            if (_gameView.GameObjects.OfType<RoadSideWalk>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideWalk roadSideWalkBottom)
-            {
-                roadSideWalkBottom.Reset();
-                roadSideWalkBottom.SetPosition(
-                    left: (roadSideWalkBottom.Height * -1.5) - 30,
-                    top: (Constants.DEFAULT_SCENE_HEIGHT / 5 + roadSideWalkBottom.Height / 2) - 90);
-                roadSideWalkBottom.IsAnimating = true;
-            }
-        }
+        //    if (_gameView.GameObjects.OfType<RoadSideWalk>().FirstOrDefault(x => x.IsAnimating == false) is RoadSideWalk roadSideWalkBottom)
+        //    {
+        //        roadSideWalkBottom.Reset();
+        //        roadSideWalkBottom.SetPosition(
+        //            left: (roadSideWalkBottom.Height * -1.5) - 30,
+        //            top: (Constants.DEFAULT_SCENE_HEIGHT / 5 + roadSideWalkBottom.Height / 2) - 90);
+        //        roadSideWalkBottom.IsAnimating = true;
+        //    }
+        //}
 
-        private void AnimateRoadSideWalk(GameObject roadSideWalk)
-        {
-            RoadSideWalk roadSideWalk1 = roadSideWalk as RoadSideWalk;
-            var speed = roadSideWalk1.Speed;
-            roadSideWalk1.MoveDownRight(speed: speed);
-        }
+        //private void AnimateRoadSideWalk(GameObject roadSideWalk)
+        //{
+        //    RoadSideWalk roadSideWalk1 = roadSideWalk as RoadSideWalk;
+        //    var speed = roadSideWalk1.Speed;
+        //    roadSideWalk1.MoveDownRight(speed: speed);
+        //}
 
-        private void RecycleRoadSideWalk(GameObject roadSideWalk)
-        {
-            var hitBox = roadSideWalk.GetHitBox();
+        //private void RecycleRoadSideWalk(GameObject roadSideWalk)
+        //{
+        //    var hitBox = roadSideWalk.GetHitBox();
 
-            if (hitBox.Top - 45 > Constants.DEFAULT_SCENE_HEIGHT || hitBox.Left - roadSideWalk.Width > Constants.DEFAULT_SCENE_WIDTH)
-            {
-                roadSideWalk.IsAnimating = false;
-            }
-        }
+        //    if (hitBox.Top - 45 > Constants.DEFAULT_SCENE_HEIGHT || hitBox.Left - roadSideWalk.Width > Constants.DEFAULT_SCENE_WIDTH)
+        //    {
+        //        roadSideWalk.IsAnimating = false;
+        //    }
+        //}
 
         #endregion
 
