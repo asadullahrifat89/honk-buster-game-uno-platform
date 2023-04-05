@@ -899,8 +899,8 @@ namespace HonkBusterGame
             if (_gameView.GameObjectContainers.OfType<GameObjectContainer>().FirstOrDefault(x => x.IsAnimating == false && x.ConstructType == ConstructType.ROAD_SIDE_TREE) is GameObjectContainer roadSideTreeContainerTop)
             {
                 roadSideTreeContainerTop.SetPosition(
-                  left: ((Constants.DEFAULT_SCENE_WIDTH / 5) * -1) - 470,
-                  top: (roadSideTreeContainerTop.Height * -1) - 235,
+                  left: ((Constants.DEFAULT_SCENE_WIDTH / 2.1) * -1) - 300,
+                  top: (roadSideTreeContainerTop.Height * -1) - 150,
                   z: 3);
 
                 roadSideTreeContainerTop.IsAnimating = true;
