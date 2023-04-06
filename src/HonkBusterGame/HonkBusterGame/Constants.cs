@@ -18,8 +18,8 @@
 
         public const double DEFAULT_GUI_FONT_SIZE = 30;
 
-        public const double DEFAULT_SCENE_WIDTH = 1900;
-        public const double DEFAULT_SCENE_HEIGHT = 940;
+        public const double DEFAULT_GAME_VIEW_WIDTH = 1900;
+        public const double DEFAULT_GAME_VIEW_HEIGHT = 940;
 
         public const double DEFAULT_BLAST_RING_CORNER_RADIUS = 100;
         public const double DEFAULT_BLAST_RING_BORDER_THICKNESS = 10;

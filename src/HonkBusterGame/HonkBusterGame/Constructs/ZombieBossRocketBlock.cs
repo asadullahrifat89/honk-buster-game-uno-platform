@@ -91,7 +91,7 @@
             {
                 case 0:
                     {
-                        var xLaneWidth = Constants.DEFAULT_SCENE_WIDTH / 4;
+                        var xLaneWidth = Constants.DEFAULT_GAME_VIEW_WIDTH / 4;
 
                         switch (lane)
                         {
@@ -130,7 +130,7 @@
                     break;
                 case 1:
                     {
-                        var yLaneHeight = Constants.DEFAULT_SCENE_HEIGHT / 6;
+                        var yLaneHeight = Constants.DEFAULT_GAME_VIEW_HEIGHT / 6;
 
                         switch (lane)
                         {

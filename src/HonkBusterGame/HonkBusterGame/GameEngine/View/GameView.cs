@@ -27,8 +27,8 @@ namespace HonkBusterGame
         {
             RenderTransformOrigin = new Point(0, 0),
             Background = new SolidColorBrush(Colors.Transparent),
-            Width = Constants.DEFAULT_SCENE_WIDTH,
-            Height = Constants.DEFAULT_SCENE_HEIGHT,
+            Width = Constants.DEFAULT_GAME_VIEW_WIDTH,
+            Height = Constants.DEFAULT_GAME_VIEW_HEIGHT,
         };
 
         private PeriodicTimer _gameViewTimer;
