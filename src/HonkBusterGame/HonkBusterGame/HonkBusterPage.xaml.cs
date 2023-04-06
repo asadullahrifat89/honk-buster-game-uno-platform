@@ -457,8 +457,8 @@ namespace HonkBusterGame
 
         private void AnimateAssetsLoadingScreen(GameObject assetsLoadingScreen)
         {
-            AssetsLoadingScreen screen1 = assetsLoadingScreen as AssetsLoadingScreen;
-            screen1.Hover();
+            //AssetsLoadingScreen screen1 = assetsLoadingScreen as AssetsLoadingScreen;
+            //screen1.Hover();
         }
 
         private void RecycleAssetsLoadingScreen(AssetsLoadingScreen assetsLoadingScreen)

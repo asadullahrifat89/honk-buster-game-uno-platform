@@ -44,8 +44,8 @@ namespace HonkBusterGame
 
             rootGrid.Children.Add(new Border()
             {
-                Background = new SolidColorBrush(Colors.DeepSkyBlue),
-                CornerRadius = new CornerRadius(15),
+                //Background = new SolidColorBrush(Colors.White),
+                //CornerRadius = new CornerRadius(5),
                 Opacity = Constants.DEFAULT_HOVERING_SCREEN_OPACITY,
                 //BorderBrush = new SolidColorBrush(Colors.White),
                 //BorderThickness = new Thickness(Constants.DEFAULT_CONTROLLER_KEY_BORDER_THICKNESS),
