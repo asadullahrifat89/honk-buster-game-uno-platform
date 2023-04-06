@@ -89,8 +89,8 @@
             var scaling = ScreenExtensions.GetScreenSpaceScaling();
 
             SetPosition(
-               left: ((Constants.DEFAULT_SCENE_WIDTH / 2 - Width / 2) * scaling),
-               top: ((Constants.DEFAULT_SCENE_HEIGHT / 2 - Height / 2) * scaling) - 150);
+               left: ((Constants.DEFAULT_GAME_VIEW_WIDTH / 2 - Width / 2) * scaling),
+               top: ((Constants.DEFAULT_GAME_VIEW_HEIGHT / 2 - Height / 2) * scaling) - 150);
         }
 
         public void SetPlayerTemplate(PlayerBalloonTemplate playerTemplate)

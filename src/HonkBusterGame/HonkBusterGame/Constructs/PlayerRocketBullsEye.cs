@@ -125,7 +125,7 @@ namespace HonkBusterGame
                 var distance = Math.Abs(target.Y - rocketMiddleY);
                 _targetHitbox.Y = target.Y + distance;
 
-                if (_targetHitbox.Y < Constants.DEFAULT_SCENE_HEIGHT * scaling)
+                if (_targetHitbox.Y < Constants.DEFAULT_GAME_VIEW_HEIGHT * scaling)
                     _targetHitbox.Y += distance;
 
             }
@@ -136,7 +136,7 @@ namespace HonkBusterGame
                 var distance = Math.Abs(target.X - rocketMiddleX);
                 _targetHitbox.X = target.X + distance;
 
-                if (_targetHitbox.X < Constants.DEFAULT_SCENE_WIDTH * scaling)
+                if (_targetHitbox.X < Constants.DEFAULT_GAME_VIEW_WIDTH * scaling)
                     _targetHitbox.X += distance;
             }
         }

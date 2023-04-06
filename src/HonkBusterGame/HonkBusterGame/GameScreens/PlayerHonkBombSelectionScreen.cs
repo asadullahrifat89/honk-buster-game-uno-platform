@@ -48,11 +48,9 @@ namespace HonkBusterGame
 
             rootGrid.Children.Add(new Border()
             {
-                Background = new SolidColorBrush(Colors.DeepSkyBlue),
-                CornerRadius = new CornerRadius(15),
-                Opacity = Constants.DEFAULT_HOVERING_SCREEN_OPACITY,
-                //BorderBrush = new SolidColorBrush(Colors.White),
-                //BorderThickness = new Thickness(Constants.DEFAULT_CONTROLLER_KEY_BORDER_THICKNESS),
+                Background = new SolidColorBrush(Colors.Gray),
+                CornerRadius = new CornerRadius(5),
+                Opacity = Constants.DEFAULT_HOVERING_SCREEN_OPACITY - 0.3,
             });
 
             Grid container = new() { VerticalAlignment = VerticalAlignment.Center, };

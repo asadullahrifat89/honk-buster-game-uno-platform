@@ -113,8 +113,8 @@ namespace HonkBusterGame
                 (SoundType.GAME_OVER, 1, false),
                 (SoundType.UFO_ENEMY_ENTRY, 1, false));
 
-            ScreenExtensions.Width = Constants.DEFAULT_SCENE_WIDTH;
-            ScreenExtensions.Height = Constants.DEFAULT_SCENE_HEIGHT;
+            ScreenExtensions.Width = Constants.DEFAULT_GAME_VIEW_WIDTH;
+            ScreenExtensions.Height = Constants.DEFAULT_GAME_VIEW_HEIGHT;
 
             _mainMenuScene.SetRenderTransformOrigin(0.5);
 
@@ -457,8 +457,8 @@ namespace HonkBusterGame
 
         private void AnimateAssetsLoadingScreen(GameObject assetsLoadingScreen)
         {
-            AssetsLoadingScreen screen1 = assetsLoadingScreen as AssetsLoadingScreen;
-            screen1.Hover();
+            //AssetsLoadingScreen screen1 = assetsLoadingScreen as AssetsLoadingScreen;
+            //screen1.Hover();
         }
 
         private void RecycleAssetsLoadingScreen(AssetsLoadingScreen assetsLoadingScreen)
@@ -760,7 +760,7 @@ namespace HonkBusterGame
         {
             var hitBox = roadMarkContainer.GetHitBox();
 
-            if (hitBox.Top > Constants.DEFAULT_SCENE_HEIGHT || hitBox.Left > Constants.DEFAULT_SCENE_WIDTH)
+            if (hitBox.Top > Constants.DEFAULT_GAME_VIEW_HEIGHT || hitBox.Left > Constants.DEFAULT_GAME_VIEW_WIDTH)
             {
                 roadMarkContainer.IsAnimating = false;
             }
@@ -814,7 +814,7 @@ namespace HonkBusterGame
             if (_gameView.GameObjectContainers.OfType<GameObjectContainer>().FirstOrDefault(x => x.IsAnimating == false && x.ConstructType == ConstructType.ROAD_SIDE_WALK) is GameObjectContainer roadSideWalkContainerTop)
             {
                 roadSideWalkContainerTop.SetPosition(
-                  left: ((Constants.DEFAULT_SCENE_WIDTH / 5) * -1) - 300,
+                  left: ((Constants.DEFAULT_GAME_VIEW_WIDTH / 5) * -1) - 300,
                   top: (roadSideWalkContainerTop.Height * -1) - 150,
                   z: 0);
 
@@ -828,7 +828,7 @@ namespace HonkBusterGame
             {
                 roadSideWalkContainerBottom.SetPosition(
                   left: (roadSideWalkContainerBottom.Width * -1.1),
-                  top: (Constants.DEFAULT_SCENE_HEIGHT / 2.8) * -1,
+                  top: (Constants.DEFAULT_GAME_VIEW_HEIGHT / 2.8) * -1,
                   z: 0);
 
                 roadSideWalkContainerBottom.IsAnimating = true;
@@ -845,7 +845,7 @@ namespace HonkBusterGame
         {
             var hitBox = roadContainer.GetHitBox();
 
-            if (hitBox.Top > Constants.DEFAULT_SCENE_HEIGHT || hitBox.Left - 150 > Constants.DEFAULT_SCENE_WIDTH)
+            if (hitBox.Top > Constants.DEFAULT_GAME_VIEW_HEIGHT || hitBox.Left - 150 > Constants.DEFAULT_GAME_VIEW_WIDTH)
             {
                 roadContainer.IsAnimating = false;
             }
@@ -899,7 +899,7 @@ namespace HonkBusterGame
             if (_gameView.GameObjectContainers.OfType<GameObjectContainer>().FirstOrDefault(x => x.IsAnimating == false && x.ConstructType == ConstructType.ROAD_SIDE_TREE) is GameObjectContainer roadSideTreeContainerTop)
             {
                 roadSideTreeContainerTop.SetPosition(
-                  left: ((Constants.DEFAULT_SCENE_WIDTH / 2.0) * -1) - 300,
+                  left: ((Constants.DEFAULT_GAME_VIEW_WIDTH / 2.0) * -1) - 300,
                   top: (roadSideTreeContainerTop.Height * -1) - 150,
                   z: 3);
 
@@ -913,7 +913,7 @@ namespace HonkBusterGame
             {
                 roadSideTreeContainerBottom.SetPosition(
                   left: (roadSideTreeContainerBottom.Width * -1.1),
-                  top: ((Constants.DEFAULT_SCENE_HEIGHT) * -1),
+                  top: ((Constants.DEFAULT_GAME_VIEW_HEIGHT) * -1),
                   z: 7);
 
                 roadSideTreeContainerBottom.IsAnimating = true;
@@ -930,7 +930,7 @@ namespace HonkBusterGame
         {
             var hitBox = roadContainer.GetHitBox();
 
-            if (hitBox.Top > Constants.DEFAULT_SCENE_HEIGHT || hitBox.Left - 150 > Constants.DEFAULT_SCENE_WIDTH)
+            if (hitBox.Top > Constants.DEFAULT_GAME_VIEW_HEIGHT || hitBox.Left - 150 > Constants.DEFAULT_GAME_VIEW_WIDTH)
             {
                 roadContainer.IsAnimating = false;
             }
@@ -984,7 +984,7 @@ namespace HonkBusterGame
             if (_gameView.GameObjectContainers.OfType<GameObjectContainer>().FirstOrDefault(x => x.IsAnimating == false && x.ConstructType == ConstructType.ROAD_SIDE_HEDGE) is GameObjectContainer roadSideHedgeContainerTop)
             {
                 roadSideHedgeContainerTop.SetPosition(
-                  left: ((Constants.DEFAULT_SCENE_WIDTH / 1.5) * -1) - 270,
+                  left: ((Constants.DEFAULT_GAME_VIEW_WIDTH / 1.5) * -1) - 270,
                   top: (roadSideHedgeContainerTop.Height * -1) - 150,
                   z: 3);
 
@@ -998,7 +998,7 @@ namespace HonkBusterGame
             {
                 roadSideHedgeContainerBottom.SetPosition(
                   left: (roadSideHedgeContainerBottom.Width * -1.1) - 30,
-                  top: ((Constants.DEFAULT_SCENE_HEIGHT) * -1),
+                  top: ((Constants.DEFAULT_GAME_VIEW_HEIGHT) * -1),
                   z: 4);
 
                 roadSideHedgeContainerBottom.IsAnimating = true;
@@ -1015,7 +1015,7 @@ namespace HonkBusterGame
         {
             var hitBox = roadContainer.GetHitBox();
 
-            if (hitBox.Top > Constants.DEFAULT_SCENE_HEIGHT || hitBox.Left - 150 > Constants.DEFAULT_SCENE_WIDTH)
+            if (hitBox.Top > Constants.DEFAULT_GAME_VIEW_HEIGHT || hitBox.Left - 150 > Constants.DEFAULT_GAME_VIEW_WIDTH)
             {
                 roadContainer.IsAnimating = false;
             }
@@ -1070,7 +1070,7 @@ namespace HonkBusterGame
             if (_gameView.GameObjectContainers.OfType<GameObjectContainer>().FirstOrDefault(x => x.IsAnimating == false && x.ConstructType == ConstructType.ROAD_SIDE_BILLBOARD) is GameObjectContainer roadSideBillboardContainerTop)
             {
                 roadSideBillboardContainerTop.SetPosition(
-                    left: ((Constants.DEFAULT_SCENE_WIDTH / 1.4) * -1) - 435,
+                    left: ((Constants.DEFAULT_GAME_VIEW_WIDTH / 1.4) * -1) - 435,
                     top: (roadSideBillboardContainerTop.Height * -1) - 150,
                     z: 2);
 
@@ -1088,7 +1088,7 @@ namespace HonkBusterGame
         {
             var hitBox = roadContainer.GetHitBox();
 
-            if (hitBox.Top > Constants.DEFAULT_SCENE_HEIGHT || hitBox.Left - 150 > Constants.DEFAULT_SCENE_WIDTH)
+            if (hitBox.Top > Constants.DEFAULT_GAME_VIEW_HEIGHT || hitBox.Left - 150 > Constants.DEFAULT_GAME_VIEW_WIDTH)
             {
                 roadContainer.IsAnimating = false;
             }
@@ -1144,7 +1144,7 @@ namespace HonkBusterGame
             {
                 roadSideLightBillboardContainerBottom.SetPosition(
                   left: (roadSideLightBillboardContainerBottom.Width * -1.1),
-                  top: ((Constants.DEFAULT_SCENE_HEIGHT) * -0.8),
+                  top: ((Constants.DEFAULT_GAME_VIEW_HEIGHT) * -0.8),
                   z: 6);
 
                 roadSideLightBillboardContainerBottom.IsAnimating = true;
@@ -1161,7 +1161,7 @@ namespace HonkBusterGame
         {
             var hitBox = roadContainer.GetHitBox();
 
-            if (hitBox.Top > Constants.DEFAULT_SCENE_HEIGHT || hitBox.Left - 150 > Constants.DEFAULT_SCENE_WIDTH)
+            if (hitBox.Top > Constants.DEFAULT_GAME_VIEW_HEIGHT || hitBox.Left - 150 > Constants.DEFAULT_GAME_VIEW_WIDTH)
             {
                 roadContainer.IsAnimating = false;
             }
@@ -1216,7 +1216,7 @@ namespace HonkBusterGame
             if (_gameView.GameObjectContainers.OfType<GameObjectContainer>().FirstOrDefault(x => x.IsAnimating == false && x.ConstructType == ConstructType.ROAD_SIDE_LAMP) is GameObjectContainer roadSideLampContainerTop)
             {
                 roadSideLampContainerTop.SetPosition(
-                  left: ((Constants.DEFAULT_SCENE_WIDTH / 1.5) * -1) - 130,
+                  left: ((Constants.DEFAULT_GAME_VIEW_WIDTH / 1.5) * -1) - 130,
                   top: (roadSideLampContainerTop.Height * -1) - 150,
                   z: 5);
 
@@ -1230,7 +1230,7 @@ namespace HonkBusterGame
             {
                 roadSideLampContainerBottom.SetPosition(
                   left: (roadSideLampContainerBottom.Width * -1.1) - 600,
-                  top: ((Constants.DEFAULT_SCENE_HEIGHT) * -0.8) - 300,
+                  top: ((Constants.DEFAULT_GAME_VIEW_HEIGHT) * -0.8) - 300,
                   z: 6);
 
                 roadSideLampContainerBottom.IsAnimating = true;
@@ -1247,7 +1247,7 @@ namespace HonkBusterGame
         {
             var hitBox = roadContainer.GetHitBox();
 
-            if (hitBox.Top > Constants.DEFAULT_SCENE_HEIGHT || hitBox.Left - 150 > Constants.DEFAULT_SCENE_WIDTH)
+            if (hitBox.Top > Constants.DEFAULT_GAME_VIEW_HEIGHT || hitBox.Left - 150 > Constants.DEFAULT_GAME_VIEW_WIDTH)
             {
                 roadContainer.IsAnimating = false;
             }
@@ -1347,8 +1347,8 @@ namespace HonkBusterGame
 
                     _player.Move(
                         speed: speed,
-                        sceneWidth: Constants.DEFAULT_SCENE_WIDTH * scaling,
-                        sceneHeight: Constants.DEFAULT_SCENE_HEIGHT * scaling,
+                        sceneWidth: Constants.DEFAULT_GAME_VIEW_WIDTH * scaling,
+                        sceneHeight: Constants.DEFAULT_GAME_VIEW_HEIGHT * scaling,
                         controller: _gameController);
 
                     if (_gameController.IsAttacking)
@@ -1692,7 +1692,7 @@ namespace HonkBusterGame
             var hitbox = playerRocket.GetHitBox();
 
             // if bomb is blasted or goes out of scene bounds
-            if (playerRocket.IsFadingComplete || hitbox.Left > Constants.DEFAULT_SCENE_WIDTH || hitbox.Right < 0 || hitbox.Bottom < 0 || hitbox.Top > Constants.DEFAULT_SCENE_HEIGHT)
+            if (playerRocket.IsFadingComplete || hitbox.Left > Constants.DEFAULT_GAME_VIEW_WIDTH || hitbox.Right < 0 || hitbox.Bottom < 0 || hitbox.Top > Constants.DEFAULT_GAME_VIEW_HEIGHT)
             {
                 playerRocket.IsAnimating = false;
             }
@@ -1830,7 +1830,7 @@ namespace HonkBusterGame
             var hitbox = playerRocketSeeking.GetHitBox();
 
             // if bomb is blasted and faed or goes out of scene bounds
-            if (playerRocketSeeking.IsFadingComplete || hitbox.Left > Constants.DEFAULT_SCENE_WIDTH || hitbox.Right < 0 || hitbox.Bottom < 0 || hitbox.Bottom > Constants.DEFAULT_SCENE_HEIGHT)
+            if (playerRocketSeeking.IsFadingComplete || hitbox.Left > Constants.DEFAULT_GAME_VIEW_WIDTH || hitbox.Right < 0 || hitbox.Bottom < 0 || hitbox.Bottom > Constants.DEFAULT_GAME_VIEW_HEIGHT)
             {
                 playerRocketSeeking.IsAnimating = false;
             }
@@ -1985,7 +1985,7 @@ namespace HonkBusterGame
             var hitbox = playerRocketBullsEye.GetHitBox();
 
             // if bomb is blasted and faed or goes out of scene bounds
-            if (playerRocketBullsEye.IsFadingComplete || hitbox.Left > Constants.DEFAULT_SCENE_WIDTH || hitbox.Right < 0 || hitbox.Bottom < 0 || hitbox.Bottom > Constants.DEFAULT_SCENE_HEIGHT)
+            if (playerRocketBullsEye.IsFadingComplete || hitbox.Left > Constants.DEFAULT_GAME_VIEW_WIDTH || hitbox.Right < 0 || hitbox.Bottom < 0 || hitbox.Bottom > Constants.DEFAULT_GAME_VIEW_HEIGHT)
             {
                 playerRocketBullsEye.IsAnimating = false;
             }
@@ -2459,8 +2459,8 @@ namespace HonkBusterGame
                     {
                         ufoBoss1.Move(
                             speed: speed,
-                            sceneWidth: Constants.DEFAULT_SCENE_WIDTH * scaling,
-                            sceneHeight: Constants.DEFAULT_SCENE_HEIGHT * scaling,
+                            sceneWidth: Constants.DEFAULT_GAME_VIEW_WIDTH * scaling,
+                            sceneHeight: Constants.DEFAULT_GAME_VIEW_HEIGHT * scaling,
                             playerPoint: _player.GetCloseHitBox());
 
 
@@ -2473,7 +2473,7 @@ namespace HonkBusterGame
                     {
                         ufoBoss1.MoveDownRight(speed);
 
-                        if (ufoBoss.GetLeft() > (Constants.DEFAULT_SCENE_WIDTH * scaling / 3)) // bring UfoBoss to a suitable distance from player and then start attacking
+                        if (ufoBoss.GetLeft() > (Constants.DEFAULT_GAME_VIEW_WIDTH * scaling / 3)) // bring UfoBoss to a suitable distance from player and then start attacking
                         {
                             ufoBoss1.IsAttacking = true;
                         }
@@ -2610,7 +2610,7 @@ namespace HonkBusterGame
             var hitbox = ufoBossRocket.GetHitBox();
 
             // if bomb is blasted and faed or goes out of scene bounds
-            if (ufoBossRocket.IsFadingComplete || hitbox.Left > Constants.DEFAULT_SCENE_WIDTH || hitbox.Right < 0 || hitbox.Bottom < 0 || hitbox.Top > Constants.DEFAULT_SCENE_HEIGHT)
+            if (ufoBossRocket.IsFadingComplete || hitbox.Left > Constants.DEFAULT_GAME_VIEW_WIDTH || hitbox.Right < 0 || hitbox.Bottom < 0 || hitbox.Top > Constants.DEFAULT_GAME_VIEW_HEIGHT)
             {
                 ufoBossRocket.IsAnimating = false;
             }
@@ -2700,7 +2700,7 @@ namespace HonkBusterGame
             var hitbox = ufoBossRocketSeeking.GetHitBox();
 
             // if bomb is blasted and faed or goes out of scene bounds
-            if (ufoBossRocketSeeking.IsFadingComplete || hitbox.Left > Constants.DEFAULT_SCENE_WIDTH || hitbox.Right < 0 || hitbox.Bottom < 0 || hitbox.Bottom > Constants.DEFAULT_SCENE_HEIGHT)
+            if (ufoBossRocketSeeking.IsFadingComplete || hitbox.Left > Constants.DEFAULT_GAME_VIEW_WIDTH || hitbox.Right < 0 || hitbox.Bottom < 0 || hitbox.Bottom > Constants.DEFAULT_GAME_VIEW_HEIGHT)
             {
                 ufoBossRocketSeeking.IsAnimating = false;
             }
@@ -2786,7 +2786,7 @@ namespace HonkBusterGame
         {
             var hitbox = ufoEnemy.GetHitBox();
 
-            if (ufoEnemy.IsShrinkingComplete || hitbox.Left > Constants.DEFAULT_SCENE_WIDTH || hitbox.Top > Constants.DEFAULT_SCENE_HEIGHT) // enemy is dead or goes out of bottom right corner
+            if (ufoEnemy.IsShrinkingComplete || hitbox.Left > Constants.DEFAULT_GAME_VIEW_WIDTH || hitbox.Top > Constants.DEFAULT_GAME_VIEW_HEIGHT) // enemy is dead or goes out of bottom right corner
             {
                 ufoEnemy.IsAnimating = false;
             }
@@ -2894,7 +2894,7 @@ namespace HonkBusterGame
             var hitbox = ufoEnemyRocket.GetHitBox();
 
             // if bomb is blasted and faed or goes out of scene bounds
-            if (ufoEnemyRocket.IsFadingComplete || hitbox.Left > Constants.DEFAULT_SCENE_WIDTH || hitbox.Right < 0 || hitbox.Bottom < 0 || hitbox.Bottom > Constants.DEFAULT_SCENE_HEIGHT)
+            if (ufoEnemyRocket.IsFadingComplete || hitbox.Left > Constants.DEFAULT_GAME_VIEW_WIDTH || hitbox.Right < 0 || hitbox.Bottom < 0 || hitbox.Bottom > Constants.DEFAULT_GAME_VIEW_HEIGHT)
             {
                 ufoEnemyRocket.IsAnimating = false;
             }
@@ -2954,7 +2954,7 @@ namespace HonkBusterGame
         {
             var hitBox = vehicleEnemy.GetHitBox();
 
-            if (hitBox.Top > Constants.DEFAULT_SCENE_HEIGHT || hitBox.Left > Constants.DEFAULT_SCENE_WIDTH)
+            if (hitBox.Top > Constants.DEFAULT_GAME_VIEW_HEIGHT || hitBox.Left > Constants.DEFAULT_GAME_VIEW_WIDTH)
             {
                 vehicleEnemy.IsAnimating = false;
             }
@@ -3068,8 +3068,8 @@ namespace HonkBusterGame
                     {
                         vehicleBoss1.Move(
                             speed: speed,
-                            sceneWidth: Constants.DEFAULT_SCENE_WIDTH * scaling,
-                            sceneHeight: Constants.DEFAULT_SCENE_HEIGHT * scaling);
+                            sceneWidth: Constants.DEFAULT_GAME_VIEW_WIDTH * scaling,
+                            sceneHeight: Constants.DEFAULT_GAME_VIEW_HEIGHT * scaling);
 
                         if (vehicleBoss1.Honk())
                             GenerateVehicleBossHonk(vehicleBoss1);
@@ -3077,11 +3077,11 @@ namespace HonkBusterGame
                     else
                     {
                         if (_gameView.GameObjects.OfType<VehicleEnemy>().All(x => !x.IsAnimating)
-                            || _gameView.GameObjects.OfType<VehicleEnemy>().Where(x => x.IsAnimating).All(x => x.GetLeft() > Constants.DEFAULT_SCENE_WIDTH * scaling / 2)) // only bring the boss in view when all other vechiles are gone
+                            || _gameView.GameObjects.OfType<VehicleEnemy>().Where(x => x.IsAnimating).All(x => x.GetLeft() > Constants.DEFAULT_GAME_VIEW_WIDTH * scaling / 2)) // only bring the boss in view when all other vechiles are gone
                         {
                             vehicleBoss1.MoveDownRight(speed);
 
-                            if (vehicleBoss1.GetLeft() > (Constants.DEFAULT_SCENE_WIDTH * scaling / 3)) // bring boss to a suitable distance from player and then start attacking
+                            if (vehicleBoss1.GetLeft() > (Constants.DEFAULT_GAME_VIEW_WIDTH * scaling / 3)) // bring boss to a suitable distance from player and then start attacking
                             {
                                 vehicleBoss1.IsAttacking = true;
                             }
@@ -3097,7 +3097,7 @@ namespace HonkBusterGame
 
             VehicleBoss vehicleBoss1 = vehicleBoss as VehicleBoss;
 
-            if (vehicleBoss1.IsDead && hitBox.Top > Constants.DEFAULT_SCENE_HEIGHT || hitBox.Left > Constants.DEFAULT_SCENE_WIDTH)
+            if (vehicleBoss1.IsDead && hitBox.Top > Constants.DEFAULT_GAME_VIEW_HEIGHT || hitBox.Left > Constants.DEFAULT_GAME_VIEW_WIDTH)
             {
                 vehicleBoss.IsAnimating = false;
             }
@@ -3212,7 +3212,7 @@ namespace HonkBusterGame
             var hitbox = vehicleBossRocket.GetHitBox();
 
             // if bomb is blasted and faed or goes out of scene bounds
-            if (vehicleBossRocket.IsFadingComplete || hitbox.Left > Constants.DEFAULT_SCENE_WIDTH || hitbox.Right < 0 || hitbox.Bottom < 0 || hitbox.Top > Constants.DEFAULT_SCENE_HEIGHT)
+            if (vehicleBossRocket.IsFadingComplete || hitbox.Left > Constants.DEFAULT_GAME_VIEW_WIDTH || hitbox.Right < 0 || hitbox.Bottom < 0 || hitbox.Top > Constants.DEFAULT_GAME_VIEW_HEIGHT)
             {
                 vehicleBossRocket.IsAnimating = false;
                 vehicleBossRocket.IsGravitatingUpwards = false;
@@ -3303,8 +3303,8 @@ namespace HonkBusterGame
                     {
                         zombieBoss1.Move(
                             speed: speed,
-                            sceneWidth: Constants.DEFAULT_SCENE_WIDTH * scaling,
-                            sceneHeight: Constants.DEFAULT_SCENE_HEIGHT * scaling);
+                            sceneWidth: Constants.DEFAULT_GAME_VIEW_WIDTH * scaling,
+                            sceneHeight: Constants.DEFAULT_GAME_VIEW_HEIGHT * scaling);
 
                         if (zombieBoss1.GetCloseHitBox().IntersectsWith(_player.GetCloseHitBox()))
                         {
@@ -3315,7 +3315,7 @@ namespace HonkBusterGame
                     {
                         zombieBoss1.MoveDownRight(speed);
 
-                        if (zombieBoss.GetLeft() > (Constants.DEFAULT_SCENE_WIDTH * scaling / 3)) // bring ZombieBoss to a suitable distance from player and then start attacking
+                        if (zombieBoss.GetLeft() > (Constants.DEFAULT_GAME_VIEW_WIDTH * scaling / 3)) // bring ZombieBoss to a suitable distance from player and then start attacking
                         {
                             zombieBoss1.IsAttacking = true;
                         }
@@ -3438,7 +3438,7 @@ namespace HonkBusterGame
             var scaling = ScreenExtensions.GetScreenSpaceScaling();
 
             // if bomb is blasted and faed or goes out of scene bounds
-            if (zombieBossRocket.IsFadingComplete || hitbox.Left > Constants.DEFAULT_SCENE_WIDTH * scaling || hitbox.Top > Constants.DEFAULT_SCENE_HEIGHT * scaling)
+            if (zombieBossRocket.IsFadingComplete || hitbox.Left > Constants.DEFAULT_GAME_VIEW_WIDTH * scaling || hitbox.Top > Constants.DEFAULT_GAME_VIEW_HEIGHT * scaling)
             {
                 zombieBossRocket.IsAnimating = false;
             }
@@ -3535,8 +3535,8 @@ namespace HonkBusterGame
                     {
                         mafiaBoss1.Move(
                             speed: speed,
-                            sceneWidth: Constants.DEFAULT_SCENE_WIDTH * scaling,
-                            sceneHeight: Constants.DEFAULT_SCENE_HEIGHT * scaling,
+                            sceneWidth: Constants.DEFAULT_GAME_VIEW_WIDTH * scaling,
+                            sceneHeight: Constants.DEFAULT_GAME_VIEW_HEIGHT * scaling,
                             playerPoint: _player.GetCloseHitBox());
 
 
@@ -3549,7 +3549,7 @@ namespace HonkBusterGame
                     {
                         mafiaBoss1.MoveDownRight(speed);
 
-                        if (mafiaBoss.GetLeft() > (Constants.DEFAULT_SCENE_WIDTH * scaling / 3)) // bring MafiaBoss to a suitable distance from player and then start attacking
+                        if (mafiaBoss.GetLeft() > (Constants.DEFAULT_GAME_VIEW_WIDTH * scaling / 3)) // bring MafiaBoss to a suitable distance from player and then start attacking
                         {
                             mafiaBoss1.IsAttacking = true;
                         }
@@ -3686,7 +3686,7 @@ namespace HonkBusterGame
             var hitbox = mafiaBossRocket.GetHitBox();
 
             // if bomb is blasted and faed or goes out of scene bounds
-            if (mafiaBossRocket.IsFadingComplete || hitbox.Left > Constants.DEFAULT_SCENE_WIDTH || hitbox.Right < 0 || hitbox.Bottom < 0 || hitbox.Top > Constants.DEFAULT_SCENE_HEIGHT)
+            if (mafiaBossRocket.IsFadingComplete || hitbox.Left > Constants.DEFAULT_GAME_VIEW_WIDTH || hitbox.Right < 0 || hitbox.Bottom < 0 || hitbox.Top > Constants.DEFAULT_GAME_VIEW_HEIGHT)
             {
                 mafiaBossRocket.IsAnimating = false;
             }
@@ -3777,7 +3777,7 @@ namespace HonkBusterGame
             var hitbox = mafiaBossRocketBullsEye.GetHitBox();
 
             // if bomb is blasted and faed or goes out of scene bounds
-            if (mafiaBossRocketBullsEye.IsFadingComplete || hitbox.Left > Constants.DEFAULT_SCENE_WIDTH || hitbox.Right < 0 || hitbox.Bottom < 0 || hitbox.Bottom > Constants.DEFAULT_SCENE_HEIGHT)
+            if (mafiaBossRocketBullsEye.IsFadingComplete || hitbox.Left > Constants.DEFAULT_GAME_VIEW_WIDTH || hitbox.Right < 0 || hitbox.Bottom < 0 || hitbox.Bottom > Constants.DEFAULT_GAME_VIEW_HEIGHT)
             {
                 mafiaBossRocketBullsEye.IsAnimating = false;
             }
@@ -3900,7 +3900,7 @@ namespace HonkBusterGame
                 {
                     case 0:
                         {
-                            var xLaneWidth = Constants.DEFAULT_SCENE_WIDTH / 4;
+                            var xLaneWidth = Constants.DEFAULT_GAME_VIEW_WIDTH / 4;
                             cloud.SetPosition(
                                 left: _random.Next(Convert.ToInt32(xLaneWidth - cloud.Width)),
                                 top: cloud.Height * -1);
@@ -3908,7 +3908,7 @@ namespace HonkBusterGame
                         break;
                     case 1:
                         {
-                            var yLaneWidth = (Constants.DEFAULT_SCENE_HEIGHT / 2) / 2;
+                            var yLaneWidth = (Constants.DEFAULT_GAME_VIEW_HEIGHT / 2) / 2;
                             cloud.SetPosition(
                                 left: cloud.Width * -1,
                                 top: _random.Next(Convert.ToInt32(yLaneWidth)));
@@ -3934,7 +3934,7 @@ namespace HonkBusterGame
         {
             var hitBox = cloud.GetHitBox();
 
-            if (hitBox.Top > Constants.DEFAULT_SCENE_HEIGHT || hitBox.Left > Constants.DEFAULT_SCENE_WIDTH)
+            if (hitBox.Top > Constants.DEFAULT_GAME_VIEW_HEIGHT || hitBox.Left > Constants.DEFAULT_GAME_VIEW_WIDTH)
             {
                 cloud.IsAnimating = false;
             }
@@ -4018,7 +4018,7 @@ namespace HonkBusterGame
                 {
                     case 0:
                         {
-                            var xLaneWidth = Constants.DEFAULT_SCENE_WIDTH / 4;
+                            var xLaneWidth = Constants.DEFAULT_GAME_VIEW_WIDTH / 4;
                             healthPickup.SetPosition(
                                 left: _random.Next(Convert.ToInt32(xLaneWidth - healthPickup.Width)),
                                 top: healthPickup.Height * -1);
@@ -4026,7 +4026,7 @@ namespace HonkBusterGame
                         break;
                     case 1:
                         {
-                            var yLaneWidth = (Constants.DEFAULT_SCENE_HEIGHT / 2) / 2;
+                            var yLaneWidth = (Constants.DEFAULT_GAME_VIEW_HEIGHT / 2) / 2;
                             healthPickup.SetPosition(
                                 left: healthPickup.Width * -1,
                                 top: _random.Next(Convert.ToInt32(yLaneWidth)));
@@ -4073,7 +4073,7 @@ namespace HonkBusterGame
         {
             var hitBox = healthPickup.GetHitBox();
 
-            if (healthPickup.IsShrinkingComplete || hitBox.Top - healthPickup.Height > Constants.DEFAULT_SCENE_HEIGHT || hitBox.Left - healthPickup.Width > Constants.DEFAULT_SCENE_WIDTH) // if object is out side of bottom right corner
+            if (healthPickup.IsShrinkingComplete || hitBox.Top - healthPickup.Height > Constants.DEFAULT_GAME_VIEW_HEIGHT || hitBox.Left - healthPickup.Width > Constants.DEFAULT_GAME_VIEW_WIDTH) // if object is out side of bottom right corner
             {
                 healthPickup.IsAnimating = false;
             }
@@ -4116,7 +4116,7 @@ namespace HonkBusterGame
                         {
                             case 0:
                                 {
-                                    var xLaneWidth = Constants.DEFAULT_SCENE_WIDTH / 4;
+                                    var xLaneWidth = Constants.DEFAULT_GAME_VIEW_WIDTH / 4;
 
                                     powerUpPickup.SetPosition(
                                         left: _random.Next(Convert.ToInt32(xLaneWidth - powerUpPickup.Width)),
@@ -4125,7 +4125,7 @@ namespace HonkBusterGame
                                 break;
                             case 1:
                                 {
-                                    var yLaneWidth = (Constants.DEFAULT_SCENE_HEIGHT / 2) / 2;
+                                    var yLaneWidth = (Constants.DEFAULT_GAME_VIEW_HEIGHT / 2) / 2;
 
                                     powerUpPickup.SetPosition(
                                         left: powerUpPickup.Width * -1,
@@ -4207,7 +4207,7 @@ namespace HonkBusterGame
         {
             var hitBox = powerUpPickup.GetHitBox();
 
-            if (hitBox.Top - powerUpPickup.Height > Constants.DEFAULT_SCENE_HEIGHT || hitBox.Left - powerUpPickup.Width > Constants.DEFAULT_SCENE_WIDTH || powerUpPickup.IsShrinkingComplete)
+            if (hitBox.Top - powerUpPickup.Height > Constants.DEFAULT_GAME_VIEW_HEIGHT || hitBox.Left - powerUpPickup.Width > Constants.DEFAULT_GAME_VIEW_WIDTH || powerUpPickup.IsShrinkingComplete)
             {
                 powerUpPickup.IsAnimating = false;
             }
@@ -4712,8 +4712,8 @@ namespace HonkBusterGame
 
         private void HonkBusterPage_SizeChanged(object sender, SizeChangedEventArgs args)
         {
-            ScreenExtensions.Width = args.NewSize.Width <= Constants.DEFAULT_SCENE_WIDTH ? args.NewSize.Width : Constants.DEFAULT_SCENE_WIDTH;
-            ScreenExtensions.Height = args.NewSize.Height <= Constants.DEFAULT_SCENE_HEIGHT ? args.NewSize.Height : Constants.DEFAULT_SCENE_HEIGHT;
+            ScreenExtensions.Width = args.NewSize.Width <= Constants.DEFAULT_GAME_VIEW_WIDTH ? args.NewSize.Width : Constants.DEFAULT_GAME_VIEW_WIDTH;
+            ScreenExtensions.Height = args.NewSize.Height <= Constants.DEFAULT_GAME_VIEW_HEIGHT ? args.NewSize.Height : Constants.DEFAULT_GAME_VIEW_HEIGHT;
 
             SetSceneScaling();
 

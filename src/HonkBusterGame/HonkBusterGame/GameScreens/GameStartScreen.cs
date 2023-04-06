@@ -27,8 +27,8 @@ namespace HonkBusterGame
 
             var size = Constants.CONSTRUCT_SIZES.FirstOrDefault(x => x.ConstructType == ConstructType.TITLE_SCREEN);
 
-            var width = size.Width;
-            var height = size.Height;
+            var width = size.Width * 1.7;
+            var height = size.Height * 1.4;
 
             SetSize(width: width, height: height);
 
@@ -45,9 +45,14 @@ namespace HonkBusterGame
 
             rootGrid.Children.Add(new Border()
             {
-                Background = new SolidColorBrush(Colors.DeepSkyBlue),
-                CornerRadius = new CornerRadius(15),
-                Opacity = Constants.DEFAULT_HOVERING_SCREEN_OPACITY,
+                Background = new SolidColorBrush(Colors.Gray),
+                CornerRadius = new CornerRadius(5),
+                Opacity = Constants.DEFAULT_HOVERING_SCREEN_OPACITY - 0.3,                
+            });
+
+            rootGrid.Children.Add(new Border()
+            {               
+                Child = new ImageContainer(uri: Constants.CONSTRUCT_TEMPLATES.FirstOrDefault(x => x.ConstructType == ConstructType.GAME_COVER_IMAGE).Uri, width: width, height: height) { Margin = new Thickness(10), }
             });
 
             Grid container = new() { VerticalAlignment = VerticalAlignment.Center };
@@ -62,19 +67,26 @@ namespace HonkBusterGame
 
             #region Image
 
-            var playerUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON).Select(x => x.Uri).ToArray();
+            //var playerUris = Constants.CONSTRUCT_TEMPLATES.Where(x => x.ConstructType == ConstructType.PLAYER_BALLOON).Select(x => x.Uri).ToArray();
 
-            var uri = ConstructExtensions.GetRandomContentUri(playerUris);
-            _imageContainer = new(uri: uri, width: 110, height: 110)
-            {
-                HorizontalAlignment = HorizontalAlignment.Center,
-                //Stretch = Stretch.Uniform,
-                Margin = new Thickness(0, 10, 0, 5)
-            };
+            //var uri = ConstructExtensions.GetRandomContentUri(playerUris);
+            //_imageContainer = new(uri: uri, width: 110, height: 110)
+            //{
+            //    HorizontalAlignment = HorizontalAlignment.Center,                
+            //    Margin = new Thickness(0, 10, 0, 5)
+            //};
 
-            Grid.SetRow(_imageContainer, 0);
+            //Grid.SetRow(_imageContainer, 0);
 
-            container.Children.Add(_imageContainer);
+            //container.Children.Add(_imageContainer);
+
+
+            //_imageContainer = new(uri: Constants.CONSTRUCT_TEMPLATES.FirstOrDefault(x => x.ConstructType == ConstructType.GAME_COVER_IMAGE).Uri, width: width, height: height) { Margin = new Thickness(10), };
+
+            //Grid.SetRow(_imageContainer, 0);
+            //Grid.SetRowSpan(_imageContainer, 4);
+
+            //container.Children.Add(_imageContainer);
 
             #endregion
 
@@ -98,7 +110,7 @@ namespace HonkBusterGame
 
             _sub_title_text = new TextBlock()
             {
-                FontSize = Constants.DEFAULT_GUI_FONT_SIZE - 7,
+                FontSize = Constants.DEFAULT_GUI_FONT_SIZE - 10,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 Margin = new Thickness(0, 0, 0, 5),
                 Foreground = new SolidColorBrush(Colors.White),
@@ -152,8 +164,8 @@ namespace HonkBusterGame
         #region Methods
 
         public void SetContent(Uri uri)
-        {            
-            _imageContainer.SetSource(uri);
+        {
+            //_imageContainer.SetSource(uri);
         }
 
         public void SetTitle(string title)

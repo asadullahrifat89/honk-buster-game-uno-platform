@@ -18,8 +18,8 @@
 
         public const double DEFAULT_GUI_FONT_SIZE = 30;
 
-        public const double DEFAULT_SCENE_WIDTH = 1900;
-        public const double DEFAULT_SCENE_HEIGHT = 940;
+        public const double DEFAULT_GAME_VIEW_WIDTH = 1900;
+        public const double DEFAULT_GAME_VIEW_HEIGHT = 940;
 
         public const double DEFAULT_BLAST_RING_CORNER_RADIUS = 100;
         public const double DEFAULT_BLAST_RING_BORDER_THICKNESS = 10;
@@ -82,6 +82,8 @@
 
         public static (ConstructType ConstructType, Uri Uri)[] CONSTRUCT_TEMPLATES = new (ConstructType, Uri)[]
         {
+            new (ConstructType.GAME_COVER_IMAGE, new Uri("ms-appx:///HonkBusterGame/Assets/Images/cover_image.png")),
+
             new (ConstructType.ROAD_MARK, new Uri("ms-appx:///HonkBusterGame/Assets/Images/road_marks.png")),
 
             new (ConstructType.ROAD_SIDE_TREE, new Uri("ms-appx:///HonkBusterGame/Assets/Images/tree_1.png")),
@@ -316,6 +318,7 @@
     public enum ConstructType
     {
         NONE,
+        GAME_COVER_IMAGE,
 
         PLAYER_BALLOON,
         PLAYER_BALLOON_IDLE,
