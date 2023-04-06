@@ -27,7 +27,7 @@ namespace HonkBusterGame
 
             var size = Constants.CONSTRUCT_SIZES.FirstOrDefault(x => x.ConstructType == ConstructType.TITLE_SCREEN);
 
-            var width = size.Width * 2;
+            var width = size.Width * 1.8;
             var height = size.Height * 1.5;
 
             SetSize(width: width, height: height);
@@ -47,7 +47,7 @@ namespace HonkBusterGame
             {
                 Background = new SolidColorBrush(Colors.Gray),
                 CornerRadius = new CornerRadius(5),
-                Opacity = Constants.DEFAULT_HOVERING_SCREEN_OPACITY - 0.4,                
+                Opacity = Constants.DEFAULT_HOVERING_SCREEN_OPACITY - 0.3,                
             });
 
             rootGrid.Children.Add(new Border()
