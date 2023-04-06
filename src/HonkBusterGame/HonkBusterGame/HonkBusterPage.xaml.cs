@@ -1271,7 +1271,7 @@ namespace HonkBusterGame
                 animateAction: AnimatePlayerBalloon,
                 recycleAction: (_player) => { });
 
-            _player.SetZ(z: 7);
+            _player.SetZ(z: 8);
             _player.MoveOutOfSight();
 
             SpawnDropShadow(source: _player);
@@ -3997,7 +3997,7 @@ namespace HonkBusterGame
                     animateAction: AnimateHealthPickup,
                     recycleAction: RecycleHealthPickup);
 
-                healthPickup.SetZ(z: 6);
+                healthPickup.SetZ(z: 7);
                 healthPickup.MoveOutOfSight();
 
                 _gameView.AddToView(healthPickup);
@@ -4091,7 +4091,7 @@ namespace HonkBusterGame
                     animateAction: AnimatePowerUpPickup,
                     recycleAction: RecyclePowerUpPickup);
 
-                powerUpPickup.SetZ(z: 6);
+                powerUpPickup.SetZ(z: 7);
                 powerUpPickup.MoveOutOfSight();
 
                 _gameView.AddToView(powerUpPickup);
