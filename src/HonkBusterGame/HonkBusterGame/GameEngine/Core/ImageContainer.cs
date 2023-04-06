@@ -5,137 +5,33 @@ namespace HonkBusterGame
 {
     #region Without Post Processing
 
-    public partial class ImageContainer : Image // post processing off
-    {
-        private readonly BitmapImage _bitmapImage;
-
-        private Uri _uri;
-
-        public ImageContainer(Uri uri, double width, double height)
-        {
-            Width = width;
-            Height = height;
-
-            _uri = uri;
-            _bitmapImage = new BitmapImage(uriSource: _uri);
-            Source = _bitmapImage;
-
-            CanDrag = false;
-        }
-
-        public void SetBrighness(double brightness)
-        {
-            Opacity = brightness / 100;
-        }
-
-        public void SetSource(Uri uri)
-        {
-            _uri = uri;
-            _bitmapImage.UriSource = _uri;
-        }
-
-        public Uri GetSourceUri()
-        {
-            return _uri;
-        }
-
-        [NotImplemented]
-        public void SetGrayscale(double grayscale)
-        {
-
-        }
-
-        [NotImplemented]
-        public void SetDropShadow(int offsetX, int offsetY, int blurRadius, string color = "#202020")
-        {
-
-        }
-
-        [NotImplemented]
-        public void SetBlur(double blur)
-        {
-            
-        }
-    }
-
-    #endregion
-
-    #region With Post Processing
-    //public partial class ImageContainer : Border // post processing on
+    //public partial class ImageContainer : Image // post processing off
     //{
-    //    #region Fields
+    //    private readonly BitmapImage _bitmapImage;
 
-    //    private readonly HtmlImageTag _htmlImage;
-    //    private readonly string _baseUrl = string.Empty;
     //    private Uri _uri;
-
-    //    #endregion
-
-    //    #region Ctor
 
     //    public ImageContainer(Uri uri, double width, double height)
     //    {
-    //        _uri = uri;
-
-    //        var indexUrl = "./";
-    //        var appPackageId = Environment.GetEnvironmentVariable("UNO_BOOTSTRAP_APP_BASE");
-
-    //        _baseUrl = $"{indexUrl}{appPackageId}";
-    //        _htmlImage = new HtmlImageTag()
-    //        {
-    //            Width = width,
-    //            Height = height,
-    //        };
-
     //        Width = width;
     //        Height = height;
 
-    //        CanDrag = false;          
+    //        _uri = uri;
+    //        _bitmapImage = new BitmapImage(uriSource: _uri);
+    //        Source = _bitmapImage;
 
-    //        Child = _htmlImage;
-
-    //        SetId(uri);
-    //        SetSource(uri);
-    //    }
-
-    //    #endregion        
-
-    //    #region Methods
-
-    //    public void SetGrayscale(double grayscale)
-    //    {
-    //        _htmlImage.Grayscale = grayscale;
-    //    }
-
-    //    public void SetDropShadow(int offsetX, int offsetY, int blurRadius, string color = "#202020")
-    //    {
-    //        _htmlImage.DropShadowX = offsetX;
-    //        _htmlImage.DropShadowY = offsetY;
-    //        _htmlImage.DropShadowBlurRadius = blurRadius;
-    //        _htmlImage.DropShadowColor = color;
+    //        CanDrag = false;
     //    }
 
     //    public void SetBrighness(double brightness)
     //    {
-    //        _htmlImage.Brightness = brightness;
-    //    }
-
-    //    public void SetBlur(double blur)
-    //    {
-    //        _htmlImage.Blur = blur;
+    //        Opacity = brightness / 100;
     //    }
 
     //    public void SetSource(Uri uri)
     //    {
     //        _uri = uri;
-    //        var source = $"{_baseUrl}/{uri.AbsoluteUri.Replace("ms-appx:///", "")}";
-    //        _htmlImage.Source = source;
-    //    }
-
-    //    public void SetId(Uri uri)
-    //    {
-    //        var id = uri.AbsoluteUri.Replace("ms-appx:///HonkBusterGame/Assets/Images/", "").Replace(".png", "");
-    //        _htmlImage.Id = id;
+    //        _bitmapImage.UriSource = _uri;
     //    }
 
     //    public Uri GetSourceUri()
@@ -143,244 +39,114 @@ namespace HonkBusterGame
     //        return _uri;
     //    }
 
-    //    #endregion
+    //    [NotImplemented]
+    //    public void SetGrayscale(double grayscale)
+    //    {
 
-    //    #region Properties
+    //    }
 
-    //    //private double width = 0;
-    //    //public double ImageWidth
-    //    //{
-    //    //    get { return width; }
-    //    //    set
-    //    //    {
-    //    //        width = value;
+    //    [NotImplemented]
+    //    public void SetDropShadow(int offsetX, int offsetY, int blurRadius, string color = "#202020")
+    //    {
 
-    //    //        if (_htmlImage is not null)
-    //    //            _htmlImage.Width = width;
-    //    //    }
-    //    //}
+    //    }
 
+    //    [NotImplemented]
+    //    public void SetBlur(double blur)
+    //    {
 
-    //    //private double height = 0;
-    //    //public double ImageHeight
-    //    //{
-    //    //    get { return height; }
-    //    //    set
-    //    //    {
-    //    //        height = value;
+    //    }
+    //}
 
-    //    //        if (_htmlImage is not null)
-    //    //            _htmlImage.Height = height;
-    //    //    }
-    //    //}
+    #endregion
 
-    //    //private double brightness = 100;
-    //    //public double ImageBrightness
-    //    //{
-    //    //    get { return brightness; }
-    //    //    set
-    //    //    {
-    //    //        brightness = value;
+    #region With Post Processing
 
-    //    //        if (_htmlImage is not null)
-    //    //            _htmlImage.Brightness = brightness;
-    //    //    }
-    //    //}
+    public partial class ImageContainer : Border // post processing on
+    {
+        #region Fields
 
+        private readonly HtmlImageTag _htmlImage;
+        private readonly string _baseUrl = string.Empty;
+        private Uri _uri;
 
+        #endregion
 
-    //    //private string id = string.Empty;
-    //    //public string Id
-    //    //{
-    //    //    get { return id; }
-    //    //    set
-    //    //    {
-    //    //        id = value;
-    //    //        if (ImgContent is not null)
-    //    //            ImgContent.Id = id;
-    //    //    }
-    //    //}
+        #region Ctor
 
-    //    //private string source = string.Empty;
-    //    //public string ImageSource
-    //    //{
-    //    //    get { return source; }
-    //    //    set
-    //    //    {
-    //    //        source = value;
-    //    //        if (ImgContent is not null)
-    //    //            ImgContent.Source = source;
-    //    //    }
-    //    //}
+        public ImageContainer(Uri uri, double width, double height)
+        {
+            _uri = uri;
 
-    //    //private double blur = 0;
-    //    //public double ImageBlur
-    //    //{
-    //    //    get { return blur; }
-    //    //    set
-    //    //    {
-    //    //        blur = value;
+            var indexUrl = "./";
+            var appPackageId = Environment.GetEnvironmentVariable("UNO_BOOTSTRAP_APP_BASE");
 
-    //    //        if (ImgContent is not null)
-    //    //            ImgContent.Blur = blur;
-    //    //    }
-    //    //}
+            _baseUrl = $"{indexUrl}{appPackageId}";
+            _htmlImage = new HtmlImageTag()
+            {
+                Width = width,
+                Height = height,
+            };
 
+            Width = width;
+            Height = height;
 
-    //    //private double contrast = 100;
-    //    //public double ImageContrast
-    //    //{
-    //    //    get { return contrast; }
-    //    //    set
-    //    //    {
-    //    //        contrast = value;
+            CanDrag = false;
 
-    //    //        if (ImgContent is not null)
-    //    //            ImgContent.Contrast = contrast;
-    //    //    }
-    //    //}
+            Child = _htmlImage;
 
-    //    //private double saturation = 100;
-    //    //public double ImageSaturation
-    //    //{
-    //    //    get { return saturation; }
-    //    //    set
-    //    //    {
-    //    //        saturation = value;
+            SetId(uri);
+            SetSource(uri);
+        }
 
-    //    //        if (ImgContent is not null)
-    //    //            ImgContent.Saturation = saturation;
-    //    //    }
-    //    //}
+        #endregion        
 
+        #region Methods
 
-    //    //private double sepia = 0;
-    //    //public double ImageSepia
-    //    //{
-    //    //    get { return sepia; }
-    //    //    set
-    //    //    {
-    //    //        sepia = value;
+        public void SetGrayscale(double grayscale)
+        {
+            _htmlImage.Grayscale = grayscale;
+        }
 
-    //    //        if (ImgContent is not null)
-    //    //            ImgContent.Sepia = sepia;
-    //    //    }
-    //    //}
+        public void SetDropShadow(int offsetX, int offsetY, int blurRadius, string color = "#202020")
+        {
+            _htmlImage.DropShadowX = offsetX;
+            _htmlImage.DropShadowY = offsetY;
+            _htmlImage.DropShadowBlurRadius = blurRadius;
+            _htmlImage.DropShadowColor = color;
+        }
 
+        public void SetBrighness(double brightness)
+        {
+            _htmlImage.Brightness = brightness;
+        }
 
-    //    //private double invert = 0;
-    //    //public double ImageInvert
-    //    //{
-    //    //    get { return invert; }
-    //    //    set
-    //    //    {
-    //    //        invert = value;
+        public void SetBlur(double blur)
+        {
+            _htmlImage.Blur = blur;
+        }
 
-    //    //        if (ImgContent is not null)
-    //    //            ImgContent.Invert = invert;
-    //    //    }
-    //    //}
+        public void SetSource(Uri uri)
+        {
+            _uri = uri;
+            var source = $"{_baseUrl}/{uri.AbsoluteUri.Replace("ms-appx:///", "")}";
+            _htmlImage.Source = source;
+        }
 
+        public void SetId(Uri uri)
+        {
+            var id = uri.AbsoluteUri.Replace("ms-appx:///HonkBusterGame/Assets/Images/", "").Replace(".png", "");
+            _htmlImage.Id = id;
+        }
 
-    //    //private double hue = 0;
-    //    //public double ImageHue
-    //    //{
-    //    //    get { return hue; }
-    //    //    set
-    //    //    {
-    //    //        hue = value;
+        public Uri GetSourceUri()
+        {
+            return _uri;
+        }
 
-    //    //        if (ImgContent is not null)
-    //    //            ImgContent.Hue = hue;
-    //    //    }
-    //    //}
+        #endregion
+    }
 
-
-    //    //private double opacity = 1;
-    //    //public double ImageOpacity
-    //    //{
-    //    //    get { return opacity; }
-    //    //    set
-    //    //    {
-    //    //        opacity = value;
-
-    //    //        if (ImgContent is not null)
-    //    //            ImgContent.Opacity = opacity;
-    //    //    }
-    //    //}
-
-
-    //    //private double rotation = 0;
-    //    //public double ImageRotation
-    //    //{
-    //    //    get { return rotation; }
-    //    //    set
-    //    //    {
-    //    //        rotation = value;
-
-    //    //        if (ImgContent is not null)
-    //    //            ImgContent.Rotation = rotation;
-    //    //    }
-    //    //}
-
-
-    //    //private double scaleX = 1;
-    //    //public double ImageScaleX
-    //    //{
-    //    //    get { return scaleX; }
-    //    //    set
-    //    //    {
-    //    //        scaleX = value;
-
-    //    //        if (ImgContent is not null)
-    //    //            ImgContent.ScaleX = scaleX;
-    //    //    }
-    //    //}
-
-
-    //    //private double scaleY = 1;
-    //    //public double ImageScaleY
-    //    //{
-    //    //    get { return scaleY; }
-    //    //    set
-    //    //    {
-    //    //        scaleY = value;
-
-    //    //        if (ImgContent is not null)
-    //    //            ImgContent.ScaleY = scaleY;
-    //    //    }
-    //    //}
-
-
-    //    //private double skewX = 0;
-    //    //public double ImageSkewX
-    //    //{
-    //    //    get { return skewX; }
-    //    //    set
-    //    //    {
-    //    //        skewX = value;
-
-    //    //        if (ImgContent is not null)
-    //    //            ImgContent.SkewX = skewX;
-    //    //    }
-    //    //}
-
-
-    //    //private double skewY = 0;
-    //    //public double ImageSkewY
-    //    //{
-    //    //    get { return skewY; }
-    //    //    set
-    //    //    {
-    //    //        skewY = value;
-
-    //    //        if (ImgContent is not null)
-    //    //            ImgContent.SkewY = skewY;
-    //    //    }
-    //    //}
-
-    //    #endregion
-    //} 
     #endregion
 
 
