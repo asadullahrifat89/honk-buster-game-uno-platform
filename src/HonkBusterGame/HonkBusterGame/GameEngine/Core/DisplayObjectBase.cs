@@ -392,13 +392,10 @@ namespace HonkBusterGame
         {
             Content = content;
 
-            //if (content is not ImageElement) // only use composite transformation on non html image element
-            //{
             Content.RenderTransformOrigin = new Point(0.5, 0.5);
             Content.RenderTransform = _transform;
             Content.Width = Width;
             Content.Height = Height;
-            //}
         }
 
         public void Render()
@@ -409,30 +406,7 @@ namespace HonkBusterGame
                     Content.Width = Width;
 
                 if (Content.Height != Height)
-                    Content.Height = Height;
-
-                //if (Content is ImageElement imageElement)
-                //{
-                //    if (imageElement.ImageOpacity != Opacity)
-                //        imageElement.ImageOpacity = Opacity;
-
-                //    if (imageElement.ImageScaleX != ScaleX)
-                //        imageElement.ImageScaleX = ScaleX;
-
-                //    if (imageElement.ImageScaleY != ScaleY)
-                //        imageElement.ImageScaleY = ScaleY;
-
-                //    if (imageElement.ImageRotation != Rotation)
-                //        imageElement.ImageRotation = Rotation;
-
-                //    if (imageElement.ImageSkewX != SkewX)
-                //        imageElement.ImageSkewX = SkewX;
-
-                //    if (imageElement.ImageSkewY != SkewY)
-                //        imageElement.ImageSkewY = SkewY;
-                //}
-                //else
-                //{
+                    Content.Height = Height;              
 
                 if (Content.Opacity != Opacity)
                     Content.Opacity = Opacity;
@@ -451,7 +425,6 @@ namespace HonkBusterGame
 
                 if (_transform.SkewY != SkewY)
                     _transform.SkewY = SkewY;
-                //}
 
                 Canvas.SetZIndex(Content, Z);
                 Canvas.SetLeft(Content, X);

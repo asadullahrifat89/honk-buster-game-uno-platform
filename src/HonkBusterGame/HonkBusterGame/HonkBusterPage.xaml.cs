@@ -4487,10 +4487,10 @@ namespace HonkBusterGame
             //    delay: 72,
             //    elaspedAction: GenerateRoadSideBillboard)
 
-           //new GameObjectGenerator(
-           //    delay: 36,
-           //    elaspedAction: GenerateRoadSideLightBillboard)
-           //);
+            //new GameObjectGenerator(
+            //    delay: 36,
+            //    elaspedAction: GenerateRoadSideLightBillboard)
+            //);
 
             #endregion
 
