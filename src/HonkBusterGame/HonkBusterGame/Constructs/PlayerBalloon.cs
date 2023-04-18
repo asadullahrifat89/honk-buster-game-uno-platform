@@ -164,7 +164,6 @@
             _imageContainer.SetSource(uri);
         }
 
-
         public void DepleteHitStance()
         {
             if (_hitStanceDelay > 0)
