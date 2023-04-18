@@ -1309,13 +1309,6 @@ namespace HonkBusterGame
             SetPlayerHealthBar();
         }
 
-        private void SetPlayerHealthBar()
-        {
-            _playerHealthBar.SetMaxiumHealth(_player.Health);
-            _playerHealthBar.SetValue(_player.Health);
-            _playerHealthBar.SetBarColor(color: Colors.Crimson);
-        }
-
         private void AnimatePlayerBalloon(GameObject player)
         {
             _player.Pop();
@@ -1392,6 +1385,13 @@ namespace HonkBusterGame
                     }
                 }
             }
+        }
+
+        private void SetPlayerHealthBar()
+        {
+            _playerHealthBar.SetMaxiumHealth(_player.Health);
+            _playerHealthBar.SetValue(_player.Health);
+            _playerHealthBar.SetBarColor(color: Colors.Crimson);
         }
 
         private void LoosePlayerHealth()
